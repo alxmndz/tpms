@@ -32,7 +32,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Profile</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="login-rev.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,7 +49,10 @@
                                 Dashboard
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'patron')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                                Patrons
+                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
                                 Announcement
@@ -73,36 +76,17 @@
                                     <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Marriage</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Transactions 
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            
+                            <div class="sb-sidenav-menu-heading">Donations</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'transaction')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                                Transactions
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link tablinks" onclick="openCity(event, 'login')" href="#">Login</a>
-                                            <a class="nav-link tablinks" onclick="openCity(event, 'register')" href="#">Register</a>
-                                            <a class="nav-link tablinks" onclick="openCity(event, 'password')" href="#">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                 
-                                  
-                                </nav>
-                            </div>
+
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'charts')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
-                            </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'tables')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
                             </a>
                         </div>
                     </div>
@@ -123,6 +107,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
+                        <hr>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -677,8 +662,11 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Forms</h1>
                         <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
                             <li class="breadcrumb-item active">Forms</li>
                         </ol>
+                        <hr>
+                        
                         <div class="container py-5 ">
                         <div class="row justify-content-center align-items-center h-100">
                             <div class="card container h-100" style="background: #ECF0F1;">
@@ -702,6 +690,7 @@
                                           <td>
                                             <select name="actions" id="actions">
                                               <option value=""></option>
+                                              <option value="View">View</option>
                                               <option value="Approved">Approved</option>
                                               <option value="Disapproved">Disapproved</option>
                                             </select>
@@ -752,18 +741,64 @@
                     </div>
                 </main>
 
-                 <main  class="tabcontent" id="login">
+                <main  class="tabcontent" id="transaction">
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Login</h1>
+                        <h1 class="mt-4">Transactions</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Login</li>
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Transactions</li>
                         </ol>
-                    </div>
+                        <hr>
+                        <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDonate" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Firstname</td>
+                                          <td scope="col">Lastname</td>
+                                          <td scope="col">Amount</td>
+                                          <td scope="col">Date</td>
+                                          <td scope="col">Receipt</td>
+                                          <td scope="col">Event</td>
+                                          <td scope="col">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">Kim</th>
+                                          <td scope="row">Alex</td>
+                                          <td scope="row">1000</td>
+                                          <td scope="row">02/28/23</td>
+                                          <td scope="row">Communion</td>
+                                          <td scope="row">Communion.jpg</td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Edit</option>
+                                              <option value="Delete">Delete</option>
+                                            </select>
+                                          </td>
+                                        </tr>
+                                        
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </main>
 
                   <main  class="tabcontent" id="announcement">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Announcement</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Announcement</li>
+                        </ol>
                         <hr>
                         <div class="container py-5 ">
                         <div class="row justify-content-center align-items-center h-100">
@@ -776,7 +811,7 @@
                                           <td scope="col">Announcement Title</td>
                                           <td scope="col">Date</td>
                                           <td scope="col">Description</td>
-                                          <td scope="col" colspan="3">Action</td>
+                                          <td scope="col">Action</td>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -825,10 +860,110 @@
                     </div>
                 </main>
 
+                <main class="tabcontent" id="patron">
+                   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Patrons</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Patrons</li>
+                        </ol>
+                      <hr>
+                  <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-200" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Firstname</td>
+                                          <td scope="col">Lastname</td>
+                                          <td scope="col">Password</td>
+                                          <td scope="col">User Type</td>
+                                          <td scope="col" colspan="4">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">John</th>
+                                          <td>Brix</td>
+                                          <td>******</td>
+                                          <td>Customer</td>
+                                          <td></td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Edit</option>
+                                              <option value="Delete">Delete</option>
+                                            </select>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
                 <main  class="tabcontent" id="report">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Report</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Report</li>
+                        </ol>
                         <hr>
+                      <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReport" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
+                              <table class="table">
+                                  <thead>
+                                    <tr class= table-dark>
+                                      <td scope="col">Report Title</td>
+                                      <td scope="col">Date</td>
+                                      <td scope="col">Image</td>
+                                      <td scope="col">Description</td>
+                                      <td scope="col" colspan="4">Action</td>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Youth Club</th>
+                                      <td>06/20/23</td>
+                                      <td></td>
+                                      <td>"Join now"</td>
+                                      <td>
+                                        <select name="actions" id="actions">
+                                          <option value=""></option>
+                                              <option value="View">View</option>
+                                              <option value="Approved">Approved</option>
+                                              <option value="Disapproved">Disapproved</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Choir Sessions</th>
+                                      <td>07/01/23</td>
+                                      <td></td>
+                                      <td>"Join now"</td>
+                                      <td>
+                                        <select name="actions" id="actions">
+                                          <option value=""></option>
+                                          <option value="View">View</option>
+                                          <option value="Approved">Approved</option>
+                                          <option value="Disapproved">Disapproved</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </main>
 
@@ -839,6 +974,7 @@
                             <li class="breadcrumb-item"><a>Dashboard</a></li>
                             <li class="breadcrumb-item active">Charts</li>
                         </ol>
+                        <hr>
                         <div class="card mb-4">
                             <div class="card-body">
                                 Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
@@ -879,9 +1015,164 @@
                     </div>
                 </main>
 
+              <div class="modal" id="addReport">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+                                <section>
+                                 <div class="container">
+                                   <div class="row justify-content-center align-items-center h-100">
+                                     <div class="card container h-100" style="background: #f1f1f1;">
 
+                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
+                                      <div class="card-body">
+                                        <h1>Report</h1>
+                                        <form class="" action="" method="post">
+                                              <div class="md-3">
+                                                <p><i class="fa-solid fa-pen"></i> Title
+                                                      <input class="form-control" type="text" id="reportname" name="reportname" placeholder="Enter the report title" required>
+                                                    </p>
+                                                <p><i class="fa-solid fa-calendar-days" class="form-control"></i> Date
+                                                  <input type="date"  class="form-control datetime" name="reportdate" required>
+                                                </p>
+                                                
+                                              </div>
+
+                                              <div class="md-3">
+                                                  <div class="mb-3">
+                                                    <label for="myfile">Select a file:</label><br>
+                                                      <input class="form-control" type="file" id="myfile" name="myfile">
+                                                      <br>
+                                                      <p>Description
+                                                        <textarea rows="2" class="form-control form" name="description" required></textarea>
+                                                      </p>
+                                       
+                                              </div>  
+
+                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                                          </div>
+                                                 
+                                        </form>
+                                          
+                                      </div>
+
+                                    </div> 
+                                   </div>
+                                 </div>
+                                </section>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="addDonate">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+                                <section>
+                                 <div class="container">
+                                   <div class="row justify-content-center align-items-center h-100">
+                                     <div class="card container h-100" style="background: #f1f1f1;">
+
+                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
+                                      <div class="card-body">
+                                        <h1>Transactions</h1>
+                                        <hr>
+                                        <form class="" action="" method="post">
+
+                                          <div class="md-3">
+                                              <p><i class="fa-solid fa-user"></i> Firstname
+                                                      <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
+                                                    </p>
+
+                                                <p><i class="fa-solid fa-user"></i> Lastname
+                                                  <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
+                                                </p>
+                                                <p><i class="fa-solid fa-pen"></i> Amount
+                                                      <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter the amount" required>
+                                                    </p>
+                                              </div>
+                                              
+                                              <div class="md-3">
+                                                  <div class="mb-3">
+                                                    <label for="myfile">Proof of receipt:</label><br>
+                                                      <input class="form-control" type="file" id="myfile" name="myfile">
+                                              </div>  
+
+                                              <div class="md-3">
+                                                <div class="mb-3">
+                                                  <label for="myfile">Type of Event</label><br>
+                                                  <select class="form-control" name="actions" id="actions">
+                                                    <option value=""></option>
+                                                    <option value="Kumpil">Kumpil</option>
+                                                    <option value="Baptismal">Baptismal</option>
+                                                    <option value="Communion">Communion</option>
+                                                    <option value="Marriage">Marriage</option>
+                                                    <option value="Funeral">Funeral</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+
+                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                                          </div>
+                                                 
+                                        </form>
+                                          
+                                      </div>
+
+                                    </div> 
+                                   </div>
+                                 </div>
+                                </section>
+            </div>
+          </div>
+        </div>
                 
+              <div class="modal" id="addAnnounce" >
+            <div class="container">
+              <div class="modal-dialog">
+                 <div class="modal-content">
+                   <section>
+                                 <div class="container">
+                                   <div class="row align-items-center h-100">
+                                     <div class="card container h-100" style="background: #FFFFFF;">
 
+                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: right; cursor: pointer; " ></button>
+                                      <div class="card-body">
+                                        <h4>Announcements</h4>
+                                        <form class="" action="" method="post">
+                                          <h1></h1>
+                                              <div class="md-3">
+                                                <p><i class="fa-solid fa-pen"></i> Title
+                                                      <input class="form-control" type="text" id="announcename" name="announcename" placeholder="Enter the announcement title" required>
+                                                    </p>
+                                                <p><i class="fa-solid fa-calendar-days" class="form-control"></i> Date
+                                                  <input type="date"  class="form-control datetime" name="reportdate" required>
+                                                </p>
+                                                
+                                              </div>
+
+                                              <div class="md-3">
+                                                  <div class="mb-3">
+                                                  
+                                                      <p><i class="fa-solid fa-comment"></i> Description
+                                                        <textarea rows="2" class="form-control form" name="description" required></textarea>
+                                                      </p>
+                                       
+                                              </div>  
+
+                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                                          </div>
+                                                 
+                                        </form>
+                                          
+                                      </div>
+
+                                    </div> 
+                                   </div>
+                                 </div>
+                                </section>
+                 </div>             
+              </div> 
+            </div>         
+          </div>
                   
  <script>
 function openCity(evt, cityName) {
