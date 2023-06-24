@@ -671,9 +671,9 @@
                         <div class="row justify-content-center align-items-center h-100">
                             <div class="card container h-100" style="background: #ECF0F1;">
                               <div class="card-body">
-                                <table class="table">
+                                <table class="table text-center">
                                     <thead>
-                                      <tr class= table-dark>
+                                      <tr class= "table-dark">
                                         <td scope="col">Filename</td>
                                         <td scope="col">Submitted Date</td>
                                         <td scope="col">Status</td>
@@ -754,36 +754,62 @@
                             <div class="card container h-100" style="background: #ECF0F1;">
                               <div class="card-body">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDonate" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                                <table class="table">
+                                <table class="table text-center">
+                                  <?php
+                                      include_once 'dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM donation");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
                                       <thead>
-                                        <tr class= table-dark>
+                                        <tr class= "table-dark">
                                           <td scope="col">Firstname</td>
                                           <td scope="col">Lastname</td>
                                           <td scope="col">Amount</td>
                                           <td scope="col">Date</td>
                                           <td scope="col">Receipt</td>
                                           <td scope="col">Event</td>
-                                          <td scope="col">Action</td>
+                                          <td scope="col" colspan="4">Action</td>
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <th scope="row">Kim</th>
-                                          <td scope="row">Alex</td>
-                                          <td scope="row">1000</td>
-                                          <td scope="row">02/28/23</td>
-                                          <td scope="row">Communion</td>
-                                          <td scope="row">Communion.jpg</td>
-                                          <td>
-                                            <select name="actions" id="actions">
-                                              <option value=""></option>
-                                              <option value="Edit">Edit</option>
-                                              <option value="Delete">Delete</option>
-                                            </select>
+                                        <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["donateAmount"]; ?></td>
+                                      <td><?php echo $row["donateDate"]; ?></td>
+                                      <td><?php echo $row["donateReceipt"]; ?></td>
+                                      <td><?php echo $row["donateEvent"]; ?></td>
+                                      <td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="deleteUser.php?donateID=<?php echo $row["donateID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
                                           </td>
-                                        </tr>
-                                        
-                                      </tbody>
+                                        </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
                                     </table>
                               </div>
                             </div>
@@ -805,53 +831,58 @@
                             <div class="card container h-100" style="background: #ECF0F1;">
                               <div class="card-body">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAnnounce" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                                  <table class="table">
+                                  <table class="table text-center">
+                                    <?php
+                                      include_once 'dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM announcements");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
                                       <thead>
-                                        <tr class= table-dark>
+                                        <tr class= "table-dark">
                                           <td scope="col">Announcement Title</td>
                                           <td scope="col">Date</td>
                                           <td scope="col">Description</td>
-                                          <td scope="col">Action</td>
+                                          <td>Announcement Image</td>
+                                          <td scope="col" colspan="4">Action</td>
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <th scope="row">Libreng Kasal</th>
-                                          <td>02/28/23</td>
-                                          <td></td>
-                                          <td>
-                                            <select name="actions" id="actions">
-                                              <option value=""></option>
-                                              <option value="Edit">Edit</option>
-                                              <option value="Delete">Delete</option>
-                                            </select>
+                                        <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["announceTitle"]; ?></td>
+                                      <td><?php echo $row["announceDate"]; ?></td>
+                                      <td><?php echo $row["announceTime"]; ?></td>
+                                      <td><?php echo $row["announceIMG"]; ?></td>
+                                      <td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="deleteUser.php?announceID=<?php echo $row["announceID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
                                           </td>
-                                        </tr>
-                                        <tr>
-                                          <td scope="row">Binyag</td>
-                                          <td>03/05/23</td>
-                                          <td></td>
-                                          <td>
-                                            <select name="actions" id="actions">
-                                              <option value=""></option>
-                                              <option value="Edit">Edit</option>
-                                              <option value="Delete">Delete</option>
-                                            </select>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td scope="row">Kumpil</td>
-                                          <td>04/22/23</td>
-                                          <td></td>
-                                          <td>
-                                            <select name="actions" id="actions">
-                                              <option value=""></option>
-                                              <option value="Edit">Edit</option>
-                                              <option value="Delete">Delete</option>
-                                            </select>
-                                          </td>
-                                        </tr>
-                                      </tbody>
+                                        </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
                                     </table>
                                     </div>
                                 </div>
@@ -873,31 +904,57 @@
                             <div class="card container h-200" style="background: #ECF0F1;">
                               <div class="card-body">
                                 <table class="table">
+                                  <?php
+                                    include_once 'dbconn.php';
+                                    $result = mysqli_query($conn,"SELECT * FROM users");
+                                      if (mysqli_num_rows($result) > 0) {
+                                  ?>
                                       <thead>
-                                        <tr class= table-dark>
+                                        <tr class= "table-dark text-center">
                                           <td scope="col">Firstname</td>
                                           <td scope="col">Lastname</td>
-                                          <td scope="col">Password</td>
-                                          <td scope="col">User Type</td>
-                                          <td scope="col" colspan="4">Action</td>
+                                          <td scope="col">Email</td>
+                                          <td scope="col">Account Type</td>
+                                          <td scope="col" colspan="3">Action</td>
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <th scope="row">John</th>
-                                          <td>Brix</td>
-                                          <td>******</td>
-                                          <td>Customer</td>
-                                          <td></td>
-                                          <td>
-                                            <select name="actions" id="actions">
-                                              <option value=""></option>
-                                              <option value="Edit">Edit</option>
-                                              <option value="Delete">Delete</option>
-                                            </select>
+                                        <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["type"]; ?></td>
+                                      <td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="deleteUser.php?id=<?php echo $row["user_id"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
                                           </td>
-                                        </tr>
-                                      </tbody>
+                                        </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
                                     </table>
                               </div>
                             </div>
@@ -917,47 +974,66 @@
                       <div class="container py-5 ">
                         <div class="row justify-content-center align-items-center h-100">
                             <div class="card container h-100" style="background: #ECF0F1;">
+                             
                               <div class="card-body">
-                               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReport" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                              <table class="table">
-                                  <thead>
-                                    <tr class= table-dark>
-                                      <td scope="col">Report Title</td>
-                                      <td scope="col">Date</td>
-                                      <td scope="col">Image</td>
-                                      <td scope="col">Description</td>
-                                      <td scope="col" colspan="4">Action</td>
-                                    </tr>
-                                  </thead>
+                               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReport" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" >
+                                  <i class="fa-solid fa-plus"></i> Create New
+                                </button>
+                                
+                              <table class="table text-center">
+                                <?php
+                                  include_once 'dbconn.php';
+                                  $result = mysqli_query($conn,"SELECT * FROM reports");
+                                    if (mysqli_num_rows($result) > 0) {
+                                ?>
+                                    <thead>
+                                          <tr class= table-dark>
+                                            <td scope="row">Report Title</td>
+                                            <td scope="row">Date</td>
+                                            <td scope="row">Time</td>
+                                            <td scope="row">Description</td>
+                                            <td scope="row" colspan="3">Actions</td>
+                                          </tr>
+                                        </thead>
+
                                   <tbody>
+                                  <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
                                     <tr>
-                                      <th scope="row">Youth Club</th>
-                                      <td>06/20/23</td>
-                                      <td></td>
-                                      <td>"Join now"</td>
+                                      <td><?php echo $row["reportTitle"]; ?></td>
+                                      <td><?php echo $row["reportDate"]; ?></td>
+                                      <td><?php echo $row["reportTime"]; ?></td>
+                                      <td><?php echo $row["description"]; ?></td>
                                       <td>
-                                        <select name="actions" id="actions">
-                                          <option value=""></option>
-                                              <option value="View">View</option>
-                                              <option value="Approved">Approved</option>
-                                              <option value="Disapproved">Disapproved</option>
-                                        </select>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Choir Sessions</th>
-                                      <td>07/01/23</td>
-                                      <td></td>
-                                      <td>"Join now"</td>
                                       <td>
-                                        <select name="actions" id="actions">
-                                          <option value=""></option>
-                                          <option value="View">View</option>
-                                          <option value="Approved">Approved</option>
-                                          <option value="Disapproved">Disapproved</option>
-                                        </select>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
                                       </td>
+                                      <td>
+                                        <a href="deleteReport.php?id=<?php echo $row["reportID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                        </td>
                                     </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </table>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    
                                   </tbody>
                                 </table>
                                 </div>
@@ -1015,7 +1091,9 @@
                     </div>
                 </main>
 
-              <div class="modal" id="addReport">
+      
+
+        <div class="modal" id="addReport">
           <div class="modal-dialog ">
             <div class="modal-content">
                                 <section>
@@ -1026,23 +1104,31 @@
                                         <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
                                       <div class="card-body">
                                         <h1>Report</h1>
-                                        <form class="" action="" method="post">
+                                        <form class="" action="insertReport.php" method="post">
                                               <div class="md-3">
-                                                <p><i class="fa-solid fa-pen"></i> Title
-                                                      <input class="form-control" type="text" id="reportname" name="reportname" placeholder="Enter the report title" required>
-                                                    </p>
-                                                <p><i class="fa-solid fa-calendar-days" class="form-control"></i> Date
-                                                  <input type="date"  class="form-control datetime" name="reportdate" required>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Title
+                                                  <input class="form-control" type="text" id="reportTitle" name="reportTitle" placeholder="Enter the report title" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-calendar-days" class="form-control"></i> 
+                                                    Date
+                                                  <input type="date"  class="form-control datetime" id="reportDate" name="reportDate" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-business-time"></i>
+                                                    Time
+                                                  <input type="time"  class="form-control" id="reportTime" name="reportTime" required>
                                                 </p>
                                                 
                                               </div>
 
                                               <div class="md-3">
                                                   <div class="mb-3">
-                                                    <label for="myfile">Select a file:</label><br>
-                                                      <input class="form-control" type="file" id="myfile" name="myfile">
-                                                      <br>
-                                                      <p>Description
+                                                      <p>
+                                                        <i class="fa-solid fa-circle-info"></i>
+                                                          Description
                                                         <textarea rows="2" class="form-control form" name="description" required></textarea>
                                                       </p>
                                        
@@ -1073,42 +1159,46 @@
 
                                         <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
                                       <div class="card-body">
+
                                         <h1>Transactions</h1>
                                         <hr>
-                                        <form class="" action="" method="post">
-
-                                          <div class="md-3">
-                                              <p><i class="fa-solid fa-user"></i> Firstname
-                                                      <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
-                                                    </p>
-
-                                                <p><i class="fa-solid fa-user"></i> Lastname
+                                         <form class="" action="insertDonate.php" method="post">
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Firstname
+                                                  <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Lastname
                                                   <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
                                                 </p>
-                                                <p><i class="fa-solid fa-pen"></i> Amount
-                                                      <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter the amount" required>
-                                                    </p>
-                                              </div>
-                                              
-                                              <div class="md-3">
-                                                  <div class="mb-3">
-                                                    <label for="myfile">Proof of receipt:</label><br>
-                                                      <input class="form-control" type="file" id="myfile" name="myfile">
-                                              </div>  
-
-                                              <div class="md-3">
-                                                <div class="mb-3">
-                                                  <label for="myfile">Type of Event</label><br>
-                                                  <select class="form-control" name="actions" id="actions">
-                                                    <option value=""></option>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Amount
+                                                  <input class="form-control" type="text" id="donateAmount" name="donateAmount" placeholder="Enter amount" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-calendar-days" class="form-control"></i> 
+                                                    Date
+                                                  <input type="date"  class="form-control datetime" id="donateDate" name="donateDate" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Receipt
+                                                  <input class="form-control" type="file" id="donateReceipt" name="donateReceipt" placeholder="Enter receipt" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i> 
+                                                    Title
+                                                  <select class="form-control" id="donateEvent" name="donateEvent">
                                                     <option value="Kumpil">Kumpil</option>
                                                     <option value="Baptismal">Baptismal</option>
-                                                    <option value="Communion">Communion</option>
+                                                    <option value="Pamisa">Pamisa</option>
                                                     <option value="Marriage">Marriage</option>
                                                     <option value="Funeral">Funeral</option>
                                                   </select>
-                                                </div>
-                                              </div>
+                                                </p>
 
                                              <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                                           </div>
@@ -1137,14 +1227,23 @@
                                         <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: right; cursor: pointer; " ></button>
                                       <div class="card-body">
                                         <h4>Announcements</h4>
-                                        <form class="" action="" method="post">
+                                        <form class="" action="insertAnnouncement.php" method="post">
                                           <h1></h1>
                                               <div class="md-3">
-                                                <p><i class="fa-solid fa-pen"></i> Title
-                                                      <input class="form-control" type="text" id="announcename" name="announcename" placeholder="Enter the announcement title" required>
-                                                    </p>
-                                                <p><i class="fa-solid fa-calendar-days" class="form-control"></i> Date
-                                                  <input type="date"  class="form-control datetime" name="reportdate" required>
+                                                <p>
+                                                  <i class="fa-solid fa-pen"></i>
+                                                   Title
+                                                    <input class="form-control" type="text" id="announceTitle" name="announceTitle" placeholder="Enter the announcement title" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-calendar-days" class="form-control"></i>
+                                                   Date
+                                                  <input type="date"  class="form-control datetime" name="announceDate" required>
+                                                </p>
+                                                <p>
+                                                  <i class="fa-solid fa-business-time"></i>
+                                                   Time
+                                                  <input type="time"  class="form-control datetime" name="announceTime" required>
                                                 </p>
                                                 
                                               </div>
@@ -1152,8 +1251,9 @@
                                               <div class="md-3">
                                                   <div class="mb-3">
                                                   
-                                                      <p><i class="fa-solid fa-comment"></i> Description
-                                                        <textarea rows="2" class="form-control form" name="description" required></textarea>
+                                                      <p><i class="fa-solid fa-image"></i> Announce Image
+                                                        <input type="file"  class="form-control datetime" name="announceIMG" id="announceIMG" required>
+                                                </p>
                                                       </p>
                                        
                                               </div>  
