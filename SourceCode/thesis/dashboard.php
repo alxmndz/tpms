@@ -1163,45 +1163,41 @@
                                         <h1>Transactions</h1>
                                         <hr>
                                          <form class="" action="insertDonate.php" method="post">
+                                           <div class="md-3">
                                                 <p>
-                                                  <i class="fa-solid fa-pen"></i> 
+                                                  <i class="fa-solid fa-user"></i> 
                                                     Firstname
                                                   <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
                                                 </p>
                                                 <p>
-                                                  <i class="fa-solid fa-pen"></i> 
+                                                  <i class="fa-solid fa-user"></i> 
                                                     Lastname
                                                   <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
                                                 </p>
                                                 <p>
-                                                  <i class="fa-solid fa-pen"></i> 
-                                                    Amount
-                                                  <input class="form-control" type="text" id="donateAmount" name="donateAmount" placeholder="Enter amount" required>
+                                                  <i class="fa-solid fa-money-bill-1-wave"></i> 
+                                                    Donation Amount
+                                                  <input class="form-control" type="text" id="donateAmount" name="donateAmount" placeholder="Enter donation amount" required>
                                                 </p>
                                                 <p>
                                                   <i class="fa-solid fa-calendar-days" class="form-control"></i> 
                                                     Date
                                                   <input type="date"  class="form-control datetime" id="donateDate" name="donateDate" required>
                                                 </p>
-                                                <p>
-                                                  <i class="fa-solid fa-pen"></i> 
-                                                    Receipt
-                                                  <input class="form-control" type="file" id="donateReceipt" name="donateReceipt" placeholder="Enter receipt" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-pen"></i> 
-                                                    Title
-                                                  <select class="form-control" id="donateEvent" name="donateEvent">
-                                                    <option value="Kumpil">Kumpil</option>
-                                                    <option value="Baptismal">Baptismal</option>
-                                                    <option value="Pamisa">Pamisa</option>
-                                                    <option value="Marriage">Marriage</option>
-                                                    <option value="Funeral">Funeral</option>
-                                                  </select>
-                                                </p>
+                                                
+                                              </div>
+
+                                              <div class="md-3">
+                                                  <div class="mb-3">
+                                                      <p>
+                                                        <i class="fa-solid fa-folder-open"></i>
+                                                          Donation Receipt
+                                                        <input type="file"  class="form-control" id="donateReceipt" name="donateReceipt" required>
+                                                      </p>
+                                              </div>  
 
                                              <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
-                                          </div>
+                                          </div>    
                                                  
                                         </form>
                                           
