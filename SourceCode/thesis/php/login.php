@@ -40,7 +40,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
                     header("Location: ../patron.php");
                     exit();
                 }elseif ($_SESSION['type']==="admin") {
-                    header("Location: ../admin.php");
+                    header("Location: ../dashboard.php");
                     exit();
                 }elseif ($_SESSION['type']==="staff") {
                     header("Location: ../staff.php");
