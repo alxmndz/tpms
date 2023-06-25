@@ -5,7 +5,7 @@ if(isset($_POST['btn-save']))
 	$reportTitle = $_POST['reportTitle'];
 	$reportDate = $_POST['reportDate'];
 	$reportTime = $_POST['reportTime'];
-	$description = $_POST['description'];
+	$description= $_POST['description'];
 
 	$sql_query = "INSERT INTO reports(reportTitle,reportDate,reportTime,description) VALUES('$reportTitle','$reportDate','$reportTime','$description')";
 		mysqli_query($conn,$sql_query);

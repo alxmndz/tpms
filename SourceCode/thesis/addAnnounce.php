@@ -3,11 +3,12 @@ include_once 'dbconn.php';
 if(isset($_POST['btn-save']))
 {
 	$announceTitle = $_POST['announceTitle'];
-	$announceDate = $_POST['reportDate'];
-	$reportTime = $_POST['reportTime'];
+	$announceDate = $_POST['announceDate'];
+	$announceTime = $_POST['announceTime'];
+	$announceDesc = $_POST['announceDesc'];
 	$announceIMG = $_POST['announceIMG'];
 
-	$sql_query = "INSERT INTO announcements(announceTitle,announceDate,announceTime,announceIMG) VALUES('$announceTitle','$announceDate','$announceTime','$announceIMG')";
+	$sql_query = "INSERT INTO announcements(announceTitle,announceDate,announceTime,announceDesc,announceIMG) VALUES('$announceTitle','$announceDate','$announceTime','$announceDesc','$announceIMG')";
 		mysqli_query($conn,$sql_query);
 	
 

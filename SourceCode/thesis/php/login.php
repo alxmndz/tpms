@@ -24,7 +24,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
         //encrypting the code for more security
         $pass = md5($pass);
         
-        $sql = "SELECT * FROM users WHERE email = '$email' AND 
+        $sql = "SELECT * FROM accounts WHERE email = '$email' AND 
           password = '$pass'";
 
         $result = mysqli_query($conn, $sql);
