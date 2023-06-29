@@ -15,7 +15,7 @@ if(isset($_POST['btn-save']))
 ?>
 		<script type="text/javascript">
 			alert("Announcement Added Successfully!");
-			window.location = "dashboard.php";
+			window.location = "../dashboard.php";
 		</script>
 <?php
 				

@@ -28,11 +28,13 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <i class="fa-solid fa-user"></i>
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Profile</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="login-rev.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,6 +45,8 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+
+                            <div class="sb-sidenav-menu-heading">Welcome to admin</div>
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'dashboard')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
@@ -68,8 +72,10 @@
                                 Approval
                             </a>
 
+                            
                             <div class="sb-sidenav-menu-heading">Credentials</div>
                             <a onclick="openCity(event, 'forms')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-folder-open"></i></div>
                                 Request Forms
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -78,26 +84,29 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link tablinks" onclick="openCity(event, 'baptismal')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'communion')" href="#">Communion</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'funeral')" href="#">Funeral</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'kumpil')" href="#">Kumpil</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Marriage</a>
                                 </nav>
                             </div>
 
-                            <a onclick="openCity(event, '')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-book-bible"></i></div>
-                                Events Reservation
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Transactions 
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" href="#">Pamisa</a>
-                                    <a class="nav-link tablinks" href="#">Wedding</a>
-                                    <a class="nav-link tablinks" href="#">Kumpil</a>
-                                    <a class="nav-link tablinks" href="#">Marriage</a>
+                          <div class="collapse" id="collapseLayouts" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">  
+                              <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                  <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'baptismal')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'funeral')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'kumpil')" href="#">Kumpil</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Marriage</a>
                                 </nav>
-                            </div>
+                              </div>
+                           </nav>
                         </div>
                     </div>
                 </nav>
@@ -141,7 +150,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">
-                                        <i class="fa-solid fa-exclamation"></i> 
+                                        <i class="fa-solid fa-circle-exclamation"></i> 
                                         Announcements
                                         <div style="float: right;">
                                             <span><?php
@@ -161,10 +170,22 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body"><i class="fa-solid fa-thumbs-up"></i> 
-                                    Approval
+                                    <div class="card-body"><i class="fa-solid fa-folder-open"></i> 
+                                    Request Forms
                                 <div style="float: right;">
-                                        <span>1</span>
+                                        <span>
+                                         <?php
+                                                $conn = new mysqli("localhost","root","","thesis");
+                                                    if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                    }
+                                                        $sql = "SELECT COUNT(*) FROM forms";
+                                                        $result = $conn->query($sql);
+                                                        while($row = mysqli_fetch_array($result)){
+                                                        echo $row['COUNT(*)'];
+                                                    }
+                                            ?>
+                                        </span>
                                     </div>
                                 </div>
                                     
@@ -232,6 +253,11 @@
                               <div class="card-body">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForms" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
                                 <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
                                     <thead>
                                       <tr class= "table-dark">
                                         <td scope="col">Firstname</td>
@@ -244,29 +270,48 @@
                                         <td scope="col" colspan="3">Action</td>
                                       </tr>
                                     </thead>
-                                      <tbody>
-                                        <tr>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
                                         <button class="btn btn-primary" >
                                           <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="#">
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
                                             </a>
                                           </td>
-                                        </tr>
-                                      </tbody>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
                                     </table>
                                   </div>
                               </div>
@@ -281,6 +326,156 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Baptismal</li>
                         </ol>
+                        <hr>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms WHERE formType = 'Baptismal'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Firstname</td>
+                                        <td scope="col">Lastname</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Mobile Phone</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+
+                <main  class="tabcontent" id="communion">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Communion</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Communion</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms WHERE formType = 'Communion'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Firstname</td>
+                                        <td scope="col">Lastname</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Mobile Phone</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                 </main>
 
@@ -290,6 +485,76 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Funeral</li>
                         </ol>
+                        <hr> 
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms WHERE formType = 'Funeral'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Firstname</td>
+                                        <td scope="col">Lastname</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Mobile Phone</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>      
                     </div>
                 </main>
 
@@ -299,15 +564,155 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Kumpil</li>
                         </ol>
+                        <hr>
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms WHERE formType = 'Confirmation'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Firstname</td>
+                                        <td scope="col">Lastname</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Mobile Phone</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
                     </div>
                 </main>
 
-                <main  class="tabcontent" id="marriage">
+                <main  class="tabcontent" id="marriage" name="marriage">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Marriage</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Marriage</li>
                         </ol>
+                        <hr>
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM forms WHERE formType = 'Wedding'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Firstname</td>
+                                        <td scope="col">Lastname</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Mobile Phone</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["fname"]; ?></td>
+                                      <td><?php echo $row["lname"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["mobilePhone"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["formType"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
                     </div>
                 </main>
 
@@ -326,7 +731,7 @@
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDonate" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
                                 <table class="table text-center">
                                   <?php
-                                      include_once 'dbconn.php';
+                                      include_once 'php/dbconn.php';
                                       $result = mysqli_query($conn,"SELECT * FROM donation");
                                         if (mysqli_num_rows($result) > 0) {
                                     ?>
@@ -360,7 +765,7 @@
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="deleteUser.php?donateID=<?php echo $row["donateID"]; ?>">
+                                        <a href="php/deleteUser.php?donateID=<?php echo $row["donateID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -403,7 +808,7 @@
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAnnounce" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
                                   <table class="table text-center">
                                     <?php
-                                      include_once 'dbconn.php';
+                                      include_once 'php/dbconn.php';
                                       $result = mysqli_query($conn,"SELECT * FROM announcements");
                                         if (mysqli_num_rows($result) > 0) {
                                     ?>
@@ -433,7 +838,7 @@
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="deleteAnnouncement.php?announceID=<?php echo $row["announceID"]; ?>">
+                                        <a href="php/deleteAnnouncement.php?announceID=<?php echo $row["announceID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -475,7 +880,7 @@
                               <div class="card-body">
                                 <table class="table">
                                     <?php
-                                    include_once 'dbconn.php';
+                                    include_once 'php/dbconn.php';
                                     $result = mysqli_query($conn,"SELECT * FROM accounts");
                                       if (mysqli_num_rows($result) > 0) {
                                   ?>
@@ -505,7 +910,7 @@
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="deleteUser.php?user_id=<?php echo $row["user_id"]; ?>">
+                                        <a href="php/deleteUser.php?user_id=<?php echo $row["user_id"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -552,7 +957,7 @@
                                 
                               <table class="table text-center">
                                 <?php
-                                  include_once 'dbconn.php';
+                                  include_once 'php/dbconn.php';
                                   $result = mysqli_query($conn,"SELECT * FROM reports");
                                     if (mysqli_num_rows($result) > 0) {
                                 ?>
@@ -583,7 +988,7 @@
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="deleteReport.php?reportID=<?php echo $row["reportID"]; ?>">
+                                        <a href="php/deleteReport.php?reportID=<?php echo $row["reportID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -624,7 +1029,7 @@
                                       <div class="card-body">
                                         <h2>Request Forms</h2>
                                         <hr>
-                                        <form class="" action="" method="post">
+                                        <form class="" action="php/addReqForm.php" method="post">
                                           <div class="row my-3">
                                             <div class="col-md-6">
                                                 <div class="form-outline">
@@ -668,7 +1073,7 @@
                                                     <select class="form-control" id="formType" name="formType">
                                                         <option value=""></option>
                                                         <option value="Baptismal">Baptismal</option>
-                                                        <option value="Confimation">Confimation</option>
+                                                        <option value="Confirmation">Confirmation</option>
                                                         <option value="Communion">Communion</option>
                                                         <option value="Funeral">Funeral</option>
                                                         <option value="Wedding">Wedding</option>
@@ -683,17 +1088,37 @@
                                                     <i class="fa-solid fa-credit-card"></i>
                                                     Payment Type
                                                   </label>
-                                                    <select class="form-control" id="formType" name="formType">
+                                                    <select class="form-control" id="optionPay" name="optionPay">
                                                       <option value=""></option>
                                                       <option value="Face-to-face">Face-to-face</option>
                                                       <option value="GCash">GCash</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-outline">
-                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount</label>
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Reference Number</label>
                                                     <input class="form-control" type="text" id="refNum" name="refNum" placeholder="Enter reference number" required>
+                                                </div>
+                                            </div><div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i>Amount Price</label>
+                                                    <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter amount" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                           <div class="col-md-12">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-box-open"></i> Package</label>
+                                                    <select class="form-control" id="pack" name="pack">
+                                                        <option value=""></option>
+                                                        <option value="Baptismal Package">Baptism Package</option>
+                                                        <option value="Confimation Package">Confirmation Package</option>
+                                                        <option value="Communion Package">Communion Package</option>
+                                                        <option value="Funeral Package">Funeral Package</option>
+                                                        <option value="Wedding Package">Wedding Package</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -704,16 +1129,16 @@
                                                     <i class="fa-solid fa-receipt"></i>
                                                       Receipt
                                                     </label>
-                                                    <input class="form-control" type="file" id="refNum" name="refNum" placeholder="Pick receipt" required>
+                                                    <input class="form-control" type="file" id="receiptIMG" name="receiptIMG" placeholder="Pick receipt">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-outline">
                                                   <label class="form-label" for="typeText"><i class="fa-solid fa-heart"></i> Status</label>
-                                                    <select class="form-control" id="formType" name="formType">
+                                                    <select class="form-control" id="status" name="status">
                                                       <option value=""></option>
-                                                      <option value="Approved">Disapproved</option>
-                                                      <option value="Confimation">Confimation</option>
+                                                      <option value="Disapproved">Disapproved</option>
+                                                      <option value="Approved">Approved</option>
                                                       <option value="Pending">Pending</option>
                                                     </select>
                                                 </div>
@@ -728,11 +1153,6 @@
                                       <div class="md-3">
                                         
                                       </div>
-                                                      
-                                                        
-                                                        
-                                                        
-
                                   <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                                 </div>
                                                  
@@ -760,7 +1180,7 @@
                                       <div class="card-body">
                                         <h1>Report</h1>
                                         <hr>
-                                        <form class="" action="addReport.php" method="post">
+                                        <form class="" action="php/addReport.php" method="post">
                                               <div class="md-3">
                                                 <p>
                                                   <i class="fa-solid fa-pen"></i> 
@@ -819,7 +1239,7 @@
                                         <h1>Transactions</h1>
                                         <hr>
 
-                                         <form class="" action="insertDonate.php" method="post">
+                                         <form class="" action="php/insertDonate.php" method="post">
                                            <div class="md-3">
                                                 <p>
                                                   <i class="fa-solid fa-user"></i> 
@@ -892,7 +1312,7 @@
                                       <div class="card-body">
                                         <h4>Announcements</h4>
                                         <hr>
-                                        <form class="" action="addAnnounce.php" method="POST">
+                                        <form class="" action="php/addAnnounce.php" method="POST">
                                           <h1></h1>
                                               <div class="md-3">
                                                 <p>
@@ -966,12 +1386,7 @@ function openCity(evt, cityName) {
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Copyright &copy; Saint Vincent Ferrer Parish (2023)</div>
                         </div>
                     </div>
                 </footer>
