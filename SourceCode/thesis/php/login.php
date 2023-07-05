@@ -32,11 +32,13 @@ if(isset($_POST['email']) && isset($_POST['password'])){
         if(mysqli_num_rows($result) === 1){
             $row = mysqli_fetch_assoc($result);
             if ($row['email'] === $email && $row['password'] === $pass){
+                $_SESSION['fname'] = $row['fname'];
+                $_SESSION['img'] = $row['img'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['type'] = $row['type'];
                 $_SESSION['user_id'] = $row['user_id'];
 
-                if ($_SESSION['type']==="customer") {
+                if ($_SESSION['type']==="patron") {
                     header("Location: ../patron.php");
                     exit();
                 }elseif ($_SESSION['type']==="admin") {
@@ -60,6 +62,6 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     }
 
 }else{
-    header("Location: login-rev.php");
+ header("Location: login-rev.php");
     exit();
 }

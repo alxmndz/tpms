@@ -1,5 +1,5 @@
 <?php
-include_once '../php/dbconn.php';
+include_once 'dbconn.php';
 if(isset($_POST['btn-save']))
 {
 	$fname = $_POST['fname'];
@@ -10,10 +10,14 @@ if(isset($_POST['btn-save']))
 	$formType = $_POST['formType'];
 	$status = $_POST['status'];
 	$amount = $_POST['amount'];
+	$pack = $_POST['pack'];
 	$refNum = $_POST['refNum'];
 	$receiptIMG = $_FILES['receiptIMG'];	
+	$optionPay = $_POST['optionPay'];
 
-	$targetDir = "receipts/";
+
+
+	$targetDir = "../images/";
   $fileName5 = $_FILES['receiptIMG']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
@@ -22,37 +26,31 @@ if(isset($_POST['btn-save']))
   $allowTypes = array('jpg','png','jpeg','gif','pdf');
   if(in_array($fileType, $allowTypes)){
   	if(move_uploaded_file($_FILES["receiptIMG"]["tmp_name"], $targetFilePath)){
-  	echo $targetFilePath;
-    $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,refNum,receiptIMG) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$refNum','$targetFilePath')";
+  		echo $targetFilePath;
+    $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,pack,refNum,receiptIMG,optionPay) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$pack','$refNum','$targetFilePath','$optionPay')";
 		mysqli_query($conn,$sql_query);
 	
 		echo "<script type='text/javascript'>
 			alert('Request Added Successfully!');
 			window.location = '../dashboard.php';
 		</script>";
-		echo mysqli_error($conn);	
-  }
-  else{
-    echo "<script type='text/javascript'>
-			alert('Request Failed!');
-			window.location = '../dashboard.php';
-		</script>";
-		echo mysqli_error($conn);
-      }
-  }
-  else{
-    echo "<script type='text/javascript'>
-			alert('Request Added Successfully!');
-			window.location = '../dashboard.php';
-		</script>";
-		echo mysqli_error($conn);
-      }
-  }
+                             }
+                             else{
+                             	echo "Something";
+                             }
+                         }
+                         else{
+                         	echo "hello";
+                         }
+                     }
 
 	// $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,pack,refNum,receiptIMG,optionPay) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$pack','$refNum','$receiptIMG','$optionPay')";
 	// 	mysqli_query($conn,$sql_query);
+	
 
 ?>
+		
+
 
 <?php
 	mysqli_close($conn);

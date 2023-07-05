@@ -6,9 +6,8 @@ if(isset($_POST['btn-save']))
 	$announceDate = $_POST['announceDate'];
 	$announceTime = $_POST['announceTime'];
 	$announceDesc = $_POST['announceDesc'];
-	$announceIMG = $_POST['announceIMG'];
 
-	$sql_query = "INSERT INTO announcements(announceTitle,announceDate,announceTime,announceDesc,announceIMG) VALUES('$announceTitle','$announceDate','$announceTime','$announceDesc','$announceIMG')";
+	$sql_query = "INSERT INTO announcements(announceTitle,announceDate,announceTime,announceDesc) VALUES('$announceTitle','$announceDate','$announceTime','$announceDesc')";
 		mysqli_query($conn,$sql_query);
 	
 
