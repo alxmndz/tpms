@@ -12,7 +12,7 @@
       <form action="php/login.php" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text">
           <?php if (isset($_GET['error'])) { ?>
-        <p class="error"><?php echo $_GET['error']; ?></p>
+        <p class="alert-danger error" role="alert"><?php echo $_GET['error']; ?></p>
           <?php } ?></div>
         <div class="field input">
           <label>Email Address</label>
@@ -32,7 +32,6 @@
   </div>
   
   <script src="js/pass-show-hide.js"></script>
-  <script src="js/login-2.js"></script>
 
 </body>
 </html>

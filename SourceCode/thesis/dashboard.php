@@ -2,7 +2,7 @@
 include_once 'php/config.php';
 session_start();
 
-if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
+if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['lname'])){
   $id = $_SESSION['user_id'];
   $sql=mysqli_query($conn,"SELECT img FROM accounts WHERE user_id = '$id'");
   $img = mysqli_fetch_assoc($sql);
@@ -16,8 +16,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/client.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/admin.ico" />
         <title>Saint Vincent Ferrer Church | Admin</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -33,6 +34,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
         <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
         <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+        <link rel="stylesheet" type="text/css" href="css/profile.css">
      </head>
 
     <body class="sb-nav-fixed">
@@ -41,6 +45,29 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
             <a class="navbar-brand ps-3" href="dashboard.php"><img src="assets/img/header-bg.jpg" style="height: 25px; width: 25px; object-fit: cover; border-radius: 30px;"> St. Vincent Parish</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+              <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #343a40;">
+                          <i class="fas fa-user fa-fw" style="color: whitesmoke;"></i>
+                        </a>
+                      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" onclick="openCity(event, 'profile')" href="#!"><img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3" style="height: 30px; width: 30px; margin-top: 10px;"> Profile</a></li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                          <li>
+                            <a class="dropdown-item" href="php/logout.php?">
+                            <i class="icon-power"></i>
+                            Logout
+                          </a>
+                        </li>
+                      </ul>
+                  </li>
+              </ul>
+          </nav>
             
         <!-- Navbar-->
         </nav>
@@ -52,7 +79,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                         <div class="nav">
 
                           <div class="sb-sidenav-menu-heading">Account Portfolio</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
+                            <a class="nav-link tablinks" onclick="openCity(event, 'profile')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Profile
                             </a>
@@ -66,25 +93,12 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Accounts
                             </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
-                                Events List
-                            </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-                                Announcement
-                            </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'report')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-microphone"></i></div>
-                                Report
-                            </a>
-                            
-                        <div class="sb-sidenav-menu-heading">Credentials</div>
-                        
+                        <div class="sb-sidenav-menu-heading">Certificate/Forms</div>
+
                             <a onclick="openCity(event, 'forms')" class="nav-link collapsed" role="button" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-folder-open"></i></div>
-                                Request Forms
+                                Request Certificate
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
 
@@ -92,11 +106,18 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link tablinks" onclick="openCity(event, 'baptismal')" href="#">Baptismal</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'communion')" href="#">Communion</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'funeral')" href="#">Funeral</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'kumpil')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Wedding</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'funeral')" href="#">Death Certificate</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Marriage</a>
                                 </nav>
-                            </div>
+                            </div>   
+                        <div class="sb-sidenav-menu-heading">Appointments</div>
+                        
+                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
+                                Events List
+                            </a>
+
                             <a onclick="openCity(event, '')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
 
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -107,14 +128,27 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                             
                               <div class="collapse" id="collapseLayouts1" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                   <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'baptismal')" href="#">Baptismal</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'funeral')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'kumpil')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, 'marriage')" href="#">Wedding</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Blessing</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
                                 </nav>
                               </div>
 
-                        <a class="nav-link tablinks" href="login-rev.php">
+                        <div class="sb-sidenav-menu-heading">Reports</div>
+                              <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                Announcement
+                            </a>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'report')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-microphone"></i></div>
+                                Report
+                            </a>
+
+                       <div class="sb-sidenav-menu-heading">Exit</div>     
+                        <a class="nav-link tablinks" href="php/logout.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                             Logout
                         </a>
@@ -126,6 +160,33 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
             <div id="layoutSidenav_content">
 
                 <!-- Start of the tabs -->
+              <main  class="tabcontent" id="profile" style="display: none;">
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Profile</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Profile Details</li>
+                    </ol>
+
+                </div>
+                <div class="row container-fluid align-items-center">
+                  <div class="row">
+                    <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                      <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+                        <div class="banner"></div>
+                        <img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3">
+                        <h3 class="mb-4"><?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
+                        <div class="text-left mb-4">
+                          <p class="mb-2"><i class="fa fa-envelope mr-2"></i><?php echo $_SESSION['email']; ?></p>
+                          <p class="mb-2"><i class="fa fa-phone mr-2"></i> +0906 403 0788</p>
+                          <p class="mb-2"><i class="fa fa-map-marker-alt mr-2"></i> V. Calingasan Street, Burgos St, Tuy, Batangas</p>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+
                 <main  class="tabcontent" id="dashboard">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -136,17 +197,16 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                         </div>
                         <div class="row container-fluid align-items-center">
 
-                          <div class="col-xl-6 col-md-12">
+                          <div class="col-xl-5 col-md-12" style="margin-left: 50px;">
                             <div class="card overflow-hidden">
                               <div class="card-content">
                                 <div class="card-body cleartfix">
                                   <div class="media align-items-stretch">
                                     <div class="align-self-center">
-                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px;">
+                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px; margin-left: 100px;">
                                     </div>
-                                    <div class="media-body">
-                                      <h4>Welcome,</h4>
-                                        <span><?php echo $_SESSION['fname']; ?></span>
+                                    <div class="media-body"  style="margin-top: 15px; margin-left: 10px;">
+                                      <h1> Welcome <b><?php echo $_SESSION['fname']; ?></b></h1>
                                       </div>
                                       <?php 
                                         }else{
@@ -170,7 +230,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                                     <div class="align-self-center">
                                       <i class="fa-solid fa-credit-card info font-large-2 mr-2"></i>
                                     </div>
-                                    <div class="media-body">
+                                    <div class="media-body" style="margin-top: 25px;">
                                       <h4>Total Funds</h4>
                                       <span></span>
                                     </div>
@@ -229,7 +289,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="fa-solid fa-bullhorn warning font-large-2 float-left"></i>
+                                        <i class="icon-bell warning font-large-2 float-left"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -344,7 +404,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                             <li class="breadcrumb-item active">Requested Forms</li>
                         </ol>
                         
-                        <div class="container py-5 ">
+                      <div class="container py-5 ">
                         <div class="row justify-content-center align-items-center h-100">
                             <div class="card container h-100" style="background: #ECF0F1;">
                               <div class="card-body">
@@ -1183,8 +1243,8 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname'])){
                                 <select class="form-control" id="formType" name="formType"required>
                                     <option value=""></option>
                                     <option value="Baptismal">Baptismal</option>
-                                    <option value="Confirmation">Confirmation</option>
                                     <option value="Communion">Communion</option>
+                                    <option value="Confirmation">Confirmation</option>
                                     <option value="Funeral">Funeral</option>
                                     <option value="Wedding">Wedding</option>
                                 </select>
@@ -1550,6 +1610,8 @@ function openCity(evt, cityName) {
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>
