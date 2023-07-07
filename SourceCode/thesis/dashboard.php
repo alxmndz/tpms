@@ -54,7 +54,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                           <i class="fas fa-user fa-fw" style="color: whitesmoke;"></i>
                         </a>
                       <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" onclick="openCity(event, 'profile')" href="#!"><img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3" style="height: 30px; width: 30px; margin-top: 10px;"> Profile</a></li>
+                          <li><a class="dropdown-item" onclick="openCity(event, 'profile')" href="#!"><img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3" style="height: 30px; width: 30px; margin-top: 10px; object-fit: cover;"> Profile</a></li>
                             <li>
                               <hr class="dropdown-divider">
                             </li>
@@ -78,11 +78,6 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                     <div class="sb-sidenav-menu">
                         <div class="nav">
 
-                          <div class="sb-sidenav-menu-heading">Account Portfolio</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'profile')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                                Profile
-                            </a>
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'dashboard')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
@@ -113,7 +108,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             </div>   
                         <div class="sb-sidenav-menu-heading">Appointments</div>
                         
-                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
+                            <a class="nav-link tablinks" onclick="openCity(event, 'cal')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
                                 Events List
                             </a>
@@ -128,12 +123,12 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             
                               <div class="collapse" id="collapseLayouts1" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                   <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Baptismal</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Blessing</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'bRes')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'blRes')" href="#">Blessing</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'comRes')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'conRes')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'fRes')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'wRes')" href="#">Wedding</a>
                                 </nav>
                               </div>
 
@@ -146,13 +141,11 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-microphone"></i></div>
                                 Report
                             </a>
-
-                       <div class="sb-sidenav-menu-heading">Exit</div>     
-                        <a class="nav-link tablinks" href="php/logout.php">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-                            Logout
-                        </a>
                     </div>
+                    <div class="sb-sidenav-footer">
+                          <div class="small">Logged in as:</div>
+                          <?php echo $_SESSION['type']; ?>
+                      </div>
                 </nav>
             </div>
 
@@ -203,10 +196,10 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <div class="card-body cleartfix">
                                   <div class="media align-items-stretch">
                                     <div class="align-self-center">
-                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px; margin-left: 100px;">
+                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px; margin-left: 90px; object-fit: cover;">
                                     </div>
                                     <div class="media-body"  style="margin-top: 15px; margin-left: 10px;">
-                                      <h1> Welcome <b><?php echo $_SESSION['fname']; ?></b></h1>
+                                      <h3> Welcome <b><?php echo $_SESSION['fname']; ?></b></h3>
                                       </div>
                                       <?php 
                                         }else{
@@ -228,7 +221,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <div class="card-body cleartfix">
                                   <div class="media align-items-stretch">
                                     <div class="align-self-center">
-                                      <i class="fa-solid fa-credit-card info font-large-2 mr-2"></i>
+                                      <i class="icon-wallet info font-large-2 mr-2"></i>
                                     </div>
                                     <div class="media-body" style="margin-top: 25px;">
                                       <h4>Total Funds</h4>
@@ -1181,6 +1174,471 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                     </div>
                     </div>
                 </main>
+
+                <main class="tabcontent" id="bRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Baptismal</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Baptismal</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Baptismal'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+                <main class="tabcontent" id="blRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Blessing</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Blessing</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Blessing'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+                <main class="tabcontent" id="comRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Communion</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Communion</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Communion'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+
+                <main class="tabcontent" id="fRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Funeral</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Funeral</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Funeral'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+                <main class="tabcontent" id="wRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Weddding</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Weddding</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Wedding'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+                <main class="tabcontent" id="conRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Baptismal</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Event Reservation</a></li>
+                            <li class="breadcrumb-item active">Baptismal</li>
+                        </ol>
+
+                        <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/dbconn.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Baptismal'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead>
+                                      <tr class= "table-dark">
+                                        <td scope="col">Patron name</td>
+                                        <td scope="col">Type</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Contacts</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col">Status</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td><?php echo $row["status"]; ?></td>
+                                      <td>
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+                
         <div class="modal" id="addForms">
           <div class="modal-dialog ">
             <div class="modal-content">

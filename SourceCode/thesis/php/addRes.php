@@ -1,41 +1,44 @@
+
 <?php
 include_once '../php/dbconn.php';
 if(isset($_POST['btn-save']))
 {
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
+	$name = $_POST['name'];
+	$eventName = $_POST['eventName'];
+	$eventDate = $_POST['eventDate'];
+	$eventTime = $_POST['eventTime'];
+	$contactNum = $_POST['contactNum'];
 	$address = $_POST['address'];
-	$mobilePhone = $_POST['mobilePhone'];
-	$email = $_POST['email'];
-	$formType = $_POST['formType'];
-	$status = $_POST['status'];
+	$sponsored = $_POST['sponsored'];
+	$package = $_POST['package'];
 	$amount = $_POST['amount'];
-	$refNum = $_POST['refNum'];
-	$receiptIMG = $_FILES['receiptIMG'];	
+	$email = $_POST['email'];	
+	$package = $_POST['package'];
+	$cr = $_FILES['credentialfile'];	
 
-	$targetDir = "receipts/";
-  $fileName5 = $_FILES['receiptIMG']['name'];
+	$targetDir = "credential/";
+  $fileName5 = $_FILES['credentialfile']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
                             
-  $fileTmpName5 = $_FILES['receiptIMG']['tmp_name'];
+  $fileTmpName5 = $_FILES['credentialfile']['tmp_name'];
   $allowTypes = array('jpg','png','jpeg','gif','pdf');
   if(in_array($fileType, $allowTypes)){
-  	if(move_uploaded_file($_FILES["receiptIMG"]["tmp_name"], $targetFilePath)){
+  	if(move_uploaded_file($_FILES["credentialfile"]["tmp_name"], $targetFilePath)){
   	echo $targetFilePath;
-    $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,refNum,receiptIMG) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$refNum','$targetFilePath')";
+    $sql_query = "INSERT INTO eventres(name,eventName,eventDate,eventTime,contactNum,address,sponsored,package,amount,email,package,credentialfile) VALUES('$name','$eventName','$eventDate','$eventTime','$contactNum','$address','$sponsored','$package','$amount','$email','$package','$targetFilePath'')";
 		mysqli_query($conn,$sql_query);
 	
 		echo "<script type='text/javascript'>
-			alert('Request Added Successfully!');
-			window.location = '../dashboard.php';
+			alert('Added Successfully!');
+			window.location = '../staff.php';
 		</script>";
 		echo mysqli_error($conn);	
   }
   else{
     echo "<script type='text/javascript'>
 			alert('Request Failed!');
-			window.location = '../dashboard.php';
+			window.location = '../staff.php';
 		</script>";
 		echo mysqli_error($conn);
       }
@@ -43,7 +46,7 @@ if(isset($_POST['btn-save']))
   else{
     echo "<script type='text/javascript'>
 			alert('Added Successfully!');
-			window.location = '../dashboard.php';
+			window.location = '../staff.php';
 		</script>";
 		echo mysqli_error($conn);
       }
@@ -57,3 +60,4 @@ if(isset($_POST['btn-save']))
 <?php
 	mysqli_close($conn);
 			?>
+

@@ -13,7 +13,7 @@ if(isset($_POST['btn-save']))
 
 ?>
 		<script type="text/javascript">
-			alert("Report Added Successfully!");
+			alert("Added Successfully!");
 			window.location = "../dashboard.php";
 		</script>
 <?php
