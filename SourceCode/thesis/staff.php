@@ -1877,7 +1877,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       <h1>Reservation</h1>
                       <hr>
 
-                      <form class="" action="php/addRes.php" method="post">
+                      <form class="" action="php/addRes.php" method="post" enctype="multipart/form-data">
                             <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
