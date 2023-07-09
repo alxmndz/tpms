@@ -546,7 +546,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -626,7 +626,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -704,7 +704,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -781,7 +781,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -858,7 +858,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -936,7 +936,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1013,7 +1013,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1090,7 +1090,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1171,7 +1171,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1250,7 +1250,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1330,7 +1330,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1409,7 +1409,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReqF.php?formsID=<?php echo $row["formsID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1434,82 +1434,6 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                           </div>
                       </div> 
                     </div>
-                </main>
-
-                <main class="tabcontent" id="transaction" style="display: none;">
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Transactions</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a>Dashboard</a></li>
-                            <li class="breadcrumb-item active">Transactions</li>
-                        </ol>
-                        <div class="container py-5 ">
-                          <div class="row justify-content-center align-items-center h-100">
-                            <div class="card container h-100" style="background: #ECF0F1;">
-                              <div class="card-body">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDonate" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                                <table class="table text-center">
-                                  <?php
-                                      include_once 'php/dbconn.php';
-                                      $result = mysqli_query($conn,"SELECT * FROM donation");
-                                        if (mysqli_num_rows($result) > 0) {
-                                    ?>
-                                      <thead>
-                                        <tr class= "table-dark">
-                                          <td scope="col">Firstname</td>
-                                          <td scope="col">Lastname</td>
-                                          <td scope="col">Amount</td>
-                                          <td scope="col">Date</td>
-                                          <td scope="col">Receipt</td>
-                                          <td scope="col">Event</td>
-                                          <td scope="col" colspan="4">Action</td>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($result)) {
-                                    ?>
-                                    <tr class="text-center">
-                                      <td><?php echo $row["fname"]; ?></td>
-                                      <td><?php echo $row["lname"]; ?></td>
-                                      <td><?php echo $row["donateAmount"]; ?></td>
-                                      <td><?php echo $row["donateDate"]; ?></td>
-                                      <td><?php echo $row["donateReceipt"]; ?></td>
-                                      <td><?php echo $row["donateEvent"]; ?></td>
-                                      <td>
-                                      <td>
-                                        <button class="btn btn-primary" >
-                                          <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                      </td>
-                                      <td>
-                                        <a href="php/deleteDonate.php?donateID=<?php echo $row["donateID"]; ?>">
-                                              <button class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                              </button>
-                                            </a>
-                                          </td>
-                                        </td>
-                                    </tr>
-                                      <?php
-                                        $i++;
-                                        }
-                                      ?>
-                                    </tbody>
-                                 <?php
-                                }
-                                else
-                                {
-                                    echo "No result found";
-                                }
-                                ?>
-                                    </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                 </main>
 
                   <main class="tabcontent" id="announcement" style="display: none;">
@@ -1559,7 +1483,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                       </td>
                                       
                                       <td>
-                                        <a href="php/deleteAnnouncement.php?announceID=<?php echo $row["announceID"]; ?>">
+                                        <a href="php/deleteAnnounce.php?announceID=<?php echo $row["announceID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1633,7 +1557,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                       </td>
 
                                       <td>
-                                        <a href="php/deleteUser.php?user_id=<?php echo $row["user_id"]; ?>">
+                                        <a href="php/deleteAccs.php?user_id=<?php echo $row["user_id"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1712,7 +1636,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </a>
                                       </td>
                                       <td>
-                                        <a href="php/deleteReport.php?reportID=<?php echo $row["reportID"]; ?>">
+                                        <a href="php/deleteR.php?reportID=<?php echo $row["reportID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1752,8 +1676,8 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 10px; margin-left: 450px; float: left; cursor: pointer; " ></button>
                     <div class="card-body">
                       <h2>Request Forms</h2>
-
-                      <form class="" action="php/addReqForm.php" method="post" enctype="multipart/form-data">
+                      <hr>
+                      <form class="" action="php/addRF.php" method="post" enctype="multipart/form-data">
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
@@ -2031,7 +1955,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                     <div class="card-body">
                       <h1>Report</h1>
 
-                      <form class="" action="php/addReport.php" method="post">
+                      <form class="" action="php/addR.php" method="post">
                             <div class="md-3">
                               <p>
                                 <i class="fa-solid fa-pen"></i> 
@@ -2148,81 +2072,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
             </div>
           </div>
         </div>
-
-        <div class="modal" id="addDonate">
-          <div class="modal-dialog ">
-            <div class="modal-content">
-                                <section>
-                                 <div class="container">
-                                   <div class="row justify-content-center align-items-center h-100">
-                                     <div class="card container h-100" style="background: #f1f1f1;">
-
-                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
-                                      <div class="card-body">
-
-                                        <h1>Transactions</h1>
-
-
-                                         <form class="" action="php/insertDonate.php" method="post">
-                                           <div class="md-3">
-                                                <p>
-                                                  <i class="fa-solid fa-user"></i> 
-                                                    Firstname
-                                                  <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-user"></i> 
-                                                    Lastname
-                                                  <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-money-bill-1-wave"></i> 
-                                                    Donation Amount
-                                                  <input class="form-control" type="text" id="donateAmount" name="donateAmount" placeholder="Enter donation amount" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-calendar-days" class="form-control"></i> 
-                                                    Date
-                                                  <input type="date"  class="form-control datetime" id="donateDate" name="donateDate" required>
-                                                </p>
-                                                
-                                              </div>
-
-                                              <div class="md-3">
-                                                  <div class="mb-3">
-                                                      <p>
-                                                        <i class="fa-solid fa-folder-open"></i>
-                                                          Donation Receipt
-                                                        <input type="file"  class="form-control" id="donateReceipt" name="donateReceipt" required>
-                                                      </p>
-                                                       <p><i class="fa-solid fa-calendar"></i> Event
-                                                        <select class="form-control" id="donateEvent" name="donateEvent">
-                                                          <option value=""></option>
-                                                          <option value="Kumpil">Kumpil</option>
-                                                          <option value="Pamisa">Pamisa</option>
-                                                          <option value="Baptismal">Baptismal</option>
-                                                          <option value="Funeral">Funeral</option>
-                                                          <option value="Blessing">Blessing</option>
-                                                          <option value="Confirmation">Confirmation</option>
-                                                          <option value="Communion">Communion</option>
-                                                        </select>
-                                              </div>  
-
-                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
-                                          </div>    
-      
-                                        </form>
-                                          
-                                      </div>
-
-                                    </div> 
-                                   </div>
-                                 </div>
-                                </section>
-            </div>
-          </div>
-        </div>
-                
+   
           <div class="modal" id="addAnnounce" >
             <div class="container">
               <div class="modal-dialog">
@@ -2236,7 +2086,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                       <div class="card-body">
                                         <h4>Announcements</h4>
 
-                                        <form class="" action="php/addAnnounce.php" method="POST">
+                                        <form class="" action="php/addAn.php" method="POST">
 
                                               <div class="md-3" style="margin-bottom: 10px;">
                                                 <p>

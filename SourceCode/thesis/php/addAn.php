@@ -10,9 +10,10 @@ if(isset($_POST['btn-save']))
 	$sql_query = "INSERT INTO announcements(announceTitle,announceDate,announceTime,announceDesc) VALUES('$announceTitle','$announceDate','$announceTime','$announceDesc')";
 	mysqli_query($conn,$sql_query);
 ?>
-		<script type="text/javascript">
+
+	<script type="text/javascript">
 			alert("Added Successfully!");
-			window.location = "../dashboard.php";
+			window.location = "../staff.php";
 		</script>
 
 <?php
