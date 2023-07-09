@@ -30,14 +30,12 @@ if(isset($_POST['btn-save']))
 			alert('Request Added Successfully!');
 			window.location = '../staff.php';
 		</script>";
-		echo mysqli_error($conn);	
   }
   else{
     echo "<script type='text/javascript'>
 			alert('Request Failed!');
 			window.location = '../staff.php';
 		</script>";
-		echo mysqli_error($conn);
       }
   }
   else{
@@ -45,7 +43,6 @@ if(isset($_POST['btn-save']))
 			alert('Added Successfully!');
 			window.location = '../staff.php';
 		</script>";
-		echo mysqli_error($conn);
       }
   }
 

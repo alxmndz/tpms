@@ -113,7 +113,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 Events List
                             </a>
 
-                            <a onclick="openCity(event, '')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a onclick="openCity(event, 'eventRes')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
 
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                   Reservation 
@@ -1226,7 +1226,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1303,7 +1303,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1380,7 +1380,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1458,7 +1458,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1535,7 +1535,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1576,7 +1576,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <table class="table text-center">
                                  <?php
                                       include_once 'php/dbconn.php';
-                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Baptismal'");
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres WHERE eventName = 'Confirmation'");
                                         if (mysqli_num_rows($result) > 0) {
                                     ?>
                                     <thead>
@@ -1612,7 +1612,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteForms.php?formsID=<?php echo $row["formsID"]; ?>">
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>
@@ -1638,6 +1638,89 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       </div>
                     </div>
                 </main>
+                <main  class="tabcontent" id="eventRes" style="display: none;">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Event Reservation</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Event Reservation</li>
+                        </ol>
+                        
+                      <div class="container py-5 ">
+                        <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRes" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Add Reservation</button>
+                                <table class="table text-center">
+                                 <?php
+                                      include_once 'php/config.php';
+                                      $result = mysqli_query($conn,"SELECT * FROM eventres");
+                                        if (mysqli_num_rows($result) > 0) {
+                                    ?>
+                                    <thead class="thead-dark">
+                                      <tr class= "table-dark">
+                                        <td scope="col">Name</td>
+                                        <td scope="col">Event</td>
+                                        <td scope="col">Date</td>
+                                        <td scope="col">Time</td>
+                                        <td scope="col">Contact</td>
+                                        <td scope="col">Address</td>
+                                        <td scope="col">Email</td>
+                                        <td scope="col" colspan="3">Action</td>
+                                      </tr>
+                                    </thead>
+                                      <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <tr class="text-center">
+                                      <td><?php echo $row["name"]; ?></td>
+                                      <td><?php echo $row["eventName"]; ?></td>
+                                      <td><?php echo $row["eventDate"]; ?></td>
+                                      <td><?php echo $row["eventTime"] ?></td>
+                                      <td><?php echo $row["contactNum"]; ?></td>
+                                      <td><?php echo $row["address"]; ?></td>
+                                      <td><?php echo $row["email"]; ?></td>
+                                      <td>
+                                      <a href="php/editRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
+                                        <button class="btn btn-primary" >
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                      </a>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-success" >
+                                          <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                      </td>
+                                      <td>
+                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
+                                              <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                              </button>
+                                            </a>
+                                          </td>
+                                    </tr>
+                                      <?php
+                                        $i++;
+                                        }
+                                      ?>
+                                    </tbody>
+                                 <?php
+                                }
+                                else
+                                {
+                                    echo "No result found";
+                                }
+                                ?>
+                                    </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </main>
+
                 
         <div class="modal" id="addForms">
           <div class="modal-dialog ">
@@ -1817,155 +1900,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
               </section>
             </div>
           </div>
-        </div>
-  <div class="modal" id="editReport">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <?php
-          include_once 'dbconn.php';
-          if(count($_POST)>0) {
-          mysqli_query($conn,"UPDATE reports SET reportTitle='" . $_POST['reportTitle'] . "', reportDate ='" . $_POST['reportDate'] . "', reportTime ='" . $_POST['reportTime'] . "', description ='" . $_POST['reportDesc'] . "' WHERE reportID='" . $_POST['reportID'] . "'");
-            $message = "Report has updated successfully";
-            }
-              $result = mysqli_query($conn,"SELECT * FROM reports WHERE reportID='" . $_GET['reportID'] . "'");
-              $row= mysqli_fetch_array($result);
-            ?>
-              <section>
-                <div class="container">
-                  <div class="row justify-content-center align-items-center h-100">
-                    <div class="card container h-100" style="background: #f1f1f1;">
-
-                      <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
-                    <div class="card-body">
-                      <h1>Report</h1>
-
-                      <form class="" action="" method="post">
-                            <div class="md-3">
-                              <p class="alert">
-                                                  <?php if(isset($message)) { echo $message; } ?>
-                              </p>
-                              <p>
-                                <input type="hidden" name="reportID" class="form-control" value="<?php echo $row['reportID']; ?>">
-                              </p>
-                              <p>
-                                <i class="fa-solid fa-pen"></i> 
-                                  Title
-                                <input class="form-control" type="text" id="reportTitle" name="reportTitle" value="<?php echo $row['reportTitle']; ?>" required>
-                              </p>
-                              <p>
-                                <i class="fa-solid fa-calendar-days" class="form-control"></i> 
-                                  Date
-                                <input type="date"  class="form-control datetime" name="reportDate" value="<?php echo $row['reportDate']; ?>" required>
-                              </p>
-                              <p>
-                                <i class="fa-solid fa-business-time"></i>
-                                                    Time
-                                <input type="time"  class="form-control" name="reportTime" value="<?php echo $row['reportTime']; ?>" required>
-                              </p>
-                                                
-                            </div>
-
-                            <div class="md-3">
-                                <div class="mb-3">
-                                    <p>
-                                      <i class="fa-solid fa-circle-info"></i>
-                                         Description
-                                      <textarea class="form-control" name="reportDesc" required>
-                                        <?php echo $row['description']; ?>
-                                      </textarea>
-                                    </p>
-                                       
-                            </div>  
-
-                            <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
-                        </div>
-                                                 
-                      </form>
-                                          
-                    </div>
-
-                  </div> 
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal" id="addDonate">
-          <div class="modal-dialog ">
-            <div class="modal-content">
-                                <section>
-                                 <div class="container">
-                                   <div class="row justify-content-center align-items-center h-100">
-                                     <div class="card container h-100" style="background: #f1f1f1;">
-
-                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
-                                      <div class="card-body">
-
-                                        <h1>Transactions</h1>
-
-
-                                         <form class="" action="php/insertDonate.php" method="post">
-                                           <div class="md-3">
-                                                <p>
-                                                  <i class="fa-solid fa-user"></i> 
-                                                    Firstname
-                                                  <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-user"></i> 
-                                                    Lastname
-                                                  <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-money-bill-1-wave"></i> 
-                                                    Donation Amount
-                                                  <input class="form-control" type="text" id="donateAmount" name="donateAmount" placeholder="Enter donation amount" required>
-                                                </p>
-                                                <p>
-                                                  <i class="fa-solid fa-calendar-days" class="form-control"></i> 
-                                                    Date
-                                                  <input type="date"  class="form-control datetime" id="donateDate" name="donateDate" required>
-                                                </p>
-                                                
-                                              </div>
-
-                                              <div class="md-3">
-                                                  <div class="mb-3">
-                                                      <p>
-                                                        <i class="fa-solid fa-folder-open"></i>
-                                                          Donation Receipt
-                                                        <input type="file"  class="form-control" id="donateReceipt" name="donateReceipt" required>
-                                                      </p>
-                                                       <p><i class="fa-solid fa-calendar"></i> Event
-                                                        <select class="form-control" id="donateEvent" name="donateEvent">
-                                                          <option value=""></option>
-                                                          <option value="Kumpil">Kumpil</option>
-                                                          <option value="Pamisa">Pamisa</option>
-                                                          <option value="Baptismal">Baptismal</option>
-                                                          <option value="Funeral">Funeral</option>
-                                                          <option value="Blessing">Blessing</option>
-                                                          <option value="Confirmation">Confirmation</option>
-                                                          <option value="Communion">Communion</option>
-                                                        </select>
-                                              </div>  
-
-                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
-                                          </div>    
-      
-                                        </form>
-                                          
-                                      </div>
-
-                                    </div> 
-                                   </div>
-                                 </div>
-                                </section>
-            </div>
-          </div>
-        </div>
-                
+        </div> 
           <div class="modal" id="addAnnounce" >
             <div class="container">
               <div class="modal-dialog">
@@ -2021,6 +1956,163 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
               </div> 
             </div>         
           </div>
+
+          <div class="modal" id="addRes">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+              <section>
+                <div class="container">
+                  <div class="row justify-content-center align-items-center h-100">
+                    <div class="card container h-100" style="background: #f1f1f1;">
+
+                      <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
+                    <div class="card-body">
+                      <h1>Reservation</h1>
+                      <hr>
+
+                      <form class="" action="php/addReserve.php" method="post" enctype="multipart/form-data">
+                            <div class="row my-3">
+                          <div class="col-md-6">
+                              <div class="form-outline">
+                                  <label class="form-label" for="typeText">
+                                    <i class="fa-solid fa-user"></i> 
+                                    Full name
+                                  </label>
+                                <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name"  autocomplete="off" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText">
+                                  <i class="fa-solid fa-calendar-days"></i> 
+                                    Event
+                                </label>
+                                <select class="form-control" id="eventName" name="eventName" required>
+                                    <option value=""></option>
+                                    <option value="Baptismal">Baptismal</option>
+                                    <option value="Blessing">Blessing</option>
+                                    <option value="Communion">Communion</option>
+                                    <option value="Confirmation">Confirmation</option>
+                                    <option value="Funeral">Funeral</option>
+                                    <option value="Wedding">Wedding</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Date</label>
+                                <input class="form-control" type="date" id="eventDate" name="eventDate"  autocomplete="off" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fas fa-clock"></i> Time</label>
+                                <input class="form-control" type="time" id="eventTime" name="eventTime"  autocomplete="off" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-phone"></i> Contact</label>
+                                <input class="form-control" type="text" id="contactNum" name="contactNum" placeholder="Enter contact number" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                              <label class="form-label" for="typeText">
+                                <i class="fa-solid fa-envelope"></i>
+                                  Email
+                                </label>
+                                <input class="form-control"type="text"id="email" name="email"placeholder="Enter email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                          <div class="form-outline">
+                              <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
+                                <input class="form-control" type="text" id="address" name="address" placeholder="Enter address" autocomplete="off" required>
+                            </div>
+                        </div>
+
+                      <div class="col-md-12">
+                        <div class="form-outline">
+                            <label class="form-label" for="typeText"><i class="fa-solid fa-users"></i> Sponsor</label>
+                            <input class="form-control" type="text" id="sponsored" name="sponsored" placeholder="Enter sponsor" autocomplete="off" required>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText">
+                                  <i class="fa-solid fa-box"></i> 
+                                    Package
+                                </label>
+                                <select class="form-control" id="package" name="package" required>
+                                    <option value=""></option>
+                                    <option value="Baptismal">Baptismal</option>
+                                    <option value="Blessing">Blessing</option>
+                                    <option value="Communion">Communion</option>
+                                    <option value="Confirmation">Confirmation</option>
+                                    <option value="Funeral">Funeral</option>
+                                    <option value="Wedding">Wedding</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
+                                <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter amount" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                      <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-heart"></i> Status</label>
+                                    <select class="form-control" id="status" name="status" required>
+                                      <option value=""></option>
+                                      <option value="Disapproved">Disapproved</option>
+                                      <option value="Approved">Approved</option>
+                                      <option value="Pending">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText">
+                                <i class="fa-solid fa-folder-open"></i>
+                                  Credential
+                                </label>
+                                <input class="form-control" type="file" id="credentialfile" name="credentialfile" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-2">             
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right; margin-top: 10px;">Submit</button>  
+                        </div>
+                                                 
+                      </form>
+                                          
+                    </div>
+
+                  </div> 
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
 
           
                   

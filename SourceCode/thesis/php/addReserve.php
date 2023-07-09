@@ -32,12 +32,12 @@ if(isset($_POST['btn-save']))
 			if($result){
 				echo "<script type='text/javascript'>
 				alert('Add Successfully!');
-				window.location = '../staff.php';
+				window.location = '../dashboard.php';
 				</script>";
 			}else{
 					echo "<script type='text/javascript'>
 				alert('Request Failed!');
-				window.location = '../staff.php';
+				window.location = '../dashboard.php';
 				</script>";
 			}
 		}
@@ -45,7 +45,7 @@ if(isset($_POST['btn-save']))
   else{
     echo "<script type='text/javascript'>
 			alert('Added Successfully!');
-			window.location = '../staff.php';
+			window.location = '../dashboard.php';
 		</script>";
       }
   }
