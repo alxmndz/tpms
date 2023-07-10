@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>blessing Reservation Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="form.css" />
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const gcashRadio = document.getElementById('gcash');
+      const faceToFaceRadio = document.getElementById('ftof');
+      const refNumInput = document.getElementById('refnum');
+      const receiptInput = document.getElementById('receipt');
+
+      // Disable the Reference Number and Receipt Image fields initially
+      refNumInput.disabled = true;
+      receiptInput.disabled = true;
+
+      // Add event listeners to the payment method radio buttons
+      gcashRadio.addEventListener('change', function() {
+        refNumInput.disabled = false;
+        receiptInput.disabled = false;
+      });
+
+      faceToFaceRadio.addEventListener('change', function() {
+        refNumInput.disabled = true;
+        receiptInput.disabled = true;
+      });
+    });
+  </script>
+
+
+
+
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="form-title">Blessing Reservation Form</h1>
+      <form action="#">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required />
+          </div>
+          <div class="user-input-box">
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter Last Name" required />
+          </div>
+          <div class="user-input-box">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required />
+          </div>
+          <div class="user-input-box">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" required />
+          </div>
+          
+          <div class="user-input-box">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+          <div class="user-input-box">
+            <label for="Time">Time(if Sunday 6:30am,8:00am,9:30am)</label>
+            <input type="time" id="Time" name="Time" required />
+          </div>
+          
+          <div class="user-input-box">
+            <label for="country">Intention</label>
+            <select style="height: 40px;width: 95%;border-radius: 7px;outline: none;border: 1px solid grey;padding: 0 10px;" id="intention" name="intention" required>
+              <option value="">Select Intention</option>
+              <option value="sponsor">Major Sponsor</option>
+              <option value="thanksgive">Thanksgiving</option>
+              <option value="b-day">Birthday</option>
+              <option value="wedAnniv">Wedding Anniv.</option>
+              <option value="petition">Petition</option>
+              <option value="Recovery">Healing/Recovery</option>
+              <option value="soul">Soul</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="gender-title">Gcash No: 09123456789</label>
+        </div>
+        
+          <label class="gender-title">Payment Method</label>
+          <div class="gender-category">
+            <input type="radio" name="gender" id="gcash" required />
+            <label for="gcash">G-cash</label>
+            <input type="radio" name="gender" id="ftof" required />
+            <label for="ftof">Face to Face</label>
+          </div>
+        
+          <div class="user-input-box">
+            <label for="refnum">Reference Number</label>
+            <input type="text" id="refnum" name="refnum" placeholder="Enter Reference Number" required />
+          </div>
+
+          <div style="height: 40px;width: 48%;border-radius: 7px;outline: none;border: 1px solid grey; color: white;" class="">
+            <label for="myfile">Receipt Image</label>
+            <input type="file" id="receipt" name="receipt" required />
+          </div>
+          
+        <div class="form-submit-btn">
+          <input type="submit" value="Submit">
+        </div>
+        <div class="form-back-btn">
+          <input type="submit" value="Back">
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>
