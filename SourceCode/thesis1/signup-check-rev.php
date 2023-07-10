@@ -1,7 +1,6 @@
 <?php
     session_start();
-    include_once "config.php";
-    $request = $_REQUEST;
+    include_once "php/config.php";
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -37,12 +36,13 @@
                                     if(mysqli_num_rows($select_sql2) > 0){
                                         $result = mysqli_fetch_assoc($select_sql2);
                                         $_SESSION['unique_id'] = $result['unique_id'];
-                                        echo "Successful created an account!";
+                                        echo "Successfully created account!";
                                     }else{
                                         echo "This email address not Exist!";
                                     }
                                 }else{
-                                    echo "Something went wrong. Please try again!";
+                                    echo "Something went wrong. Please try again";
+                                    
                                 }
                             }
                         }else{
