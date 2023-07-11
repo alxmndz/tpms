@@ -95,10 +95,6 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 Report
                             </a>
                     </div>
-                    <div class="sb-sidenav-footer">
-                          <div class="small">Logged in as:</div>
-                          <?php echo $_SESSION['type']; ?>
-                      </div>
                 </nav>
             </div>
 
@@ -328,9 +324,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             <li class="breadcrumb-item active">Requested Forms</li>
                         </ol>
                         
-                      <div class="container py-5 ">
+                      <div class="container py-5">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForms" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                                <table class="table text-center table-responsive table-bordered text-dark">
+                                <table class="table text-center table-bordered text-dark">
                                  <?php
                                       include_once 'php/config.php';
                                       $result = mysqli_query($conn,"SELECT * FROM forms");

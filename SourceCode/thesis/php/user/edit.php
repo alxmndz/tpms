@@ -42,12 +42,10 @@
                           
                       if(isset($message)) {
                         echo "<script>alert('$message');</script>";
+                        // Function call
+                    function_alert("Updated Successfully!");
                     }
                   }
-                      
-                      
-                    // Function call
-                    function_alert("Updated Successfully!");
                       
                     ?>
                       <p>

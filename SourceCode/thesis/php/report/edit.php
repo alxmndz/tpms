@@ -63,7 +63,7 @@
                       </div>
                       <div class="md-3">
                       </div>
-                      <button type="submit" name="submit" value="Submit" class="btn btn-primary" style="float: right;">Sumbit</button>
+                      <button type="submit" name="submit" value="Submit" class="btn btn-primary" style="float: right;">Submit</button>
                   </div>  
                 </form>
               </div>
