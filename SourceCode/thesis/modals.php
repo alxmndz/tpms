@@ -10,7 +10,7 @@
                     <div class="card-body">
                       <h4>Request Forms</h4>
                       <hr>
-                      <form class="" action="php/addReqForm.php" method="post" enctype="multipart/form-data">
+                      <form class="" action="php/addforms.php" method="post" enctype="multipart/form-data">
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
@@ -133,7 +133,7 @@
                     <div class="card-body">
                       <h4>Report</h4>
                       <hr>
-                      <form class="" action="php/addReport.php" method="post">
+                      <form class="" action="php/report/save.php" method="post">
                             <div class="md-3">
                               <p>
                                 <i class="fa-solid fa-pen"></i> 
@@ -158,7 +158,7 @@
                                 <p>
                                   <i class="fa-solid fa-circle-info"></i>
                                     Description
-                                    <input type="text"  class="form-control" id="description" name="reportTime" autocomplete="off" placeholder="Description" required>
+                                    <input type="text"  class="form-control" id="description" name="description" autocomplete="off" placeholder="Description" required>
                                 </p>    
                             </div>
                             <div class="mb-3">
@@ -205,7 +205,7 @@
                                       <div class="card-body">
                                         <h4>Announcements</h4>
                                         <hr>
-                                        <form class="" action="php/addAnnounce.php" method="POST">
+                                        <form class="" action="php/announcement/save.php" method="POST">
 
                                               <div class="md-3" style="margin-bottom: 10px;">
                                                 <p>
@@ -453,5 +453,48 @@
 
             </div>
         </div>
+      </div>
+
+      <div class="modal" id="edit-accounts">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Account</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="update.php" id="edit-form">
+                        <input class="form-control" type="hidden" name="user_id">
+                        <div class="form-group">
+                            <label for="fname">Firstname</label>
+                            <input class="form-control" type="text" name="fname" placeholder="Firstname" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Lastname</label>
+                            <input class="form-control" type="text" name="lname" placeholder="Lastname" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input class="form-control" type="text" name="email" placeholder="Email" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Account Type</label>
+                            <select class="form-control" id="type" name="type">
+                              <option value=""></option>
+                              <option value="admin">Admin</option>
+                              <option value="staff">Staff</option>
+                              <option value="patron">patron</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Update</button>
+                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                    </form>
 
 
+                </div>
+
+            </div>
+        </div>
+      </div>
