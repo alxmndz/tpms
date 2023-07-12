@@ -646,7 +646,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                       <td><?php echo $row["address"]; ?></td>
                                       <td><?php echo $row["email"]; ?></td>
                                       <td>
-                                      <a href="php/editRes.php?eventResID=<?php echo $row["eventResID"]; ?>">
+                                      <a href="php/reserve/edit.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                         <button class="btn btn-primary" >
                                           <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
@@ -658,7 +658,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         </button>
                                       </td>
                                       <td>
-                                        <a href="php/deleteReserve.php?eventResID=<?php echo $row["eventResID"]; ?>">
+                                        <a href="php/reserve/delete.php?eventResID=<?php echo $row["eventResID"]; ?>">
                                               <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                               </button>

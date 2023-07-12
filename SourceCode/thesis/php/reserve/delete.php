@@ -1,7 +1,7 @@
 <?php
 include_once 'dbconn.php';
 
-$sql = "DELETE FROM accounts WHERE user_id ='" . $_GET["user_id"] . "'";
+$sql = "DELETE FROM eventres WHERE eventResID ='" . $_GET["eventResID"] . "'";
 if (mysqli_query($conn, $sql)) {
     
 ?>
