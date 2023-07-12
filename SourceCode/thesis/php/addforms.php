@@ -28,20 +28,20 @@ if(isset($_POST['btn-save']))
   
     echo "<script type='text/javascript'>
       alert('Request Added Successfully!');
-      window.location = '../../dashboard.php';
+      window.location = '../dashboard.php';
     </script>";
   }
   else{
     echo "<script type='text/javascript'>
       alert('Request Failed!');
-      window.location = '../../dashboard.php';
+      window.location = '../dashboard.php';
     </script>";
       }
   }
   else{
     echo "<script type='text/javascript'>
       alert('Added Successfully!');
-      window.location = '../../dashboard.php';
+      window.location = '../dashboard.php';
     </script>";
       }
   }
