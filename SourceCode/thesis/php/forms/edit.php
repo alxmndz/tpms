@@ -15,7 +15,7 @@ if (count($_POST) > 0) {
   
   // If the validation passes
   if ($valid) {
-    mysqli_query($conn, "UPDATE forms SET fname='" . $_POST['fname'] . "', lname ='" . $_POST['lname'] . "', address ='" . $_POST['address'] . "', mobilePhone ='" . $_POST['mobilePhone'] . "', email ='" . $_POST['email'] . "', formType ='" . $_POST['formType'] . "', status ='" . $_POST['status'] . "', amount ='" . $_POST['amount'] . "'  WHERE formsID='" . $_POST['formsID'] . "'");
+    mysqli_query($conn, "UPDATE forms SET fname='" . $_POST['fname'] . "', lname ='" . $_POST['lname'] . "', address ='" . $_POST['address'] . "', mobilePhone ='" . $_POST['mobilePhone'] . "', email ='" . $_POST['email'] . "', formType ='" . $_POST['formType'] . "', refNum ='" . $_POST['refNum'] . "', status ='" . $_POST['status'] . "', amount ='" . $_POST['amount'] . "'  WHERE formsID='" . $_POST['formsID'] . "'");
 
     $message = "Updated successfully";
   } else {
