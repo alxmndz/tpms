@@ -75,7 +75,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
 
                         <div class="sb-sidenav-menu-heading">Appointments</div>
                         
-                            <a class="nav-link tablinks" onclick="openCity(event, 'cal')" href="#">
+                            <a class="nav-link tablinks" onclick="openCity(event, 'calendar')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
                                 Events List
                             </a>
@@ -202,7 +202,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="icon-user success font-large-2 float-right"></i>
+                                        <i class="icon-user info font-large-2 float-right"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -289,7 +289,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="icon-pencil success font-large-2 float-left"></i>
+                                        <i class="icon-pencil danger font-large-2 float-left"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -316,6 +316,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       </main>
 
                 <!-- NEW TABS -->
+                <main  class="tabcontent" id="calendar" style="display: none;">
+                  <?php include "calendar.php"; ?>
+                </main>
                 <main  class="tabcontent" id="forms" style="display: none;">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Requested Forms</h1>
