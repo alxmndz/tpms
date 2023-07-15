@@ -116,21 +116,8 @@ function displayMessage(message) {
 </style>
 </head>
 <body class="body">
-    <h2></h2>
-    <div class="container-fluid px-4">
-      <h1 class="mt-4">Profile</h1>
-        <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">Profile Details</li>
-        </ol>
-    </div>
-       <div class="row container-fluid align-items-center">
-          <div class="row">
-            <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                <div class="response"></div>
-                <div id='calendar' style="margin-top: 10px;"></div>      
-            </div>
-          </div>
-        </div>
+    <div class="response"></div>
+    <div id='calendar' style="margin-top: 10px;"></div>
 </body>
 
 

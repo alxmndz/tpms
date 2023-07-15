@@ -13,7 +13,7 @@ if(isset($_POST['btn-save']))
   $refNum = $_POST['refNum'];
   $receiptIMG = $_FILES['receiptIMG'];  
 
-  $targetDir = "../php/receipts/";
+  $targetDir = "../rcpts/";
   $fileName5 = $_FILES['receiptIMG']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   

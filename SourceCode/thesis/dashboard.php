@@ -115,7 +115,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                     <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                       <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
                         <div class="banner"></div>
-                        <img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3">
+                        <img src="images/<?php echo $userIMG; ?>" class="img-circle mx-auto mb-3" style="object-fit: cover;">
                         <h3 class="mb-4"><?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
                         <div class="text-left mb-4">
                           <p class="mb-2"><i class="fa fa-envelope mr-2"></i><?php echo $_SESSION['email']; ?></p>
@@ -316,9 +316,10 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       </main>
 
                 <!-- NEW TABS -->
-                <main  class="tabcontent" id="calendar" style="display: none;">
+                <main  class="tabcontent" id="calendar" name ="calendar" style="display: none;">
                   <?php include "calendar.php"; ?>
                 </main>
+
                 <main  class="tabcontent" id="forms" style="display: none;">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Requested Forms</h1>
@@ -327,72 +328,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             <li class="breadcrumb-item active">Requested Forms</li>
                         </ol>
                         
-                      <div class="container py-5">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addForms" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Create New</button>
-                                <table class="table text-center table-bordered text-dark">
-                                 <?php
-                                      include_once 'php/config.php';
-                                      $result = mysqli_query($conn,"SELECT * FROM forms");
-                                        if (mysqli_num_rows($result) > 0) {
-                                    ?>
-                                    <thead>
-                                      <tr>
-                                        <td scope="col">Firstname</td>
-                                        <td scope="col">Lastname</td>
-                                        <td scope="col">Address</td>
-                                        <td scope="col">Contacts</td>
-                                        <td scope="col">Email</td>
-                                        <td scope="col">Type</td>
-                                        <td scope="col">Status</td>
-                                        <td scope="col" colspan="3">Action</td>
-                                      </tr>
-                                    </thead>
-                                      <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($result)) {
-                                    ?>
-                                    <tr class="text-center">
-                                      <td><?php echo $row["fname"]; ?></td>
-                                      <td><?php echo $row["lname"]; ?></td>
-                                      <td><?php echo $row["address"]; ?></td>
-                                      <td><?php echo $row["mobilePhone"] ?></td>
-                                      <td><?php echo $row["email"]; ?></td>
-                                      <td><?php echo $row["formType"]; ?></td>
-                                      <td><?php echo $row["status"]; ?></td>
-                                      <td>
-                                      <a href="php/forms/edit.php?formsID=<?php echo $row["formsID"]; ?>">
-                                        <button class="btn btn-primary" >
-                                          <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                      </a>
-                                      </td>
-                                      <td>
-                                        <button class="btn btn-success" >
-                                          <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                      </td>
-                                      <td>
-                                        <a href="php/forms/delete.php?formsID=<?php echo $row["formsID"]; ?>">
-                                              <button class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                              </button>
-                                            </a>
-                                          </td>
-                                    </tr>
-                                      <?php
-                                        $i++;
-                                        }
-                                      ?>
-                                    </tbody>
-                                 <?php
-                                }
-                                else
-                                {
-                                    echo "No result found";
-                                }
-                                ?>
-                            </table>
-                          </div>
+                      <?php include "forms.php" ?>
                         </div>
                     </main>
 
@@ -474,63 +410,62 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             <li class="breadcrumb-item"><a>Dashboard</a></li>
                             <li class="breadcrumb-item active">Accounts</li>
                         </ol>
-                  <div class="container py-5 ">
-                                <table class="table table-bordered text-center " style="color: black;">
-                                    <?php
-                                    include_once 'php/dbconn.php';
-                                    $result = mysqli_query($conn,"SELECT * FROM accounts");
-                                      if (mysqli_num_rows($result) > 0) {
-                                  ?>
-                                      <thead>
-                                        <tr>
-                                          <td scope="col">Firstname</td>
-                                          <td scope="col">Lastname</td>
-                                          <td scope="col">Email</td>
-                                          <td scope="col">Account Type</td>
-                                          <td scope="col" colspan="3">Action</td>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($result)) {
+                  <div class="container py-5">
+                    <table class="table table-bordered text-center" style="color: black;">
+                        <?php
+                        include_once 'php/dbconn.php';
+                        $result = mysqli_query($conn, "SELECT * FROM accounts");
+                        if (mysqli_num_rows($result) > 0) {
+                            ?>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Firstname</th>
+                                    <th scope="col">Lastname</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Account Type</th>
+                                    <th scope="col" colspan="3">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $i = 0;
+                                while ($row = mysqli_fetch_array($result)) {
                                     ?>
                                     <tr class="text-center">
-                                      <td><?php echo $row["fname"]; ?></td>
-                                      <td><?php echo $row["lname"]; ?></td>
-                                      <td><?php echo $row["email"]; ?></td>
-                                      <td><?php echo $row["type"]; ?></td>
-                                      <td>
-                                        <a href="php/user/edit.php?user_id=<?php echo $row["user_id"]; ?>">
-                                            <button class="btn btn-primary" >
+                                        <td><?php echo $row["fname"]; ?></td>
+                                        <td><?php echo $row["lname"]; ?></td>
+                                        <td><?php echo $row["email"]; ?></td>
+                                        <td><?php echo $row["type"]; ?></td>
+                                        <td>
+                                            <a href="php/user/edit.php?user_id=<?php echo $row["user_id"]; ?>">
+                                              <button class="btn btn-primary edit-btn">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                        </a>
-                                      </td>
-
-                                      <td>
-                                        <a href="php/user/delete.php?user_id=<?php echo $row["user_id"]; ?>">
-                                              <button class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                              </button>
                                             </a>
-                                          </td>
-                                    </tr>
-                                      <?php
+                                        </td>
+                                        <td>
+                                            <a href="php/user/delete.php?user_id=<?php echo $row["user_id"]; ?>">
+                                              <button class="btn btn-danger delete-btn">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                            </a>
+                                        </td>
+                                        <?php
                                         $i++;
                                         }
                                       ?>
-                                    </tbody>
-                                 <?php
+                                    </tr>
+                                    
+                                      <?php
                                 }
                                 else
                                 {
                                     echo "No result found";
                                 }
-                                ?> 
-                                    </table>
-                              </div>
-                          </div>
+                                ?>
+                                  </tbody>
+                                </table>
+                                </div>
                 </main>
 
                 <main class="tabcontent" id="report" style="display: none;">
@@ -614,76 +549,8 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                             <li class="breadcrumb-item"><a>Dashboard</a></li>
                             <li class="breadcrumb-item active">Event Reservation</li>
                         </ol>
-                        
-                      <div class="container py-5 ">
-                            
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRes" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i> Add Reservation</button>
-                                <table class="table table-bordered text-center " style="color: black;">
-                                 <?php
-                                      include_once 'php/config.php';
-                                      $result = mysqli_query($conn,"SELECT * FROM eventres");
-                                        if (mysqli_num_rows($result) > 0) {
-                                    ?>
-                                    <thead>
-                                      <tr>
-                                        <td scope="col">Name</td>
-                                        <td scope="col">Event</td>
-                                        <td scope="col">Date</td>
-                                        <td scope="col">Time</td>
-                                        <td scope="col">Contact</td>
-                                        <td scope="col">Address</td>
-                                        <td scope="col">Email</td>
-                                        <td scope="col" colspan="3">Action</td>
-                                      </tr>
-                                    </thead>
-                                      <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($result)) {
-                                    ?>
-                                    <tr class="text-center">
-                                      <td><?php echo $row["name"]; ?></td>
-                                      <td><?php echo $row["eventName"]; ?></td>
-                                      <td><?php echo $row["eventDate"]; ?></td>
-                                      <td><?php echo $row["eventTime"] ?></td>
-                                      <td><?php echo $row["contactNum"]; ?></td>
-                                      <td><?php echo $row["address"]; ?></td>
-                                      <td><?php echo $row["email"]; ?></td>
-                                      <td>
-                                      <a href="php/reserve/edit.php?eventResID=<?php echo $row["eventResID"]; ?>">
-                                        <button class="btn btn-primary" >
-                                          <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                      </a>
-                                      </td>
-                                      <td>
-                                        <button class="btn btn-success" >
-                                          <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                      </td>
-                                      <td>
-                                        <a href="php/reserve/delete.php?eventResID=<?php echo $row["eventResID"]; ?>">
-                                              <button class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                              </button>
-                                            </a>
-                                          </td>
-                                    </tr>
-                                      <?php
-                                        $i++;
-                                        }
-                                      ?>
-                                    </tbody>
-                                 <?php
-                                }
-                                else
-                                {
-                                    echo "No result found";
-                                }
-                                ?>
-                                    </table>
-                                  </div>
-                              </div>
-                    </div>
+                        <?php include "reserve.php"; ?>
+                     </div>
                 </main>
               </div>
                 <?php 

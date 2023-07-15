@@ -16,7 +16,7 @@ if(isset($_POST['btn-save']))
 	$status = $_POST['status'];
 	$credentialfile = $_FILES['credentialfile'];
 
-	$targetDir = "credential/";
+	$targetDir = "../credentials/";
   $fileName5 = $_FILES['credentialfile']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
