@@ -60,12 +60,12 @@
                         <p>
                           <i class="fa-solid fa-user"></i>
                           Firstname
-                          <input class="form-control" type="text" id="fname" name="fname" value="<?php echo $row['fname']; ?>" disabled>
+                          <input class="form-control" type="text" id="fname" name="fname" value="<?php echo $row['fname']; ?>">
                         </p>
                         <p>
                           <i class="fa-solid fa-user" class="form-control"></i>
                           Lastname
-                          <input type="text" class="form-control datetime" name="lname" value="<?php echo $row['lname']; ?>" disabled>
+                          <input type="text" class="form-control datetime" name="lname" value="<?php echo $row['lname']; ?>">
                         </p>
                         <p>
                           <i class="fa-solid fa-envelope"></i>

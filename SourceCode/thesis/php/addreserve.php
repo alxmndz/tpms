@@ -31,7 +31,7 @@ if(isset($_POST['btn-save']))
 		
 			if($result){
 				echo "<script type='text/javascript'>
-				alert('Add Successfully!');
+				alert('Added Successfully!');
 				window.location = '../dashboard.php';
 				</script>";
 			}else{

@@ -1,7 +1,7 @@
 <?php
   include_once 'dbconn.php';
   if (count($_POST) > 0) {
-    mysqli_query($conn,"UPDATE reports SET reportTitle='" . $_POST['reportTitle'] . "', reportDate ='" . $_POST['reportDate'] . "', reportTime ='" . $_POST['reportTime'] . "', description ='" . $_POST['description'] . "' WHERE reportID='" . $_POST['reportID'] . "'");
+    mysqli_query($conn,"UPDATE reports SET reportTitle='" . $_POST['reportTitle'] . "', reportDate ='" . $_POST['reportDate'] . "', reportTime ='" . $_POST['reportTime'] . "', description ='" . $_POST['description'] . "', type ='" . $_POST['type'] . "' WHERE reportID='" . $_POST['reportID'] . "'");
     $message = "Report has been updated successfully";
   }
   $result = mysqli_query($conn, "SELECT * FROM reports WHERE reportID='" . $_GET['reportID'] . "'");
@@ -53,6 +53,21 @@
                             <i class="fa-solid fa-pen-to-square"></i> Description
                             <input type="text" class="form-control" name="description" autocomplete="off" value="<?php echo $row['description']; ?>" required>
                           </p>
+                        </div>
+                        <div class="mb-3">
+                            <p>
+                              <i class="fa-solid fa-calendar"></i>
+                                Event Type
+                                <select class="form-control" id="type" value="<?php echo $row['type']; ?>" name="type" required>
+                                  <option value=""></option>
+                                  <option value="Baptismal">Baptismal</option>
+                                  <option value="Blessing">Blessing</option>
+                                  <option value="Communion">Communion</option>
+                                  <option value="Confirmation">Confirmation</option>
+                                  <option value="Funeral">Funeral</option>
+                                  <option value="Wedding">Wedding</option>
+                                </select>
+                            </p>    
                         </div>
                         <div class="md-3">
                         <p>

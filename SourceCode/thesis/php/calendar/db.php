@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost","root","","sourcecodester_events") ;
+$conn = mysqli_connect("localhost","root","","thesis") ;
 
 if (!$conn)
 {

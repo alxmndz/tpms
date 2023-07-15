@@ -70,8 +70,13 @@
             <p><strong>Date:</strong> <?php echo $row["eventDate"]; ?></p>
             <p><strong>Time:</strong> <?php echo $row["eventTime"]; ?></p>
             <p><strong>Contact:</strong> <?php echo $row["contactNum"]; ?></p>
-            <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
             <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
+            <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
+            <p><strong>Sponsored:</strong> <?php echo $row["sponsored"]; ?></p>
+            <p><strong>Package:</strong> <?php echo $row["package"]; ?></p>
+            <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
+            <p><strong>Reference Number:</strong> <?php echo $row["refNum"]; ?></p>
+            <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
           </div>
         </div>
       </div>

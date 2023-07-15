@@ -145,7 +145,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <div class="card-body cleartfix">
                                   <div class="media align-items-stretch">
                                     <div class="align-self-center">
-                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px; margin-left: 90px; object-fit: cover;">
+                                      <img src="images/<?php echo $userIMG; ?>" style="height: 50px; width: 50px; border-radius: 50px; margin-left: 65px; object-fit: cover;">
                                     </div>
                                     <div class="media-body"  style="margin-top: 15px; margin-left: 10px;">
                                       <h3> Welcome <b><?php echo $_SESSION['fname']; ?></b></h3>
@@ -170,10 +170,10 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 <div class="card-body cleartfix">
                                   <div class="media align-items-stretch">
                                     <div class="align-self-center">
-                                      <i class="icon-wallet info font-large-2 mr-2"></i>
+                                      <i class="icon-calendar info font-large-2 mr-2"></i>
                                     </div>
                                     <div class="media-body" style="margin-top: 25px;">
-                                      <h4>Total Funds</h4>
+                                      <h4>Events</h4>
                                       <span></span>
                                     </div>
                                     <div class="align-self-center">
@@ -183,7 +183,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                               if ($conn->connect_error) {
                                                   die("Connection failed : " . $conn->connect_error);
                                               }
-                                              $sql = "SELECT COUNT(*) FROM accounts";
+                                              $sql = "SELECT COUNT(*) FROM tbl_events";
                                               $result = $conn->query($sql);
                                               while($row = mysqli_fetch_array($result)){
                                               echo $row['COUNT(*)'];
@@ -202,7 +202,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="icon-user info font-large-2 float-right"></i>
+                                        <i class="icon-users info font-large-2 float-right"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -260,7 +260,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="icon-book-open primary font-large-2 float-right"></i>
+                                        <i class="icon-folder primary font-large-2 float-right"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -276,7 +276,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                                     }
                                             ?> 
                                           </h3>
-                                        <span>Requests</span>
+                                        <span>Certificates</span>
                                       </div>
                                     </div>
                                   </div>
@@ -289,7 +289,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                   <div class="card-body">
                                     <div class="media d-flex">
                                       <div class="align-self-center">
-                                        <i class="icon-pencil danger font-large-2 float-left"></i>
+                                        <i class="icon-wallet danger font-large-2 float-left"></i>
                                       </div>
                                       <div class="media-body text-right">
                                         <h3>
@@ -298,14 +298,14 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                                     if ($conn->connect_error) {
                                                         die("Connection failed : " . $conn->connect_error);
                                                     }
-                                                        $sql = "SELECT COUNT(*) FROM reports";
+                                                        $sql = "SELECT SUM(amount) FROM eventres";
                                                         $result = $conn->query($sql);
                                                         while($row = mysqli_fetch_array($result)){
-                                                        echo $row['COUNT(*)'];
+                                                        echo $row['SUM(amount)'];
                                                     }
                                             ?> 
                                           </h3>
-                                        <span>Reports</span>
+                                        <span>Reservation Balance</span>
                                       </div>
                                     </div>
                                   </div>
@@ -492,6 +492,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                         <td scope="row">Date</td>
                                         <td scope="row">Time</td>
                                         <td scope="row">Description</td>
+                                        <td scope="row">Report Type</td>
                                         <td scope="row" colspan="3">Actions</td>
                                       </tr>
                                     </thead>
@@ -506,7 +507,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                       <td><?php echo $row["reportDate"]; ?></td>
                                       <td><?php echo $row["reportTime"]; ?></td>
                                       <td><?php echo $row["description"]; ?></td>
-                                      
+                                      <td><?php echo $row["type"]; ?></td>
                                       <td>
                                         <a href="php/report/edit.php?reportID=<?php echo $row["reportID"]; ?>">
                                           <button class="btn btn-primary" >
