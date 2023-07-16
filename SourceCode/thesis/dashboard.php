@@ -62,6 +62,11 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 Accounts
                             </a>
 
+                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
+                                Donation
+                            </a>
+
                         <div class="sb-sidenav-menu-heading">Certificate/Forms</div>
 
                              <a class="nav-link tablinks" onclick="openCity(event, 'forms')" href="#">
@@ -316,6 +321,17 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                       </main>
 
                 <!-- NEW TABS -->
+
+                <main class="tabcontent" id="donation" name="donation" style="display: none;">
+                  <div class="container-fluid px-4">
+                        <h1 class="mt-4">Donations</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Dashboard</a></li>
+                            <li class="breadcrumb-item active">Donations</li>
+                        </ol>
+                  <?php include "donation.php"; ?>
+                </main>
+                
                 <main  class="tabcontent" id="calendar" name ="calendar" style="display: none;">
                   <?php include "calendar.php"; ?>
                 </main>
