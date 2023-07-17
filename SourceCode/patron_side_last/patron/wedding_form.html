@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Wedding Reservation Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/form.css" />
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const gcashRadio = document.getElementById('gcash');
+      const faceToFaceRadio = document.getElementById('ftof');
+      const amountInput = document.getElementById('amount');
+      const refNumInput = document.getElementById('refnum');
+      const receiptInput = document.getElementById('receipt');
+
+      // Disable the Reference Number and Receipt Image fields initially
+      amountInput.disabled = true;
+      refNumInput.disabled = true;
+      receiptInput.disabled = true;
+
+      // Add event listeners to the payment method radio buttons
+      gcashRadio.addEventListener('change', function() {
+        amountInput.disabled = false;
+        refNumInput.disabled = false;
+        receiptInput.disabled = false;
+      });
+
+      faceToFaceRadio.addEventListener('change', function() {
+        amountInput.disabled = true;
+        refNumInput.disabled = true;
+        receiptInput.disabled = true;
+      });
+    });
+  </script>
+
+  <style>
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+
+    .card {
+      flex-basis: 50%;
+      box-sizing: border-box;
+      background-color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+
+    }
+
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .card-content {
+      margin-bottom: 10px;
+    }
+  </style>
+
+
+
+
+  </head>
+  <body style="background: url('wedding2.jpg'); object-fit: cover; background-repeat: no-repeat; background-size: cover;">
+    <div class="container">
+      <h1 class="form-title">Wedding Reservation Form</h1>
+      <form action="#">
+        <div class="main-user-info">
+          <div class="card">
+          <h2 class="card-title">Package 1</h2>
+          <div class="card-content">
+            <p>-Floral arrangements and bouquets</p>
+            <p>-limited access to our beautifully decorated wedding venue.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="card-title">Package 2</h2>
+          <div class="card-content">
+            <p>-Floral arrangements and bouquets.</p>
+            <p>-Full access to our beautifully decorated wedding venue.</p>
+            <p>-Professional photography and videography services.</p>
+          </div>
+        </div>
+          <div class="user-input-box">
+            <label for="firstName">Name of bride</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required />
+          </div>
+          <div class="user-input-box">
+            <label for="lastname">Name of groom</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter Last Name" required />
+          </div>
+          <div class="user-input-box">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required />
+          </div>
+          <div class="user-input-box">
+            <label for="bridemobile">Phone Number(Bride)</label>
+            <input type="text" id="bridemobile" name="bridemobile" placeholder="Enter Phone Number" required />
+          </div>
+
+          <div class="user-input-box">
+            <label for="groommobile">Phone Number(Groom)</label>
+            <input type="text" id="groommobile" name="groommobile" placeholder="Enter Phone Number" required />
+          </div>
+
+          <div class="user-input-box">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter address" required />
+          </div>
+
+          <div class="user-input-box">
+            <label for="country">Package?</label>
+            <select style="height: 40px;width: 95%;border-radius: 7px;outline: none;border: 1px solid grey;padding: 0 10px;" id="package" name="package" required>
+              <option value="">Package 1</option>
+              <option value="">Package 2</option>
+            </select>
+          </div>
+
+          <div class="user-input-box">
+            <label for="country">Have you been Baptized?</label>
+            <select style="height: 40px;width: 95%;border-radius: 7px;outline: none;border: 1px solid grey;padding: 0 10px;" id="intention" name="intention" required>
+              <option value="">Yes</option>
+              <option value="">No</option>
+            </select>
+          </div>
+          
+          <div class="user-input-box">
+            <label for="date">Date(Monday to Friday)</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+          <div class="user-input-box">
+            <label for="Time">Time</label>
+            <input type="time" id="Time" name="Time" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="birthcert">Birth Certificate(child going to be baptize)</label>
+            <input type="file" id="birthcert" name="birthcert" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="baptismalcert">Baptismal Certificate(Original/Photocopy)</label>
+            <input type="file" id="baptismalcert" name="baptismalcert" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="confirmcert">Confirmation Certificate(for marriage purpose)</label>
+            <input type="file" id="confirmcert" name="confirmcert" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="cenomarcert">Certificate of no marriage(CENOMAR)</label>
+            <input type="file" id="cenomarcert" name="cenomarcert" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="license">Marriage license(from municipality)</label>
+            <input type="file" id="license" name="license" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="banns">Marriage Banns(Tawag sa kasal-3 weeks)</label>
+            <input type="file" id="banns" name="banns" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="3rpicture">3R Size Pictures(2 copies)</label>
+            <input type="file" id="3rpicture" name="3rpicture" required />
+          </div>
+
+          <div style="color: white;" class="user-input-box">
+            <label for="pic">2x2 Pictures for marriage banns</label>
+            <input type="file" id="pic" name="pic" required />
+          </div>
+          
+          
+        </div>
+        <div>
+          <label class="gender-title">Gcash No: 09123456789</label>
+        </div>
+        
+          <label class="gender-title">Payment Method</label>
+          <div class="gender-category">
+            <input type="radio" name="gender" id="gcash" required />
+            <label for="gcash">G-cash</label>
+            <input type="radio" name="gender" id="ftof" required />
+            <label for="ftof">Face to Face</label>
+          </div>
+        
+          <div class="col-md-6"> 
+            <div class="user-input-box">
+              <label for="amount">Amount</label>
+              <input type="text" id="amount" name="amount" placeholder="Enter Amount" required />
+            </div>            
+          </div>
+          
+          <div class="col-md-6">
+          <div class="user-input-box">
+            <label for="refnum">Reference Number</label>
+            <input type="text" id="refnum" name="refnum" placeholder="Enter Reference Number" required />
+          </div>            
+          </div>
+
+          <div style="height: 40px;width: 48%;border-radius: 7px;outline: none;border: 1px solid grey; color: white;" class="">
+            <label for="myfile">Receipt Image</label>
+            <input type="file" id="receipt" name="receipt" required />
+          </div>
+          
+        <div class="form-submit-btn">
+          <input type="submit" value="Submit">
+        </div>
+        <div class="form-back-btn">
+          <input type="reset" value="Cancel">
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>

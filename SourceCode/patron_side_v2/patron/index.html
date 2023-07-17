@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Patron - Tuy Saint Vincent Ferrer</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Saint Vincent Ferrer</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Profile</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Home</div>
+
+                            <a class="nav-link tablinks" onclick="openCity(event, 'calendar')"href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-calendar"></i></div>
+                                Event Calendar
+                            </a>
+                             
+                            <div class="sb-sidenav-menu-heading">Credentials/Service</div>
+
+                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-scroll"></i></div>
+                                Request Forms
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'certReqBap')"href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'MarReq')"href="#">Marriage</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'KumpReq')"href="#">Confirmation(Kumpil)</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'deathReq')"href="#">Funeral</a>
+                                </nav>
+                            </div>
+                            </a>
+                            
+
+                            <a class="nav-link tablinks" onclick="openCity(event, 'Eventres')"href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Events Reservation
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Other</div>
+
+            
+                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')"href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bank"></i></div>
+                                Donation
+                            </a>
+                            
+                            <a class="nav-link tablinks" onclick="openCity(event, 'announcement')"href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-microphone"></i></div>
+                                Announcements
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        sample@gmail.com
+                    </div>
+                </nav>
+            </div>
+
+            <div id="layoutSidenav_content">
+                <main  class="tabcontent" id="calendar">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Upcoming Events Calendar</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Home</a></li>
+                            <li class="breadcrumb-item active">Events Calendar</li>
+                        </ol>
+                        <hr>
+                        <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+            
+
+            
+                <!-- baptismal request content -->
+
+                <main class="tabcontent" id="certReqBap">
+                   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Request For Baptismal Certificate</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Credentials</a></li>
+                            <li class="breadcrumb-item active">Baptismal</li>
+                        </ol>
+                      <hr>
+                  <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-200" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#baptismalformreq" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i>Request</button>
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Child's Name</td>
+                                          <td scope="col">Child's Birthday</td>
+                                          <td scope="col">Address</td>
+                                          <td scope="col">Guardians Name</td>
+                                          <td scope="col">Mobile No.</td>
+                                          <td scope="col">Email</td>
+                                          <td scope="col">Payment Option</td>
+                                          <td scope="col">Amount</td>
+                                          <td scope="col">Reference No.</td>
+                                          <td scope="col">Receipt Img</td>
+                                          <td scope="col">Status</td>
+                                          <td scope="col" colspan="4">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">Kent Carbayar</th>
+                                          <td scope="row">05-23-02</td>
+                                          <td scope="row">Dalima, Tuy</td>
+                                          <td scope="row">Joey Carbayar</td>
+                                          <td scope="row">09959211983</td>
+                                          <td scope="row">sample@gmail.com</td>
+                                          <td scope="row">G-cash</td>
+                                          <td scope="row">200</td>
+                                          <td scope="row">000000000</td>
+                                          <td scope="row">kent.jpg</td>
+                                          <td scope="row">Pending</td>
+                                          <td></td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Change status</option>
+                                              
+                                            </select>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+                <!-- marriage request content -->
+
+                <main class="tabcontent" id="MarReq">
+                   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Request For Marriage Certificates</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Credentials</a></li>
+                            <li class="breadcrumb-item active">Marriage</li>
+                        </ol>
+                      <hr>
+                  <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-200" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmember" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i>Request</button>
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Husband's Name</td>
+                                          <td scope="col">Wife's Name</td>
+                                          <td scope="col">Address</td>
+                                          <td scope="col">Father Name</td>
+                                          <td scope="col">Mother Name</td>
+                                          <td scope="col">Marriage date</td>
+                                          <td scope="col">Email</td>
+                                          <td scope="col">Mobile No.</td>
+                                          <td scope="col">Payment Option</td>
+                                          <td scope="col">Amount</td>
+                                          <td scope="col">Reference No.</td>
+                                          <td scope="col">Receipt Img</td>
+                                          <td scope="col">Status</td>
+                                          <td scope="col" colspan="4">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">sample name</th>
+                                          <td scope="row">sanple name</td>
+                                          <td scope="row">Dalima, Tuy</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">01-31-02</td>
+                                          <td scope="row">sample@gmail.com</td>
+                                          <td scope="row">09959211983</td>
+                                          <td scope="row">G-cash</td>
+                                          <td scope="row">200</td>
+                                          <td scope="row">000000000</td>
+                                          <td scope="row">kent.jpg</td>
+                                          <td scope="row">Pending</td>
+                                          <td></td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Change status</option>
+                                              
+                                            </select>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+                <!-- kumpil request content -->
+
+                <main class="tabcontent" id="KumpReq">
+                   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Request For Kumpil Certificates</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Credentials</a></li>
+                            <li class="breadcrumb-item active">Confirmation(Kumpil)</li>
+                        </ol>
+                      <hr>
+                  <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-200" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmember" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i>Request</button>
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Child's Name</td>
+                                          <td scope="col">Address</td>
+                                          <td scope="col">Father Name</td>
+                                          <td scope="col">Mother Name</td>
+                                          <td scope="col">Kumpiled date</td>
+                                          <td scope="col">Email</td>
+                                          <td scope="col">Mobile No.</td>
+                                          <td scope="col">Payment Option</td>
+                                          <td scope="col">Amount</td>
+                                          <td scope="col">Reference No.</td>
+                                          <td scope="col">Receipt Img</td>
+                                          <td scope="col">Status</td>
+                                          <td scope="col" colspan="4">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">sample name</th>
+                                          <td scope="row">Dalima, Tuy</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">04-31-02</td>
+                                          <td scope="row">sample@gmail.com</td>
+                                          <td scope="row">09959211983</td>
+                                          <td scope="row">G-cash</td>
+                                          <td scope="row">200</td>
+                                          <td scope="row">000000000</td>
+                                          <td scope="row">kent.jpg</td>
+                                          <td scope="row">Pending</td>
+                                          <td></td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Change status</option>
+                                              
+                                            </select>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+                <!-- deathcert request content -->
+
+                <main class="tabcontent" id="deathReq">
+                   <div class="container-fluid px-4">
+                        <h1 class="mt-4">Request For Death Certificates</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Credentials</a></li>
+                            <li class="breadcrumb-item active">Death</li>
+                        </ol>
+                      <hr>
+                  <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-200" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmember" name="btn-save" id="btn-save myBtn" style="float: right; margin-bottom: 15px;" ><i class="fa-solid fa-plus"></i>Request</button>
+                                <table class="table">
+                                      <thead>
+                                        <tr class= table-dark>
+                                          <td scope="col">Name</td>
+                                          <td scope="col">husband/wife Name</td>
+                                          <td scope="col">Age</td>
+                                          <td scope="col">Address</td>
+                                          <td scope="col">Father Name</td>
+                                          <td scope="col">Mother Name</td>
+                                          <td scope="col">date of death</td>
+                                          <td scope="col">Email</td>
+                                          <td scope="col">Mobile No.</td>
+                                          <td scope="col">Payment Option</td>
+                                          <td scope="col">Amount</td>
+                                          <td scope="col">Reference No.</td>
+                                          <td scope="col">Receipt Img</td>
+                                          <td scope="col">Status</td>
+                                          <td scope="col" colspan="4">Action</td>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">sample name</th>
+                                          <th scope="row">sample name</th>
+                                          <th scope="row">72</th>
+                                          <td scope="row">luntal, Tuy</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">sample name</td>
+                                          <td scope="row">04-21-20</td>
+                                          <td scope="row">sample@gmail.com</td>
+                                          <td scope="row">09959222987</td>
+                                          <td scope="row">G-cash</td>
+                                          <td scope="row">200</td>
+                                          <td scope="row">000000000</td>
+                                          <td scope="row">kent.jpg</td>
+                                          <td scope="row">Pending</td>
+                                          <td></td>
+                                          <td>
+                                            <select name="actions" id="actions">
+                                              <option value=""></option>
+                                              <option value="Edit">Change status</option>
+                                              
+                                            </select>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+
+                <main  class="tabcontent" id="Eventres">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Events Reservation</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Service</a></li>
+                            <li class="breadcrumb-item active">My Reservation</li>
+                        </ol>
+                        <hr>
+                        <div class="card-container">
+                            <div class="ui-card">
+                                <img src="wedding2.jpg">
+                                <div class="description">
+                                    <h3>Wedding</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="#">Reserve</a>
+                                </div>
+                            </div>
+                            <div class="ui-card">
+                                <img src="baptismal2.jpg">
+                                <div class="description">
+                                    <h3>Baptismal</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="#">Reserve</a>
+                                </div>
+                            </div>
+                            <div class="ui-card">
+                                <img src="blessing2.jpg">
+                                <div class="description">
+                                    <h3>Blessing</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="blessing_form.html">Reserve</a>
+                                </div>
+                            </div>
+                            <div class="ui-card">
+                                <img src="communion2.jpg">
+                                <div class="description">
+                                    <h3>Communion</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="#">Reserve</a>
+                                </div>
+                            </div>
+                            <div class="ui-card">
+                                <img src="kumpil2.jpg">
+                                <div class="description">
+                                    <h3>Confirmation</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="#">Reserve</a>
+                                </div>
+                            </div>
+                            <div class="ui-card">
+                                <img src="funeral2.jpg">
+                                <div class="description">
+                                    <h3>Funeral Mass</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    <a href="funeral_form.html">Reserve</a>
+                                </div>
+                            </div>
+                        </div>
+                 </div>
+                </main>
+
+
+                <main  class="tabcontent" id="donation">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Donations</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Other</a></li>
+                            <li class="breadcrumb-item active">Donate</li>
+                        </ol>
+                        <hr>
+                        <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+                 
+
+
+                <main  class="tabcontent" id="announcement">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Announcements</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a>Other</a></li>
+                            <li class="breadcrumb-item active">Announcement</li>
+                        </ol>
+                        <hr>
+                        <div class="container py-5 ">
+                          <div class="row justify-content-center align-items-center h-100">
+                            <div class="card container h-100" style="background: #ECF0F1;">
+                              <div class="card-body">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </main>
+
+
+
+                 <!-- modal form of add members -->
+
+       <!-- <div class="modal" id="baptismalformreq">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+                                <section>
+                                 <div class="container">
+                                   <div class="row justify-content-center align-items-center h-100">
+                                     <div class="card container h-100" style="background: #f1f1f1;">
+
+                                        <button type="button" id="btn1" class="btn-close" data-bs-dismiss="modal" style="margin-top: 25px; margin-left: 450px; float: left; cursor: pointer; " ></button>
+                                      <div class="card-body">
+                                        <h1>Add Members</h1>
+                                        <hr>
+                                        <form class="" action="" method="post">
+
+                                          <div class="md-3">
+                                              <p><i class="fa-solid fa-user"></i> Firstname
+                                                      <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter firstname" required>
+                                                    </p>
+
+                                                <p><i class="fa-solid fa-user"></i> Lastname
+                                                  <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter lastname" required>
+                                                </p>
+                                                <p><i class="fa-solid fa-pen"></i> Address
+                                                      <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter the amount" required>
+                                                    </p>
+
+                                                    <p><i class="fa-solid fa-pen"></i> Email
+                                                      <input class="form-control" type="text" id="amount" name="amount" placeholder="Enter the amount" required>
+                                                    </p>
+                                              </div>
+                                              
+                                              
+
+                                              <div class="md-3">
+                                                <div class="mb-3">
+                                                  <label for="myfile">Position</label><br>
+                                                  <select class="form-control" name="actions" id="actions">
+                                                    <option value=""></option>
+                                                    <option value="Kumpil">Admin</option>
+                                                    <option value="Baptismal">Staff</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+
+                                             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                                          </div>
+                                                 
+                                        </form>
+                                          
+                                      </div>
+
+                                    </div> 
+                                   </div>
+                                 </div>
+                                </section>
+            </div>
+          </div>
+        </div>  -->
+
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Saint Vincent Ferrer 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+    </body>
+</html>

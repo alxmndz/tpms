@@ -7,7 +7,6 @@ if (mysqli_query($conn, $sql)) {
 ?>
 		<script type="text/javascript">
 			alert("Deleted Successfully!");
-			window.location = "../dashboard.php";
 		</script>
 <?php
 				

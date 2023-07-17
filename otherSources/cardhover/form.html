@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Transaction Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .payment-info {
+      display: none;
+    }
+
+    .payment-info.enabled {
+      display: block;
+    }
+
+    .btn-container {
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100%;
+        padding: 10px;
+      }
+    }
+  </style>
+  <script>
+    function togglePaymentInfo() {
+      var gcashRadio = document.getElementById("gcashRadio");
+      var paymentInfo = document.getElementById("paymentInfo");
+
+      if (gcashRadio.checked) {
+        paymentInfo.classList.add("enabled");
+      } else {
+        paymentInfo.classList.remove("enabled");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Transaction Form</h2>
+  
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <label for="paymentMethod">Payment Method:</label>
+        <div>
+          <label>
+            <input type="radio" name="paymentMethod" id="gcashRadio" onchange="togglePaymentInfo()">
+            G Cash
+          </label>
+          <label>
+            <input type="radio" name="paymentMethod" id="faceToFaceRadio" onchange="togglePaymentInfo()">
+            Face to Face
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group payment-info" id="paymentInfo">
+        <label for="gcashNumber">G Cash Number:</label>
+        <input class="form-control" type="text" id="gcashNumber">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input class="form-control" type="number" id="amount" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" required></textarea>
+      </div>
+
+      <div class="btn-container">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
