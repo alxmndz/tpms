@@ -57,7 +57,7 @@
                             <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Reservation</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <p class="text-muted">Church reservation is a way to secure a dedicated space and time within a church for religious, ceremonial, or special events, providing a sacred and appropriate environment for such occasions.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -65,15 +65,15 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Online Mass</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <p class="text-muted">Online Mass refers to a religious service or worship gathering that takes place virtually on the internet, allowing individuals to participate remotely from their own locations. It has gained significant popularity and relevance, especially during times when physical attendance at religious services may be limited or restricted.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-bell fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Notification</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">Announcement</h4>
+                        <p class="text-muted">Announcements in church refer to the communication of important information, updates, events, or announcements of interest to the congregation during a worship service or gathering.</p>
                     </div>
                     <br>
                     <div class="col-md-4">
@@ -81,16 +81,16 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-money-bill-wave fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Automated Transaction</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">Online Transaction</h4>
+                        <p class="text-muted">Online transactions within a church management system offer churches a centralized and streamlined approach to managing financial transactions.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-folder fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Documents</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">Requirements</h4>
+                        <p class="text-muted">Requirements is one of the important part in services of the church in terms of event reservation because every events needs a specific requirements for admins approval.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -98,7 +98,7 @@
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <p class="text-muted">Web security is a dynamic and evolving field, as new threats and vulnerabilities emerge regularly. Implementing a comprehensive web security strategy helps protect sensitive data, safeguard user privacy, and maintain the trust and confidence of website visitors and users.</p>
                     </div>
                 </div>
             </div>

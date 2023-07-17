@@ -4,6 +4,9 @@
 			<h1 class="card-title">Request Certificate</h1>
     	<hr>
 			 <form class="" action="php/addforms2.php" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+                  </div>
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">

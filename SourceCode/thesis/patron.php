@@ -4,9 +4,11 @@ session_start();
 
 if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['lname'])){
   $id = $_SESSION['user_id'];
+  $patronEmail = $_SESSION['email'];
   $sql=mysqli_query($conn,"SELECT img FROM accounts WHERE user_id = '$id'");
   $img = mysqli_fetch_assoc($sql);
   $userIMG = $img['img'];
+
 
 ?>
 <?php 
@@ -52,9 +54,17 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                         <div class="nav">
 
                             <div class="sb-sidenav-menu-heading">Home</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'statusforms')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
+                                Request Status
+                            </a>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-bars"></i></div>
+                                Reservation Status
+                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'calendar')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
-                                Calendar
+                                Event List
                             </a>
 
                         <div class="sb-sidenav-menu-heading">Credentials/Services</div>
@@ -87,9 +97,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                 <!-- Start of the tabs -->
               <main  class="tabcontent" id="profile" style="display: none;">
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Profile</h1>
+                    <h1 class="mt-4">Status</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Profile Details</li>
+                        <li class="breadcrumb-item active">Reservation Status</li>
                     </ol>
 
                 </div>
@@ -113,6 +123,74 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                     </div>
                   </div>
 
+              </main>
+
+              <main class="tabcontent" id="status" style="display: none;">
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Status</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">My Event Reservation</li>
+                    </ol>
+
+                </div>
+                <div class="container py-5">
+                  <table class="table text-center table-bordered text-dark">
+                      <?php
+                      include_once 'php/dbconn.php';
+                      $result = mysqli_query($conn, "SELECT
+                                            a.fname,
+                                            a.lname,
+                                            e.name,
+                                            e.eventName,
+                                            e.eventDate,
+                                            e.eventTime,
+                                            e.status,
+                                            e.eventResID
+                                          
+                                        FROM eventres e
+                                        LEFT JOIN accounts a ON a.user_id = e.addedBy
+                                        WHERE e.addedBy = '$id'");
+                      if (mysqli_num_rows($result) > 0) {
+                      ?>
+                      <thead>
+                          <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Event Date</th>
+                              <th scope="col">Event Time</th>
+                              <th scope="col">Status</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                          $i = 0;
+                          while($row = mysqli_fetch_array($result)) {
+                          ?>
+                          <tr class="text-center">
+                              <td><?php echo $row["name"]; ?></td>
+                              <td><?php echo $row["eventName"]; ?></td>
+                              <td><?php echo $row["eventDate"]; ?></td>
+                              <td><?php echo $row["eventTime"]; ?></td>
+                              <td><?php echo $row["status"]; ?></td>
+                              
+                          </tr>
+                      <?php
+                              $i++;
+                          }
+                          ?>
+                      </tbody>
+                      <?php
+                      }
+                      else {
+                          echo "No result found";
+                      }
+                      ?>
+                  </table>
+              </div>
+            </main>
+
+              <main class="tabcontent" id="statusforms">
+                <?php include "usercontent/status.php"; ?>
               </main>
 
               <main class="tabcontent" id="calendar">

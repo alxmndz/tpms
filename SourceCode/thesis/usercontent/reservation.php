@@ -26,6 +26,9 @@
           </div>
         </div>
       </div>
+          <div class="form-group">
+            <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+          </div>
       <div class="row my-3">
         <div class="col-md-12">
           <div class="form-group">

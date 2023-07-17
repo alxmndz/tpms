@@ -13,6 +13,7 @@ if(isset($_POST['btn-save']))
 	$package = $_POST['package'];
 	$amount = $_POST['amount'];
 	$email = $_POST['email'];
+	$addedBy = $_POST['addedBy'];
 	$credentialfile = $_FILES['credentialfile'];
 
 	$targetDir = "../credentials/";
@@ -25,7 +26,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
 	  	if(move_uploaded_file($_FILES["credentialfile"]["tmp_name"], $targetFilePath)){
 	  	// echo $targetFilePath;
-	    $sql_query = "INSERT INTO eventres(name,eventName,eventDate,eventTime,contactNum,address,sponsored,amount,email,package,credentialfile) VALUES('$name','$eventName','$eventDate','$eventTime','$contactNum','$address','$sponsored','$amount','$email','$package','$targetFilePath')";
+	    $sql_query = "INSERT INTO eventres(name,eventName,eventDate,eventTime,contactNum,address,sponsored,amount,email,package,credentialfile,addedBy) VALUES('$name','$eventName','$eventDate','$eventTime','$contactNum','$address','$sponsored','$amount','$email','$package','$targetFilePath','$addedBy')";
 			$result = mysqli_query($conn,$sql_query);
 		
 			if($result){
@@ -34,10 +35,10 @@ if(isset($_POST['btn-save']))
 				window.location = '../patron.php';
 				</script>";
 			}else{
-					echo "<script type='text/javascript'>
+					/*echo "<script type='text/javascript'>
 				alert('Request Failed!');
 				window.location = '../patron.php';
-				</script>";
+				</script>";*/ echo mysqli_error($conn);
 			}
 		}
   }
