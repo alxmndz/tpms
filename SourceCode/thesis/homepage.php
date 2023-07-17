@@ -108,7 +108,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Event Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -135,7 +135,7 @@
                                 <img class="img-fluid" src="assets/img/portfolio/kumpil.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Kumpil</div>
+                                <div class="portfolio-caption-heading">Confirmation</div>
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                                 <img class="img-fluid" src="assets/img/portfolio/holy week.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Holy Week</div>
+                                <div class="portfolio-caption-heading">Mass</div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">How Saint Vincent Ferrer Tuy Parish Started.</h3>
                 </div>
                 <ul class="timeline">
                     <li>
@@ -211,7 +211,7 @@
                                 <h4>1860</h4>
                                 <h4 class="subheading">Saint Vincent Ferrer</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">Saint Vincent Ferrer, also known as Vincent Ferrer or San Vicente Ferrer, was a Dominican friar and renowned preacher who lived during the 14th and 15th centuries. He is considered one of the most influential figures in the history of the Catholic Church and was known for his missionary work, charismatic preaching, and numerous miracles.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -221,7 +221,7 @@
                                 <h4>1866</h4>
                                 <h4 class="subheading">Don Salvador Elio</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">The place was named Tuy, given by Don Salvador Elio, in honor of his hometown “Tuy” in Galicia, Spain.</p></div>
                         </div>
                     </li>
                     <li>
@@ -231,7 +231,8 @@
                                 <h4>2022-2023</h4>
                                 <h4 class="subheading">Rennovation of the Church</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">Along with our Chruch Renovation; We are also continuing the arrangement of our seats inside our Church so that we can all be comfortable in our sitting and unity every time there is a Holy Mass.
+                            For those who want to extend help for our church renovation, you can go to the church office or message our FB PAGE OR FB ACCOUNT. You can also send thru GCASH, 09178350117. Thank you very much for your continued support. </p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -253,14 +254,14 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">Church Head's</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/alex.jpg" alt="..." />
                             <h4>Kim Alexander Mendoza</h4>
-                            <p class="text-muted">Leader</p>
+                            <p class="text-muted">Office Admin</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
@@ -270,7 +271,7 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/kent.jpg" alt="..." />
                             <h4>Kent Bryan Carbayar</h4>
-                            <p class="text-muted">Group Member 1</p>
+                            <p class="text-muted">Office Staff</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
@@ -280,7 +281,7 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/jerico.jpg" alt="..." />
                             <h4>Jerico Cabotaje</h4>
-                            <p class="text-muted">Group Member 2</p>
+                            <p class="text-muted">Office Staff</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
@@ -288,7 +289,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted"></p></div>
                 </div>
             </div>
         </section>
@@ -400,12 +401,12 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Communion</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/communion.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Communion holds deep spiritual significance for Christians, representing their faith in Christ's sacrifice, the forgiveness of sins, and the hope of eternal life. It is seen as a means of receiving spiritual nourishment and experiencing a personal connection with God and fellow believers. </p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -425,12 +426,12 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Kumpil</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/kumpil.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Confirmation is seen as a sacrament of initiation that completes the process of Christian initiation, which typically begins with baptism and is followed by First Holy Communion. Through Confirmation, the candidates are believed to receive a special outpouring of the Holy Spirit, empowering them to live as active and committed members of the Church, bear witness to their faith, and participate more fully in the mission of Christ. It is a significant milestone in their spiritual journey and an affirmation of their commitment to the Catholic faith.</p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -449,13 +450,13 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Holy Week</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Mass</h2>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/holy week.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Mass is the central act of worship in the Catholic Church and is also celebrated in some other Christian denominations.</p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -475,12 +476,12 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Baptismal</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/baptize.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Baptism is seen as a significant act of spiritual initiation, marking the beginning of a person's Christian life. It represents the forgiveness of sins, the washing away of original sin (in the case of infant baptism), and a commitment to follow Christ.</p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -500,12 +501,12 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Marriage</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/marriage.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Marriage is a significant institution that exists in various cultures and religions worldwide. It is a legally and socially recognized union between two individuals, typically based on love, commitment, and mutual consent. </p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -525,12 +526,12 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Blessings</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted">Description</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/blessings.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>Blessing is a spiritual practice that involves invoking divine favor, protection, and grace upon a person, object, place, or event ex. Personal Blessing, Blessing Objects, House Blessing, and others.</p>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close
                                     </button>
                                 </div>
                             </div>
@@ -544,10 +545,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
