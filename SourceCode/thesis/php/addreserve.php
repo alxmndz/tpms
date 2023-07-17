@@ -14,6 +14,7 @@ if(isset($_POST['btn-save']))
 	$amount = $_POST['amount'];
 	$email = $_POST['email'];	
 	$status = $_POST['status'];
+	$addedBy = $_POST['addedBy'];
 	$credentialfile = $_FILES['credentialfile'];
 
 	$targetDir = "../credentials/";
@@ -26,7 +27,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
 	  	if(move_uploaded_file($_FILES["credentialfile"]["tmp_name"], $targetFilePath)){
 	  	// echo $targetFilePath;
-	    $sql_query = "INSERT INTO eventres(name,eventName,eventDate,eventTime,contactNum,address,sponsored,amount,email,package,status,credentialfile) VALUES('$name','$eventName','$eventDate','$eventTime','$contactNum','$address','$sponsored','$amount','$email','$package','$status','$targetFilePath')";
+	    $sql_query = "INSERT INTO eventres(name,eventName,eventDate,eventTime,contactNum,address,sponsored,amount,email,package,status,addedBy,credentialfile) VALUES('$name','$eventName','$eventDate','$eventTime','$contactNum','$address','$sponsored','$amount','$email','$package','$status','$addedBy','$targetFilePath')";
 			$result = mysqli_query($conn,$sql_query);
 		
 			if($result){

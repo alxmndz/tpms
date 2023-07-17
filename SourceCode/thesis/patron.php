@@ -59,12 +59,12 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
                                 Request Status
                             </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-bars"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-check"></i></div>
                                 Reservation Status
                             </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'calendar')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar"></i></div>
-                                Event List
+                                Event Lists
                             </a>
 
                         <div class="sb-sidenav-menu-heading">Credentials/Services</div>
@@ -189,7 +189,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['fname']) && isset($_SESSION['
               </div>
             </main>
 
-              <main class="tabcontent" id="statusforms">
+              <main class="tabcontent" id="statusforms" style="display: none;">
                 <?php include "usercontent/status.php"; ?>
               </main>
 

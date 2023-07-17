@@ -11,6 +11,7 @@ if(isset($_POST['btn-save']))
   $status = $_POST['status'];
   $amount = $_POST['amount'];
   $refNum = $_POST['refNum'];
+  $addedBy = $_POST['addedBy'];
   $receiptIMG = $_FILES['receiptIMG'];  
 
   $targetDir = "../rcpts/";
@@ -23,7 +24,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receiptIMG"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,refNum,receiptIMG) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$refNum','$targetFilePath')";
+    $sql_query = "INSERT INTO forms(fname,lname,address,mobilePhone,email,formType,status,amount,refNum,addedBy,receiptIMG) VALUES('$fname','$lname','$address','$mobilePhone','$email','$formType','$status','$amount','$refNum','$addedBy','$targetFilePath')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

@@ -11,6 +11,9 @@
                       <h4>Request Forms</h4>
                       <hr>
                       <form class="" action="php/addforms.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+                        </div>
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
@@ -261,6 +264,9 @@
                       <hr>
 
                       <form class="" action="php/addReserve.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+                        </div>
                             <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
@@ -403,98 +409,3 @@
             </div>
           </div>
         </div>
-
-      <div class="modal" id="edit-reports">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Report</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body">
-                    <form action="update.php" id="edit-form">
-                        <input class="form-control" type="hidden" name="id">
-                        <div class="form-group">
-                            <label for="email">Report Title</label>
-                            <input class="form-control" type="text" name="email" placeholder="reportTitle" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="first_name">Report Date</label>
-                            <input class="form-control" type="date" name="reportDate" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Report Time</label>
-                            <input class="form-control" type="time" name="reportTime" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Description</label>
-                            <input class="form-control" type="text" name="description" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Report Type</label>
-                            <select class="form-control" id="type" name="type">
-                              <option value=""></option>
-                              <option value="Baptismal">Baptismal</option>
-                              <option value="Blessing">Blessing</option>
-                              <option value="Communion">Communion</option>
-                              <option value="Confirmation">Confirmation</option>
-                              <option value="Funeral">Funeral</option>
-                              <option value="Wedding">Wedding</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Update</button>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-                    </form>
-
-
-                </div>
-
-            </div>
-        </div>
-      </div>
-
-      <div class="modal" id="edit-accounts">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Account</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body">
-                    <form action="update.php" id="edit-form">
-                        <input class="form-control" type="hidden" name="user_id">
-                        <div class="form-group">
-                            <label for="fname">Firstname</label>
-                            <input class="form-control" type="text" name="fname" placeholder="Firstname" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="lname">Lastname</label>
-                            <input class="form-control" type="text" name="lname" placeholder="Lastname" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input class="form-control" type="text" name="email" placeholder="Email" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Account Type</label>
-                            <select class="form-control" id="type" name="type">
-                              <option value=""></option>
-                              <option value="admin">Admin</option>
-                              <option value="staff">Staff</option>
-                              <option value="patron">patron</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Update</button>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-                    </form>
-
-
-                </div>
-
-            </div>
-        </div>
-      </div>

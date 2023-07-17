@@ -11,7 +11,6 @@
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
                 <th scope="col">Type</th>
-                <th scope="col">Receipt</th>
                 <th scope="col">Status</th>
                 <th scope="col" colspan="3">Action</th>
             </tr>
@@ -25,7 +24,6 @@
                 <td><?php echo $row["fname"]; ?></td>
                 <td><?php echo $row["lname"]; ?></td>
                 <td><?php echo $row["formType"]; ?></td>
-                <td><img src="rcpts/<?php echo $row['receiptIMG']; ?>" style="max-width: 100px;"></td>
                 <td><?php echo $row["status"]; ?></td>
                 <td>
                     <a href="php/forms/edit.php?formsID=<?php echo $row["formsID"]; ?>">

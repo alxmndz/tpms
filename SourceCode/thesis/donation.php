@@ -11,7 +11,6 @@
                 <th scope="col">Lastname</th>
                 <th scope="col">Contact</th>
                 <th scope="col">Reference #</th>
-                <th scope="col">Receipt</th>
                 <th scope="col">Date</th>
                 <th scope="col" colspan="2">Action</th>
             </tr>
@@ -26,7 +25,6 @@
                 <td><?php echo $row["lname"]; ?></td>
                 <td><?php echo $row["contact"]; ?></td>
                 <td><?php echo $row["refNum"]; ?></td>
-                <td><img src="rcpts/<?php echo $row['donateReceipt']; ?>" style="max-width: 100px;"></td>
                 <td><?php echo $row["donateDate"]; ?></td>
                 <td>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#viewModal<?php echo $row['donateID']; ?>">

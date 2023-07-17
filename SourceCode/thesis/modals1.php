@@ -11,6 +11,9 @@
                       <h4>Request Forms</h4>
                       <hr>
                       <form class="" action="php/addforms1.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+                        </div>
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
@@ -251,6 +254,9 @@
                       <hr>
 
                       <form class="" action="php/addreserve1.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy" />
+                        </div>
                             <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
