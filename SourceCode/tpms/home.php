@@ -38,8 +38,10 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Welcome To Our Church!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+                <div class="masthead-heading">Welcome To Our Church!</div>
+                <div class="masthead-subheading">Greet one another with a kiss of love. Peace to all of you who are in Christ.</div>
+                <br>
+                <div class="masthead-subheading">-1 Peter 5:14 NIV</div>
             </div>
         </header>
         <!-- Services-->

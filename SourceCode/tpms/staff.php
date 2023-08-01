@@ -13,7 +13,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="patron.php"><img class="logo" src="assets/icons/svf.png"> St. Vincent Ferrer</a>
+            <a class="navbar-brand ps-3" href="staff.php"><img class="logo" src="assets/icons/svf.png"> St. Vincent Ferrer</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             
@@ -35,13 +35,13 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'eventlist')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-days"></i></div>
-                                Event List
+                            <a class="nav-link tablinks" onclick="openCity(event, 'dashboard')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-line"></i></div>
+                                Dashboard
                             </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-check"></i></div>
-                                Status
+                            <a class="nav-link tablinks" onclick="openCity(event, 'eventlist')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                                Create Event
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Credentials/Services</div>
@@ -49,6 +49,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
                             </a>
+                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-certificate"></i></div>
+                                Certificate
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Appointments</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
                                 Event Reservation
@@ -66,11 +72,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 </nav>
                             </div>
 
-                            <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                                Donation
-                            </a>
+                            <div class="sb-sidenav-menu-heading">Announcements/Reports</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                                 Announcements
@@ -83,18 +85,31 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     </div>
                 </nav>
             </div>
+
             <div id="layoutSidenav_content">
 
-                <main class="tabcontent" id="profile">
-                    <?php include "profile.php"; ?>
+                <main class="tabcontent" id="dashboard">
+                    <?php include "staff/dashboard.php"; ?>
                 </main>
 
-                <main class="tabcontent" id="request" style="display: none;">
-                    <?php include "patron/request.php" ?>
+                <main class="tabcontent" id="eventlist" style="display: none;">
+                    <?php include "staff/eventlist.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="accounts" style="display: none;">
+                    
                 </main>
 
                 <main class="tabcontent" id="donation" style="display: none;">
-                    <?php include "patron/donation.php" ?>
+                    
+                </main>
+
+                <main class="tabcontent" id="request" style="display: none;">
+                    <?php include "staff/request.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="announcement" style="display: none;">
+                    <?php include "staff/announcement.php"; ?>
                 </main>
 
                     <?php 
@@ -103,18 +118,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             exit();
                           }
                         ?>
-                <main class="tabcontent" id="eventlist" style="display: none;">
-                    <?php include "patron/calendar.php"; ?>
-                </main>
-
-                <main class="tabcontent" id="status" style="display: none;">
-                    <?php include "patron/status.php" ?>
-                </main>
-
-                <main class="tabcontent" id="announcement" style="display: none;">
-                    <?php include "patron/announcement.php" ?>
-                </main>
-
+                
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">

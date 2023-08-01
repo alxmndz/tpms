@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/counter.css">
 <div class="container mt-4 d-flex justify-content-center align-items-center">
-  <div class="row">
-    <div class="col-md-4 d-flex justify-content-center" style="margin-top: 10px;">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-4 d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -16,13 +16,14 @@
                 <p class="card-text">Profile Details</p>
                 <p class="card-text"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['name'] ?></p>
                 <p class="card-text"><i class="fa-solid fa-phone"></i> <?php echo $_SESSION['contact'] ?></p>
+                <p class="card-text"><i class="fa-solid fa-envelope"></i> <?php echo $_SESSION['email'] ?></p>
               </center>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4 d-flex justify-content-center" style="margin-top: 10px;">
+    <div class="col-md-4 d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -44,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 d-flex justify-content-center" style="margin-top: 10px;">
+    <div class="col-md-4 d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -118,7 +119,7 @@
                       if ($conn->connect_error) {
                         die("Connection failed : " . $conn->connect_error);
                       }
-                      $sql = "SELECT COUNT(*) FROM donation";
+                      $sql = "SELECT COUNT(*) FROM eventlist";
                       $result = $conn->query($sql);
                       while($row = mysqli_fetch_array($result)){
                       echo $row['COUNT(*)'];
@@ -136,7 +137,7 @@
                       if ($conn->connect_error) {
                         die("Connection failed : " . $conn->connect_error);
                       }
-                      $sql = "SELECT COUNT(*) FROM donation";
+                      $sql = "SELECT COUNT(*) FROM announcement";
                       $result = $conn->query($sql);
                       while($row = mysqli_fetch_array($result)){
                       echo $row['COUNT(*)'];
