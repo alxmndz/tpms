@@ -1,17 +1,34 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<div class="container-fluid" style="margin-top: 30px;">
-  <div class="card mb-4">
-    <div class="card-header">
-      <i class="fa-solid fa-users"></i>
-      Accounts
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid mt-4">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+      <i class="fa-solid fa-users me-2"></i>
+      <span class="fs-5 fw-bold">Accounts</span>
+      <div class="ms-auto">
+        <label class="me-2">Show entries:</label>
+        <select id="entriesSelect" class="form-select form-select-sm">
+          <option value="all">All</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
     </div>
     <div class="card-body">
+      <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Type to search..." autocomplete="off">
+        <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
+      </div>
       <div class="table-responsive">
-        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Type to search..." autocomplete="off">
         <table class="table table-light table-hover">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM users");
+            $result = mysqli_query($conn, "SELECT * FROM users ORDER BY name");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -36,15 +53,65 @@
               <td><?php echo $row["address"]; ?></td>
               <td><?php echo $row["type"]; ?></td>
               <td>
-                <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#updateModal<?php echo $row['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></button>
-                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewModal<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
+
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row['id']; ?>">
+                  <i class="fa-solid fa-pen-to-square">
+                </i></button>
+                
+                <button class="btn btn-danger btn-sm" ><i class="fa-solid fa-trash"></i></button>
               </td>
+            </tr>
+
+            <div class="modal fade" id="updateModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel"><i class="fa-solid fa-users"></i> Update Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form id="updateForm" action="php/accounts/update.php" autocomplete="off" method="POST">
+                    <span id="message"><?php if (isset($message)) { echo $message; } ?></span>
+                    <div class="modal-body">
+                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="contact" class="form-label">Contact</label>
+                        <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['address']; ?>" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <select class="form-select" id="type" name="type" required>
+                          <option value="admin" <?php echo ($row['type'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
+                          <option value="patron" <?php echo ($row['type'] === 'patron') ? 'selected' : ''; ?>>Patron</option>
+                          <option value="staff" <?php echo ($row['type'] === 'staff') ? 'selected' : ''; ?>>Staff</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+
               <?php
                 $i++;
               }
             ?>
-            </tr>
             <?php
               } else {
                 echo "No result found";
@@ -57,16 +124,29 @@
   </div>
 </div>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults").getElementsByTagName("tr");
+  const entriesSelect = document.getElementById("entriesSelect");
 
   // Add event listener to the search input
   searchInput.addEventListener("input", function() {
-    const searchTerm = searchInput.value.toLowerCase();
+    applyFilter();
+  });
 
-    // Loop through the table rows and show/hide based on search term
+  // Add event listener to the entries select
+  entriesSelect.addEventListener("change", function() {
+    applyFilter();
+  });
+
+  function applyFilter() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const entriesToShow = entriesSelect.value;
+
+    // Loop through the table rows and show/hide based on search term and entries select
+    let shownEntries = 0;
     for (let i = 0; i < searchResults.length; i++) {
       const row = searchResults[i];
       const name = row.cells[0].innerText.toLowerCase();
@@ -77,13 +157,61 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || type.includes(searchTerm)) {
         row.style.display = "";
+        shownEntries++;
+        if (entriesToShow !== "all" && shownEntries > entriesToShow) {
+          row.style.display = "none";
+        }
       } else {
         row.style.display = "none";
       }
     }
+  }
+
+  function openUpdateModal(id) {
+    const updateModal = new bootstrap.Modal(document.getElementById("updateModal"));
+    updateModal.show();
+
+    // Fetch data for the selected user and populate the form fields
+    // (you can use AJAX to fetch the data if needed)
+
+    // Example (with this implementation, you can remove the "update_modal.php" file):
+    // fetch(`php/get_user_data.php?id=${id}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     document.getElementById('userId').value = data.id;
+    //     document.getElementById('name').value = data.name;
+    //     document.getElementById('contact').value = data.contact;
+    //     document.getElementById('email').value = data.email;
+    //     document.getElementById('address').value = data.address;
+    //     document.getElementById('type').value = data.type;
+    //   })
+    //   .catch(error => console.error(error));
+  }
+
+  // Add an event listener to the form submission (not shown in the original code).
+  // This is just an example; you need to replace the URL with the appropriate PHP script that handles the update.
+  document.getElementById("updateForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+  
+    fetch('php/update_data.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      // Handle the response, e.g., show a success message or update the table.
+      console.log(result);
+    })
+    .catch(error => console.error(error));
+
+    // Close the modal after submitting the form.
+    const updateModal = new bootstrap.Modal(document.getElementById("updateModal"));
+    updateModal.hide();
   });
 });
 </script>
-
 </body>
 </html>

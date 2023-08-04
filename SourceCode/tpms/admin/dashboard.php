@@ -1,9 +1,5 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
-">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <style type="text/css">
  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
   *{
@@ -23,7 +19,7 @@
                               <div class="row w-100">
                                       <div class="col-md-3" style="margin-top: 5px;">
                                           <div class="card border-info mx-sm-1 p-3">
-                                              <div class="card border-info shadow text-info p-3 my-card" ><span class="fa-solid fa-calendar" aria-hidden="true"></span></div>
+                                              <div class="card border-info shadow text-info p-3 my-card" ><i class="fa-solid fa-calendar" aria-hidden="true"></i></div>
                                               <div class="text-info text-center mt-3"><h4>Events</h4></div>
                                               <div class="text-info text-center mt-2">
                                                 <h1>
@@ -44,7 +40,7 @@
                                       </div>
                                       <div class="col-md-3" style="margin-top: 5px;">
                                           <div class="card border-success mx-sm-1 p-3">
-                                              <div class="card border-success shadow text-success p-3 my-card"><span class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></span></div>
+                                              <div class="card border-success shadow text-success p-3 my-card"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></div>
                                               <div class="text-success text-center mt-3"><h4>Donations</h4></div>
                                               <div class="text-success text-center mt-2">
                                                 <h1>
@@ -65,7 +61,7 @@
                                       </div>
                                       <div class="col-md-3" style="margin-top: 5px;">
                                           <div class="card border-danger mx-sm-1 p-3">
-                                              <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa-solid fa-users" aria-hidden="true"></span></div>
+                                              <div class="card border-danger shadow text-danger p-3 my-card" ><i class="fa-solid fa-users" aria-hidden="true"></i></div>
                                               <div class="text-danger text-center mt-3"><h4>Accounts</h4></div>
                                               <div class="text-danger text-center mt-2">
                                                 <h1>
@@ -86,7 +82,7 @@
                                       </div>
                                       <div class="col-md-3">
                                           <div class="card border-warning mx-sm-1 p-3">
-                                              <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa-solid fa-bell" aria-hidden="true"></span></div>
+                                              <div class="card border-warning shadow text-warning p-3 my-card" ><i class="fa-solid fa-bell" aria-hidden="true"></i></div>
                                               <div class="text-warning text-center mt-3"><h4>Announcement</h4></div>
                                               <div class="text-warning text-center mt-2">
                                                 <h1>
@@ -124,7 +120,7 @@
                                     <table class="table table-striped table-hover">
                                       <?php
                                         include_once 'php/dbconn.php';
-                                        $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY name LIMIT 10");
+                                        $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY name LIMIT 11");
                                         if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <thead>

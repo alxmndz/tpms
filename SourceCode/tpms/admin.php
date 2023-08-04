@@ -113,13 +113,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 </main>
 
                 <?php include "admin/addmodal.php" ?>
-
                     <?php 
-                          } else {
-                            header("Location: loginform.php");
-                            exit();
-                          }
-                        ?>
+                      } else {
+                        header("Location: loginform.php");
+                        exit();
+                      }
+                    ?>
                 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

@@ -8,7 +8,7 @@
       <div class="table-responsive">
         <div class="d-flex">
           <input type="text" id="searchInput2" class="form-control form-control-sm me-2" placeholder="Type to search...">
-          <button class="btn btn-primary">Create Request</button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#req">Create Request</button>
         </div>
 
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
