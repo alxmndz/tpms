@@ -58,7 +58,9 @@
                   <i class="fa-solid fa-pen-to-square">
                 </i></button>
                 
-                <button class="btn btn-danger btn-sm" ><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id']; ?>">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
               </td>
             </tr>
 
@@ -66,7 +68,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel"><i class="fa-solid fa-users"></i> Update Account</h5>
+                    <h5 class="modal-title" id="updateModalLabel"><i class="fa-solid fa-users" style="color: blue;"></i> Update Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="updateForm" action="php/accounts/update.php" autocomplete="off" method="POST">
@@ -106,6 +108,26 @@
                 </div>
               </div>
             </div>
+
+            <div class="modal fade" id="deleteModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-trash" style="color: red;"></i> Delete Account</h5>
+                  </div>
+                  <form id="deleteForm" action="php/accounts/delete.php" autocomplete="off" method="POST">
+                    <div class="modal-body">
+                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                      <span>Do you really want to delete the data of <b><?php echo $row['uname']; ?></b>?</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
             
 
               <?php
@@ -123,7 +145,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -167,50 +188,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  function openUpdateModal(id) {
-    const updateModal = new bootstrap.Modal(document.getElementById("updateModal"));
-    updateModal.show();
-
-    // Fetch data for the selected user and populate the form fields
-    // (you can use AJAX to fetch the data if needed)
-
-    // Example (with this implementation, you can remove the "update_modal.php" file):
-    // fetch(`php/get_user_data.php?id=${id}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     document.getElementById('userId').value = data.id;
-    //     document.getElementById('name').value = data.name;
-    //     document.getElementById('contact').value = data.contact;
-    //     document.getElementById('email').value = data.email;
-    //     document.getElementById('address').value = data.address;
-    //     document.getElementById('type').value = data.type;
-    //   })
-    //   .catch(error => console.error(error));
-  }
-
-  // Add an event listener to the form submission (not shown in the original code).
-  // This is just an example; you need to replace the URL with the appropriate PHP script that handles the update.
-  document.getElementById("updateForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const form = event.target;
-    const formData = new FormData(form);
-  
-    fetch('php/update_data.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.text())
-    .then(result => {
-      // Handle the response, e.g., show a success message or update the table.
-      console.log(result);
-    })
-    .catch(error => console.error(error));
-
-    // Close the modal after submitting the form.
-    const updateModal = new bootstrap.Modal(document.getElementById("updateModal"));
-    updateModal.hide();
-  });
 });
 </script>
 </body>

@@ -13,9 +13,18 @@
 
   <div class="container-fluid" style="margin-top: 30px;">
     <div class="card mb-4">
-      <div class="card-header">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        Donation
+      <div class="card-header d-flex align-items-center">
+        <i class="fa-solid fa-hand-holding-dollar me-2"></i>
+        <span class="fs-5 fw-bold">Donation</span>
+        <div class="ms-auto">
+          <label class="me-2">Show entries:</label>
+          <select id="entriesSelect1" class="form-select form-select-sm">
+            <option value="all">All</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -77,44 +86,51 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const searchInput = document.getElementById("searchInput1");
-      const searchResults = document.getElementById("searchResults1").getElementsByTagName("tr");
+  document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById("searchInput1");
+    const searchResults = document.getElementById("searchResults1").getElementsByTagName("tr");
+    const entriesSelect = document.getElementById("entriesSelect1");
 
-      // Add event listener to the search input
-      searchInput.addEventListener("input", function() {
-        const searchTerm = searchInput.value.toLowerCase();
+    // Add event listener to the search input
+    searchInput.addEventListener("input", function() {
+      applyFilter();
+    });
 
-        // Loop through the table rows and show/hide based on search term
-        for (let i = 0; i < searchResults.length; i++) {
-          const row = searchResults[i];
-          const name = row.cells[0].innerText.toLowerCase();
-          const contact = row.cells[1].innerText.toLowerCase();
-          const email = row.cells[2].innerText.toLowerCase();
-          const address = row.cells[3].innerText.toLowerCase();
-          const donatedDate = row.cells[4].innerText.toLowerCase();
-          const amount = row.cells[5].innerText.toLowerCase();
-          const event = row.cells[6].innerText.toLowerCase();
+    // Add event listener to the entries select
+    entriesSelect.addEventListener("change", function() {
+      applyFilter();
+    });
 
-          if (
-            name.includes(searchTerm) ||
-            contact.includes(searchTerm) ||
-            email.includes(searchTerm) ||
-            address.includes(searchTerm) ||
-            donatedDate.includes(searchTerm) ||
-            amount.includes(searchTerm) ||
-            event.includes(searchTerm)
-          ) {
-            row.style.display = "";
-          } else {
+    function applyFilter() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const entriesToShow = entriesSelect.value;
+
+      // Loop through the table rows and show/hide based on search term and entries select
+      let shownEntries = 0;
+      for (let i = 0; i < searchResults.length; i++) {
+        const row = searchResults[i];
+        const name = row.cells[0].innerText.toLowerCase();
+        const contact = row.cells[1].innerText.toLowerCase();
+        const email = row.cells[2].innerText.toLowerCase();
+        const address = row.cells[3].innerText.toLowerCase();
+        const donatedDate = row.cells[4].innerText.toLowerCase();
+        const amount = row.cells[5].innerText.toLowerCase();
+        const event = row.cells[6].innerText.toLowerCase();
+
+        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || donatedDate.includes(searchTerm) || amount.includes(searchTerm) || event.includes(searchTerm)) {
+          row.style.display = "";
+          shownEntries++;
+          if (entriesToShow !== "all" && shownEntries > entriesToShow) {
             row.style.display = "none";
           }
+        } else {
+          row.style.display = "none";
         }
-      });
-    });
-  </script>
+      }
+    }
 
-  <!-- Add any additional JavaScript or libraries you want here -->
+  });
+  </script>
 
 </body>
 
