@@ -60,11 +60,12 @@
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
                                 <select class="form-control" id="event" name="event"required>
-                                    <option value=""></option>
+                                    <option disabled selected>Select an option</option>
                                     <option value="Baptismal">Baptismal</option>
                                     <option value="Communion">Communion</option>
                                     <option value="Confirmation">Confirmation</option>
                                     <option value="Funeral">Funeral</option>
+                                    <option value="Thanks Giving">Thanks Giving</option>
                                     <option value="Wedding">Wedding</option>
                                 </select>
                             </div>

@@ -52,8 +52,7 @@
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
                                 <select class="form-control" id="event" name="event" required>
-                                    <option disabled> Select an event</option>
-                                    <option value=""></option>
+                                    <option disabled selected> Select an event</option>>
                                     <option value="Baptismal Certificate">Baptismal Certificate</option>
                                     <option value="Communion Certificate">Communion Certificate</option>
                                     <option value="Confirmation Certificate">Confirmation Certificate</option>

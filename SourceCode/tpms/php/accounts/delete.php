@@ -5,7 +5,7 @@ $sql = "DELETE FROM users WHERE id='".$_REQUEST['id']."'";
 $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
 if($resultset) {
 echo "<script type='text/javascript'>
-        alert('Deleeted Successfully');
+        alert('Deleted Successfully');
         window.location = '../../admin.php';
       </script>";
 		}

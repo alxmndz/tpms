@@ -49,7 +49,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
                             </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" onclick="openCity(event, 'reserve')" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
                                 Event Reservation
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -95,6 +95,35 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                 <main class="tabcontent" id="donation" style="display: none;">
                     <?php include "patron/donation.php" ?>
+                </main>
+
+                <main class="tabcontent" id="reserve" style="display: none;">
+                    <?php include "patron/reserve.php" ?>
+                </main>
+
+                <!-- Event Reservation -->
+                <main class="tabcontent" id="wedding" style="display: none;">
+                    <?php include "patron/wedding.php" ?>
+                </main>
+
+                <main class="tabcontent" id="baptismal" style="display: none;">
+                    <?php include "patron/baptismal.php" ?>
+                </main>
+
+                <main class="tabcontent" id="blessing" style="display: none;">
+                    <?php include "patron/blessing.php" ?>
+                </main>
+
+                <main class="tabcontent" id="communion" style="display: none;">
+                    <?php include "patron/communion.php" ?>
+                </main>
+
+                <main class="tabcontent" id="confirmation" style="display: none;">
+                    <?php include "patron/confirmation.php" ?>
+                </main>
+
+                <main class="tabcontent" id="funeralmass" style="display: none;">
+                    <?php include "patron/funeralmass.php" ?>
                 </main>
 
                     <?php 

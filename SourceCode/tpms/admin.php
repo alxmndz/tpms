@@ -59,7 +59,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Appointments</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" onclick="openCity(event, 'reserve')" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
                                 Event Reservation
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -100,6 +100,37 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/accounts.php"; ?>
                 </main>
 
+                <main class="tabcontent" id="reserve" style="display: none;">
+                    <?php include "admin/reserve.php"; ?>
+                </main>
+
+                <!-- Events -->
+
+                <main class="tabcontent" id="wedding" style="display: none;">
+                    <?php include "admin/wedding.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="baptismal" style="display: none;">
+                    <?php include "admin/baptismal.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="blessing" style="display: none;">
+                    <?php include "admin/blessing.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="communion" style="display: none;">
+                    <?php include "admin/communion.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="confirmation" style="display: none;">
+                    <?php include "admin/confirmation.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="funeralmass" style="display: none;">
+                    <?php include "admin/funeralmass.php"; ?>
+                </main>
+
+                <!-- Other functions -->
                 <main class="tabcontent" id="donation" style="display: none;">
                     <?php include "admin/donation.php"; ?>
                 </main>
