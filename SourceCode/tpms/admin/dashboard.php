@@ -1,9 +1,7 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="css/counter.css">
 <style type="text/css">
  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+ <?php include "css/counter.css";  ?>
   *{
     font-family: "Poppins", sans-serif;
   }
@@ -12,7 +10,7 @@
   }
 </style>
                                   <div class="container-fluid">
-                                    <div class="card" style="margin-top: 20px;">
+                                    <div class="card" style="margin-top: 10px;">
                                       <div class="card-header">
                                         <h5><i class="fa-solid fa-chart-line"></i> Dashboard</h5>
                                       </div>
@@ -201,7 +199,7 @@
                                           <div class="card">
                                             <div class="card-body">
                                               <div class="card-title"><b><?php echo $row["title"] ?></b></div>
-                                              <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo $row["start"] ?> - <?php echo $row["endtime"] ?></div>
+                                              <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo date("h:i A", strtotime($row["start"])); ?> - <?php echo date("h:i A", strtotime($row["endtime"])); ?></div>
                                               <div class="card-text"><i class="fa-solid fa-location-dot"></i> <?php echo $row["location"] ?></div>
                                               <div class="card-text"><i class="fa-regular fa-sun"></i> <?php echo $row["eventday"] ?></div>
                                               <div class="card-text"><span><?php echo $row["description"] ?></span></div>

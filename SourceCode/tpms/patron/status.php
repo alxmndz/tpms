@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card mb-4 container" style="margin-top: 10px;">
      <div class="card-header">
           <i class="fa-solid fa-circle-check" style="color: #17A589;"></i>
             Request Status
@@ -63,7 +63,7 @@
     </div>
 
 <!-- Donation -->
-    <div class="card mb-4">
+    <div class="card mb-4 container" style="margin-top: 10px;">
      <div class="card-header">
           <i class="fa-solid fa-hand-holding-dollar" style="color: #17A589;"></i>
             Donation

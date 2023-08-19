@@ -61,7 +61,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                     <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Thanks Giving</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
                                 </nav>
                             </div>

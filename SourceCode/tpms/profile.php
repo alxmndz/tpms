@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="card-body">
                                   <div class="table-responsive">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-striped table-hover" id="datatablesSimple">
                                       <?php
                                         include_once 'php/dbconn.php';
                                         $result = mysqli_query
@@ -137,19 +137,17 @@
                                               u.contact,
                                               u.email,
                                               u.address,
-                                              d.id,
-                                              d.event,
-                                              d.amount,
-                                              d.donatedDate
-                                          FROM donation d
-                                          LEFT JOIN users u ON u.id = d.addedBy
-                                          WHERE d.addedBy = '$id' LIMIT 5");
+                                              r.id,
+                                              r.event,
+                                              r.amount,
+                                              r.status
+                                          FROM request r
+                                          LEFT JOIN users u ON u.id = r.addedBy
+                                          WHERE r.addedBy = '$id' LIMIT 5");
                                         if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <thead>
                                         <tr>
-                                          <th>Name</th>
-                                          <th>Contact</th>
                                           <th>Email</th>
                                           <th>Address</th>
                                           <th>Event</th>
@@ -163,13 +161,11 @@
                                           while ($row = mysqli_fetch_array($result)) {
                                         ?>
                                         <tr>
-                                          <td><?php echo $row["name"]; ?></td>
-                                          <td><?php echo $row["contact"]; ?></td>
                                           <td><?php echo $row["email"]; ?></td>
                                           <td><?php echo $row["address"]; ?></td>
                                           <td><?php echo $row["event"]; ?></td>
                                           <td><?php echo $row["amount"]; ?></td>
-                                          <td><?php echo $row["donatedDate"]; ?></td>
+                                          <td><?php echo $row["status"]; ?></td>
                                           <?php
                                             $i++;
                                           }
@@ -208,50 +204,7 @@
                                           <div class="card">
                                             <div class="card-body">
                                               <div class="card-title"><b><?php echo $row["title"] ?></b></div>
-                                              <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo $row["start"] ?> - <?php echo $row["endtime"] ?></div>
-                                              <div class="card-text"><i class="fa-solid fa-location-dot"></i> <?php echo $row["location"] ?></div>
-                                              <div class="card-text"><i class="fa-regular fa-sun"></i> <?php echo $row["eventday"] ?></div>
-                                              <div class="card-text"><span><?php echo $row["description"] ?></span></div>
-                                              <div class="card-text"><small class="text-muted"><?php echo $row["month"] ?> <?php echo $row["daynumber"] ?></small></div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <?php
-                                        }
-                                        ?>
-                                      </div>
-                                      <?php
-                                      } else {
-                                        echo "No result found";
-                                      }
-                                      ?>
-                                  </div>
-                                </div>
-                              </div>
-
-
-
-                            <div class="col-md-4" style="margin-top: 10px;">
-                                <!-- Card beside the table -->
-                                <div class="card">
-                                  <div class="card-header">
-                                    <i class="fa-regular fa-calendar"></i> Events
-                                  </div>
-                                  <div class="card-body">
-                                      <?php
-                                      include_once 'php/dbconn.php';
-                                      $result = mysqli_query($conn, "SELECT * FROM eventlist LIMIT 3");
-                                      if (mysqli_num_rows($result) > 0) {
-                                      ?>
-                                      <div class="row">
-                                        <?php
-                                        while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                        <div class="col-12" style="margin-top: 10px;">
-                                          <div class="card">
-                                            <div class="card-body">
-                                              <div class="card-title"><b><?php echo $row["title"] ?></b></div>
-                                              <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo $row["start"] ?> - <?php echo $row["endtime"] ?></div>
+                                              <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo date("h:i A", strtotime($row["start"])); ?> - <?php echo date("h:i A", strtotime($row["endtime"])); ?></div>
                                               <div class="card-text"><i class="fa-solid fa-location-dot"></i> <?php echo $row["location"] ?></div>
                                               <div class="card-text"><i class="fa-regular fa-sun"></i> <?php echo $row["eventday"] ?></div>
                                               <div class="card-text"><span><?php echo $row["description"] ?></span></div>

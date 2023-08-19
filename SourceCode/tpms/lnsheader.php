@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/lns.css">
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 		html, body {
 			height: 100%;

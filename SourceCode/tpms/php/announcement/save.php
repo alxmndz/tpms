@@ -4,8 +4,8 @@ if(isset($_POST['btn-save']))
 {
 	$title = $_POST['title'];
 	$eventdate = $_POST['eventdate'];
-	$start = date('h:i:sa', strtotime($_POST['start'])); // Convert to AM/PM format
-	$endtime = date('h:i:sa', strtotime($_POST['endtime'])); // Convert to AM/PM format
+	$start = $_POST['start'];
+	$endtime = $_POST['endtime'];
 	$description = $_POST['description'];
 	$location = $_POST['location'];
 

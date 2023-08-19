@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Donation Records</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    /* Add any additional CSS styling you want here */
-  </style>
-</head>
-
-<body>
-
-  <div class="container-fluid" style="margin-top: 30px;">
+  <div class="container-fluid" style="margin-top: 10px;">
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center">
         <i class="fa-solid fa-hand-holding-dollar me-2"></i>
@@ -143,12 +131,12 @@
                                 <div class="form-outline">
                                   <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
                                     <select class="form-control" id="event" name="event"required>
-                                        <option disabled selected><?php echo $row['event']; ?></option>
-                                        <option value="Baptismal">Baptismal</option>
-                                        <option value="Communion">Communion</option>
-                                        <option value="Confirmation">Confirmation</option>
-                                        <option value="Funeral">Funeral</option>
-                                        <option value="Wedding">Wedding</option>
+                                        <option value="Baptismal" <?php echo ($row['event'] === 'Baptismal') ? 'selected' : ''; ?>>Baptismal</option>
+                                        <option value="Communion" <?php echo ($row['event'] === 'Communion') ? 'selected' : ''; ?>>Communion</option>
+                                        <option value="Confimation" <?php echo ($row['event'] === 'Confimation') ? 'selected' : ''; ?>>Confimation</option>
+                                        <option value="Funeral" <?php echo ($row['event'] === 'Funeral') ? 'selected' : ''; ?>>Funeral</option>
+                                        <option value="Thanks Giving" <?php echo ($row['event'] === 'Thanks Giving') ? 'selected' : ''; ?>>Thanks Giving</option>
+                                        <option value="Wedding" <?php echo ($row['event'] === 'Wedding') ? 'selected' : ''; ?>>Wedding</option>
                                     </select>
                                 </div>
                             </div>
@@ -291,7 +279,3 @@
 
   });
   </script>
-
-</body>
-
-</html>

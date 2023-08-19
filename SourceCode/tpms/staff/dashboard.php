@@ -1,117 +1,130 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
-">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <style type="text/css">
- @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-  *{
-    font-family: "Poppins", sans-serif;
-  }
-  .my-card
-  {
-      position:absolute;
-      left:40%;
-      top:-20px;
+<?php include "css/counter.css";  ?>
+  .my-card{
       border-radius:50%;
   }
 </style>
-<div class="container-fluid px-4" style="margin-top: 10px;">
-  <div>
-    <div>
-      <h5><i class="fa-solid fa-chart-line"></i> Dashboard</h5>
+<div class="container-fluid px-4" style="margin-top: 0px;">
+
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="fa-solid fa-chart-line"></i> Dashboard</h5>
+      </div>
+      <div class="card-body">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+      <div class="col">
+         <div class="card radius-10 border-start border-0 border-3 border-info" style="margin-top: 10px;">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div>
+                <p class="mb-0 text-secondary">Event List</p>
+                <h4 class="my-1 text-info">
+                  <?php
+                    $conn = new mysqli("localhost","root","","tpms");
+                      if ($conn->connect_error) {
+                        die("Connection failed : " . $conn->connect_error);
+                      }
+                        $sql = "SELECT COUNT(*) FROM eventlist";
+                        $result = $conn->query($sql);
+                        while($row = mysqli_fetch_array($result)){
+                        echo $row['COUNT(*)'];
+                    }
+                  ?>
+              </h4>
+              </div>
+              <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa-solid fa-calendar-days"></i>
+              </div>
+            </div>
+          </div>
+         </div>
+         </div>
+         <div class="col">
+        <div class="card radius-10 border-start border-0 border-3 border-danger" style="margin-top: 10px;">
+           <div class="card-body">
+             <div class="d-flex align-items-center">
+               <div>
+                 <p class="mb-0 text-secondary">Requests</p>
+                 <h4 class="my-1 text-danger">
+                  <?php
+                    $conn = new mysqli("localhost","root","","tpms");
+                      if ($conn->connect_error) {
+                        die("Connection failed : " . $conn->connect_error);
+                      }
+                      $sql = "SELECT COUNT(*) FROM request";
+                      $result = $conn->query($sql);
+                      while($row = mysqli_fetch_array($result)){
+                      echo $row['COUNT(*)'];
+                      }
+                   ?>
+                </h4>
+               </div>
+               <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa-solid fa-scroll"></i>
+               </div>
+             </div>
+           </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card radius-10 border-start border-0 border-3 border-success" style="margin-top: 10px;">
+           <div class="card-body">
+             <div class="d-flex align-items-center">
+               <div>
+                 <p class="mb-0 text-secondary">Events Lists</p>
+                 <h4 class="my-1 text-success">
+                   <?php
+                     $conn = new mysqli("localhost","root","","tpms");
+                      if ($conn->connect_error) {
+                        die("Connection failed : " . $conn->connect_error);
+                      }
+                      $sql = "SELECT COUNT(*) FROM announcement";
+                      $result = $conn->query($sql);
+                      while($row = mysqli_fetch_array($result)){
+                      echo $row['COUNT(*)'];
+                      }
+                   ?>
+                 </h4>
+               </div>
+               <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-bell"></i>
+               </div>
+             </div>
+           </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card radius-10 border-start border-0 border-3 border-warning" style="margin-top: 10px;">
+           <div class="card-body">
+             <div class="d-flex align-items-center">
+               <div>
+                 <p class="mb-0 text-secondary">Announcements</p>
+                 <h4 class="my-1 text-warning">
+                   <?php
+                     $conn = new mysqli("localhost","root","","tpms");
+                       if ($conn->connect_error) {
+                        die("Connection failed : " . $conn->connect_error);
+                    }
+                       $sql = "SELECT COUNT(*) FROM announcement";
+                       $result = $conn->query($sql);
+                       while($row = mysqli_fetch_array($result)){
+                       echo $row['COUNT(*)'];
+                     }
+                    ?>
+                 </h4>
+               </div>
+               <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-bell"></i>
+               </div>
+             </div>
+           </div>
+        </div>
+        </div> 
+      </div>
+      </div>
     </div>
   </div>
-                        <div class="container-fluid">
-                          <div class="jumbotron">
-                            <div class="row w-100">
-                                    <div class="col-md-3" style="margin-top: 5px;">
-                                        <div class="card border-info mx-sm-1 p-3">
-                                            <div class="card border-info shadow text-info p-3 my-card" ><span class="fa-solid fa-calendar" aria-hidden="true"></span></div>
-                                            <div class="text-info text-center mt-3"><h4>Events</h4></div>
-                                            <div class="text-info text-center mt-2">
-                                              <h1>
-                                              <?php
-                                                $conn = new mysqli("localhost","root","","tpms");
-                                                  if ($conn->connect_error) {
-                                                    die("Connection failed : " . $conn->connect_error);
-                                                  }
-                                                  $sql = "SELECT COUNT(*) FROM eventlist";
-                                                  $result = $conn->query($sql);
-                                                  while($row = mysqli_fetch_array($result)){
-                                                  echo $row['COUNT(*)'];
-                                                  }
-                                              ?>
-                                              </h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" style="margin-top: 5px;">
-                                        <div class="card border-secondary mx-sm-1 p-3">
-                                            <div class="card border-secondary shadow text-secondary p-3 my-card"><span class="fa-solid fa-scroll" aria-hidden="true"></span></div>
-                                            <div class="text-secondary text-center mt-3"><h4>Requests</h4></div>
-                                            <div class="text-secondary text-center mt-2">
-                                              <h1>
-                                              <?php
-                                                $conn = new mysqli("localhost","root","","tpms");
-                                                  if ($conn->connect_error) {
-                                                    die("Connection failed : " . $conn->connect_error);
-                                                  }
-                                                  $sql = "SELECT COUNT(*) FROM request";
-                                                  $result = $conn->query($sql);
-                                                  while($row = mysqli_fetch_array($result)){
-                                                  echo $row['COUNT(*)'];
-                                                  }
-                                              ?>
-                                              </h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" style="margin-top: 5px;">
-                                        <div class="card border-success mx-sm-1 p-3">
-                                            <div class="card border-success shadow text-success p-3 my-card" ><span class="fa-solid fa-users" aria-hidden="true"></span></div>
-                                            <div class="text-success text-center mt-3"><h4>Accounts</h4></div>
-                                            <div class="text-success text-center mt-2">
-                                              <h1>
-                                                <?php
-                                                $conn = new mysqli("localhost","root","","tpms");
-                                                  if ($conn->connect_error) {
-                                                    die("Connection failed : " . $conn->connect_error);
-                                                  }
-                                                  $sql = "SELECT COUNT(*) FROM users";
-                                                  $result = $conn->query($sql);
-                                                  while($row = mysqli_fetch_array($result)){
-                                                  echo $row['COUNT(*)'];
-                                                  }
-                                              ?>
-                                              </h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" style="margin-top: 5px;">
-                                        <div class="card border-warning mx-sm-1 p-3">
-                                            <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa-solid fa-bell" aria-hidden="true"></span></div>
-                                            <div class="text-warning text-center mt-3"><h4>Announcement</h4></div>
-                                            <div class="text-warning text-center mt-2">
-                                              <h1>
-                                              <?php
-                                                $conn = new mysqli("localhost","root","","tpms");
-                                                  if ($conn->connect_error) {
-                                                    die("Connection failed : " . $conn->connect_error);
-                                                  }
-                                                  $sql = "SELECT COUNT(*) FROM announcement";
-                                                  $result = $conn->query($sql);
-                                                  while($row = mysqli_fetch_array($result)){
-                                                  echo $row['COUNT(*)'];
-                                                  }
-                                              ?>                            
-                                            </h1>
-                                          </div>
-                                        </div>
-                                    </div>
-                                 </div>
-                          </div>
-                        </div>
 
-                        <div class="container-fluid">
+
+                        <div class="container-fluid" style="margin-top: 10px;">
                           <div class="row">
                             <div class="col-md-8">
                               <!-- Table -->

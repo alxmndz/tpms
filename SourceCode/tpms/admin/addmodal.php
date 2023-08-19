@@ -73,6 +73,7 @@
                                     <option value="Communion">Communion</option>
                                     <option value="Confirmation">Confirmation</option>
                                     <option value="Funeral">Funeral</option>
+                                    <option value="Thanks Giving">Thanks Giving</option>
                                     <option value="Wedding">Wedding</option>
                                 </select>
                             </div>

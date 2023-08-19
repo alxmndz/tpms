@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px;">
+<div class="container-fluid" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
         <i class="fa-solid fa-chart-simple me-2"></i>
@@ -109,12 +109,11 @@
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
                                       <select class="form-control" id="event" name="event" required>
-                                          <option  selected value="<?php echo $row['event']; ?>" style="color: #616A6B ;"><?php echo $row['event']; ?></option>
-                                          <option value="Baptismal Certificate">Baptismal Certificate</option>
-                                          <option value="Communion Certificate">Communion Certificate</option>
-                                          <option value="Confirmation Certificate">Confirmation Certificate</option>
-                                          <option value="Death Certificate">Death Certificate</option>
-                                          <option value="Marriage Certificate">Marriage Certificate</option>
+                                        <option value="Baptismal Certificate" <?php echo ($row['event'] === 'Baptismal Certificate') ? 'selected' : ''; ?>>Baptismal Certificate</option>
+                                        <option value="Communion Certificate" <?php echo ($row['event'] === 'Communion Certificate') ? 'selected' : ''; ?>>Communion Certificate</option>
+                                        <option value="Confirmation Certificate" <?php echo ($row['event'] === 'Confirmation Certificate') ? 'selected' : ''; ?>>Confirmation Certificate</option>
+                                        <option value="Death Certificate" <?php echo ($row['event'] === 'Death Certificate') ? 'selected' : ''; ?>>Death Certificate</option>
+                                        <option value="Marriage Certificate" <?php echo ($row['event'] === 'Marriage Certificate') ? 'selected' : ''; ?>>Marriage Certificate</option>
                                       </select>
                                   </div>
                               </div>
@@ -130,10 +129,9 @@
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                       <select class="form-control" id="status" name="status" required>
-                                          <option  selected value="<?php echo $row['status']; ?>" style="color: #616A6B ;"><?php echo $row['status']; ?></option>
-                                          <option value="Approved">Approved</option>
-                                          <option value="Disapproved">Disapproved</option>
-                                          <option value="Pending">Pending</option>
+                                          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                                          <option value="Disapproved" <?php echo ($row['status'] === 'Disapproved') ? 'selected' : ''; ?>>Disapproved</option>
+                                          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
                                       </select>
                                   </div>
                               </div>

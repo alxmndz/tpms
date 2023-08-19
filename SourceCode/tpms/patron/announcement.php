@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title"><b><?php echo $row["title"] ?></b></div>
-                            <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo $row["start"] ?> - <?php echo $row["endtime"] ?></div>
+                            <div class="card-text"><i class="fa-regular fa-clock"></i> <?php echo date("h:i A", strtotime($row["start"])); ?> - <?php echo date("h:i A", strtotime($row["endtime"])); ?></div>
                             <div class="card-text"><i class="fa-solid fa-location-dot"></i> <?php echo $row["location"] ?></div>
                             <div class="card-text"><small class="text-muted"><?php echo $row["eventdate"] ?></small></div>
                         </div>

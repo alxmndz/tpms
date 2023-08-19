@@ -34,7 +34,7 @@
                   <h3 class="text-uppercase"><strong><?php echo $row["title"]; ?></strong></h3>
                   <ul class="list-inline">
                     <li class="list-inline-item"><i class="fa-regular fa-calendar" aria-hidden="true"></i> <?php echo $row["eventday"]; ?></li>
-                    <li class="list-inline-item"><i class="fa-regular fa-clock" aria-hidden="true"></i> <?php echo $row["start"]; ?> - <?php echo $row["endtime"]; ?></li>
+                    <li class="list-inline-item"><i class="fa-regular fa-clock" aria-hidden="true"></i> <?php echo date("h:i A", strtotime($row["start"])); ?> - <?php echo date("h:i A", strtotime($row["endtime"])); ?></li>
                     <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> <?php echo $row["location"]; ?></li>
                   </ul>
                   <p><?php echo $row["description"]; ?></p>
