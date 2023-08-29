@@ -4,41 +4,15 @@
 			<h5 class="card-title"><i class="fa-solid fa-hand-holding-dollar" style="color: #1ABC9C;"></i> Donation</h5>
     	<hr>
 			 <form class="" action="php/donate.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                        <div class="row my-3">
-                          <div class="col-md-6">
-                              <div class="form-outline">
+
                                 <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
-                                  <label class="form-label" for="typeText">
-                                    <i class="fa-solid fa-user"></i> 
-                                    Name
-                                  </label>
-                                <input class="form-control" type="text" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" required />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText">
-                                  <i class="fa-solid fa-envelope"></i> 
-                                    Email
-                                </label>
-                    <input class="form-control" type="text" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" required />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                <input class="form-control" type="text" id="address" name="address" value="<?php echo $_SESSION['address'] ?>" required/>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Contact</label>
-                                <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" required/>
-                            </div>
-                        </div>
-                    </div>
+                                <input class="form-control" type="hidden" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" required />
+                       
+                                <input class="form-control" type="hidden" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" required />
+                                <input class="form-control" type="hidden" id="address" name="address" value="<?php echo $_SESSION['address'] ?>" required/>
+
+                                <input class="form-control" type="hidden" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" required/>
+                                
                     <div class="row my-3">
                         <div class="col-md-12">
                             <div class="form-outline">
@@ -51,7 +25,7 @@
                         <div class="col-md-12">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required />
+                                <input class="form-control" type="number" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required>
                             </div>
                         </div>
                     </div>
@@ -88,3 +62,4 @@
 		</div>
 	</div>                  
 </div>
+

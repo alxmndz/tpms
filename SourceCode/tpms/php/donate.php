@@ -8,11 +8,10 @@ if(isset($_POST['btn-save']))
   $contact = $_POST['contact'];
   $date = $_POST['date'];
   $amount = $_POST['amount'];
-  $event = $_POST['event'];
   $addedBy = $_POST['addedBy'];
   $receipt = $_FILES['receipt'];  
 
-  $targetDir = "donate/";
+  $targetDir = "../donate/";
   $fileName5 = $_FILES['receipt']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
@@ -22,7 +21,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO donation(name,email,address,contact,donatedDate,amount,event,addedBy,receipt) VALUES('$name','$email','$address','$contact','$date','$amount','$event','$addedBy','$targetFilePath')";
+    $sql_query = "INSERT INTO donation(name,email,address,contact,donatedDate,amount,addedBy,receipt) VALUES('$name','$email','$address','$contact','$date','$amount','$addedBy','$targetFilePath')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

@@ -9,9 +9,10 @@ if(isset($_POST['btn-save']))
   $event = $_POST['event'];
   $amount = $_POST['amount'];
   $addedBy = $_POST['addedBy'];
+  $transactDate = $_POST['transactDate'];
   $receipt = $_FILES['receipt'];  
 
-  $targetDir = "receipt/";
+  $targetDir = "../receipt/";
   $fileName5 = $_FILES['receipt']['name'];
   $targetFilePath = $targetDir . $fileName5;
   $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
@@ -21,7 +22,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO request(name,contact,email,address,event,amount,addedBy,receipt) VALUES('$name','$contact','$email','$address','$event','$amount','$addedBy','$targetFilePath')";
+    $sql_query = "INSERT INTO request(name,contact,email,address,event,amount,addedBy,transactDate,receipt) VALUES('$name','$contact','$email','$address','$event','$amount','$addedBy' ,'$transactDate','$targetFilePath')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

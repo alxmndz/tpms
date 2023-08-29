@@ -17,7 +17,7 @@
       <div class="table-responsive">
         <div class="d-flex">
           <input type="text" id="searchInput2" class="form-control form-control-sm me-2" placeholder="Type to search...">
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#req">Create Request</button>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#req"> Request</button>
         </div>
 
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
@@ -157,9 +157,7 @@
                       <div class="modal-body">
                           <div class="row">
                               <div class="col-md-6 text-start">
-                                  <p><strong>Receipt:</strong></p>
-                                  <img id="receipt" src="php/receipt/<?php echo $row['receipt']; ?>" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
-
+                                  <img id="receipt" src="receipt/<?php echo $row['receipt']; ?>" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
                               </div>
                               <div class="col-md-6 text-end">
                                   <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
@@ -169,6 +167,7 @@
                                   <p><strong>Event:</strong> <?php echo $row["event"]; ?></p>
                                   <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
                                   <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
+                                  <p><strong>Status:</strong> <?php echo $row["transactDate"]; ?></p>
                               </div>
                           </div>
                       </div>
@@ -179,6 +178,17 @@
               </div>
           </div>
 
+          <script>
+            $(document).ready(function() {
+                $('[id^="viewModal1"]').on('shown.bs.modal', function() {
+                    var modalId = $(this).attr('id');
+                    var rowId = modalId.replace('viewModal1', '');
+                    var receiptSrc = '../receipt/<?php echo $row["receipt"]; ?>'; 
+                    
+                    $('#receiptImage' + rowId).attr('src', receiptSrc);
+                });
+            });
+            </script>
 
             <!-- Delete Modal -->
             <div class="modal fade" id="deleteModal1<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">

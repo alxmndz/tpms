@@ -42,22 +42,22 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="margin-top: 10px;">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
                                 <input class="form-control" type="text" id="address" name="address" value="<?php echo $_SESSION['address']?>" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="margin-top: 10px;">
                             <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Type of Certificate</label>
                                 <select class="form-control" id="event" name="event" required>
-                                    <option disabled selected> Select an event</option>>
-                                    <option value="Baptismal Certificate">Baptismal Certificate</option>
-                                    <option value="Communion Certificate">Communion Certificate</option>
-                                    <option value="Confirmation Certificate">Confirmation Certificate</option>
-                                    <option value="Death Certificate">Death Certificate</option>
-                                    <option value="Marriage Certificate">Marriage Certificate</option>
+                                    <option disabled selected>Select a type of certificate</option>
+                                    <option value="Baptismal Certificate" data-price="50">Baptismal Certificate</option>
+                                    <option value="Communion Certificate" data-price="40">Communion Certificate</option>
+                                    <option value="Confirmation Certificate" data-price="60">Confirmation Certificate</option>
+                                    <option value="Death Certificate" data-price="30">Death Certificate</option>
+                                    <option value="Marriage Certificate" data-price="70">Marriage Certificate</option>
                                 </select>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-6">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter amount" required>
+                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter amount" required readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -79,6 +79,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Transaction Date</label>
+                                <input class="form-control" type="date" id="transactDate" name="transactDate"  required>
+                            </div>
+                        </div>
+                    </div>
+                    
                         <div class="form-group mb-2">             
                           <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                         </div>                      
@@ -86,3 +95,18 @@
 		</div>
 	</div>                  
 </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eventSelect = document.getElementById("event");
+    const amountInput = document.getElementById("amount");
+
+    eventSelect.addEventListener("change", function() {
+        const selectedOption = eventSelect.options[eventSelect.selectedIndex];
+        const price = selectedOption.getAttribute("data-price");
+        amountInput.value = price || "";
+    });
+});
+</script>
+

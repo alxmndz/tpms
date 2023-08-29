@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px;">
+<div class="container-fluid" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header">
       <i class="fa-solid fa-chart-simple"></i>

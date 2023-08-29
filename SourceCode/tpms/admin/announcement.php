@@ -4,8 +4,8 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header d-flex align-items-center">
-			      <i class="fa-solid fa-users me-2"></i>
-			      <span class="fs-5 fw-bold">Accounts</span>
+			      <i class="fa-solid fa-bell me-2"></i>
+			      <span class="fs-5 fw-bold">Announcements</span>
 			      <div class="ms-auto">
 			        <label class="me-2">Show entries:</label>
 			        <select id="entriesSelect3" class="form-select form-select-sm">

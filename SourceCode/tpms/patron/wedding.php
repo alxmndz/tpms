@@ -5,7 +5,7 @@
           <h5 class="form-title"><i class="fa-solid fa-ring"></i>Wedding Reservation Form</h5>
         </div>
         <div class="card-body" method="post" enctype="multipart/form-data" autocomplete="off">
-          <form action="#">
+          <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 
               <div class="row my-3">
                 <div class="col-md-6">

@@ -1,4 +1,4 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid">
   <div class="card">
     <div class="card-header d-flex align-items-center">
       <i class="fa-solid fa-users me-2"></i>
@@ -62,7 +62,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel"><i class="fa-solid fa-users" style="color: blue;"></i> Update Account</h5>
+                    <h5 class="modal-title" id="updateModalLabel"><i class="fa-solid fa-users" ></i> Update Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="updateForm" action="php/accounts/update.php" autocomplete="off" method="POST">
@@ -71,19 +71,19 @@
                       <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                       <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['name']; ?>" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="contact" class="form-label">Contact</label>
-                        <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required>
+                        <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $row['contact']; ?>" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['address']; ?>" required>
+                        <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['address']; ?>" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="type" class="form-label">Type</label>

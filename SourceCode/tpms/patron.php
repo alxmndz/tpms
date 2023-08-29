@@ -34,10 +34,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <div class="sb-sidenav-menu-heading">Main</div>
+
                             <a class="nav-link tablinks" onclick="openCity(event, 'eventlist')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-days"></i></div>
                                 Event List
+                            </a>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'reserve')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
+                                Reservation
                             </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -49,27 +54,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
                             </a>
-                            <a class="nav-link collapsed" href="#" onclick="openCity(event, 'reserve')" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
-                                Event Reservation
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Baptismal</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Blessings</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
-                                </nav>
-                            </div>
 
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                                Donation
-                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                                 Announcements
@@ -84,9 +70,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             </div>
             <div id="layoutSidenav_content">
 
-                <main class="tabcontent" id="profile">
-                    <?php include "profile.php"; ?>
-                </main>
 
                 <main class="tabcontent" id="request" style="display: none;">
                     <?php include "patron/request.php" ?>
@@ -131,7 +114,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             exit();
                           }
                         ?>
-                <main class="tabcontent" id="eventlist" style="display: none;">
+                <main class="tabcontent" id="eventlist">
                     <?php include "patron/calendar.php"; ?>
                 </main>
 

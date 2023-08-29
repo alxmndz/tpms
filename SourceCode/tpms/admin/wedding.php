@@ -49,7 +49,7 @@
                         <i class="fa-solid fa-phone"></i> 
                         Groom's Contact
                       </label>
-                    <input class="form-control" type="tel" id="groom" name="gContact" placeholder="Enter groom's contact" required />
+                    <input class="form-control" type="tel" id="gContact" name="gContact" placeholder="Enter groom's contact" required />
                   </div>
                 </div>
 
@@ -108,7 +108,7 @@
                       <label class="form-label" for="typeText">
                         Does both of you are baptize?
                       </label>
-                    <select class="form-control" id="inention" name="inention" required>
+                    <select class="form-control" id="intention" name="intention" required>
                       <option disabled selected>Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
@@ -124,7 +124,7 @@
                         <i class="fa-solid fa-calendar"></i>
                         Date
                       </label>
-                    <input type="date" class="form-control" id="date" name="date" required />
+                    <input type="date" class="form-control" id="wdate" name="wdate" required />
                   </div>
                 </div>
               </div>
@@ -300,7 +300,7 @@
                           </div>
                           <div class="mb-3">
                             <label for="receipt" class="form-label">Receipt Image</label>
-                            <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
+                            <input type="file" class="form-control" id="receipt" name="receipt" required>
                           </div>
                         </form>
                       </div>

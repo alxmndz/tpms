@@ -123,33 +123,27 @@
                               <!-- Table -->
                               <div class="card mb-4" style="margin-top: 10px;">
                                 <div class="card-header">
-                                  <i class="fa-solid fa-hand-holding-dollar"></i>
-                                  Donation
+                                  <i class="fa-solid fa-scroll"></i>
+                                  Request
                                 </div>
                                 <div class="card-body">
                                   <div class="table-responsive">
-                                    <table class="table table-striped table-hover" id="datatablesSimple">
+                                    <table class="table table-striped table-hover">
                                       <?php
                                         include_once 'php/dbconn.php';
                                         $result = mysqli_query
                                         ($conn, "SELECT
-                                              u.name,
-                                              u.contact,
-                                              u.email,
-                                              u.address,
                                               r.id,
                                               r.event,
                                               r.amount,
                                               r.status
                                           FROM request r
                                           LEFT JOIN users u ON u.id = r.addedBy
-                                          WHERE r.addedBy = '$id' LIMIT 5");
+                                          WHERE r.addedBy = '$id' ORDER BY r.event LIMIT 8 ");
                                         if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <thead>
                                         <tr>
-                                          <th>Email</th>
-                                          <th>Address</th>
                                           <th>Event</th>
                                           <th>Amount</th>
                                           <th>Date</th>
@@ -161,8 +155,6 @@
                                           while ($row = mysqli_fetch_array($result)) {
                                         ?>
                                         <tr>
-                                          <td><?php echo $row["email"]; ?></td>
-                                          <td><?php echo $row["address"]; ?></td>
                                           <td><?php echo $row["event"]; ?></td>
                                           <td><?php echo $row["amount"]; ?></td>
                                           <td><?php echo $row["status"]; ?></td>
@@ -193,7 +185,7 @@
                                   <div class="card-body">
                                       <?php
                                       include_once 'php/dbconn.php';
-                                      $result = mysqli_query($conn, "SELECT * FROM eventlist LIMIT 3");
+                                      $result = mysqli_query($conn, "SELECT * FROM eventlist LIMIT 2");
                                       if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <div class="row">

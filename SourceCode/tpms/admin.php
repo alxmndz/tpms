@@ -34,18 +34,18 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <div class="sb-sidenav-menu-heading">Main</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'dashboard')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-line"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'reserve')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                                Reservation
+                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'accounts')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Accounts
-                            </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                                Donation
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Credentials/Services</div>
@@ -53,30 +53,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
                             </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-certificate"></i></div>
-                                Certificate
-                            </a>
 
-                            <div class="sb-sidenav-menu-heading">Appointments</div>
-                            <a class="nav-link collapsed" onclick="openCity(event, 'reserve')" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
-                                Event Reservation
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <div class="sb-sidenav-menu-heading">Others</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                                Donation
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Baptismal</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Blessings</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Thanks Giving</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
-                                </nav>
-                            </div>
-
-                            <div class="sb-sidenav-menu-heading">Announcements/Reports</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                                 Announcements

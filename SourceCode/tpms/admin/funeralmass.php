@@ -95,7 +95,7 @@
                         <i class="fa-solid fa-calendar-days"></i> 
                         Bury Date
                       </label>
-                      <input class="form-control" type="date" id="bruyDate" name="buryDate" required />
+                      <input class="form-control" type="date" id="buryDate" name="buryDate" required />
                     </div>
                   </div>
 
@@ -105,7 +105,7 @@
                         <i class="fa-solid fa-skull"></i>
                           Cause of death
                         </label>
-                      <input class="form-control" type="number" id="age" placeholder="Enter cause of death" required />
+                      <input class="form-control" type="number" id="cause" placeholder="Enter cause of death" required />
                     </div>
                 </div>
               </div>

@@ -56,26 +56,10 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
                         <div class="col-md-6">
                             <div class="form-outline">
-                              <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                                <select class="form-control" id="event" name="event"required>
-                                    <option value=""></option>
-                                    <option value="Baptismal">Baptismal</option>
-                                    <option value="Communion">Communion</option>
-                                    <option value="Confirmation">Confirmation</option>
-                                    <option value="Funeral">Funeral</option>
-                                    <option value="Thanks Giving">Thanks Giving</option>
-                                    <option value="Wedding">Wedding</option>
-                                </select>
+                              <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
+                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -154,18 +138,17 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                                <select class="form-control" id="event" name="event" required>
-                                    <option disabled> Select an event</option>
-                                    <option value=""></option>
-                                    <option value="Baptismal Certificate">Baptismal Certificate</option>
-                                    <option value="Communion Certificate">Communion Certificate</option>
-                                    <option value="Confirmation Certificate">Confirmation Certificate</option>
-                                    <option value="Death Certificate">Death Certificate</option>
-                                    <option value="Marriage Certificate">Marriage Certificate</option>
-                                </select>
-                            </div>
+                          <div class="form-outline">
+                            <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
+                            <select class="form-control" id="event" name="event" required>
+                              <option disabled selected>Select an event</option>
+                              <option value="Baptismal Certificate" data-price="50">Baptismal Certificate</option>
+                              <option value="Communion Certificate" data-price="30">Communion Certificate</option>
+                              <option value="Confirmation Certificate" data-price="40">Confirmation Certificate</option>
+                              <option value="Death Certificate" data-price="25">Death Certificate</option>
+                              <option value="Marriage Certificate" data-price="75">Marriage Certificate</option>
+                            </select>
+                          </div>
                         </div>
                     </div>
                     <div class="row my-3">
@@ -190,11 +173,19 @@
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                 <select class="form-control" id="status" name="status"required>
-                                    <option disabled>Select an option</option>
+                                    <option disabled selected>Select an option</option>
                                     <option value="Approved">Approved</option>
                                     <option value="Disapproved">Disapproved</option>
                                     <option value="Pending">Pending</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                              <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Transaction Date</label>
+                            <input class="form-control" type="date" id="transactDate" name="transactDate" required>
                             </div>
                         </div>
                     </div>

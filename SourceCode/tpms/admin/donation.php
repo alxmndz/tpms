@@ -18,7 +18,7 @@
         <div class="table-responsive">
           <div class="d-flex">
             <input type="text" id="searchInput1" class="form-control form-control-sm me-2" placeholder="Type to search..." autocomplete="off">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#donate">Add Donation</button>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donate">Donate</button>
           </div>
           <table class="table table-striped" style="margin-top: 10px;">
             <?php
@@ -34,8 +34,7 @@
                   <th>Address</th>
                   <th>Date</th>
                   <th>Amount</th>
-                  <th>Event</th>
-                  <th>Donation</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody id="searchResults1">
@@ -50,7 +49,6 @@
                     <td><?php echo $row["address"]; ?></td>
                     <td><?php echo $row["donatedDate"]; ?></td>
                     <td><?php echo $row["amount"]; ?></td>
-                    <td><?php echo $row["event"]; ?></td>
                     <td>
                       <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -121,23 +119,10 @@
                             </div>
                         </div>
                         <div class="row my-3">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                    <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                  <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                                    <select class="form-control" id="event" name="event"required>
-                                        <option value="Baptismal" <?php echo ($row['event'] === 'Baptismal') ? 'selected' : ''; ?>>Baptismal</option>
-                                        <option value="Communion" <?php echo ($row['event'] === 'Communion') ? 'selected' : ''; ?>>Communion</option>
-                                        <option value="Confimation" <?php echo ($row['event'] === 'Confimation') ? 'selected' : ''; ?>>Confimation</option>
-                                        <option value="Funeral" <?php echo ($row['event'] === 'Funeral') ? 'selected' : ''; ?>>Funeral</option>
-                                        <option value="Thanks Giving" <?php echo ($row['event'] === 'Thanks Giving') ? 'selected' : ''; ?>>Thanks Giving</option>
-                                        <option value="Wedding" <?php echo ($row['event'] === 'Wedding') ? 'selected' : ''; ?>>Wedding</option>
-                                    </select>
+                                    <input class="form-control" type="text" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required />
                                 </div>
                             </div>
                         </div>
@@ -174,47 +159,47 @@
 
             <!-- View Modal -->
             <div class="modal fade" id="view<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-dialog modal-dialog-centered modal-md">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="viewModalLabel">View Data</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <img id="receipt" src="donate/<?php echo $row['receipt']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+                              alt="receipt" class="mx-auto mb-3">
                       </div>
-                      <div class="modal-body">
-                          <div class="row">
-                              <div class="col-md-6 text-start">
-                                  <p><strong>Receipt:</strong></p>
-                                  <img id="receipt" src="../php/donate/<?php echo $row['receipt']; echo mysqli_error($conn); ?>" style="max-width: 250px;" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
-                              </div>
-                              <div class="col-md-6 text-end">
-                                  <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
-                                  <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
-                                  <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
-                                  <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
-                                  <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
-                                  <p><strong>Event:</strong> <?php echo $row["event"]; ?></p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <div class="col-md-6">
+                          <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
+                          <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
+                          <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
+                          <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
+                          <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
+                          <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
                       </div>
                   </div>
               </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
           </div>
+      </div>
+  </div>
+
 
           <script>
             $(document).ready(function() {
-                // Update receipt image source when the modal is shown
-                $('#viewModal<?php echo $row['id']; ?>').on('shown.bs.modal', function() {
-                    var receiptSrc = '../php/donate/<?php echo $row["receipt"]; ?>';
-                    $('#receiptImage').attr('src', receiptSrc);
+                $('[id^="viewModal"]').on('shown.bs.modal', function() {
+                    var modalId = $(this).attr('id');
+                    var rowId = modalId.replace('viewModal', '');
+                    var receiptSrc = '../donate/<?php echo $row["receipt"]; ?>'; 
+                    
+                    $('#receiptImage' + rowId).attr('src', receiptSrc);
                 });
             });
-        </script>
-
-
+            </script>
 
 
                    <?php

@@ -8,7 +8,7 @@
 <div class="card container" style="margin-top: 10px;">
   <div class="card-header">
     <h5>
-      <i class="fa-solid fa-pen-to-square"></i>
+      <i class="fa-solid fa-calendar-plus"></i>
       Event Reservation
     </h5>
   </div>

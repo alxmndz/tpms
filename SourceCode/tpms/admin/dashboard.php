@@ -54,10 +54,10 @@
                                                       if ($conn->connect_error) {
                                                         die("Connection failed : " . $conn->connect_error);
                                                           }
-                                                      $sql = "SELECT COUNT(*) FROM donation";
+                                                      $sql = "SELECT SUM(amount) FROM donation";
                                                       $result = $conn->query($sql);
                                                       while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
+                                                      echo $row['SUM(amount)'];
                                                     }
                                                   ?>
                                                 </h4>
@@ -73,14 +73,14 @@
                                            <div class="card-body">
                                              <div class="d-flex align-items-center">
                                                <div>
-                                                 <p class="mb-0 text-secondary">Accounts</p>
+                                                 <p class="mb-0 text-secondary">Requests</p>
                                                  <h4 class="my-1 text-success">
                                                    <?php
                                                      $conn = new mysqli("localhost","root","","tpms");
                                                       if ($conn->connect_error) {
                                                        die("Connection failed : " . $conn->connect_error);
                                                      }
-                                                     $sql = "SELECT COUNT(*) FROM users";
+                                                     $sql = "SELECT COUNT(*) FROM request";
                                                      $result = $conn->query($sql);
                                                      while($row = mysqli_fetch_array($result)){
                                                      echo $row['COUNT(*)'];
@@ -88,7 +88,7 @@
                                                    ?>
                                                  </h4>
                                                </div>
-                                               <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-users"></i>
+                                               <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa-solid fa-scroll"></i>
                                                </div>
                                              </div>
                                            </div>
@@ -125,7 +125,7 @@
                                     </div>    
                                   </div>
 
-        <div class="container-fluid" >
+                        <div class="container-fluid" >
                           <div class="row">
                             <div class="col-md-8">
                               <!-- Table -->
@@ -148,7 +148,6 @@
                                           <th>Contact</th>
                                           <th>Email</th>
                                           <th>Amount</th>
-                                          <th>Event</th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -161,7 +160,6 @@
                                           <td><?php echo $row["contact"]; ?></td>
                                           <td><?php echo $row["email"]; ?></td>
                                           <td><?php echo $row["amount"]; ?></td>
-                                          <td><?php echo $row["event"]; ?></td>
                                           <?php
                                             $i++;
                                           }
