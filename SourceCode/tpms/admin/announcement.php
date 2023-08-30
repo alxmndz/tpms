@@ -6,15 +6,6 @@
 					<div class="card-header d-flex align-items-center">
 			      <i class="fa-solid fa-bell me-2"></i>
 			      <span class="fs-5 fw-bold">Announcements</span>
-			      <div class="ms-auto">
-			        <label class="me-2">Show entries:</label>
-			        <select id="entriesSelect3" class="form-select form-select-sm">
-			          <option value="all">All</option>
-			          <option value="5">5</option>
-			          <option value="10">10</option>
-			          <option value="20">20</option>
-			        </select>
-			      </div>
 			    </div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -22,15 +13,13 @@
 					        <table class="table table-light table-hover">
 					          <?php
 					            include_once 'php/dbconn.php';
-					            $result = mysqli_query($conn, "SELECT * FROM announcement");
+					            $result = mysqli_query($conn, "SELECT * FROM announcement LIMIT 5");
 					            if (mysqli_num_rows($result) > 0) {
 					          ?>
 					          <thead>
 					            <tr>
 					              <th>Title</th>
 					              <th>Date</th>
-					              <th>Start</th>
-					              <th>End</th>
 					              <th>Location</th>
 					              <th>Description</th>
 					              <th>Action</th>
@@ -44,16 +33,16 @@
 					            <tr>
 					              <td><?php echo $row["title"]; ?></td>
 					              <td><?php echo $row["eventdate"]; ?></td>
-					              <td><?php echo date("h:i A", strtotime($row["start"])); ?></td>
-            						<td><?php echo date("h:i A", strtotime($row["endtime"])); ?></td>
 					              <td><?php echo $row["location"]; ?></td>
 					              <td><?php echo $row["description"]; ?></td>
 					              <td>
 					                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
+					                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#viewModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
 					                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
 					              </td>
 					            </tr>
 
+					            <!-- Update Modal -->
 					            <div class="modal fade" id="updateModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" role="dialog">
 					            	<div class="modal-dialog">
 					            		<div class="modal-content">
@@ -87,27 +76,6 @@
 										                            </div>
 										                        </div>
 										                    </div>
-
-										                    <div class="row my-3">
-										                          <div class="col-md-6">
-										                              <div class="form-outline">
-										                                  <label class="form-label" for="typeText">
-										                                    <i class="fa-regular fa-clock"></i>
-										                                    Start Time
-										                                  </label>
-										                                <input type="time" id="start" name="start" class="form-control" value="<?php echo $row['start']; ?>" required>
-										                            </div>
-										                        </div>
-										                        <div class="col-md-6">
-										                            <div class="form-outline">
-										                                <label class="form-label" for="typeText">
-										                                  <i class="fa-solid fa-clock"></i>
-										                                    End Time
-										                                </label>
-										                    			<input type="time" id="endtime" name="endtime" class="form-control" value="<?php echo $row['endtime']; ?>" required>
-										                            </div>
-										                        </div>
-										                    </div>
 											                    <div class="row my-3">
 										                          	<div class="col-md-6">
 										                              <div class="form-outline">
@@ -135,7 +103,7 @@
 					            	</div>
 					            </div>
 
-
+					            <!-- Delete Modal -->
 					            <div class="modal fade" id="deleteModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
 				              <div class="modal-dialog">
 				                <div class="modal-content">
@@ -155,6 +123,46 @@
 				                </div>
 				              </div>
 				            </div>
+
+				            <!-- View Modal -->
+				            <div class="modal fade" id="viewModal4<?php echo $row['id']; ?>">
+				              <div class="modal-dialog modal-dialog-centered modal-md">
+				                  <div class="modal-content">
+				                      <div class="modal-header">
+				                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
+				                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				                      </div>
+				                      <div class="modal-body">
+				                          <div class="row">
+				                              <div class="col-md-6">
+				                                  <img id="announcePic" src="announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+				                                      alt="Announcement Picture" class="mx-auto mb-3">
+				                              </div>
+				                              <div class="col-md-6">
+				                                  <p><strong>Title:</strong> <?php echo $row["title"]; ?></p>
+				                                  <p><strong>Date:</strong> <?php echo $row["eventdate"]; ?></p>
+				                                  <p><strong>location:</strong> <?php echo $row["location"]; ?></p>
+				                              </div>
+				                          </div>
+				                      </div>
+				                      <div class="modal-footer">
+				                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				                      </div>
+				                  </div>
+				              </div>
+				          </div>
+
+				          <script>
+			            $(document).ready(function() {
+			                $('[id^="viewModal"]').on('shown.bs.modal', function() {
+			                    var modalId = $(this).attr('id');
+			                    var rowId = modalId.replace('viewModal', '');
+			                    var announceSrc = 'announcement/<?php echo $row["announcePic"]; ?>'; 
+			                    
+			                    $('#receiptImage' + rowId).attr('src', announceSrc);
+			                });
+			            });
+			            </script>
 
 					            <?php
 					                $i++;
@@ -180,7 +188,7 @@
 						Create Announcement
 					</div>
 					<div class="card-body">
-						<form action="php/announcement/save.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+						<form action="php/addAnnounce.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 							<div class="row my-3">
 	                          <div class="col-md-12">
 	                              <div class="form-outline">
@@ -205,27 +213,6 @@
 	                        </div>
 	                    </div>
 
-		    							<div class="row my-3">
-	                          <div class="col-md-6">
-	                              <div class="form-outline">
-	                                  <label class="form-label" for="typeText">
-	                                    <i class="fa-regular fa-clock"></i>
-	                                    Start Time
-	                                  </label>
-	                                <input type="time" name="start" class="form-control" required>
-	                            </div>
-	                        </div>
-	                        <div class="col-md-6">
-	                            <div class="form-outline">
-	                                <label class="form-label" for="typeText">
-	                                  <i class="fa-solid fa-clock"></i>
-	                                    End Time
-	                                </label>
-	                    			<input type="time" name="endtime" class="form-control" required>
-	                            </div>
-	                        </div>
-	                    </div>
-
 		                    <div class="row my-3">
 	                          	<div class="col-md-6">
 	                              <div class="form-outline">
@@ -246,6 +233,19 @@
 	                            	</div>
 	                        	</div>
 	                    	</div>
+
+	                    	<div class="row my-3">
+	                    	<div class="col-md-12">
+	                            <div class="form-outline">
+	                                <label class="form-label" for="typeText">
+	                                  <i class="fa-solid fa-image"></i>
+	                                    Announcement Picture
+	                                </label>
+	                    					<input type="file" name="announcePic" class="form-control" required>
+	                            </div>
+	                        </div>
+	                    </div>
+
 						<button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
 						</form>
 					</div>
@@ -280,12 +280,10 @@ document.addEventListener("DOMContentLoaded", function() {
       const row = searchResults[i];
       const title = row.cells[0].innerText.toLowerCase();
       const date = row.cells[1].innerText.toLowerCase();
-      const start = row.cells[2].innerText.toLowerCase();
-      const end = row.cells[3].innerText.toLowerCase();
-      const location = row.cells[4].innerText.toLowerCase();
-      const description = row.cells[4].innerText.toLowerCase();
+      const location = row.cells[2].innerText.toLowerCase();
+      const description = row.cells[3].innerText.toLowerCase();
 
-      if (title.includes(searchTerm) || date.includes(searchTerm) || start.includes(searchTerm) || end.includes(searchTerm) || location.includes(searchTerm) || description.includes(searchTerm))  {
+      if (title.includes(searchTerm) || date.includes(searchTerm) || location.includes(searchTerm) || description.includes(searchTerm))  {
         row.style.display = "";
         shownEntries++;
         if (entriesToShow !== "all" && shownEntries > entriesToShow) {

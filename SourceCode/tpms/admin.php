@@ -86,6 +86,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/reserve.php"; ?>
                 </main>
 
+                <main class="tabcontent" id="reqcert" style="display: none;">
+                    <?php include "admin/reqCert.php"; ?>
+                </main>
+
                 <!-- Events -->
 
                 <main class="tabcontent" id="wedding" style="display: none;">

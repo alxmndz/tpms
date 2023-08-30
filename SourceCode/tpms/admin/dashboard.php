@@ -139,7 +139,7 @@
                                     <table class="table table-striped table-hover">
                                       <?php
                                         include_once 'php/dbconn.php';
-                                        $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY name LIMIT 15");
+                                        $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY name LIMIT 10");
                                         if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <thead>
@@ -186,7 +186,7 @@
                                   <div class="card-body">
                                       <?php
                                       include_once 'php/dbconn.php';
-                                      $result = mysqli_query($conn, "SELECT * FROM eventlist LIMIT 3");
+                                      $result = mysqli_query($conn, "SELECT * FROM eventlist LIMIT 2");
                                       if (mysqli_num_rows($result) > 0) {
                                       ?>
                                       <div class="row">
