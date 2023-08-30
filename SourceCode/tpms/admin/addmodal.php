@@ -138,24 +138,24 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                          <div class="form-outline">
-                            <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                            <select class="form-control" id="event" name="event" required>
-                              <option disabled selected>Select an event</option>
-                              <option value="Baptismal Certificate" data-price="50">Baptismal Certificate</option>
-                              <option value="Communion Certificate" data-price="30">Communion Certificate</option>
-                              <option value="Confirmation Certificate" data-price="40">Confirmation Certificate</option>
-                              <option value="Death Certificate" data-price="25">Death Certificate</option>
-                              <option value="Marriage Certificate" data-price="75">Marriage Certificate</option>
-                            </select>
-                          </div>
+                            <div class="form-outline">
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
+                                <select class="form-control" id="event" name="event" required>
+                                    <option disabled selected> Select an event</option>
+                                    <option value="Baptismal Certificate">Baptismal Certificate</option>
+                                    <option value="Communion Certificate">Communion Certificate</option>
+                                    <option value="Confirmation Certificate">Confirmation Certificate</option>
+                                    <option value="Death Certificate">Death Certificate</option>
+                                    <option value="Marriage Certificate">Marriage Certificate</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class="col-md-6">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter amount" required>
+                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter amount" required disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -199,3 +199,33 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Define an object to map events to their corresponding prices
+  const eventPrices = {
+    'Baptismal Certificate': 10,
+    'Communion Certificate': 15,
+    'Confirmation Certificate': 20,
+    'Death Certificate': 25,
+    'Marriage Certificate': 30
+  };
+
+  // Function to update the amount input based on the selected event
+  function updateAmount() {
+    const eventDropdown = document.getElementById('event');
+    const amountInput = document.getElementById('amount');
+    const selectedEvent = eventDropdown.value;
+
+    if (eventPrices[selectedEvent]) {
+      amountInput.value = eventPrices[selectedEvent];
+    } else {
+      amountInput.value = '';
+    }
+  }
+
+  // Attach the updateAmount function to the change event of the event dropdown
+  document.getElementById('event').addEventListener('change', updateAmount);
+
+  // Initialize the amount based on the initial selected event
+  updateAmount();
+</script>

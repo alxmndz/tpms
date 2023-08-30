@@ -159,34 +159,34 @@
 
             <!-- View Modal -->
             <div class="modal fade" id="view<?php echo $row['id']; ?>">
-      <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="viewModalLabel">View Data</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="row">
-                      <div class="col-md-6">
-                          <img id="receipt" src="donate/<?php echo $row['receipt']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
-                              alt="receipt" class="mx-auto mb-3">
+              <div class="modal-dialog modal-dialog-centered modal-md">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
-                      <div class="col-md-6">
-                          <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
-                          <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
-                          <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
-                          <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                          <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
-                          <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
+                      <div class="modal-body">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <img id="receipt" src="donate/<?php echo $row['receipt']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+                                      alt="receipt" class="mx-auto mb-3">
+                              </div>
+                              <div class="col-md-6">
+                                  <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
+                                  <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
+                                  <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
+                                  <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
+                                  <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
+                                  <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       </div>
                   </div>
               </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
           </div>
-      </div>
-  </div>
 
 
           <script>

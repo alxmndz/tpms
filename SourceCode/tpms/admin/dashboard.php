@@ -99,22 +99,22 @@
                                            <div class="card-body">
                                              <div class="d-flex align-items-center">
                                                <div>
-                                                 <p class="mb-0 text-secondary">Announcements</p>
+                                                 <p class="mb-0 text-secondary">Requests</p>
                                                  <h4 class="my-1 text-warning">
                                                    <?php
                                                      $conn = new mysqli("localhost","root","","tpms");
                                                        if ($conn->connect_error) {
                                                         die("Connection failed : " . $conn->connect_error);
                                                     }
-                                                       $sql = "SELECT COUNT(*) FROM announcement";
+                                                       $sql = "SELECT SUM(amount) FROM request";
                                                        $result = $conn->query($sql);
                                                        while($row = mysqli_fetch_array($result)){
-                                                       echo $row['COUNT(*)'];
+                                                       echo $row['SUM(amount)'];
                                                      }
                                                     ?>
                                                  </h4>
                                                </div>
-                                               <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-bell"></i>
+                                               <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-scroll"></i>
                                                </div>
                                              </div>
                                            </div>

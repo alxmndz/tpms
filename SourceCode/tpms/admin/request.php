@@ -148,7 +148,7 @@
 
             <!-- View Modal -->
             <div class="modal fade" id="viewModal1<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-dialog modal-dialog-centered modal-md">
                   <div class="modal-content">
                       <div class="modal-header">
                           <h5 class="modal-title" id="viewModalLabel">View Data</h5>
@@ -159,7 +159,7 @@
                               <div class="col-md-6 text-start">
                                   <img id="receipt" src="receipt/<?php echo $row['receipt']; ?>" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
                               </div>
-                              <div class="col-md-6 text-end">
+                              <div class="col-md-6">
                                   <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
                                   <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
                                   <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
