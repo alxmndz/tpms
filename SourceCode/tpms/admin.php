@@ -99,21 +99,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <main class="tabcontent" id="baptismal" style="display: none;">
                     <?php include "admin/baptismal.php"; ?>
                 </main>
-
-                <main class="tabcontent" id="blessing" style="display: none;">
-                    <?php include "admin/blessing.php"; ?>
-                </main>
-
+                    
                 <main class="tabcontent" id="communion" style="display: none;">
                     <?php include "admin/communion.php"; ?>
-                </main>
-
-                <main class="tabcontent" id="confirmation" style="display: none;">
-                    <?php include "admin/confirmation.php"; ?>
-                </main>
-
-                <main class="tabcontent" id="funeralmass" style="display: none;">
-                    <?php include "admin/funeralmass.php"; ?>
                 </main>
 
                 <!-- Other functions -->
@@ -147,5 +135,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 </footer>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </body>
 </html>

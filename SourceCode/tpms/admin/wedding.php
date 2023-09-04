@@ -1,11 +1,11 @@
-<div class="container-fluid" style="margin-top: 10px;">
+<div class="container" style="margin-top: 10px;">
       
       <div class="card">
         <div class="card-header">
           <h5 class="form-title"><i class="fa-solid fa-ring"></i>Wedding Reservation Form</h5>
         </div>
         <div class="card-body">
-          <form action="#">
+          <form action="php/saveWed.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
               <div class="row my-3">
                 <div class="col-md-6">
@@ -130,22 +130,13 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-clock"></i>
-                        Start Time
+                        Reserved Time
                       </label>
-                    <input type="time" class="form-control" id="startTime" name="startTime" required />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-outline">
-                      <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-clock"></i>
-                        End Time
-                      </label>
-                    <input type="time" class="form-control" id="endTime" name="endTime" required />
+                    <input type="time" class="form-control" id="resTime" name="resTime" required />
                   </div>
                 </div>
               </div>
@@ -238,6 +229,8 @@
                 </div>
               </div>
 
+
+
               <hr>
 
               <div class="row my-3">
@@ -265,7 +258,7 @@
                     <label class="form-label" for="typeText">
                       Groom's Picture
                     </label>
-                    <input type="file" class="form-control" id="MBpic1" name="MBpic1" required />
+                    <input type="file" class="form-control" id="MBPic1" name="MBPic1" required />
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -273,7 +266,7 @@
                     <label class="form-label" for="typeText">
                       Bride's Picture
                     </label>
-                    <input type="file" class="form-control" id="MBpic2" name="MBpic2" required />
+                    <input type="file" class="form-control" id="MBPic2" name="MBPic2" required />
                   </div>
                 </div>
               </div>
@@ -293,7 +286,7 @@
                         </div>
                       </div>
                       <div class="col-md-6"> 
-                        <form>
+
                           <div class="mb-3">
                             <label for="amount" class="form-label">Amount</label>
                             <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
@@ -302,13 +295,13 @@
                             <label for="receipt" class="form-label">Receipt Image</label>
                             <input type="file" class="form-control" id="receipt" name="receipt" required>
                           </div>
-                        </form>
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
+              <button class="btn btn-success" type="submit" name="btn-save" id="btn-save" style="float: right;">Submit</button>
 
           </form>
         </div>

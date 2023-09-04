@@ -57,7 +57,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Blessing</h5>
                   <p class="card-text">God will bless you & make his face shine upon you.</p>
-                  <button class="btn btn-primary" onclick="openCity(event, 'blessing')">Reserve</button>
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bless">Reserve</button>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Confirmation</h5>
                   <p class="card-text">Lead me in your truth and teach me, you are the God of my salvation; For you I wait all the day long.</p>
-                  <button class="btn btn-primary" onclick="openCity(event, 'confirmation')">Reserve</button>
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmation">Reserve</button>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Funeral Mass</h5>
                   <p class="card-text">He acted in an excellent and noble way as he had the resurrection of the dead in view.</p>
-                  <button class="btn btn-primary" onclick="openCity(event, 'funeralmass')">Reserve</button>
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#funeral">Reserve</button>
                 </div>
               </div>
             </div>

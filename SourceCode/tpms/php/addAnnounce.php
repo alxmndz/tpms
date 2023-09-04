@@ -7,7 +7,6 @@ if(isset($_POST['btn-save']))
   $start = $_POST['start'];
   $endtime = $_POST['endtime'];
   $description = $_POST['description'];
-  $location = $_POST['location'];
   $announcePic = $_FILES['announcePic'];  
 
   $targetDir = "../announcement/";
@@ -20,7 +19,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["announcePic"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO announcement(title,eventdate,start,endtime,description,location,announcePic) VALUES('$title','$eventdate','$start','$endtime','$description','$location','$targetFilePath')";
+    $sql_query = "INSERT INTO announcement(title,eventdate,start,endtime,description,announcePic) VALUES('$title','$eventdate','$start','$endtime','$description','$targetFilePath')";
 
     mysqli_query($conn,$sql_query);
   
