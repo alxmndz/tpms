@@ -78,11 +78,15 @@
                         <div class="col-md-12">
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                <select class="form-control" id="status" name="status"required>
+                                <select class="form-control" id="status" name="status" required>
                                     <option disabled selected>Select an option</option>
-                                    <option value="Approved">Approved</option>
-                                    <option value="Disapproved">Disapproved</option>
-                                    <option value="Pending">Pending</option>
+                                    <option value="Ready to pick up">Ready to pick up</option>
+                                    <option value="In Process">In Process</option>
+                                    <option value="Disapproved, Because mismatch files">Disapproved due to file mismatch</option>
+                                    <option value="Disapproved due to non-compliance">Disapproved due to non-compliance</option>
+                                    <option value="Disapproved due to duplicate submission">Disapproved due to duplicate submission</option>
+                                    <option value="Disapproved due to Quality Issue">Disapproved due to quality issue</option>
+                                    <!-- Add more options as needed -->
                                 </select>
                             </div>
                         </div>

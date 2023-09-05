@@ -129,9 +129,17 @@
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                       <select class="form-control" id="status" name="status" required>
-                                          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
-                                          <option value="Disapproved" <?php echo ($row['status'] === 'Disapproved') ? 'selected' : ''; ?>>Disapproved</option>
-                                          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                                          <option value="Ready to pick up" <?php echo ($row['status'] === 'Ready to pick up') ? 'selected' : ''; ?>>Ready to pick up</option>
+
+                                          <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+
+                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+
+                                          <option value="Disapproved due to non-compliance" <?php echo ($row['status'] === 'Disapproved due to non-compliance') ? 'selected' : ''; ?>>Disapproved due to non-compliance</option>
+
+                                          <option value="Disapproved due to duplicate submission" <?php echo ($row['status'] === 'Disapproved due to duplicate submission') ? 'selected' : ''; ?>>Disapproved due to duplicate submission</option>
+
+                                          <option value="Disapproved due to Quality Issue" <?php echo ($row['status'] === 'Disapproved due to Quality Issue') ? 'selected' : ''; ?>>Disapproved due to quality issue</option>
                                       </select>
                                   </div>
                               </div>
@@ -167,7 +175,7 @@
                                   <p><strong>Event:</strong> <?php echo $row["event"]; ?></p>
                                   <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
                                   <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
-                                  <p><strong>Status:</strong> <?php echo $row["transactDate"]; ?></p>
+                                  <p><strong>Date:</strong> <?php echo $row["transactDate"]; ?></p>
                               </div>
                           </div>
                       </div>

@@ -41,7 +41,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Baptismal</h5>
                   <p class="card-text">All were baptized into Moses in the cloud and in the sea.</p>
-                  <button class="btn btn-primary" onclick="openCity(event, 'baptismal')">Reserve</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bapModal">Reserve</button>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Communion</h5>
                   <p class="card-text">For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he come.</p>
-                  <button class="btn btn-primary" onclick="openCity(event, 'communion')">Reserve</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comModal">Reserve</button>
                 </div>
               </div>
             </div>
