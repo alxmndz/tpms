@@ -31,7 +31,7 @@
 					            ?>
 					            <tr>
 					              <td><?php echo $row["title"]; ?></td>
-					              <td><?php echo $row["eventdate"]; ?></td>
+					              <td><?php echo date("M-d-y", strtotime($row["eventdate"])); ?></td>
 					              <td><?php echo $row["description"]; ?></td>
 					              <td>
 					                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -75,22 +75,13 @@
 										                        </div>
 										                    </div>
 											                    <div class="row my-3">
-										                          	<div class="col-md-6">
+										                          	<div class="col-md-12">
 										                              <div class="form-outline">
 										                                  <label class="form-label" for="typeText">
 										                                    <i class="fa-solid fa-pen-nib"></i>
 										                                    Event Description
 										                                  </label>
 										                                <input type="text" name="description" class="form-control" value="<?php echo $row['description']; ?>" required>
-										                            	</div>
-										                        	</div>
-										                        	<div class="col-md-6">
-										                              <div class="form-outline">
-										                                  <label class="form-label" for="typeText">
-										                                    <i class="fa-solid fa-location-dot"></i>
-										                                    Location
-										                                  </label>
-										                                <input type="text" name="location" class="form-control" value="<?php echo $row['location']; ?>" required>
 										                            	</div>
 										                        	</div>
 										                    	</div>

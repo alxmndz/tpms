@@ -25,7 +25,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Wedding</h5>
                     <p class="card-text">Let love and faithfulness never leave you;</p>
-                    <button class="btn btn-primary" onclick="openCity(event, 'wedding')">Reserve</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#wedModal">Reserve</button>
                   </div>
                 </div>
               </div>

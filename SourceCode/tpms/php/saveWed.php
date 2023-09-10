@@ -1,6 +1,8 @@
 <?php
-  include "dbconn.php";
-  if(isset($_POST['btn-save'])){
+include_once 'dbconn.php';
+
+if (isset($_POST['btn-save'])) {
+    $addedBy = $_POST['addedBy'];
     $groom = $_POST['groom'];
     $bride = $_POST['bride'];
     $email = $_POST['email'];
@@ -12,74 +14,133 @@
     $intention = $_POST['intention'];
     $wdate = $_POST['wdate'];
     $resTime = $_POST['resTime'];
-    $amount = $_POST['amount'];
     $transactDate = $_POST['transactDate'];
+    $amount = $_POST['amount'];
 
-    $location = "wedding/";
-    $file1 = $_FILES['gBirthCert']['name'];
-    $file_tmp1 = $_FILES['gBirthCert']['tmp_name'];
+    $receipt = $_FILES['receipt'];
+    $targetDir = "../receipt/";
+    $fileName = $_FILES['receipt']['name'];
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-    $file2 = $_FILES['bBirthCert']['name'];
-    $file_tmp2 = $_FILES['bBirthCert']['tmp_name'];
+    $gBirthCert = $_FILES['gBirthCert'];
+    $targetDir1 = "../upload/birthCert/";
+    $fileName1 = $_FILES['gBirthCert']['name'];
+    $targetFilePath1 = $targetDir1 . $fileName1;
+    $fileType1 = pathinfo($targetFilePath1, PATHINFO_EXTENSION);
 
-    $file3 = $_FILES['gBapCert']['name'];
-    $file_tmp3 = $_FILES['gBapCert']['tmp_name'];
+    $bBirthCert = $_FILES['bBirthCert'];
+    $targetDir2 = "../upload/birthCert/";
+    $fileName2 = $_FILES['bBirthCert']['name'];
+    $targetFilePath2 = $targetDir2 . $fileName2;
+    $fileType2 = pathinfo($targetFilePath2, PATHINFO_EXTENSION);
 
-    $file4 = $_FILES['bBapCert']['name'];
-    $file_tmp4 = $_FILES['bBapCert']['tmp_name'];
+    $gBapCert = $_FILES['gBapCert'];
+    $targetDir3 = "../upload/bapCert/";
+    $fileName3 = $_FILES['gBapCert']['name'];
+    $targetFilePath3 = $targetDir3 . $fileName3;
+    $fileType3 = pathinfo($targetFilePath3, PATHINFO_EXTENSION);
 
-    $file5 = $_FILES['gConCert']['name'];
-    $file_tmp5 = $_FILES['gConCert']['tmp_name'];
+    $bBapCert = $_FILES['bBapCert'];
+    $targetDir4 = "../upload/bapCert/";
+    $fileName4 = $_FILES['bBapCert']['name'];
+    $targetFilePath4 = $targetDir4 . $fileName4;
+    $fileType4 = pathinfo($targetFilePath4, PATHINFO_EXTENSION);
 
-    $file6 = $_FILES['bConCert']['name'];
-    $file_tmp6 = $_FILES['bConCert']['tmp_name'];
+    $gConCert = $_FILES['gConCert'];
+    $targetDir5 = "../upload/conCert/";
+    $fileName5 = $_FILES['gConCert']['name'];
+    $targetFilePath5 = $targetDir5 . $fileName5;
+    $fileType5 = pathinfo($targetFilePath5, PATHINFO_EXTENSION);
 
-    $file7 = $_FILES['cenomar']['name'];
-    $file_tmp7 = $_FILES['cenomar']['tmp_name'];
+    $bConCert = $_FILES['bConCert'];
+    $targetDir6= "../upload/conCert/";
+    $fileName6 = $_FILES['bConCert']['name'];
+    $targetFilePath6 = $targetDir6 . $fileName6;
+    $fileType6 = pathinfo($targetFilePath6, PATHINFO_EXTENSION);
 
-    $file8 = $_FILES['marriageLicense']['name'];
-    $file_tmp8 = $_FILES['marriageLicense']['tmp_name'];
+    $cenomar = $_FILES['cenomar'];
+    $targetDir7 = "../upload/cenomar/";
+    $fileName7 = $_FILES['cenomar']['name'];
+    $targetFilePath7 = $targetDir7 . $fileName7;
+    $fileType7 = pathinfo($targetFilePath7, PATHINFO_EXTENSION);
 
-    $file9 = $_FILES['3RPic1']['name'];
-    $file_tmp9 = $_FILES['3RPic1']['tmp_name'];
+    $marriageLicense = $_FILES['marriageLicense'];
+    $targetDir8 = "../upload/marriageLicense/";
+    $fileName8 = $_FILES['marriageLicense']['name'];
+    $targetFilePath8 = $targetDir8 . $fileName8;
+    $fileType8 = pathinfo($targetFilePath8, PATHINFO_EXTENSION);
 
-    $file10 = $_FILES['3RPic2']['name'];
-    $file_tmp10 = $_FILES['3RPic2']['tmp_name'];
+    $RPic1 = $_FILES['RPic1'];
+    $targetDir9 = "../upload/pics/";
+    $fileName9 = $_FILES['RPic1']['name'];
+    $targetFilePath9 = $targetDir9 . $fileName9;
+    $fileType9 = pathinfo($targetFilePath9, PATHINFO_EXTENSION);
 
-    $file11 = $_FILES['MBPic1']['name'];
-    $file_tmp11 = $_FILES['MBPic1']['tmp_name'];
+    $RPic2 = $_FILES['RPic2'];
+    $targetDir10 = "../upload/pics/";
+    $fileName10 = $_FILES['RPic2']['name'];
+    $targetFilePath10 = $targetDir10. $fileName10;
+    $fileType10 = pathinfo($targetFilePath10, PATHINFO_EXTENSION);
 
-    $file12 = $_FILES['MBPic2']['name'];
-    $file_tmp12 = $_FILES['MBPic2']['tmp_name'];
+    $MBPic1 = $_FILES['MBPic1'];
+    $targetDir11 = "../upload/pics/";
+    $fileName11 = $_FILES['MBPic1']['name'];
+    $targetFilePath11 = $targetDir11 . $fileName11;
+    $fileType11 = pathinfo($targetFilePath11, PATHINFO_EXTENSION);
 
-    $file13 = $_FILES['receipt']['name'];
-    $file_tmp13 = $_FILES['receipt']['tmp_name'];
+    $MBPic2 = $_FILES['MBPic2'];
+    $targetDir12 = "../upload/pics/";
+    $fileName12= $_FILES['MBPic2']['name'];
+    $targetFilePath12 = $targetDir12. $fileName12;
+    $fileType12 = pathinfo($targetFilePath12, PATHINFO_EXTENSION);
 
-    $data = [];
-    $data = [$file1,$file2,$file3,$file4,$file5,$file6,$file7,$file8,$file9,$file10,$file11,$file12,$file13];
-    $images= implode(' ',$data);
-    $query = "INSERT INTO tpms (groom,bride,email,gContact,bContact,gAdress,bAdress,package,intention,wdate,resTime,amount,transactDate,images)"
-    $fire = mysqli_query($conn,$query);
 
-    if($fire){
-      move_uploaded_file($file_tmp1, $location.$file1);
-      move_uploaded_file($file_tmp2, $location.$file2);
-      move_uploaded_file($file_tmp3, $location.$file3);
-      move_uploaded_file($file_tmp4, $location.$file4);
-      move_uploaded_file($file_tmp5, $location.$file5);
-      move_uploaded_file($file_tmp6, $location.$file6);
-      move_uploaded_file($file_tmp7, $location.$file7);
-      move_uploaded_file($file_tmp8, $location.$file8);
-      move_uploaded_file($file_tmp9, $location.$file9);
-      move_uploaded_file($file_tmp10, $location.$file10);
-      move_uploaded_file($file_tmp11, $location.$file11);
-      move_uploaded_file($file_tmp12, $location.$file12);
-      move_uploaded_file($file_tmp13, $location.$file13);
-      echo "success";
-    }
-    else{
-      echo "error";
+    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+
+    if (in_array($fileType, $allowTypes) && in_array($fileType1, $allowTypes)) {
+        if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
+            move_uploaded_file($_FILES["gBirthCert"]["tmp_name"], $targetFilePath1) &&
+            move_uploaded_file($_FILES["bBirthCert"]["tmp_name"], $targetFilePath2) &&
+            move_uploaded_file($_FILES["gBapCert"]["tmp_name"], $targetFilePath3) &&
+            move_uploaded_file($_FILES["bBapCert"]["tmp_name"], $targetFilePath4) &&
+            move_uploaded_file($_FILES["gConCert"]["tmp_name"], $targetFilePath5) &&
+            move_uploaded_file($_FILES["bConCert"]["tmp_name"], $targetFilePath6) &&
+            move_uploaded_file($_FILES["cenomar"]["tmp_name"], $targetFilePath7) &&
+            move_uploaded_file($_FILES["marriageLicense"]["tmp_name"], $targetFilePath8) &&
+            move_uploaded_file($_FILES["RPic1"]["tmp_name"], $targetFilePath9) &&
+            move_uploaded_file($_FILES["RPic2"]["tmp_name"], $targetFilePath10) &&
+            move_uploaded_file($_FILES["MBPic1"]["tmp_name"], $targetFilePath11) &&
+            move_uploaded_file($_FILES["MBPic2"]["tmp_name"], $targetFilePath12)
+        ) {
+
+            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, email, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, receipt, amount, transactDate)
+                          VALUES('$addedBy', '$groom', '$bride', '$email', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12','$targetFilePath','$amount', '$transactDate')";
+
+            if (mysqli_query($conn, $sql_query)) {
+                echo "<script type='text/javascript'>
+                    alert('Wedding Reserved Successfully!');
+                    window.location = '../admin.php';
+                </script>";
+            } else {
+                echo "<script type='text/javascript'>
+                    alert('Insertion Failed: " . mysqli_error($conn) . "');
+                    window.location = '../admin.php';
+                </script>";
+            }
+        } else {
+            echo "<script type='text/javascript'>
+                alert('File Upload Failed!');
+                window.location = '../admin.php';
+            </script>";
+        }
+    } else {
+        echo "<script type='text/javascript'>
+            alert('Invalid File Type! Only JPG, PNG, JPEG, GIF, or PDF allowed.');
+            window.location = '../admin.php';
+        </script>";
     }
 }
 
+mysqli_close($conn);
 ?>

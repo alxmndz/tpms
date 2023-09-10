@@ -47,8 +47,9 @@
                     <td><?php echo $row["contact"]; ?></td>
                     <td><?php echo $row["email"]; ?></td>
                     <td><?php echo $row["address"]; ?></td>
-                    <td><?php echo $row["donatedDate"]; ?></td>
-                    <td><?php echo $row["amount"]; ?></td>
+                    <td><?php echo date("M-d-y", strtotime($row["donatedDate"])); ?></td>
+                    <td>₱<?php echo number_format($row["amount"]); ?></td>
+
                     <td>
                       <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -177,7 +178,7 @@
                                   <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
                                   <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
                                   <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
-                                  <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
+                                  <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
                               </div>
                           </div>
                       </div>

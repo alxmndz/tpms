@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
-        <i class="fa-solid fa-chart-simple me-2"></i>
+        <i class="fa-solid fa-scroll me-2"></i>
         <span class="fs-5 fw-bold">Request Status</span>
         <div class="ms-auto">
           <label class="me-2">Show entries:</label>
@@ -173,9 +173,9 @@
                                   <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
                                   <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
                                   <p><strong>Event:</strong> <?php echo $row["event"]; ?></p>
-                                  <p><strong>Amount:</strong> <?php echo $row["amount"]; ?></p>
+                                  <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
                                   <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
-                                  <p><strong>Date:</strong> <?php echo $row["transactDate"]; ?></p>
+                                  <p><strong>Date:</strong> <?php echo date("M-d-y", strtotime($row["transactDate"])); ?></p>
                               </div>
                           </div>
                       </div>
@@ -203,7 +203,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa-solid fa-trash" style="color: red;"></i> Delete Account</h5>
+                    <h5 class="modal-title"><i class="fa-solid fa-trash"></i> Delete Request</h5>
                   </div>
                   <form id="deleteForm" action="php/request/delete.php" autocomplete="off" method="POST">
                     <div class="modal-body">

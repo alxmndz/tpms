@@ -49,6 +49,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Credentials/Services</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'reqstat')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                                Reservation Status
+                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
@@ -88,6 +92,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                 <main class="tabcontent" id="reqcert" style="display: none;">
                     <?php include "admin/reqCert.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqstat" style="display: none;">
+                    <?php include "admin/reqStat.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqstat1" style="display: none;">
+                    <?php include "admin/reqStat1.php"; ?>
                 </main>
 
                 <!-- Events -->

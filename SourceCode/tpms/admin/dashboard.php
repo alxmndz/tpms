@@ -50,16 +50,28 @@
                                                  <p class="mb-0 text-secondary">Total Donations</p>
                                                  <h4 class="my-1 text-danger">
                                                   <?php
-                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      $conn = new mysqli("localhost", "root", "", "tpms");
                                                       if ($conn->connect_error) {
-                                                        die("Connection failed : " . $conn->connect_error);
-                                                          }
-                                                      $sql = "SELECT SUM(amount) FROM donation";
+                                                          die("Connection failed: " . $conn->connect_error);
+                                                      }
+
+                                                      $sql = "SELECT SUM(amount) AS total FROM donation";
                                                       $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['SUM(amount)'];
-                                                    }
-                                                  ?>
+
+                                                      if ($result) {
+                                                          $row = $result->fetch_assoc();
+                                                          $sum = $row['total'];
+
+                                                          // Format the sum with a comma for thousands separator and a peso sign.
+                                                          $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+
+                                                          echo $formatted_sum;
+                                                      } else {
+                                                          echo "Error: " . $conn->error;
+                                                      }
+
+                                                      $conn->close();
+                                                      ?>
                                                 </h4>
                                                </div>
                                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa-solid fa-hand-holding-dollar"></i>
@@ -102,16 +114,26 @@
                                                  <p class="mb-0 text-secondary">Requests</p>
                                                  <h4 class="my-1 text-warning">
                                                    <?php
-                                                     $conn = new mysqli("localhost","root","","tpms");
-                                                       if ($conn->connect_error) {
-                                                        die("Connection failed : " . $conn->connect_error);
-                                                    }
-                                                       $sql = "SELECT SUM(amount) FROM request";
-                                                       $result = $conn->query($sql);
-                                                       while($row = mysqli_fetch_array($result)){
-                                                       echo $row['SUM(amount)'];
-                                                     }
-                                                    ?>
+                                                  $conn = new mysqli("localhost", "root", "", "tpms");
+                                                  if ($conn->connect_error) {
+                                                      die("Connection failed: " . $conn->connect_error);
+                                                  }
+
+                                                  $sql = "SELECT SUM(amount) AS total FROM request"; // Use an alias for the SUM() result.
+                                                  $result = $conn->query($sql);
+
+                                                  if ($result) {
+                                                      $row = $result->fetch_assoc();
+                                                      $sum = $row['total'];
+
+                                                      // Format the sum with a comma for thousands separator and a peso sign.
+                                                      $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+
+                                                      echo $formatted_sum;
+                                                  } else {
+                                                      echo "Error: " . $conn->error;
+                                                  }
+                                                  ?>
                                                  </h4>
                                                </div>
                                                <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-scroll"></i>
@@ -159,7 +181,7 @@
                                           <td><?php echo $row["name"]; ?></td>
                                           <td><?php echo $row["contact"]; ?></td>
                                           <td><?php echo $row["email"]; ?></td>
-                                          <td><?php echo $row["amount"]; ?></td>
+                                          <td>₱<?php echo number_format($row["amount"]); ?></td>
                                           <?php
                                             $i++;
                                           }
