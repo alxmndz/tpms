@@ -27,7 +27,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Contact</th>
               <th>Date</th>
               <th>Time</th>
               <th>Status</th>
@@ -41,7 +40,6 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo $row["contact"]; ?></td>
               <td><?php echo date("M-d-y", strtotime($row["comDate"])); ?></td>
               <td><?php echo date("h:i A", strtotime($row["comTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
@@ -258,13 +256,11 @@
       for (let i = 0; i < searchResults.length; i++) {
         const row = searchResults[i];
         const name = row.cells[0].innerText.toLowerCase();
-        const contact = row.cells[1].innerText.toLowerCase();
-        const email = row.cells[2].innerText.toLowerCase();
-        const address = row.cells[3].innerText.toLowerCase();
-        const event = row.cells[4].innerText.toLowerCase();
-        const status = row.cells[5].innerText.toLowerCase();
+        const comDate = row.cells[1].innerText.toLowerCase();
+        const comTime = row.cells[2].innerText.toLowerCase();
+        const status = row.cells[3].innerText.toLowerCase();
 
-        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
+        if (name.includes(searchTerm) || comDate.includes(searchTerm) || comTime.includes(searchTerm) || status.includes(searchTerm)) {
           row.style.display = "";
           shownEntries++;
           if (entriesToShow !== "all" && shownEntries > entriesToShow) {

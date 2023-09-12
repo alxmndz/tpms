@@ -27,7 +27,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Address</th>
               <th>Date of Death</th>
               <th>Bury Death</th>
               <th>Status</th>
@@ -41,7 +40,6 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo $row["address"]; ?></td>
               <td><?php echo date("M-d-y", strtotime($row["deathDate"])); ?></td>
               <td><?php echo date("M-d-y", strtotime($row["buryDate"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
@@ -279,13 +277,11 @@
       for (let i = 0; i < searchResults.length; i++) {
         const row = searchResults[i];
         const name = row.cells[0].innerText.toLowerCase();
-        const contact = row.cells[1].innerText.toLowerCase();
-        const email = row.cells[2].innerText.toLowerCase();
-        const address = row.cells[3].innerText.toLowerCase();
-        const event = row.cells[4].innerText.toLowerCase();
-        const status = row.cells[5].innerText.toLowerCase();
+        const deathDate = row.cells[1].innerText.toLowerCase();
+        const buryDate = row.cells[2].innerText.toLowerCase();
+        const status = row.cells[3].innerText.toLowerCase();
 
-        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
+        if (name.includes(searchTerm) || deathDate.includes(searchTerm) || buryDate.includes(searchTerm) || status.includes(searchTerm)) {
           row.style.display = "";
           shownEntries++;
           if (entriesToShow !== "all" && shownEntries > entriesToShow) {
@@ -296,6 +292,5 @@
         }
       }
     }
-
   });
-  </script>
+</script>

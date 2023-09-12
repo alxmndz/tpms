@@ -6,6 +6,15 @@
 					<div class="card-header d-flex align-items-center">
 			      <i class="fa-solid fa-bell me-2"></i>
 			      <span class="fs-5 fw-bold">Announcements</span>
+			      <div class="ms-auto" style="margin-right: 5px;">
+		          <label class="me-2">Show entries:</label>
+		          <select id="entriesSelect3" class="form-select form-select-sm">
+		            <option value="all">All</option>
+		            <option value="5">5</option>
+		            <option value="10">10</option>
+		            <option value="20">20</option>
+		          </select>
+		        </div>
 			    </div>
 					<div class="card-body">
 						<div class="table-responsive">

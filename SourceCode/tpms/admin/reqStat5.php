@@ -4,7 +4,7 @@
         <span class="fs-5 fw-bold">Wedding Reservation Status</span>
         <div class="ms-auto" style="margin-right: 5px;">
           <label class="me-2">Show entries:</label>
-          <select id="entriesSelect7" class="form-select form-select-sm">
+          <select id="entriesSelect8" class="form-select form-select-sm">
             <option value="all">All</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -15,7 +15,7 @@
     <div class="card-body">
       <div class="table-responsive">
         <div class="d-flex">
-          <input type="text" id="searchInput7" class="form-control form-control-sm me-2" placeholder="Type to search...">
+          <input type="text" id="searchInput8" class="form-control form-control-sm me-2" placeholder="Type to search...">
         </div>
 
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
@@ -28,14 +28,12 @@
             <tr>
               <th>Groom</th>
               <th>Bride</th>
-              <th>Email</th>
               <th>Wedding Date</th>
-              <th>Reservation Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="searchResults7">
+          <tbody id="searchResults8">
             <?php
               $i = 0;
               while ($row = mysqli_fetch_array($result)) {
@@ -43,9 +41,7 @@
             <tr>
               <td><?php echo $row["groom"]; ?></td>
               <td><?php echo $row["bride"]; ?></td>
-              <td><?php echo $row["email"]; ?></td>
               <td><?php echo date("M-d-y", strtotime($row["wdate"])); ?></td>
-              <td><?php echo date("h:i A", strtotime($row["resTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal8<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -298,46 +294,44 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput7");
-    const searchResults = document.getElementById("searchResults7").getElementsByTagName("tr");
-    const entriesSelect = document.getElementById("entriesSelect7");
+  const searchInput = document.getElementById("searchInput8");
+  const searchResults = document.getElementById("searchResults8").getElementsByTagName("tr");
+  const entriesSelect = document.getElementById("entriesSelect8");
 
-    // Add event listener to the search input
-    searchInput.addEventListener("input", function() {
-      applyFilter();
-    });
+  // Add event listener to the search input
+  searchInput.addEventListener("input", function() {
+    applyFilter();
+  });
 
-    // Add event listener to the entries select
-    entriesSelect.addEventListener("change", function() {
-      applyFilter();
-    });
+  // Add event listener to the entries select
+  entriesSelect.addEventListener("change", function() {
+    applyFilter();
+  });
 
-    function applyFilter() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const entriesToShow = entriesSelect.value;
+  function applyFilter() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const entriesToShow = entriesSelect.value;
 
-      // Loop through the table rows and show/hide based on search term and entries select
-      let shownEntries = 0;
-      for (let i = 0; i < searchResults.length; i++) {
-        const row = searchResults[i];
-        const name = row.cells[0].innerText.toLowerCase();
-        const contact = row.cells[1].innerText.toLowerCase();
-        const email = row.cells[2].innerText.toLowerCase();
-        const address = row.cells[3].innerText.toLowerCase();
-        const event = row.cells[4].innerText.toLowerCase();
-        const status = row.cells[5].innerText.toLowerCase();
+    // Loop through the table rows and show/hide based on search term and entries select
+    let shownEntries = 0;
+    for (let i = 0; i < searchResults.length; i++) {
+      const row = searchResults[i];
+      const groom = row.cells[0].innerText.toLowerCase();
+      const bride = row.cells[1].innerText.toLowerCase();
+      const wdate = row.cells[2].innerText.toLowerCase();
+      const status = row.cells[3].innerText.toLowerCase();
 
-        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
-          row.style.display = "";
-          shownEntries++;
-          if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-            row.style.display = "none";
-          }
-        } else {
+      if (groom.includes(searchTerm) || bride.includes(searchTerm) || wdate.includes(searchTerm) || status.includes(searchTerm)) {
+        row.style.display = "";
+        shownEntries++;
+        if (entriesToShow !== "all" && shownEntries > entriesToShow) {
           row.style.display = "none";
         }
+      } else {
+        row.style.display = "none";
       }
     }
+  }
+});
 
-  });
   </script>

@@ -1,10 +1,10 @@
 <div class="container" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
-        <span class="fs-5 fw-bold">Baptismal Status</span>
+        <span class="fs-5 fw-bold">Blessing Status</span>
         <div class="ms-auto" style="margin-right: 5px;">
           <label class="me-2">Show entries:</label>
-          <select id="entriesSelect4" class="form-select form-select-sm">
+          <select id="entriesSelect3" class="form-select form-select-sm">
             <option value="all">All</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -15,33 +15,37 @@
     <div class="card-body">
       <div class="table-responsive">
         <div class="d-flex">
-          <input type="text" id="searchInput4" class="form-control form-control-sm me-2" placeholder="Type to search...">
+          <input type="text" id="searchInput3" class="form-control form-control-sm me-2" placeholder="Type to search...">
         </div>
 
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM baptismal_tbl");
+            $result = mysqli_query($conn, "SELECT * FROM blessing_tbl");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
             <tr>
               <th>Name</th>
+              <th>Contact</th>
               <th>Date</th>
               <th>Time</th>
+              <th>Intention</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="searchResults4">
+          <tbody id="searchResults3">
             <?php
               $i = 0;
               while ($row = mysqli_fetch_array($result)) {
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo date("M-d-y", strtotime($row["bapDate"])); ?></td>
-              <td><?php echo date("h:i A", strtotime($row["bapTime"])); ?></td>
+              <td><?php echo $row["contact"]; ?></td>
+              <td><?php echo date("M-d-y", strtotime($row["blessDate"])); ?></td>
+              <td><?php echo date("h:i A", strtotime($row["blessTime"])); ?></td>
+              <td><?php echo $row["intention"]; ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal5<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -61,7 +65,7 @@
                   </div>
 
                   <div class="modal-body">
-                    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form class="" action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
@@ -102,14 +106,14 @@
                           <div class="row my-3">
                             <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Baptismal Date</label>
-                                      <input class="form-control" type="date" id="bapDate" name="bapDate" value="<?php echo $row['bapDate']; ?>" required>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Bless Date</label>
+                                      <input class="form-control" type="date" id="blessDate" name="blessDate" value="<?php echo $row['blessDate']; ?>" required>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Baptismal Time</label>
-                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Bless Time</label>
+                                      <input class="form-control" type="time" id="blessTime" name="blessTime" value="<?php echo $row['blessTime']; ?>" required>
                                   </div>
                             </div>
                           </div>
@@ -122,7 +126,23 @@
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                                    <label class="form-label" for="typeText">Intention</label>
+                                      <select class="form-control" id="intention" name="intention" required>
+                                        <option value="Sponsor" <?php echo ($row['intention'] === 'Sponsor') ? 'selected' : ''; ?>>Major Sponsor</option>
+                                        <option value="Thanksgiving" <?php echo ($row['intention'] === 'Thanksgiving') ? 'selected' : ''; ?>>Thanksgiving</option>
+                                        <option value="Birthday" <?php echo ($row['intention'] === 'Birthday') ? 'selected' : ''; ?>>Birthday</option>
+                                        <option value="Wedding Anniversarry" <?php echo ($row['intention'] === 'Wedding Anniversarry') ? 'selected' : ''; ?>>Wedding Anniversarry</option>
+                                        <option value="Petition" <?php echo ($row['intention'] === 'Petition') ? 'selected' : ''; ?>>Petition</option>
+                                        <option value="Recovery" <?php echo ($row['intention'] === 'Recovery') ? 'selected' : ''; ?>>Healing/Recovery</option>
+                                        <option value="Soul" <?php echo ($row['intention'] === 'Soul') ? 'selected' : ''; ?>>Soul</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row my-3">
+                              <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                       <select class="form-control" id="status" name="status" required>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
@@ -139,7 +159,6 @@
                                   </div>
                               </div>
                           </div>
-
                         <div class="form-group mb-2">             
                           <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                         </div>                      
@@ -168,8 +187,8 @@
                                   <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
                                   <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
                                   <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Baptismal Date:</strong> <?php echo date("M-d-y", strtotime($row["bapDate"])); ?></p>
-                                  <p><strong>Baptismal Time:</strong> <?php echo date("h:i A", strtotime($row["bapTime"])); ?></p>
+                                  <p><strong>Blessing Date:</strong> <?php echo date("M-d-y", strtotime($row["blessDate"])); ?></p>
+                                  <p><strong>Blessing Time:</strong> <?php echo date("h:i A", strtotime($row["blessTime"])); ?></p>
                                   <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
                                   <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
                               </div>
@@ -233,9 +252,9 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput4");
-    const searchResults = document.getElementById("searchResults4").getElementsByTagName("tr");
-    const entriesSelect = document.getElementById("entriesSelect4");
+    const searchInput = document.getElementById("searchInput3");
+    const searchResults = document.getElementById("searchResults3").getElementsByTagName("tr");
+    const entriesSelect = document.getElementById("entriesSelect3");
 
     // Add event listener to the search input
     searchInput.addEventListener("input", function() {
@@ -256,11 +275,13 @@
       for (let i = 0; i < searchResults.length; i++) {
         const row = searchResults[i];
         const name = row.cells[0].innerText.toLowerCase();
-        const bapDate = row.cells[1].innerText.toLowerCase();
-        const bapTime = row.cells[2].innerText.toLowerCase();
-        const status = row.cells[3].innerText.toLowerCase();
+        const contact = row.cells[1].innerText.toLowerCase();
+        const email = row.cells[2].innerText.toLowerCase();
+        const address = row.cells[3].innerText.toLowerCase();
+        const event = row.cells[4].innerText.toLowerCase();
+        const status = row.cells[5].innerText.toLowerCase();
 
-        if (name.includes(searchTerm) || bapDate.includes(searchTerm) || bapTime.includes(searchTerm) || status.includes(searchTerm)) {
+        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
           row.style.display = "";
           shownEntries++;
           if (entriesToShow !== "all" && shownEntries > entriesToShow) {
@@ -274,3 +295,9 @@
 
   });
   </script>
+
+  <?php include "reqStat1.php"; ?>
+  <?php include "reqStat2.php"; ?>
+  <?php include "reqStat3.php"; ?>
+  <?php include "reqStat4.php"; ?>
+  <?php include "reqStat5.php"; ?>

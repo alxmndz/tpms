@@ -27,7 +27,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Contact</th>
               <th>Date</th>
               <th>Time</th>
               <th>Status</th>
@@ -41,19 +40,18 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo $row["contact"]; ?></td>
               <td><?php echo date("M-d-y", strtotime($row["conDate"])); ?></td>
               <td><?php echo date("h:i A", strtotime($row["conTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal5<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view6<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal6<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal9<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view9<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal9<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
               </td>
             </tr>
 
             <!-- Update Modal -->
-            <div class="modal fade" id="updateModal5<?php echo $row['id']; ?>">
+            <div class="modal fade" id="updateModal9<?php echo $row['id']; ?>">
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   
@@ -153,7 +151,7 @@
             </div>
 
             <!-- View Modal -->
-            <div class="modal fade" id="view6<?php echo $row['id']; ?>">
+            <div class="modal fade" id="view9<?php echo $row['id']; ?>">
               <div class="modal-dialog modal-dialog-centered modal-md">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -198,7 +196,7 @@
             </script>
 
             <!-- Delete Modal -->
-            <div class="modal fade" id="deleteModal6<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
+            <div class="modal fade" id="deleteModal9<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -237,7 +235,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById("searchInput6");
-    const searchResults = document.getElementById("searchResults6").getElementsByTagName("tr");
+    const searchResults = document.querySelectorAll("#searchResults6 tr");
     const entriesSelect = document.getElementById("entriesSelect6");
 
     // Add event listener to the search input
@@ -251,21 +249,19 @@
     });
 
     function applyFilter() {
-      const searchTerm = searchInput.value.toLowerCase();
+      const searchTerm = searchInput.value.trim().toLowerCase();
       const entriesToShow = entriesSelect.value;
 
       // Loop through the table rows and show/hide based on search term and entries select
       let shownEntries = 0;
       for (let i = 0; i < searchResults.length; i++) {
         const row = searchResults[i];
-        const name = row.cells[0].innerText.toLowerCase();
-        const contact = row.cells[1].innerText.toLowerCase();
-        const email = row.cells[2].innerText.toLowerCase();
-        const address = row.cells[3].innerText.toLowerCase();
-        const event = row.cells[4].innerText.toLowerCase();
-        const status = row.cells[5].innerText.toLowerCase();
+        const name = row.cells[0].innerText.trim().toLowerCase();
+        const conDate = row.cells[1].innerText.trim().toLowerCase();
+        const conTime = row.cells[2].innerText.trim().toLowerCase();
+        const status = row.cells[3].innerText.trim().toLowerCase();
 
-        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
+        if (name.includes(searchTerm) || conDate.includes(searchTerm) || conTime.includes(searchTerm) || status.includes(searchTerm)) {
           row.style.display = "";
           shownEntries++;
           if (entriesToShow !== "all" && shownEntries > entriesToShow) {
@@ -276,6 +272,5 @@
         }
       }
     }
-
   });
-  </script>
+</script>
