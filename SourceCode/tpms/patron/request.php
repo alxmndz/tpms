@@ -7,7 +7,7 @@
 <div class="container-fluid px-4" style="margin-top: 20px;">
 	<div class="card">
 		<div class="card-body">
-			<h5 class="card-title"><i class="fa-solid fa-scroll" style="color: #2E86C1;"></i> Request Certificate</h5>
+			<h5 class="card-title"><i class="fa-solid fa-scroll"></i> Request Certificate</h5>
     	<hr>
 			 <form class="" action="php/addreq.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="form-group">

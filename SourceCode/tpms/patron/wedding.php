@@ -5,7 +5,7 @@
           <h5 class="form-title"><i class="fa-solid fa-ring"></i>Wedding Reservation Form</h5>
         </div>
         <div class="card-body" method="post" enctype="multipart/form-data" autocomplete="off">
-          <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+          <form action="php/saveWed1.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
               <div class="row my-3">
                 <div class="col-md-6">
@@ -25,7 +25,7 @@
                         <i class="fa-solid fa-user"></i> 
                         Bride's Name
                        </label>
-                    <input class="form-control" type="text" id="bride" placeholder="Enter bride's name" required />
+                    <input class="form-control" type="text" id="bride" name="bride" placeholder="Enter bride's name" required />
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                         <i class="fa-solid fa-phone"></i> 
                         Bride's Contact
                        </label>
-                    <input class="form-control" type="tel" id="bContact" placeholder="Enter bride's contact" required />
+                    <input class="form-control" type="tel" id="bContact" name="bContact" placeholder="Enter bride's contact" required />
                   </div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
                       <label class="form-label" for="typeText">
                         Does both of you are baptize?
                       </label>
-                    <select class="form-control" id="inention" name="inention" required>
+                    <select class="form-control" id="intention" name="intention" required>
                       <option disabled selected>Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
@@ -124,7 +124,7 @@
                         <i class="fa-solid fa-calendar"></i>
                         Date
                       </label>
-                    <input type="date" class="form-control" id="date" name="date" required />
+                    <input type="date" class="form-control" id="wdate" name="wdate" required />
                   </div>
                 </div>
               </div>
@@ -134,18 +134,17 @@
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-clock"></i>
-                        Start Time
+                        Rerved Time
                       </label>
-                    <input type="time" class="form-control" id="startTime" name="startTime" required />
+                    <input type="time" class="form-control" id="resTime" name="resTime" required />
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-clock"></i>
-                        End Time
+                        Transaction Date
                       </label>
-                    <input type="time" class="form-control" id="endTime" name="endTime" required />
+                    <input type="date" class="form-control" id="transactDate" name="transactDate" required>
                   </div>
                 </div>
               </div>
@@ -246,12 +245,12 @@
                 </label>
                 <div class="col-md-6">
                   <div class="form-outline">
-                    <input type="file" class="form-control" id="3RPic1" name="3RPic1" required />
+                    <input type="file" class="form-control" id="RPic1" name="RPic1" required />
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-outline">
-                    <input type="file" class="form-control" id="3RPic2" name="3RPic2" required />
+                    <input type="file" class="form-control" id="RPic2" name="RPic2" required />
                   </div>
                 </div>
               </div>
@@ -265,7 +264,7 @@
                     <label class="form-label" for="typeText">
                       Groom's Picture
                     </label>
-                    <input type="file" class="form-control" id="MBpic1" name="MBpic1" required />
+                    <input type="file" class="form-control" id="MBPic1" name="MBPic1" required />
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -273,7 +272,7 @@
                     <label class="form-label" for="typeText">
                       Bride's Picture
                     </label>
-                    <input type="file" class="form-control" id="MBpic2" name="MBpic2" required />
+                    <input type="file" class="form-control" id="MBPic2" name="MBPic2" required />
                   </div>
                 </div>
               </div>
@@ -293,7 +292,7 @@
                         </div>
                       </div>
                       <div class="col-md-6"> 
-                        <form>
+
                           <div class="mb-3">
                             <label for="amount" class="form-label">Amount</label>
                             <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
@@ -302,7 +301,7 @@
                             <label for="receipt" class="form-label">Receipt Image</label>
                             <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
                           </div>
-                        </form>
+                        
                       </div>
                     </div>
                   </div>

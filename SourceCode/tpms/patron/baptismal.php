@@ -4,7 +4,7 @@
       <div class="card-title"><h5 class="form-title">Baptismal Reservation Form</h5></div>
     </div>
     <div class="card-body">
-      <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form action="php/saveBap1.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
             <div class="col-md-6">
@@ -24,7 +24,7 @@
                     <i class="fa-solid fa-phone"></i> 
                       Contact Number
                     </label>
-                  <input class="form-control" type="tel" id="contact" placeholder="Enter your contact number" required />
+                  <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required />
                 </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-house"></i> 
                       Address
                     </label>
-                  <input class="form-control" type="text" id="address" placeholder="Enter your adress" required />
+                  <input class="form-control" type="text" id="address" name="address" placeholder="Enter your adress" required />
                 </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
                    <label class="form-label" for="typeText"> 
                       Parents Marriage Contract
                     </label>
-                  <input class="form-control" type="file" id="marriageCont" required />
+                  <input class="form-control" type="file" id="marriageCont" name="marriageCont" required />
                 </div>
             </div>
           </div>
@@ -135,7 +135,7 @@
                   </div>
                 </div>
                <div class="col-md-6"> 
-                  <form>
+                  
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
                       <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
@@ -144,7 +144,7 @@
                       <label for="receipt" class="form-label">Receipt Image</label>
                       <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
                     </div>
-                  </form>
+                  
                </div>
               </div>
             </div>
