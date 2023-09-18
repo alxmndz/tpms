@@ -4,7 +4,6 @@ if(isset($_POST['btn-save']))
 {
   $name = $_POST['name'];
   $contact = $_POST['contact'];
-  $email = $_POST['email'];
   $address = $_POST['address'];
   $event = $_POST['event'];
   $amount = $_POST['amount'];
@@ -23,7 +22,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO request(name,contact,email,address,event,amount,addedBy,status,transactDate,receipt) VALUES('$name','$contact','$email','$address','$event','$amount','$addedBy','$status','$transactDate','$targetFilePath')";
+    $sql_query = "INSERT INTO request(name,contact,address,event,amount,addedBy,status,transactDate,receipt) VALUES('$name','$contact','$address','$event','$amount','$addedBy','$status','$transactDate','$targetFilePath')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

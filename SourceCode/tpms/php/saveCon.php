@@ -5,7 +5,6 @@ if (isset($_POST['btn-save'])) {
     $addedBy = $_POST['addedBy'];
     $name = $_POST['name'];
     $contact = $_POST['contact'];
-    $email = $_POST['email'];
     $address = $_POST['address'];
     $conDate = $_POST['conDate'];
     $conTime = $_POST['conTime'];
@@ -30,8 +29,8 @@ if (isset($_POST['btn-save'])) {
         if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
             move_uploaded_file($_FILES["bapCert"]["tmp_name"], $targetFilePath1)) {
 
-            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, email, address, conDate, conTime, bapCert, description, amount, receipt)
-                          VALUES('$addedBy', '$name', '$contact', '$email', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath')";
+            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, address, conDate, conTime, bapCert, description, amount, receipt)
+                          VALUES('$addedBy', '$name', '$contact', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

@@ -18,22 +18,6 @@
           <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="row g-0">
-                <div class="col-md-4 d-flex justify-content-center align-items-center">
-                  <img src="assets/img/portfolio/marriage.jpg" class="card-img" alt="Image 1">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Wedding</h5>
-                    <p class="card-text">Let love and faithfulness never leave you;</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#wedModal">Reserve</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="row g-0">
               <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <img src="assets/img/portfolio/baptize.jpg" class="card-img" alt="Image 1">
               </div>
@@ -47,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="row g-0">
               <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -72,7 +56,7 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">Communion</h5>
-                  <p class="card-text">For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he come.</p>
+                  <p class="card-text">You declare the Lord's death until he returns.</p>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comModal">Reserve</button>
                 </div>
               </div>
@@ -111,6 +95,22 @@
             </div>
           </div>
         </div>
+        <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                  <img src="assets/img/portfolio/marriage.jpg" class="card-img" alt="Image 1">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Wedding</h5>
+                    <p class="card-text">He approached marriage with an exceptional and honorable mindset,driven by commitment.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#wedModal">Reserve</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

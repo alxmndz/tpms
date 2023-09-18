@@ -111,7 +111,7 @@
                                            <div class="card-body">
                                              <div class="d-flex align-items-center">
                                                <div>
-                                                 <p class="mb-0 text-secondary">Requests</p>
+                                                 <p class="mb-0 text-secondary">Payment from Requests</p>
                                                  <h4 class="my-1 text-warning">
                                                    <?php
                                                   $conn = new mysqli("localhost", "root", "", "tpms");
@@ -136,7 +136,7 @@
                                                   ?>
                                                  </h4>
                                                </div>
-                                               <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-scroll"></i>
+                                               <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa-solid fa-dollar-sign"></i>
                                                </div>
                                              </div>
                                            </div>
@@ -168,7 +168,6 @@
                                         <tr>
                                           <th>Name</th>
                                           <th>Contact</th>
-                                          <th>Email</th>
                                           <th>Amount</th>
                                         </tr>
                                       </thead>
@@ -180,7 +179,6 @@
                                         <tr>
                                           <td><?php echo $row["name"]; ?></td>
                                           <td><?php echo $row["contact"]; ?></td>
-                                          <td><?php echo $row["email"]; ?></td>
                                           <td>₱<?php echo number_format($row["amount"]); ?></td>
                                           <?php
                                             $i++;

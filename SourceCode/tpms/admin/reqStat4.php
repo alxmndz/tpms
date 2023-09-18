@@ -27,8 +27,10 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Contact Number</th>
+              <th>Transaction Date</th>
               <th>Date of Death</th>
-              <th>Bury Death</th>
+              <th>Internment</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -40,26 +42,29 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo date("M-d-y", strtotime($row["deathDate"])); ?></td>
-              <td><?php echo date("M-d-y", strtotime($row["buryDate"])); ?></td>
+              <td><?php echo $row["contact"]; ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["deathDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["buryDate"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal7<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view7<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal7<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
+                  <i class="fa-solid fa-pen-to-square"></i> Update
+                </button>
               </td>
             </tr>
 
-            <!-- Update Modal -->
-            <div class="modal fade" id="updateModal7<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-xl">
+            <div class="modal fade" id="myModal1<?php echo $row['id']; ?>">
+              <div class="modal-dialog">
                 <div class="modal-content">
-                  
+
+                  <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa-solid fa-chart-simple"></i> Update Request</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
 
+                  <!-- Modal body -->
                   <div class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
@@ -72,7 +77,7 @@
                                           <i class="fa-solid fa-user"></i> 
                                           Name
                                         </label>
-                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -80,7 +85,7 @@
                                       <label class="form-label" for="typeText">
                                         Father's Name
                                       </label>
-                          <input class="form-control" type="tel" id="fName" name="fName" value="<?php echo $row['fName']; ?>" required>
+                          <input class="form-control" type="tel" id="fName" name="fName" value="<?php echo $row['fName']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -88,13 +93,13 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText">Mother's Name</label>
-                                      <input class="form-control" type="text" id="mName" name="mName" value="<?php echo $row['mName']; ?>" required>
+                                      <input class="form-control" type="text" id="mName" name="mName" value="<?php echo $row['mName']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText"> Husband or Wife (Widowed of)</label>
-                                      <input class="form-control" type="text" id="widow" name="widow" value="<?php echo $row['widow']; ?>" required>
+                                      <label class="form-label" for="typeText"> Husband or Wife of</label>
+                                      <input class="form-control" type="text" id="widow" name="widow" value="<?php echo $row['widow']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -116,7 +121,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText">Cause of death</label>
-                                      <input class="form-control" type="text" id="cause" name="cause" value="<?php echo $row['cause']; ?>" required>
+                                      <input class="form-control" type="text" id="cause" name="cause" value="<?php echo $row['cause']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -125,7 +130,7 @@
                                       <select class="form-control" id="cause" name="cause" required>
                                           <option value="Yes" <?php echo ($row['sacrament'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
                                           <option value="No" <?php echo ($row['sacrament'] === 'No') ? 'selected' : ''; ?>>No</option>
-                                      </select>
+                                      </select disabled>
                                   </div>
                               </div>
                           </div>
@@ -133,7 +138,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -162,76 +167,6 @@
                     </form>
                   </div>
 
-                </div>
-              </div>
-            </div>
-
-            <!-- View Modal -->
-            <div class="modal fade" id="view7<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-dialog-centered modal-lg">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                          <div class="row">
-                              <div class="col-md-6 text-start">
-                                  <img id="receipt" src="receipt/<?php echo $row['receipt']; ?>" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
-                              </div>
-                              <div class="col-md-6">
-                                  <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
-                                  <p><strong>Age:</strong> <?php echo $row["age"]; ?></p>
-                                  <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Father's Name:</strong> <?php echo $row["fName"]; ?></p>
-                                  <p><strong>Mother's Name:</strong> <?php echo $row["mName"]; ?></p>
-                                  <p><strong>Widow:</strong> <?php echo $row["widow"]; ?></p>
-                                  <p><strong>Date of death:</strong> <?php echo date("M-d-y", strtotime($row["deathDate"])); ?></p>
-                                  <p><strong>Internment:</strong> <?php echo date("M-d-y", strtotime($row["buryDate"])); ?></p>
-                                  <p><strong>Cause of death:</strong> <?php echo $row["cause"]; ?></p>
-                                  <p><strong>Received the last Sacrament before Death?:</strong> <?php echo $row["sacrament"]; ?></p>
-                                  <p><strong>Was not able to receive the last Sacraments before death?:</strong> <?php echo $row["lastsacrament"]; ?></p>
-                                  <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
-                                  <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <script>
-            $(document).ready(function() {
-                $('[id^="viewModal1"]').on('shown.bs.modal', function() {
-                    var modalId = $(this).attr('id');
-                    var rowId = modalId.replace('viewModal1', '');
-                    var receiptSrc = '../receipt/<?php echo $row["receipt"]; ?>'; 
-                    
-                    $('#receiptImage' + rowId).attr('src', receiptSrc);
-                });
-            });
-            </script>
-
-            <!-- Delete Modal -->
-            <div class="modal fade" id="deleteModal7<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa-solid fa-trash"></i> Delete Reservation</h5>
-                  </div>
-                  <form id="deleteForm" action="" autocomplete="off" method="POST">
-                    <div class="modal-body">
-                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-                      <span>Do you really want to delete the data of <b><?php echo $row['name']; ?></b>?</span>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>

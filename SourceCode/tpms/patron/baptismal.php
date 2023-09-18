@@ -30,17 +30,7 @@
           </div>
 
           <div class="row my-3">
-            <div class="col-md-6">
-              <div class="form-outline">
-                   <label class="form-label" for="typeText">
-                    <i class="fa-solid fa-envelope"></i> 
-                    Email
-                  </label>
-                  <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
-                </div>
-              </div>
-
-              <div class="col-md-6">
+              <div class="col-md-12">
                  <div class="form-outline">
                    <label class="form-label" for="typeText">
                     <i class="fa-solid fa-house"></i> 

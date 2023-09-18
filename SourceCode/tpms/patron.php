@@ -44,6 +44,23 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
                                 Reservation
                             </a>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Reservation Status
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqBap')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statbless')" href="#">Blessings</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcom')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcon')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statfuneral')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statwed')" href="#">Wedding</a>
+                                </nav>
+                            </div>
+
                             <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-check"></i></div>
                                 Status
@@ -120,6 +137,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                 <main class="tabcontent" id="status" style="display: none;">
                     <?php include "patron/status.php" ?>
+                </main>
+
+                <main class="tabcontent" id="reqBap" style="display: none;">
+                    <?php include "patron/reqBap.php" ?>
                 </main>
 
                 <main class="tabcontent" id="announcement" style="display: none;">

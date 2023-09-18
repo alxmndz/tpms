@@ -49,10 +49,23 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Credentials/Services</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'reqstat')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-simple"></i></div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Reservation Status
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statbap')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statbless')" href="#">Blessings</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcom')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcon')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statfuneral')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statwed')" href="#">Wedding</a>
+                                </nav>
+                            </div>
+
                             <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
@@ -94,15 +107,31 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/reqCert.php"; ?>
                 </main>
 
-                <main class="tabcontent" id="reqstat" style="display: none;">
-                    <?php include "admin/reqStat.php"; ?>
-                </main>
+                <!-- Events -->
 
-                <main class="tabcontent" id="reqstat1" style="display: none;">
+                <main class="tabcontent" id="statbap" style="display: none;">
                     <?php include "admin/reqStat1.php"; ?>
                 </main>
 
-                <!-- Events -->
+                <main class="tabcontent" id="statbless" style="display: none;">
+                    <?php include "admin/reqStat01.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statcom" style="display: none;">
+                    <?php include "admin/reqStat2.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statcon" style="display: none;">
+                    <?php include "admin/reqStat3.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statfuneral" style="display: none;">
+                    <?php include "admin/reqStat4.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statwed" style="display: none;">
+                    <?php include "admin/reqStat5.php"; ?>
+                </main>
 
                 <main class="tabcontent" id="wedding" style="display: none;">
                     <?php include "admin/wedding.php"; ?>

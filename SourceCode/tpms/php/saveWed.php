@@ -5,7 +5,6 @@ if (isset($_POST['btn-save'])) {
     $addedBy = $_POST['addedBy'];
     $groom = $_POST['groom'];
     $bride = $_POST['bride'];
-    $email = $_POST['email'];
     $gContact = $_POST['gContact'];
     $bContact = $_POST['bContact'];
     $gAddress = $_POST['gAddress'];
@@ -114,8 +113,8 @@ if (isset($_POST['btn-save'])) {
             move_uploaded_file($_FILES["MBPic2"]["tmp_name"], $targetFilePath12)
         ) {
 
-            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, email, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, receipt, amount, transactDate)
-                          VALUES('$addedBy', '$groom', '$bride', '$email', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12','$targetFilePath','$amount', '$transactDate')";
+            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, receipt, amount, transactDate)
+                          VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12','$targetFilePath','$amount', '$transactDate')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

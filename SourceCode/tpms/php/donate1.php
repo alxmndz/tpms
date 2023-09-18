@@ -3,7 +3,6 @@ include_once 'dbconn.php';
 if(isset($_POST['btn-save']))
 {
   $name = $_POST['name'];
-  $email = $_POST['email'];
   $address = $_POST['address'];
   $contact = $_POST['contact'];
   $date = $_POST['date'];
@@ -21,7 +20,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO donation(name,email,address,contact,donatedDate,amount,addedBy,receipt) VALUES('$name','$email','$address','$contact','$date','$amount','$addedBy','$targetFilePath')";
+    $sql_query = "INSERT INTO donation(name,address,contact,donatedDate,amount,addedBy,receipt) VALUES('$name','$address','$contact','$date','$amount','$addedBy','$targetFilePath')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

@@ -29,14 +29,6 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Email</label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
                       <div class="col-md-6">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
@@ -46,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                                <select class="form-control" id="event" name="event" required>
+                                <select class="form-select" id="event" name="event" required>
                                     <option disabled selected> Select an event</option>
                                     <option value="Baptismal Certificate">Baptismal Certificate</option>
                                     <option value="Communion Certificate">Communion Certificate</option>
@@ -78,7 +70,7 @@
                         <div class="col-md-12">
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                <select class="form-control" id="status" name="status" required>
+                                <select class="form-select" id="status" name="status" required>
                                     <option disabled selected>Select an option</option>
                                     <option value="Ready to pick up">Ready to pick up</option>
                                     <option value="In Process">In Process</option>

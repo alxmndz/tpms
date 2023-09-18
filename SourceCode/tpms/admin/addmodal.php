@@ -13,7 +13,7 @@
       <div class="modal-body">
                     <form class="" action="php/donate1.php" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="row my-3">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                               <div class="form-outline">
                                 <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
                                   <label class="form-label" for="typeText">
@@ -21,15 +21,6 @@
                                     Name
                                   </label>
                                 <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText">
-                                  <i class="fa-solid fa-envelope"></i> 
-                                    Email
-                                </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
                             </div>
                         </div>
                     </div>
@@ -124,17 +115,7 @@
             </div>
 
             <div class="row my-3">
-              <div class="col-md-6">
-                <div class="form-outline">
-                     <label class="form-label" for="typeText">
-                      <i class="fa-solid fa-envelope"></i> 
-                      Email
-                    </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
+                <div class="col-md-12">
                    <div class="form-outline">
                      <label class="form-label" for="typeText">
                       <i class="fa-solid fa-house"></i> 
@@ -353,7 +334,7 @@
                         <i class="fa-solid fa-question"></i>
                         He / She received the last Sacrament before Death?
                       </label>
-                      <select class="form-control" id="sacrament" name="sacrament">
+                      <select class="form-select" id="sacrament" name="sacrament">
                         <option disabled selected>Select an option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -369,7 +350,7 @@
                         <i class="fa-solid fa-question"></i>
                         He / She was not able to receive the last Sacraments before death?
                       </label>
-                      <select class="form-control" id="lastsacrament" name="lastsacrament">
+                      <select class="form-select" id="lastsacrament" name="lastsacrament">
                         <option disabled selected>Select an option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -452,17 +433,7 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-6">
-                  <div class="form-outline">
-                       <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-envelope"></i> 
-                        Email
-                      </label>
-                      <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
+                <div class="col-md-12">
                      <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-house"></i> 
@@ -592,17 +563,7 @@
             </div>
 
             <div class="row my-3">
-              <div class="col-md-6">
-                <div class="form-outline">
-                     <label class="form-label" for="typeText">
-                      <i class="fa-solid fa-envelope"></i> 
-                      Email
-                    </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
-                  </div>
-                </div>
-
-                <div class="col-md-6">
+                <div class="col-md-12">
                    <div class="form-outline">
                      <label class="form-label" for="typeText">
                       <i class="fa-solid fa-house"></i> 
@@ -732,17 +693,7 @@
           </div>
 
           <div class="row my-3">
-            <div class="col-md-6">
-              <div class="form-outline">
-                   <label class="form-label" for="typeText">
-                    <i class="fa-solid fa-envelope"></i> 
-                    Email
-                  </label>
-                  <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
-                </div>
-              </div>
-
-              <div class="col-md-6">
+              <div class="col-md-12">
                  <div class="form-outline">
                    <label class="form-label" for="typeText">
                     <i class="fa-solid fa-house"></i> 
@@ -896,18 +847,6 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-12">
-                  <div class="form-outline">
-                      <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-envelope"></i> 
-                        Email
-                      </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter email" required />
-                  </div>
-                </div>
-              </div>
-
-              <div class="row my-3">
                 <div class="col-md-6">
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
@@ -958,7 +897,7 @@
                         <i class="fa-solid fa-box-open"></i>
                         Package
                       </label>
-                    <select class="form-control" id="package" name="package" required>
+                    <select class="form-select" id="package" name="package" required>
                       <option disabled selected>Select an option</option>
                       <option value="Package 1">Package 1</option>
                       <option value="Package 2">Package 2</option>
@@ -973,7 +912,7 @@
                       <label class="form-label" for="typeText">
                         Does both of you are baptize?
                       </label>
-                    <select class="form-control" id="intention" name="intention" required>
+                    <select class="form-select" id="intention" name="intention" required>
                       <option disabled selected>Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>

@@ -30,7 +30,6 @@
                 <tr>
                   <th>Name</th>
                   <th>Contact</th>
-                  <th>Email</th>
                   <th>Address</th>
                   <th>Date</th>
                   <th>Amount</th>
@@ -45,118 +44,16 @@
                   <tr>
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo $row["contact"]; ?></td>
-                    <td><?php echo $row["email"]; ?></td>
                     <td><?php echo $row["address"]; ?></td>
-                    <td><?php echo date("M-d-y", strtotime($row["donatedDate"])); ?></td>
+                    <td><?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></td>
                     <td>₱<?php echo number_format($row["amount"]); ?></td>
 
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                      <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view<?php echo $row['id']; ?>">
+                        <i class="fa-solid fa-eye"></i> View Details
                       </button>
-                      <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
                     </td>
                   </tr>
-
-
-                  <!-- Update Modal -->
-                  <div class="modal fade" id="update<?php echo $row['id']; ?>">
-                    <div class="modal-dialog modal-xl">
-                      <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title"><i class="fa-solid fa-hand-holding-dollar"></i> Update Donation</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-
-                          <form class="" action="php/donation/update.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                            <div class="row my-3">
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                    <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-                                    <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
-                                      <label class="form-label" for="typeText">
-                                        <i class="fa-solid fa-user"></i> 
-                                        Name
-                                      </label>
-                                    <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeText">
-                                      <i class="fa-solid fa-envelope"></i> 
-                                        Email
-                                    </label>
-                        <input class="form-control" type="text" id="email" name="email" value="<?php echo $row['email']; ?>" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                    <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Contact</label>
-                                    <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-md-12">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Date Donated</label>
-                                    <input class="form-control" type="date" id="donatedDate" name="donatedDate" value="<?php echo $row['donatedDate']; ?>" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                          <div class="col-md-12">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                    <input class="form-control" type="text" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required />
-                                </div>
-                            </div>
-                        </div>
-              <div class="form-group mb-2">             
-                <button class="btn btn-primary" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
-              </div>
-            </form>
-           </div>
-
-        </div>
-      </div>
-    </div>
-
-          <!-- Delete Modal -->
-            <div class="modal fade" id="delete<?php echo $row['id']; ?>">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa-solid fa-trash"></i> Delete Account</h5>
-                  </div>
-                  <form id="deleteForm" action="php/donation/delete.php" autocomplete="off" method="POST">
-                    <div class="modal-body">
-                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-                      <span>Do you really want to delete the donation of <b><?php echo $row['name']; ?></b>?</span>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
 
             <!-- View Modal -->
             <div class="modal fade" id="view<?php echo $row['id']; ?>">
@@ -175,9 +72,8 @@
                               <div class="col-md-6">
                                   <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
                                   <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
-                                  <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
                                   <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Date:</strong> <?php echo $row["donatedDate"]; ?></p>
+                                  <p><strong>Date:</strong> <?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></p>
                                   <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
                               </div>
                           </div>

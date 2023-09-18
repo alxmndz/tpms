@@ -27,8 +27,10 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
+              <th>Contact Number</th>
+              <th>Transaction Date</th>
+              <th>Reserved Date</th>
+              <th>Reserved Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -40,26 +42,29 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo date("M-d-y", strtotime($row["comDate"])); ?></td>
+              <td><?php echo $row["contact"]; ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["comDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["comDate"])); ?></td>
               <td><?php echo date("h:i A", strtotime($row["comTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal5<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#view6<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal6<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
+                  <i class="fa-solid fa-pen-to-square"></i> Update
+                </button>
               </td>
             </tr>
 
-            <!-- Update Modal -->
-            <div class="modal fade" id="updateModal5<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-xl">
+            <div class="modal fade" id="myModal1<?php echo $row['id']; ?>">
+              <div class="modal-dialog">
                 <div class="modal-content">
-                  
+
+                  <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa-solid fa-chart-simple"></i> Update Request</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h4 class="modal-title">Update Reservation</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
 
+                  <!-- Modal body -->
                   <div class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
@@ -72,7 +77,7 @@
                                           <i class="fa-solid fa-user"></i> 
                                           Name
                                         </label>
-                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required>
+                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -81,21 +86,15 @@
                                         <i class="fa-solid fa-phone"></i> 
                                           Contact Number
                                       </label>
-                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required>
+                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
                           <div class="row my-3">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Email</label>
-                                      <input class="form-control" type="text" id="email" name="email" value="<?php echo $row['email']; ?>" required>
+                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -103,7 +102,7 @@
                             <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Communion Date</label>
-                                      <input class="form-control" type="date" id="comDate" name="comDate" value="<?php echo $row['comDate']; ?>" required>
+                                      <input class="form-control" type="date" id="comDate" name="comDate" value="<?php echo $row['comDate']; ?>" required >
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -117,13 +116,13 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-control" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
@@ -146,71 +145,6 @@
                     </form>
                   </div>
 
-                </div>
-              </div>
-            </div>
-
-            <!-- View Modal -->
-            <div class="modal fade" id="view6<?php echo $row['id']; ?>">
-              <div class="modal-dialog modal-dialog-centered modal-md">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                          <div class="row">
-                              <div class="col-md-6 text-start">
-                                  <img id="receipt" src="receipt/<?php echo $row['receipt']; ?>" alt="receipt" class="mx-auto mb-3" style="max-width: 100%; height: auto;">
-                              </div>
-                              <div class="col-md-6">
-                                  <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
-                                  <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
-                                  <p><strong>Email:</strong> <?php echo $row["email"]; ?></p>
-                                  <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Communion Date:</strong> <?php echo date("M-d-y", strtotime($row["comDate"])); ?></p>
-                                  <p><strong>Communion Time:</strong> <?php echo date("h:i A", strtotime($row["comTime"])); ?></p>
-                                  <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
-                                  <p><strong>Status:</strong> <?php echo $row["status"]; ?></p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <script>
-            $(document).ready(function() {
-                $('[id^="viewModal1"]').on('shown.bs.modal', function() {
-                    var modalId = $(this).attr('id');
-                    var rowId = modalId.replace('viewModal1', '');
-                    var receiptSrc = '../receipt/<?php echo $row["receipt"]; ?>'; 
-                    
-                    $('#receiptImage' + rowId).attr('src', receiptSrc);
-                });
-            });
-            </script>
-
-            <!-- Delete Modal -->
-            <div class="modal fade" id="deleteModal6<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa-solid fa-trash"></i> Delete Reservation</h5>
-                  </div>
-                  <form id="deleteForm" action="" autocomplete="off" method="POST">
-                    <div class="modal-body">
-                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-                      <span>Do you really want to delete the data of <b><?php echo $row['name']; ?></b>?</span>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>
