@@ -159,6 +159,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 </main>
 
                 <?php include "admin/addmodal.php" ?>
+                <?php include "admin/bapModal.php" ?>
+                <?php include "admin/blessModal.php" ?>
+                <?php include "admin/commModal.php" ?>
+                <?php include "admin/conModal.php" ?>
+                <?php include "admin/funeralModal.php" ?>
+                <?php include "admin/weddModal.php" ?>
                     <?php 
                       } else {
                         header("Location: loginform.php");
