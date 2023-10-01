@@ -21,7 +21,7 @@
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM blessing_tbl");
+            $result = mysqli_query($conn, "SELECT * FROM blessing_tbl WHERE transactType = 'Walk-In'");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -30,7 +30,7 @@
               <th>Contact Number</th>
               <th>Transaction Date</th>
               <th>Blessing Date</th>
-              <th>Time</th>
+              <th>Blessing Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -53,19 +53,27 @@
               </td>
             </tr>
 
-            <div class="modal fade" id="myModal<?php echo $row['id']; ?>">
-              <div class="modal-dialog">
-                <div class="modal-content">
+  <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Reservation</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Update Reservation</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Left Side (Image) -->
+                        <div class="col-md-6">
+                            <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
+                        </div>
 
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                    <form class="" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <!-- Right Side (Form) -->
+                        <div class="col-md-6">
+                            <form class="" action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
@@ -100,14 +108,14 @@
                           <div class="row my-3">
                             <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Bless Date</label>
-                                      <input class="form-control" type="date" id="blessDate" name="blessDate" value="<?php echo $row['blessDate']; ?>" required>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Bless Date</label>
+                                      <input class="form-control" type="date" id="blessDate" name="blessDate" value="<?php echo $row['blessDate']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Bless Time</label>
-                                      <input class="form-control" type="time" id="blessTime" name="blessTime" value="<?php echo $row['blessTime']; ?>" required>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Bless Time</label>
+                                      <input class="form-control" type="time" id="blessTime" name="blessTime" value="<?php echo $row['blessTime']; ?>" required disabled>
                                   </div>
                             </div>
                           </div>
@@ -134,25 +142,36 @@
                               </div>
                           </div>
                           <div class="row my-3">
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Payment method</label>
+                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Reference Number</label>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+                        <div class="row my-3">
                               <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-control" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
                                           <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
-
-                                          <option value="Disapproved due to non-compliance" <?php echo ($row['status'] === 'Disapproved due to non-compliance') ? 'selected' : ''; ?>>Disapproved due to non-compliance</option>
-
-                                          <option value="Disapproved due to duplicate submission" <?php echo ($row['status'] === 'Disapproved due to duplicate submission') ? 'selected' : ''; ?>>Disapproved due to duplicate submission</option>
-
-                                          <option value="Disapproved due to Quality Issue" <?php echo ($row['status'] === 'Disapproved due to Quality Issue') ? 'selected' : ''; ?>>Disapproved due to quality issue</option>
                                       </select>
                                   </div>
                               </div>
                           </div>
+
                         <div class="form-group mb-2">             
                           <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                         </div>                      
@@ -162,6 +181,9 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
             <?php
                 $i++;

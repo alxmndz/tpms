@@ -48,14 +48,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 Accounts
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">Credentials/Services</div>
+                            <div class="sb-sidenav-menu-heading">Status</div>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Reservation Status
+                                <div class="sb-nav-link-icon"><i class="fa-regular fa-handshake"></i></div>
+                                Walk-In Reservation
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link tablinks" onclick="openCity(event, 'statbap')" href="#">Baptismal</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'statbless')" href="#">Blessings</a>
@@ -63,6 +63,23 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                     <a class="nav-link tablinks" onclick="openCity(event, 'statcon')" href="#">Confirmation</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'statfuneral')" href="#">Funeral</a>
                                     <a class="nav-link tablinks" onclick="openCity(event, 'statwed')" href="#">Wedding</a>
+                                </nav>
+                            </div>
+
+                            <!-- Online Reservation -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
+                                Online Reservation
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statbap1')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statbless1')" href="#">Blessings</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcom1')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statcon1')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statfuneral1')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'statwed1')" href="#">Wedding</a>
                                 </nav>
                             </div>
 
@@ -109,6 +126,34 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                 <!-- Events -->
 
+                <!-- Online Reservation -->
+
+                <main class="tabcontent" id="statbap1" style="display: none;">
+                    <?php include "admin/reqStat11.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statbless1" style="display: none;">
+                    <?php include "admin/reqStat011.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statcom1" style="display: none;">
+                    <?php include "admin/reqStat22.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statcon1" style="display: none;">
+                    <?php include "admin/reqStat33.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statfuneral1" style="display: none;">
+                    <?php include "admin/reqStat44.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="statwed1" style="display: none;">
+                    <?php include "admin/reqStat55.php"; ?>
+                </main>
+
+                <!-- Walk-in Reservation -->
+
                 <main class="tabcontent" id="statbap" style="display: none;">
                     <?php include "admin/reqStat1.php"; ?>
                 </main>
@@ -132,6 +177,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <main class="tabcontent" id="statwed" style="display: none;">
                     <?php include "admin/reqStat5.php"; ?>
                 </main>
+
+
 
                 <main class="tabcontent" id="wedding" style="display: none;">
                     <?php include "admin/wedding.php"; ?>

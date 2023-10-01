@@ -1,4 +1,4 @@
-<!-- Confirmation Modal -->
+<!-- Communion Modal-->
 <div class="modal fade" id="confirmation">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -15,7 +15,7 @@
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
-                        Name
+                        Name (Firstname-Middle Initial-Surname)
                       </label>
                       <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required />
                     </div>
@@ -82,7 +82,7 @@
                                     </label>
                                   </td>
                                   <td>
-                                    <input class="form-check-input" type="checkbox" id="bapCertificate" name="requirements[]" value="Baptismal Certificate">
+                                    <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Baptismal Certificate">
                                   </td>
                                 </tr>
                                 </tr>
@@ -92,89 +92,129 @@
                         </div>
                     </div>
                   </div>
-
                   <div class="col-md-6">
-                     <div class="form-outline">
-                       <label class="form-label" for="typeText">
-                          Description (if none, comment "N/A")
+                       <div class="form-outline">
+                         <label class="form-label" for="typeText">
+                            Description (if none, comment "N/A")
+                          </label>
+                        <input class="form-control" type="text" id="desc" name="desc" placeholder="Enter your description" required />
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-md-12">
+                      <label class="form-label" for="status">
+                          <i class="fa-solid fa-chart-simple"></i> 
+                          Status
                         </label>
-                      <input class="form-control" type="text" id="desc" name="desc" placeholder="Enter your description" required />
+                       <div class="form-outline">
+                        <select class="form-select" id="status" name="status">
+                          <option disabled selected>Select a status</option>
+                          <option value="Approved">Approved</option>
+                          <option value="In Process">In Process</option>
+                          <option value="Disapproved, Because mismatch files">Disapproved, Because mismatch files</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                  <div class="col-md-12">
+                    <div class="form-outline">
+                      <input class="form-control" type="hidden" id="transactType" name="transactType" value="Walk-In" required />
                     </div>
                 </div>
               </div>
 
               <hr>
 
-              <div class="row my-3">
-                <div class="card">
-                  <div class="card-body">
-
-                    <div class="col-md-12">
-                      <div class="form-outline">
-                        <label class="form-label" for="typeText">
-                          <i class="fa-solid fa-dollar-sign"></i>
-                          Please select your preferred Payment Method
-                        </label>
-                        <div class="row">
-
-                          <div class="col-md-6">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="payMethod" value="gcash" checked>
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                GCash Payment
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="payMethod" value="face-to-face">
-                              <label class="form-check-label" for="flexRadioDefault2">
-                                Face-to-face Payment
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+            <div class="col-md-12">
+              <div class="form-outline">
+                <label class="form-label" for="typeText">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  Please select your preferred Payment Method
+                </label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="payMethod" value="gcash" id="gcashRadio3" checked>
+                      <label class="form-check-label" for="gcashRadio">
+                        GCash Payment
+                      </label>
                     </div>
-
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="payMethod" value="face-to-face" id="faceToFaceRadio3">
+                      <label class="form-check-label" for="faceToFaceRadio">
+                        Face-to-face Payment
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-          <div class="container my-4">
+          <div class="container my-4" id="gcashDetails">
               <div class="card">
                 <div class="card-header bg-primary text-white">
                   GCash Details
                 </div>
                 <div class="card-body">
-                   <div class="row my-3">
-                    <div class="col-md-6">
-                      <div class="text-center">
-                        <img class="img-fluid" src="assets/icons/gcash.png" alt="GCash Logo" style="max-width: 100px; max-height: 100px;">
-                        <p class="card-text">For payment method contact:</p>
-                        <p class="mt-2"><i class="fas fa-phone"></i> 0917 835 0117</p>
-                      </div>
-                    </div>
-                   <div class="col-md-6"> 
-
-                        <div class="mb-3">
-                          <label for="amount" class="form-label">Amount</label>
-                          <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="receipt" class="form-label">Receipt Image</label>
-                          <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
-                        </div>
-
-                   </div>
+                  <!-- ... (GCash details content) -->
+                  <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" class="form-control" id="inputNumber3" name="amount" value="1500" readonly required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="refNum" class="form-label">Reference Number</label>
+                    <input type="number" class="form-control" id="inputRefNum3" name="refNum" placeholder="Enter your Reference Number" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="receipt" class="form-label">Receipt Image</label>
+                    <input type="file" class="form-control" id="inputFile3" name="receipt" required>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
+          
+          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
         </form>
+
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  // Add an event listener to the payment method radio buttons
+  document.addEventListener('DOMContentLoaded', function () {
+    var gcashRadio3 = document.getElementById('gcashRadio3');
+    var faceToFaceRadio3 = document.getElementById('faceToFaceRadio3');
+    var inputNumber3 = document.getElementById('inputNumber3');
+    var inputFile3 = document.getElementById('inputFile3');
+    var inputRefNum3 = document.getElementById('inputRefNum3');
+
+    // Function to enable or disable input fields based on the selected payment method
+    function toggleInputFields() {
+      if (gcashRadio3.checked) {
+        inputNumber3.removeAttribute('disabled');
+        inputFile3.removeAttribute('disabled');
+        inputRefNum3.removeAttribute('disabled');
+      } else {
+        inputNumber3.setAttribute('disabled', 'disabled');
+        inputFile3.setAttribute('disabled', 'disabled');
+        inputRefNum3.setAttribute('disabled', 'disabled');
+      }
+    }
+
+    // Add event listeners for changes in the selected payment method
+    gcashRadio3.addEventListener('change', toggleInputFields);
+    faceToFaceRadio3.addEventListener('change', toggleInputFields);
+
+    // Initial call to set the initial state based on the default selected payment method
+    toggleInputFields();
+  });
+</script>

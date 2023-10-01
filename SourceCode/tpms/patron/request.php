@@ -20,7 +20,7 @@
                                     <i class="fa-solid fa-user"></i> 
                                     Name
                                   </label>
-                                <input class="form-control" type="text" id="name" name="name" value="<?php echo $_SESSION['name']?>" required>
+                                <input class="form-control" type="text" id="name" name="name" value="<?php echo $_SESSION['name']?>" required readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -29,7 +29,7 @@
                                   <i class="fa-solid fa-phone"></i> 
                                     Contact Number
                                 </label>
-                    <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $_SESSION['contact']?>" required>
+                    <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $_SESSION['contact']?>" required readonly>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Email</label>
-                                <input class="form-control" type="text" id="email" name="email" value="<?php echo $_SESSION['email']?>" required>
+                                <input class="form-control" type="text" id="email" name="email" value="<?php echo $_SESSION['email']?>" required readonly>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                       <div class="col-md-6" style="margin-top: 10px;">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                <input class="form-control" type="text" id="address" name="address" value="<?php echo $_SESSION['address']?>" required>
+                                <input class="form-control" type="text" id="address" name="address" value="<?php echo $_SESSION['address']?>" required readonly>
                             </div>
                         </div>
                         <div class="col-md-6" style="margin-top: 10px;">
@@ -53,11 +53,11 @@
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Type of Certificate</label>
                                 <select class="form-control" id="event" name="event" required>
                                     <option disabled selected>Select a type of certificate</option>
-                                    <option value="Baptismal Certificate" data-price="50">Baptismal Certificate</option>
-                                    <option value="Communion Certificate" data-price="40">Communion Certificate</option>
-                                    <option value="Confirmation Certificate" data-price="60">Confirmation Certificate</option>
-                                    <option value="Death Certificate" data-price="30">Death Certificate</option>
-                                    <option value="Marriage Certificate" data-price="70">Marriage Certificate</option>
+                                    <option value="Baptismal Certificate" data-price="100">Baptismal Certificate</option>
+                                    <option value="Communion Certificate" data-price="200">Communion Certificate</option>
+                                    <option value="Confirmation Certificate" data-price="300">Confirmation Certificate</option>
+                                    <option value="Death Certificate" data-price="400">Death Certificate</option>
+                                    <option value="Marriage Certificate" data-price="500">Marriage Certificate</option>
                                 </select>
                             </div>
                         </div>
@@ -76,14 +76,6 @@
                                   Receipt
                                 </label>
                                 <input class="form-control" type="file" id="receipt" name="receipt" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Transaction Date</label>
-                                <input class="form-control" type="date" id="transactDate" name="transactDate"  required>
                             </div>
                         </div>
                     </div>

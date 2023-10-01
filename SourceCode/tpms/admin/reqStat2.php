@@ -21,7 +21,14 @@
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM communion_tbl");
+            $result = mysqli_query($conn, "SELECT * FROM communion_tbl WHERE transactType = 'Walk-In'");
+            // Create an array to store the requirements from the database
+            $databaseRequirements = array();
+            $dataFromDatabase = [
+                'Baptismal Certificate'
+                // Add other data items as needed
+            ];
+
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -48,24 +55,31 @@
               <td><?php echo date("h:i A", strtotime($row["comTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
-                  <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
 
-            <div class="modal fade" id="myModal1<?php echo $row['id']; ?>">
-              <div class="modal-dialog">
-                <div class="modal-content">
+            <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Reservation</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Update Reservation</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Left Side (Image) -->
+                        <div class="col-md-6">
+                            <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
+                        </div>
 
-                  <!-- Modal body -->
-                  <div class="modal-body">
+                        <!-- Right Side (Form) -->
+                        <div class="col-md-6">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
@@ -101,17 +115,43 @@
                           <div class="row my-3">
                             <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Communion Date</label>
-                                      <input class="form-control" type="date" id="comDate" name="comDate" value="<?php echo $row['comDate']; ?>" required >
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Communion Date</label>
+                                      <input class="form-control" type="date" id="comDate" name="comDate" value="<?php echo $row['comDate']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Communion Time</label>
-                                      <input class="form-control" type="time" id="comTime" name="comTime" value="<?php echo $row['comTime']; ?>" required>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Communion Time</label>
+                                      <input class="form-control" type="time" id="comTime" name="comTime" value="<?php echo $row['comTime']; ?>" required disabled>
                                   </div>
                             </div>
                           </div>
+                          <div class="container mb-3">
+  <div class="card">
+    <div class="card-body">
+      <div class="text-center">
+        <span class="modal-header mb-3 text-center"><strong>Baptismal Requirements</strong></span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Baptismal Certificate" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="bapCert">Baptismal Certificate</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                          <div class="row my-3">
+                              <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Transaction Type</label>
+                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+
                           <div class="row my-3">
                               <div class="col-md-6">
                                   <div class="form-outline">
@@ -121,6 +161,15 @@
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference No.</label>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row my-3">
+                              <div class="col-md-12">
+                                  <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                       <select class="form-select" id="status" name="status" required>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
@@ -128,12 +177,6 @@
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
                                           <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
-
-                                          <option value="Disapproved due to non-compliance" <?php echo ($row['status'] === 'Disapproved due to non-compliance') ? 'selected' : ''; ?>>Disapproved due to non-compliance</option>
-
-                                          <option value="Disapproved due to duplicate submission" <?php echo ($row['status'] === 'Disapproved due to duplicate submission') ? 'selected' : ''; ?>>Disapproved due to duplicate submission</option>
-
-                                          <option value="Disapproved due to Quality Issue" <?php echo ($row['status'] === 'Disapproved due to Quality Issue') ? 'selected' : ''; ?>>Disapproved due to quality issue</option>
                                       </select>
                                   </div>
                               </div>
@@ -148,6 +191,9 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
             <?php
                 $i++;

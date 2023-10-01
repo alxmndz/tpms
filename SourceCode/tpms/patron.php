@@ -61,11 +61,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 </nav>
                             </div>
 
-                            <a class="nav-link tablinks" onclick="openCity(event, 'status')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-check"></i></div>
-                                Status
-                            </a>
-
                             <div class="sb-sidenav-menu-heading">Credentials/Services</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>

@@ -4,8 +4,10 @@ include_once 'dbconn.php';
 if (isset($_POST['btn-save'])) {
     $payMethod = $_POST['payMethod'];
     if ($payMethod === 'face-to-face') {
+        $refNum = null;
         $amount = null; // Set amount to null for face-to-face payments
         $targetFilePath = null; // Set receipt to null for face-to-face payments
+        
         $addedBy = $_POST['addedBy'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];
@@ -13,12 +15,12 @@ if (isset($_POST['btn-save'])) {
         $bapDate = $_POST['bapDate'];
         $bapTime = $_POST['bapTime'];
         $payMethod = $_POST['payMethod'];
-        $checkbox1 = $_POST['requirements'];
-
-        $chk = "";
-        foreach ($checkbox1 as $chk1) {
-            $chk .= $chk1 . ",";
-        }
+        $birthCert = $_POST['birthCert'];
+        $marriageCont = $_POST['marriageCont'];
+        $sponsor1 = $_POST['sponsor1'];
+        $sponsor2 = $_POST['sponsor2'];
+        $transactType = $_POST['transactType'];
+        $status = $_POST['status'];
 
     } elseif ($payMethod === 'gcash') {
         $addedBy = $_POST['addedBy'];
@@ -28,13 +30,13 @@ if (isset($_POST['btn-save'])) {
         $bapDate = $_POST['bapDate'];
         $bapTime = $_POST['bapTime'];
         $amount = $_POST['amount'];
-        $payMethod = $_POST['payMethod'];
-        $checkbox1 = $_POST['requirements'];
-
-        $chk = "";
-        foreach ($checkbox1 as $chk1) {
-            $chk .= $chk1 . ",";
-        }
+        $birthCert = $_POST['birthCert'];
+        $marriageCont = $_POST['marriageCont'];
+        $sponsor1 = $_POST['sponsor1'];
+        $sponsor2 = $_POST['sponsor2'];
+        $transactType = $_POST['transactType'];
+        $status = $_POST['status'];
+        $refNum = $_POST['refNum'];
 
         $receipt = $_FILES['receipt'];
         $targetDir = "../receipt/";
@@ -66,8 +68,8 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, payMethod, amount, receipt, requirements)
-                  VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$payMethod', '$amount', '$targetFilePath', '$chk')";
+    $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, payMethod, amount, receipt, birthCert, marriageCont, sponsor1 ,sponsor2, transactType, status, refNum)
+                  VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$payMethod', '$amount', '$targetFilePath', '$birthCert', '$marriageCont', '$sponsor1', '$sponsor2', '$transactType', '$status', '$refNum')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

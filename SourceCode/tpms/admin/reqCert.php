@@ -7,13 +7,14 @@
 		<form class="" action="php/addreq1.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="form-group">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
+                    <input type="hidden" name="transactType" class="form-control" value="Walk-In">
                   </div>
                         <div class="row my-3">
                           <div class="col-md-6">
                               <div class="form-outline">
                                   <label class="form-label" for="typeText">
                                     <i class="fa-solid fa-user"></i> 
-                                    Name
+                                    Name (Firstname-Middle Initial-Surname)
                                   </label>
                                 <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required>
                             </div>
@@ -50,23 +51,6 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                <input class="form-control" type="number" id="amount" name="amount" placeholder="Enter amount" required readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                              <label class="form-label" for="typeText">
-                                <i class="fa-solid fa-receipt"></i>
-                                  Receipt
-                                </label>
-                                <input class="form-control" type="file" id="receipt" name="receipt" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
                         <div class="col-md-12">
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
@@ -75,22 +59,61 @@
                                     <option value="Ready to pick up">Ready to pick up</option>
                                     <option value="In Process">In Process</option>
                                     <option value="Disapproved, Because mismatch files">Disapproved due to file mismatch</option>
-                                    <option value="Disapproved due to non-compliance">Disapproved due to non-compliance</option>
-                                    <option value="Disapproved due to duplicate submission">Disapproved due to duplicate submission</option>
-                                    <option value="Disapproved due to Quality Issue">Disapproved due to quality issue</option>
-                                    <!-- Add more options as needed -->
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                              <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Transaction Date</label>
-                            <input class="form-control" type="date" id="transactDate" name="transactDate" required>
-                            </div>
-                        </div>
+
+                    <div class="col-md-12">
+        <div class="form-outline">
+            <label class="form-label" for="typeText">
+                <i class="fa-solid fa-dollar-sign"></i>
+                Please select your preferred Payment Method
+            </label>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payMethod" value="gcash" id="gcashRadio6" checked>
+                        <label class="form-check-label" for="gcashRadio6">
+                            GCash Payment
+                        </label>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payMethod" value="face-to-face" id="faceToFaceRadio6">
+                        <label class="form-check-label" for="faceToFaceRadio6">
+                            Face-to-face Payment
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-4" id="gcashDetails">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                GCash Details
+            </div>
+            <div class="card-body">
+                <!-- ... (GCash details content) -->
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" class="form-control" id="inputNumber6" name="amount" value="1000" readonly required>
+                </div>
+                <div class="mb-3">
+                    <label for="refNum" class="form-label">Reference Number</label>
+                    <input type="number" class="form-control" id="inputRefNum6" name="refNum" placeholder="Enter your Reference Number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="receipt" class="form-label">Receipt Image</label>
+                    <input type="file" class="form-control" id="inputFile6" name="receipt" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
                   <div class="form-group mb-2">             
                     <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
                   </div>                      
@@ -127,3 +150,36 @@
   // Initialize the amount based on the initial event value
   updateAmount();
 </script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const gcashDetails = document.getElementById("gcashDetails");
+            const gcashRadio = document.getElementById("gcashRadio6");
+            const faceToFaceRadio = document.getElementById("faceToFaceRadio6");
+
+            // Function to enable GCash details
+            function enableGCashDetails() {
+                gcashDetails.style.display = "block";
+                const inputs = gcashDetails.querySelectorAll("input");
+                inputs.forEach(input => {
+                    input.removeAttribute("disabled");
+                });
+            }
+
+            // Function to disable GCash details
+            function disableGCashDetails() {
+                gcashDetails.style.display = "none";
+                const inputs = gcashDetails.querySelectorAll("input");
+                inputs.forEach(input => {
+                    input.setAttribute("disabled", "true");
+                });
+            }
+
+            // Add event listeners to radio buttons
+            gcashRadio.addEventListener("change", enableGCashDetails);
+            faceToFaceRadio.addEventListener("change", disableGCashDetails);
+
+            // Initially, disable GCash details
+            disableGCashDetails();
+        });
+    </script>

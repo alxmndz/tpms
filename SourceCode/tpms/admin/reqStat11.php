@@ -21,7 +21,7 @@
         <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM baptismal_tbl WHERE transactType = 'Walk-In'");
+            $result = mysqli_query($conn, "SELECT * FROM baptismal_tbl WHERE transactType != 'Walk-In'");
             // Create an array to store the requirements from the database
             $databaseRequirements = array();
             $dataFromDatabase = [
