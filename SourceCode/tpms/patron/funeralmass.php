@@ -5,12 +5,14 @@
     </div>
     <div class="card-body">
 
-      <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form action="php/saveFuneral1.php" method="post" enctype="multipart/form-data" autocomplete="off">
           
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
+                    <input value="Online" name="transactType" style="display: none;" id="transactType">
+                    <input value="gcash" name="payMethod" style="display: none;" id="payMethod">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
                         Name
@@ -37,7 +39,7 @@
                         <i class="fa-solid fa-user"></i> 
                           Mother's name
                         </label>
-                      <input class="form-control" type="tel" id="mName" placeholder="Enter mother's name" required />
+                      <input class="form-control" type="tel" id="mName" name="mName" placeholder="Enter mother's name" required />
                     </div>
                 </div>
               </div>
@@ -55,7 +57,7 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-home"></i> 
@@ -64,6 +66,15 @@
                       <input class="form-control" type="text" id="address" name="address" placeholder="Enter the address" required />
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-outline">
+                         <label class="form-label" for="typeText">
+                          <i class="fa-solid fa-phone"></i> 
+                          Contact Number
+                        </label>
+                        <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter contact number" required />
+                      </div>
+                  </div>
               </div>
 
               <div class="row my-3">
@@ -71,7 +82,7 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar-days"></i> 
-                        Date
+                        Date of Death
                       </label>
                       <input class="form-control" type="date" id="deathDate" name="deathDate" required />
                     </div>
@@ -83,7 +94,7 @@
                         <i class="fa-solid fa-user"></i> 
                           Age
                         </label>
-                      <input class="form-control" type="number" id="age" placeholder="Enter age of the deceased" required />
+                      <input class="form-control" type="number" id="age" name="age" placeholder="Enter age of the deceased" required />
                     </div>
                 </div>
               </div>
@@ -93,9 +104,9 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar-days"></i> 
-                        Bury Date
+                        Interment
                       </label>
-                      <input class="form-control" type="date" id="bruyDate" name="buryDate" required />
+                      <input class="form-control" type="date" id="buryDate" name="buryDate" required />
                     </div>
                   </div>
 
@@ -105,7 +116,7 @@
                         <i class="fa-solid fa-skull"></i>
                           Cause of death
                         </label>
-                      <input class="form-control" type="number" id="age" placeholder="Enter cause of death" required />
+                      <input class="form-control" type="text" id="cause" name="cause" placeholder="Enter cause of death" required />
                     </div>
                 </div>
               </div>
@@ -157,16 +168,18 @@
                   </div>
                 </div>
                <div class="col-md-6"> 
-                  <form>
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
-                      <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                      <input type="number" class="form-control" id="amount" name="amount" value="2000" readonly required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="amount" class="form-label">Reference Number</label>
+                      <input type="number" class="form-control" id="refNum" name="refNum" placeholder="Enter the Reference Number" required>
                     </div>
                     <div class="mb-3">
                       <label for="receipt" class="form-label">Receipt Image</label>
                       <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
                     </div>
-                  </form>
                </div>
               </div>
             </div>

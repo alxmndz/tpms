@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             </a>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-table-list"></i></div>
                                 Reservation Status
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -65,6 +65,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
                                 Request Certificate
+                            </a>
+
+                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                                Donation
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Others</div>
@@ -120,6 +125,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "patron/funeralmass.php" ?>
                 </main>
 
+                <?php include "patron/saveDonation.php" ?>
+
                     <?php 
                           } else {
                             header("Location: loginform.php");
@@ -136,6 +143,26 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                 <main class="tabcontent" id="reqBap" style="display: none;">
                     <?php include "patron/reqBap.php" ?>
+                </main>
+
+                <main class="tabcontent" id="statbless" style="display: none;">
+                    <?php include "patron/reqBless.php" ?>
+                </main>
+
+                <main class="tabcontent" id="statcom" style="display: none;">
+                    <?php include "patron/reqCom.php" ?>
+                </main>
+
+                <main class="tabcontent" id="statcon" style="display: none;">
+                    <?php include "patron/reqCon.php" ?>
+                </main>
+
+                <main class="tabcontent" id="statfuneral" style="display: none;">
+                    <?php include "patron/reqFuneral.php" ?>
+                </main>
+
+                <main class="tabcontent" id="statwed" style="display: none;">
+                    <?php include "patron/reqWed.php" ?>
                 </main>
 
                 <main class="tabcontent" id="announcement" style="display: none;">

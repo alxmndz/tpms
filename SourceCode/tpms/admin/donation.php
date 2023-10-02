@@ -30,8 +30,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Contact</th>
-                  <th>Address</th>
-                  <th>Date</th>
+                  <th>Transaction Date</th>
                   <th>Amount</th>
                   <th>Action</th>
                 </tr>
@@ -44,7 +43,6 @@
                   <tr>
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo $row["contact"]; ?></td>
-                    <td><?php echo $row["address"]; ?></td>
                     <td><?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></td>
                     <td>₱<?php echo number_format($row["amount"]); ?></td>
 
@@ -72,8 +70,7 @@
                               <div class="col-md-6">
                                   <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
                                   <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
-                                  <p><strong>Address:</strong> <?php echo $row["address"]; ?></p>
-                                  <p><strong>Date:</strong> <?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></p>
+                                  <p><strong>Transaction Date:</strong> <?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></p>
                                   <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
                               </div>
                           </div>

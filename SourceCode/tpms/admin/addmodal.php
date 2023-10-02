@@ -39,14 +39,6 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Date Donated</label>
-                                <input class="form-control" type="date" id="date" name="date" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
                         <div class="col-md-6">
                             <div class="form-outline">
                               <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>

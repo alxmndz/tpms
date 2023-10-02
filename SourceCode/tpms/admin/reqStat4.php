@@ -185,7 +185,7 @@
                           </div>
 
                         <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
                         </div>                      
                     </form>
 

@@ -59,12 +59,12 @@
               <td><?php echo date("h:i A", strtotime($row["bapTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal23<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
 
-            <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
+            <div class="modal modal-lg fade" id="myModal23<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->

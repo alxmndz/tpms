@@ -30,10 +30,16 @@
                           b.bapTime ,
                           b.bapDate ,
                           b.amount ,
-                          b.status 
+                          b.refNum,
+                          b.status,
+                          b.receipt,
+                          b.birthCert,
+                          b.marriageCont,
+                          b.sponsor1,
+                          b.sponsor2 
                     FROM baptismal_tbl b
                     LEFT JOIN users u ON u.id = b.addedBy
-                    WHERE b.addedBy = '$id' LIMIT 5");
+                    WHERE b.addedBy = '$id'");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -60,23 +66,61 @@
               <td><?php echo date("h:i A", strtotime($row["bapTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-eye"></i> Update
                 </button>
               </td>
             </tr>
 
             <div class="modal fade" id="myModal<?php echo $row['id']; ?>">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
                   <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title">Update Reservation</h4>
+                    <h4 class="modal-title">Baptismal Reservation</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
 
                   <!-- Modal body -->
                   <div class="modal-body">
+                    <div class="row">
+                    <!-- Left Side (Image) -->
+                    <div class="col-md-6">
+                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="birthCert/<?php echo $row['birthCert']; ?>" alt="Image 2" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="marriageCont/<?php echo $row['marriageCont']; ?>" alt="Image 3" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="sponsors/<?php echo $row['sponsor1']; ?>" alt="Image 4" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="sponsors/<?php echo $row['sponsor2']; ?>" alt="Image 5" class="d-block w-100">
+                                </div>
+                            </div>
+
+                            <!-- Add carousel controls -->
+                            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#imageCarousel" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Right Side (Form) -->
+                    <div class="col-md-6">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
@@ -88,7 +132,7 @@
                                           <i class="fa-solid fa-user"></i> 
                                           Name
                                         </label>
-                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
+                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required readonly>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -97,7 +141,7 @@
                                         <i class="fa-solid fa-phone"></i> 
                                           Contact Number
                                       </label>
-                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required disabled>
+                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required readonly>
                                   </div>
                               </div>
                           </div>
@@ -105,7 +149,7 @@
                             <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
+                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required readonly>
                                   </div>
                               </div>
                           </div>
@@ -113,27 +157,35 @@
                             <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Baptismal Date</label>
-                                      <input class="form-control" type="date" id="bapDate" name="bapDate" value="<?php echo $row['bapDate']; ?>" required>
+                                      <input class="form-control" type="date" id="bapDate" name="bapDate" value="<?php echo $row['bapDate']; ?>" required readonly>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Baptismal Time</label>
-                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required>
+                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required readonly>
                                   </div>
                             </div>
+                          </div>
+                          <div class="row my-3">
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference No.</label>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required readonly>
+                                  </div>
+                              </div>
                           </div>
                           <div class="row my-3">
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required readonly>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required disabled>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
@@ -148,17 +200,15 @@
                                       </select>
                                   </div>
                               </div>
-                          </div>
-
-                        <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
-                        </div>                      
+                          </div>                     
                     </form>
                   </div>
 
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
             
             <?php

@@ -129,13 +129,7 @@
                             </div>
                           </div>
                           <div class="row my-3">
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
+                            <div class="col-md-6">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText">Intention</label>
                                       <select class="form-select" id="intention" name="intention" required disabled>
@@ -149,19 +143,17 @@
                                       </select>
                                   </div>
                               </div>
-                          </div>
-                          <div class="row my-3">
-                            <div class="col-md-12">
+                              <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Payment method</label>
-                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
                         <div class="row my-3">
                             <div class="col-md-12">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Reference Number</label>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference Number</label>
                                       <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
                                   </div>
                               </div>
@@ -182,7 +174,7 @@
                           </div>
 
                         <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
                         </div>                      
                     </form>
                   </div>

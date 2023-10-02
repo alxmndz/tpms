@@ -147,14 +147,6 @@
                               </div>
                           </div>
                           <div class="row my-3">
-                              <div class="col-md-12">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText">Transaction Type</label>
-                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row my-3">
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
@@ -185,7 +177,7 @@
                           </div>
 
                         <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
                         </div>                      
                     </form>
 

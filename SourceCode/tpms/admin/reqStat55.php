@@ -76,13 +76,67 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- Left Side (Image) -->
-                        <div class="col-md-6">
-                            <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
-                        </div>
+                    <!-- Left Side (Image) -->
+                    <div class="col-md-6">
+                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="birthCert/<?php echo $row['gBirthCert']; ?>" alt="Image 2" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="birthCert/<?php echo $row['bBirthCert']; ?>" alt="Image 3" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="bapCert/<?php echo $row['gBapCert']; ?>" alt="Image 4" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="bapCert/<?php echo $row['bBapCert']; ?>" alt="Image 5" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="conCert/<?php echo $row['gConCert']; ?>" alt="Image 6" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="conCert/<?php echo $row['bConCert']; ?>" alt="Image 7" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="cenomar/<?php echo $row['cenomar']; ?>" alt="Image 8" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="marriageLicense/<?php echo $row['marriageLicense']; ?>" alt="Image 9" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="pics/<?php echo $row['RPic1']; ?>" alt="Image 10" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="pics/<?php echo $row['RPic2']; ?>" alt="Image 11" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="pics/<?php echo $row['MBPic1']; ?>" alt="Image 12" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="pics/<?php echo $row['MBPic2']; ?>" alt="Image 13" class="d-block w-100">
+                                </div>
+                            </div>
 
-                        <!-- Right Side (Form) -->
-                        <div class="col-md-6">
+                            <!-- Add carousel controls -->
+                            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#imageCarousel" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Right Side (Form) -->
+                    <div class="col-md-6">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
@@ -200,73 +254,6 @@
                                 Reserved Time
                               </label>
                             <input type="time" class="form-control" id="resTime" name="resTime" value="<?php echo $row['resTime']; ?>" required disabled/>
-                          </div>
-                        </div>
-                      </div>
-
-<div class="container mb-3">
-  <div class="card">
-    <div class="card-body">
-      <div class="text-center">
-        <span class="modal-header mb-2 text-center"><strong>Baptismal Requirements</strong></span>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="birthCertificate" name="birthCert" value="Birth Certificate" <?php echo ($row['birthCert'] === 'Birth Certificate') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="birthCertificate">Birth Certificate</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Parents Marriage Contract" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="bapCert">Baptismal Certificate</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="conCert" name="conCert" value="Confirmation Certificate" <?php echo ($row['conCert'] === 'Confirmation Certificate') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="conCert">Confirmation Certificate</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="cenomar" name="cenomar" value="Certificate of No Marriage" <?php echo ($row['cenomar'] === 'Certificate of No Marriage') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="cenomar">Certificate of No Marriage</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="marriageLicense" name="marriageLicense" value="Certificate of No Marriage" <?php echo ($row['marriageLicense'] === 'Marriage License') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="marriageLicense">Marriage License</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="RPic" name="RPic" value="Certificate of No Marriage" <?php echo ($row['RPic'] === '3R Size Pictures') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="RPic">3R Size Pictures</label>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="MBPic" name="MBPic" value="Certificate of No Marriage" <?php echo ($row['MBPic'] === '2x2 Pictures for Marriage Bann') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="MBPic">2x2 Pictures for Marriage Bann</label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                          <div class="form-outline">
-                              <label class="form-label" for="typeText">
-                                Transaction Type
-                              </label>
-                            <input type="text" class="form-control" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled />
                           </div>
                         </div>
                       </div>

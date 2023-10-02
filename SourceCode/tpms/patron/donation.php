@@ -1,65 +1,134 @@
-<div class="container-fluid px-4" style="margin-top: 20px;">
+<div class="container px-4" style="margin-top: 20px;">
 	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title"><i class="fa-solid fa-hand-holding-dollar" style="color: #1ABC9C;"></i> Donation</h5>
-    	<hr>
-			 <form class="" action="php/donate.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <div class="card-header">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    Donation
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="d-flex mb-2">
+                            <input type="text" id="searchInput2" class="form-control form-control-sm me-2" placeholder="Type to search..." autocomplete="off">
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donate"><i class="fa-solid fa-hand-holding-dollar"></i></button>
+                        </div>
+                        <table class="table table-striped">
+                    <?php
+                    include_once 'php/dbconn.php';
+                    $result = mysqli_query($conn, "SELECT 
+                                                d.id,
+                                                d.name,
+                                                d.contact,
+                                                d.donatedDate,
+                                                d.amount,
+                                                d.receipt
+                                                FROM donation d
+                                                LEFT JOIN users u ON u.id = d.addedBy
+                                                WHERE d.addedBy = '$id' LIMIT 5");
+                    if (mysqli_num_rows($result) > 0) {
+                    ?>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Amount</th>
+                            <th>Transaction Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $i = 0;
+                        while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                        <tr>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td><?php echo $row["contact"]; ?></td>
+                            <td>₱<?php echo number_format($row["amount"]); ?></td>
+                            <td><?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></td>
+                            <td><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View details</button></td>
+                        </tr>
 
-                                <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
-                                <input class="form-control" type="hidden" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" required />
-                       
-                                <input class="form-control" type="hidden" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" required />
-                                <input class="form-control" type="hidden" id="address" name="address" value="<?php echo $_SESSION['address'] ?>" required/>
+                        <div class="modal fade" id="updateModal1<?php echo $row['id']; ?>">
+                          <div class="modal-dialog modal-md">
+                            <div class="modal-content">
 
-                                <input class="form-control" type="hidden" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" required/>
-                                
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Date Donated</label>
-                                <input class="form-control" type="date" id="date" name="date" required/>
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">Add Donation</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                              </div>
+
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                <!-- Left Side (Image) -->
+                                <div class="row">
+                                  <!-- Left Side (Image) -->
+                                  <div class="col-md-6">
+                                      <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                                          <div class="carousel-inner">
+                                              <div class="carousel-item active">
+                                                  <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+
+
+                                  <!-- Right Side (Form) -->
+                                  <div class="col-md-6">
+                                        <form>
+                                            <div class="row my-3">
+                                                <div class="col-md-12">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="typeText"><i class="fa-solid fa-user"></i> Name</label>
+                                                        <input class="form-control" type="text" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                              <div class="col-md-12">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="typeText"><i class="fa-solid fa-phone"></i> Contact Number</label>
+                                                        <input class="form-control" type="text" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col-md-12">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
+                                                        <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount'] ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                              <div class="col-md-12">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Donated Date</label>
+                                                        <input class="form-control" type="date" id="donatedDate" name="donatedDate" value="<?php echo $row['donatedDate'] ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>                                
+                                 </form>
+                               </div>
+                              </div>
+
                             </div>
+                          </div>
                         </div>
+                        <?php
+                        $i++;
+                        }
+                        ?>
+                    </tbody>
+                    <?php
+                    } else {
+                        echo "No result found";
+                    }
+                    ?>
+                </table>
                     </div>
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                <input class="form-control" type="number" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                              <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
-                                <select class="form-control" id="event" name="event"required>
-                                    <option disabled selected>Select an option</option>
-                                    <option value="Baptismal">Baptismal</option>
-                                    <option value="Communion">Communion</option>
-                                    <option value="Confirmation">Confirmation</option>
-                                    <option value="Funeral">Funeral</option>
-                                    <option value="Thanks Giving">Thanks Giving</option>
-                                    <option value="Wedding">Wedding</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-outline">
-                              <label class="form-label" for="typeText">
-                                <i class="fa-solid fa-receipt"></i>
-                                  Receipt
-                                </label>
-                                <input class="form-control"type="file" id="receipt" name="receipt" required>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
-                        </div>
-                                                 
-                      </form>
-		</div>
-	</div>                  
+                </div>
+            </div>                  
 </div>
 

@@ -2,6 +2,7 @@
 include_once 'dbconn.php';
 if(isset($_POST['btn-save']))
 {
+  $addedBy = $_POST['addedBy'];
   $name = $_POST['name'];
   $contact = $_POST['contact'];
   $address = $_POST['address'];
@@ -9,7 +10,10 @@ if(isset($_POST['btn-save']))
   $blessTime = $_POST['blessTime'];
   $intention = $_POST['intention'];
   $amount = $_POST['amount'];
-  $addedBy = $_POST['addedBy'];
+  $transactType = $_POST['transactType'];
+  $payMethod = $_POST['payMethod'];
+  $refNum = $_POST['refNum'];
+  
   $receipt = $_FILES['receipt'];
   $targetDir = "../receipt/";
   $fileName5 = $_FILES['receipt']['name'];
@@ -21,11 +25,11 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO blessing_tbl(name,contact,address,blessDate,blessTime,intention,amount,addedBy,receipt) VALUES('$name','$contact','$address','$blessDate','$blessTime','$intention','$amount','$addedBy','$targetFilePath')";
+    $sql_query = "INSERT INTO blessing_tbl(name,contact,address,blessDate,blessTime,intention,amount,addedBy,receipt,transactType,payMethod,refNum) VALUES('$name','$contact','$address','$blessDate','$blessTime','$intention','$amount','$addedBy','$targetFilePath','$transactType','$payMethod','$refNum')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>
-      alert('Added Successfully!');
+      alert('Reserved Successfully!');
       window.location = '../patron.php';
     </script>";
   }

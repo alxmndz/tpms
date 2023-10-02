@@ -9,6 +9,9 @@ if (isset($_POST['btn-save'])) {
     $conDate = $_POST['conDate'];
     $conTime = $_POST['conTime'];
     $desc = $_POST['desc'];
+    $transactType = $_POST['transactType'];
+    $payMethod = $_POST['payMethod'];
+    $refNum = $_POST['refNum'];
     $amount = $_POST['amount'];
 
     $receipt = $_FILES['receipt'];
@@ -29,8 +32,8 @@ if (isset($_POST['btn-save'])) {
         if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
             move_uploaded_file($_FILES["bapCert"]["tmp_name"], $targetFilePath1)) {
 
-            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, address, conDate, conTime, bapCert, description, amount, receipt)
-                          VALUES('$addedBy', '$name', '$contact', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath')";
+            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, address, conDate, conTime, bapCert, description, amount, receipt, transactType, payMethod, refNum)
+                          VALUES('$addedBy', '$name', '$contact', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath', '$transactType', '$payMethod', '$refNum')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

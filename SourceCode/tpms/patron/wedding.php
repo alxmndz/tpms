@@ -11,6 +11,8 @@
                 <div class="col-md-6">
                   <div class="form-outline">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
+                    <input value="Online" name="transactType" style="display: none;" id="transactType">
+                    <input value="gcash" name="payMethod" style="display: none;" id="payMethod">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
                         Groom's Name
@@ -26,18 +28,6 @@
                         Bride's Name
                        </label>
                     <input class="form-control" type="text" id="bride" name="bride" placeholder="Enter bride's name" required />
-                  </div>
-                </div>
-              </div>
-
-              <div class="row my-3">
-                <div class="col-md-12">
-                  <div class="form-outline">
-                      <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-envelope"></i> 
-                        Email
-                      </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="Enter email" required />
                   </div>
                 </div>
               </div>
@@ -122,7 +112,7 @@
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar"></i>
-                        Date
+                        Wedding Date
                       </label>
                     <input type="date" class="form-control" id="wdate" name="wdate" required />
                   </div>
@@ -130,21 +120,13 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-clock"></i>
-                        Rerved Time
+                        Reserved Time
                       </label>
                     <input type="time" class="form-control" id="resTime" name="resTime" required />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-outline">
-                      <label class="form-label" for="typeText">
-                        Transaction Date
-                      </label>
-                    <input type="date" class="form-control" id="transactDate" name="transactDate" required>
                   </div>
                 </div>
               </div>
@@ -295,7 +277,11 @@
 
                           <div class="mb-3">
                             <label for="amount" class="form-label">Amount</label>
-                            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                            <input type="number" class="form-control" id="amount" name="amount" value="3000" readonly required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="amount" class="form-label">Reference Number</label>
+                            <input type="number" class="form-control" id="refNum" name="refNum" placeholder="Enter the Reference Number" required>
                           </div>
                           <div class="mb-3">
                             <label for="receipt" class="form-label">Receipt Image</label>

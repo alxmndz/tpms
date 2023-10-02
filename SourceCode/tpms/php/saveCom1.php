@@ -9,7 +9,10 @@ if (isset($_POST['btn-save'])) {
     $comDate = $_POST['comDate'];
     $comTime = $_POST['comTime'];
     $desc = $_POST['desc'];
+    $transactType = $_POST['transactType'];
+    $refNum = $_POST['refNum'];
     $amount = $_POST['amount'];
+    $payMethod = $_POST['payMethod'];
 
     $receipt = $_FILES['receipt'];
     $targetDir = "../receipt/";
@@ -29,8 +32,8 @@ if (isset($_POST['btn-save'])) {
         if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
             move_uploaded_file($_FILES["bapCert"]["tmp_name"], $targetFilePath1)) {
 
-            $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description, amount, receipt)
-                          VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath')";
+            $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description, amount, receipt, transactType, refNum, payMethod)
+                          VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath', '$transactType', '$refNum', '$payMethod')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

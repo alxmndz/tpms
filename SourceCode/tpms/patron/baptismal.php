@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 10px;">
+<div class="container" style="margin-top: 10px;">
   <div class="card">
     <div class="card-header">
       <div class="card-title"><h5 class="form-title">Baptismal Reservation Form</h5></div>
@@ -10,11 +10,13 @@
             <div class="col-md-6">
               <div class="form-outline">
                 <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
+                <input value="Online" name="transactType" style="display: none;" id="transactType">
+                <input value="gcash" name="payMethod" style="display: none;" id="payMethod">
                    <label class="form-label" for="typeText">
                     <i class="fa-solid fa-user"></i> 
-                    Name
+                    Name (Firstname-Middle Initial-Surname)
                   </label>
-                  <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required />
+                  <input class="form-control" type="text" id="name" name="name" placeholder="Enter baptismal candidate" required />
                 </div>
               </div>
 
@@ -24,7 +26,7 @@
                     <i class="fa-solid fa-phone"></i> 
                       Contact Number
                     </label>
-                  <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required />
+                  <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter the contact number" required />
                 </div>
             </div>
           </div>
@@ -46,7 +48,7 @@
               <div class="form-outline">
                    <label class="form-label" for="typeText">
                     <i class="fa-solid fa-calendar-days"></i> 
-                    Date
+                    Baptismal Date
                   </label>
                   <input class="form-control" type="date" id="bapDate" name="bapDate" required />
                 </div>
@@ -58,7 +60,7 @@
               <div class="form-outline">
                    <label class="form-label" for="typeText">
                     <i class="fa-solid fa-clock"></i> 
-                    Time
+                    Basptimal Time
                   </label>
                   <input class="form-control" type="time" id="bapTime" name="bapTime" required />
                 </div>
@@ -129,6 +131,10 @@
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
                       <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="amount" class="form-label">Reference Number</label>
+                      <input type="number" class="form-control" id="refNum" name="refNum" placeholder="Enter the Reference Number" required>
                     </div>
                     <div class="mb-3">
                       <label for="receipt" class="form-label">Receipt Image</label>

@@ -71,15 +71,35 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- Left Side (Image) -->
-                        <div class="col-md-6">
-                            <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
-                        </div>
+                <div class="row">
+                    <!-- Left Side (Image) -->
+                    <div class="col-md-6">
+                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="upload/bapCert/<?php echo $row['bapCert']; ?>" alt="Image 2" class="d-block w-100">
+                                </div>
+                            </div>
 
-                        <!-- Right Side (Form) -->
-                        <div class="col-md-6">
+                            <!-- Add carousel controls -->
+                            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#imageCarousel" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Right Side (Form) -->
+                    <div class="col-md-6">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
@@ -126,28 +146,12 @@
                                   </div>
                             </div>
                           </div>
-                          <div class="container mb-3">
-  <div class="card">
-    <div class="card-body">
-      <div class="text-center">
-        <span class="modal-header mb-3 text-center"><strong>Baptismal Requirements</strong></span>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Baptismal Certificate" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="bapCert">Baptismal Certificate</label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
                           <div class="row my-3">
                               <div class="col-md-12">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Transaction Type</label>
-                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
+                                      <label class="form-label" for="typeText"> Description</label>
+                                      <input class="form-control" type="number" id="description" name="description" value="<?php echo $row['description']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -183,7 +187,7 @@
                           </div>
 
                         <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>  
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;"> Save Changes</button>  
                         </div>                      
                     </form>
                   </div>

@@ -5,12 +5,14 @@
       </div>
       <div class="card-body">
 
-        <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveCon1.php" method="post" enctype="multipart/form-data" autocomplete="off">
           
             <div class="row my-3">
                 <div class="col-md-6">
                   <div class="form-outline">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
+                    <input value="Online" name="transactType" style="display: none;" id="transactType">
+                    <input value="gcash" name="payMethod" style="display: none;" id="payMethod">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
                         Name
@@ -25,29 +27,19 @@
                         <i class="fa-solid fa-phone"></i> 
                           Contact Number
                         </label>
-                      <input class="form-control" type="tel" id="contact" placeholder="Enter your contact number" required />
+                      <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required />
                     </div>
                 </div>
               </div>
 
               <div class="row my-3">
-                <div class="col-md-6">
-                  <div class="form-outline">
-                       <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-envelope"></i> 
-                        Email
-                      </label>
-                      <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" required />
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                      <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-house"></i> 
                           Address
                         </label>
-                      <input class="form-control" type="text" id="address" placeholder="Enter your adress" required />
+                      <input class="form-control" type="text" id="address" name="address" placeholder="Enter your adress" required />
                     </div>
                 </div>
               </div>
@@ -92,7 +84,7 @@
                        <label class="form-label" for="typeText">
                           Description (if none, comment "N/A")
                         </label>
-                      <input class="form-control" type="text" id="desc" placeholder="Enter your description" required />
+                      <input class="form-control" type="text" id="desc" name="desc" placeholder="Enter your description" required />
                     </div>
                 </div>
               </div>
@@ -111,17 +103,19 @@
                         <p class="mt-2"><i class="fas fa-phone"></i> 0917 835 0117</p>
                       </div>
                     </div>
-                   <div class="col-md-6"> 
-                      <form>
+                   <div class="col-md-6">
                         <div class="mb-3">
                           <label for="amount" class="form-label">Amount</label>
-                          <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                          <input type="number" class="form-control" id="amount" name="amount" value="1500" readonly required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="amount" class="form-label">Reference Number</label>
+                          <input type="number" class="form-control" id="refNum" name="refNum" placeholder="Enter the Reference Number" required>
                         </div>
                         <div class="mb-3">
                           <label for="receipt" class="form-label">Receipt Image</label>
                           <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
                         </div>
-                      </form>
                    </div>
                   </div>
                 </div>

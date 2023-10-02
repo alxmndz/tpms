@@ -9,6 +9,8 @@ if (isset($_POST['btn-save'])) {
     $bapDate = $_POST['bapDate'];
     $bapTime = $_POST['bapTime'];
     $amount = $_POST['amount'];
+    $refNum = $_POST['refNum'];
+    $transactType = $_POST['transactType'];
 
     $receipt = $_FILES['receipt'];
     $targetDir = "../receipt/";
@@ -57,8 +59,8 @@ if (isset($_POST['btn-save'])) {
             move_uploaded_file($_FILES["sponsor2"]["tmp_name"], $targetFilePath4)
         ) {
 
-            $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, birthCert, marriageCont, sponsor1, sponsor2, amount, receipt)
-                          VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$targetFilePath1', '$targetFilePath2', '$targetFilePath3', '$targetFilePath4', '$amount', '$targetFilePath')";
+            $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, birthCert, marriageCont, sponsor1, sponsor2, amount, receipt, refNum, transactType)
+                          VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$targetFilePath1', '$targetFilePath2', '$targetFilePath3', '$targetFilePath4', '$amount', '$targetFilePath', '$refNum', '$transactType')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

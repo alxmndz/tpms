@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="donate">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -13,18 +13,14 @@
        <form class="" action="php/donate.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
                                 <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
-                                <input class="form-control" type="hidden" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" required />
-                       
-                                <input class="form-control" type="hidden" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" required />
-                                <input class="form-control" type="hidden" id="address" name="address" value="<?php echo $_SESSION['address'] ?>" required/>
 
                                 <input class="form-control" type="hidden" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" required/>
                                 
                     <div class="row my-3">
                         <div class="col-md-12">
                             <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Date Donated</label>
-                                <input class="form-control" type="date" id="date" name="date" required/>
+                                <label class="form-label" for="typeText"><i class="fa-solid fa-user"></i> Name (Firstname-Middle Initial-Surname)</label>
+                                <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name (Optional)" />
                             </div>
                         </div>
                     </div>
@@ -32,7 +28,7 @@
                         <div class="col-md-12">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Donation Amount</label>
-                                <input class="form-control" type="text" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" oninput="formatMoney(this)" required>
+                                <input class="form-control" type="text" type="number" id="amount" name="amount" placeholder="Enter Donation Amount" required>
                             </div>
                         </div>
                     </div>
