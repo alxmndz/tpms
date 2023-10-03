@@ -3,23 +3,10 @@
     <div class="card-header d-flex align-items-center">
       <i class="fa-solid fa-users me-2"></i>
       <span class="fs-5 fw-bold">Accounts</span>
-      <div class="ms-auto">
-        <label class="me-2">Show entries:</label>
-        <select id="entriesSelect" class="form-select form-select-sm">
-          <option value="all">All</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
-      </div>
     </div>
     <div class="card-body">
-      <div class="input-group mb-3">
-        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Type to search..." autocomplete="off">
-        <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
-      </div>
       <div class="table-responsive">
-        <table class="table table-light table-hover">
+        <table class="table table-light table-hover" id="datatablesSimple1">
           <?php
             include_once 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM users ORDER BY name");
@@ -141,46 +128,11 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const searchInput = document.getElementById("searchInput");
-  const searchResults = document.getElementById("searchResults").getElementsByTagName("tr");
-  const entriesSelect = document.getElementById("entriesSelect");
-
-  // Add event listener to the search input
-  searchInput.addEventListener("input", function() {
-    applyFilter();
-  });
-
-  // Add event listener to the entries select
-  entriesSelect.addEventListener("change", function() {
-    applyFilter();
-  });
-
-  function applyFilter() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const entriesToShow = entriesSelect.value;
-
-    // Loop through the table rows and show/hide based on search term and entries select
-    let shownEntries = 0;
-    for (let i = 0; i < searchResults.length; i++) {
-      const row = searchResults[i];
-      const name = row.cells[0].innerText.toLowerCase();
-      const contact = row.cells[1].innerText.toLowerCase();
-      const email = row.cells[2].innerText.toLowerCase();
-      const address = row.cells[3].innerText.toLowerCase();
-      const type = row.cells[4].innerText.toLowerCase();
-
-      if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || type.includes(searchTerm)) {
-        row.style.display = "";
-        shownEntries++;
-        if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-          row.style.display = "none";
-        }
-      } else {
-        row.style.display = "none";
-      }
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple1');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
     }
-  }
-
 });
+
 </script>

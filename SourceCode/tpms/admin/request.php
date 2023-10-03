@@ -4,23 +4,12 @@
         <i class="fa-solid fa-scroll me-2"></i>
         <span class="fs-5 fw-bold">Request Status</span>
         <div class="ms-auto">
-          <label class="me-2">Show entries:</label>
-          <select id="entriesSelect2" class="form-select form-select-sm">
-            <option value="all">All</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-        </div>
-      </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <div class="d-flex">
-          <input type="text" id="searchInput2" class="form-control form-control-sm me-2" placeholder="Type to search...">
           <button class="btn btn-primary btn-sm" onclick="openCity(event, 'reqcert')"> Request</button>
         </div>
-
-        <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped" id="datatablesSimple14" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM request");
@@ -149,12 +138,6 @@
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
                                           <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
-
-                                          <option value="Disapproved due to non-compliance" <?php echo ($row['status'] === 'Disapproved due to non-compliance') ? 'selected' : ''; ?>>Disapproved due to non-compliance</option>
-
-                                          <option value="Disapproved due to duplicate submission" <?php echo ($row['status'] === 'Disapproved due to duplicate submission') ? 'selected' : ''; ?>>Disapproved due to duplicate submission</option>
-
-                                          <option value="Disapproved due to Quality Issue" <?php echo ($row['status'] === 'Disapproved due to Quality Issue') ? 'selected' : ''; ?>>Disapproved due to quality issue</option>
                                       </select>
                                   </div>
                               </div>
@@ -188,47 +171,10 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput2");
-    const searchResults = document.getElementById("searchResults2").getElementsByTagName("tr");
-    const entriesSelect = document.getElementById("entriesSelect2");
-
-    // Add event listener to the search input
-    searchInput.addEventListener("input", function() {
-      applyFilter();
-    });
-
-    // Add event listener to the entries select
-    entriesSelect.addEventListener("change", function() {
-      applyFilter();
-    });
-
-    function applyFilter() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const entriesToShow = entriesSelect.value;
-
-      // Loop through the table rows and show/hide based on search term and entries select
-      let shownEntries = 0;
-      for (let i = 0; i < searchResults.length; i++) {
-        const row = searchResults[i];
-        const name = row.cells[0].innerText.toLowerCase();
-        const contact = row.cells[1].innerText.toLowerCase();
-        const email = row.cells[2].innerText.toLowerCase();
-        const address = row.cells[3].innerText.toLowerCase();
-        const event = row.cells[4].innerText.toLowerCase();
-        const status = row.cells[5].innerText.toLowerCase();
-
-        if (name.includes(searchTerm) || contact.includes(searchTerm) || email.includes(searchTerm) || address.includes(searchTerm) || event.includes(searchTerm) || status.includes(searchTerm)) {
-          row.style.display = "";
-          shownEntries++;
-          if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-            row.style.display = "none";
-          }
-        } else {
-          row.style.display = "none";
-        }
-      }
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple14');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
     }
-
-  });
-  </script>
+});
+</script>

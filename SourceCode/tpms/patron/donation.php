@@ -81,7 +81,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="typeText"><i class="fa-solid fa-user"></i> Name</label>
-                                                        <input class="form-control" type="text" id="name" name="name" value="<?php echo $_SESSION['name'] ?>" readonly/>
+                                                        <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name'] ?>" readonly/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                               <div class="col-md-12">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="typeText"><i class="fa-solid fa-phone"></i> Contact Number</label>
-                                                        <input class="form-control" type="text" id="contact" name="contact" value="<?php echo $_SESSION['contact'] ?>" readonly/>
+                                                        <input class="form-control" type="text" id="contact" name="contact" value="<?php echo $row['contact'] ?>" readonly/>
                                                     </div>
                                                 </div>
                                             </div>

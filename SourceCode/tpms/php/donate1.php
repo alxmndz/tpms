@@ -1,49 +1,70 @@
 <?php
 include_once 'dbconn.php';
-if(isset($_POST['btn-save']))
-{
-  $name = $_POST['name'];
-  $address = $_POST['address'];
-  $contact = $_POST['contact'];
-  $date = $_POST['date'];
-  $amount = $_POST['amount'];
-  $addedBy = $_POST['addedBy'];
-  $receipt = $_FILES['receipt'];  
 
-  $targetDir = "../donate/";
-  $fileName5 = $_FILES['receipt']['name'];
-  $targetFilePath = $targetDir . $fileName5;
-  $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
-                            
-  $fileTmpName5 = $_FILES['receipt']['tmp_name'];
-  $allowTypes = array('jpg','png','jpeg','gif','pdf');
-  if(in_array($fileType, $allowTypes)){
-    if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
-    echo $targetFilePath;
-    $sql_query = "INSERT INTO donation(name,address,contact,donatedDate,amount,addedBy,receipt) VALUES('$name','$address','$contact','$date','$amount','$addedBy','$targetFilePath')";
-    mysqli_query($conn,$sql_query);
-  
-    echo "<script type='text/javascript'>
-      alert('Donation Added Successfully!');
-      window.location = '../admin.php';
-    </script>";
-  }
-  else{
-    echo "<script type='text/javascript'>
-      alert('Request Failed!');
-      window.location = '../admin.php';
-    </script>";
-      }
-  }
-  else{
-    echo "<script type='text/javascript'>
-      alert('Added Successfully!');
-      window.location = '../admin.php';
-    </script>";
-      }
-  }
+if (isset($_POST['btn-save'])) {
+    $payMethod = $_POST['payMethod'];
+    if ($payMethod === 'face-to-face') {
+        $amount = null; // Set amount to null for face-to-face payments
+        $targetFilePath = null; // Set receipt to null for face-to-face payments
+        
+        $addedBy = $_POST['addedBy'];
+        $name = $_POST['name'];
+        $contact = $_POST['contact'];
+        $payMethod = $_POST['payMethod'];
+        $transactType = $_POST['transactType'];
+        
+
+    } elseif ($payMethod === 'gcash') {
+        $addedBy = $_POST['addedBy'];
+        $name = $_POST['name'];
+        $contact = $_POST['contact'];
+        $payMethod = $_POST['payMethod'];
+        $transactType = $_POST['transactType'];
+        $amount = $_POST['amount'];
+
+        $receipt = $_FILES['receipt'];
+        $targetDir = "../receipt/";
+        $fileName = $_FILES['receipt']['name'];
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+
+        if (!in_array($fileType, $allowTypes)) {
+            echo "<script type='text/javascript'>
+                alert('Invalid File Type! Only JPG, PNG, JPEG, GIF, or PDF allowed.');
+                window.location = '../admin.php';
+            </script>";
+            exit;
+        }
+        if (!move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)) {
+            echo "<script type='text/javascript'>
+                alert('File Upload Failed!');
+                window.location = '../admin.php';
+            </script>";
+            exit;
+        }
+    } else {
+        echo "<script type='text/javascript'>
+            alert('Invalid Payment Method!');
+            window.location = '../admin.php';
+        </script>";
+        exit;
+    }
+
+    $sql_query = "INSERT INTO donation(name,contact,amount,addedBy,receipt) VALUES('$name','$contact','$amount','$addedBy','$targetFilePath')";
+
+    if (mysqli_query($conn, $sql_query)) {
+        echo "<script type='text/javascript'>
+            alert('Donated Successfully!');
+            window.location = '../admin.php';
+        </script>";
+    } else {
+        echo "<script type='text/javascript'>
+            alert('Insertion Failed: " . mysqli_error($conn) . "');
+            window.location = '../admin.php';
+        </script>";
+    }
+    mysqli_close($conn);
+}
 ?>
-
-<?php
-  mysqli_close($conn);
-      ?>

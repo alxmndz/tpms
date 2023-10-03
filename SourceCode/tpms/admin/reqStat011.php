@@ -2,32 +2,10 @@
   <div class="card mb-4">
       <div class="card-header d-flex align-items-center">
         <span class="fs-5 fw-bold">Blessing Status</span>
-        <div class="ms-auto" style="margin-right: 5px;">
-          <label class="me-2">Show entries:</label>
-          <select id="entriesSelect3" class="form-select form-select-sm">
-            <option value="all">All</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-        </div>
       </div>
     <div class="card-body">
       <div class="table-responsive">
-        <div class="d-flex">
-          <input type="text" id="searchInput3" class="form-control form-control-sm me-2" placeholder="Type to search...">
-          <div class="dropdown">
-            <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Type
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" onclick="openCity(event, '')" href="#">Walk-In</a></li>
-              <li><a class="dropdown-item" onclick="openCity(event, '')" href="#">Online</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
+        <table class="table table-striped" id="datatablesSimple9" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM blessing_tbl WHERE transactType != 'Walk-In'");
@@ -203,45 +181,10 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput3");
-    const searchResults = document.getElementById("searchResults3").getElementsByTagName("tr");
-    const entriesSelect = document.getElementById("entriesSelect3");
-
-    // Add event listener to the search input
-    searchInput.addEventListener("input", function() {
-      applyFilter();
-    });
-
-    // Add event listener to the entries select
-    entriesSelect.addEventListener("change", function() {
-      applyFilter();
-    });
-
-    function applyFilter() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const entriesToShow = entriesSelect.value;
-
-      // Loop through the table rows and show/hide based on search term and entries select
-      let shownEntries = 0;
-      for (let i = 0; i < searchResults.length; i++) {
-        const row = searchResults[i];
-        const name = row.cells[0].innerText.toLowerCase();
-        const blessDate = row.cells[1].innerText.toLowerCase();
-        const blessTime = row.cells[2].innerText.toLowerCase();
-        const status = row.cells[3].innerText.toLowerCase();
-
-        if (name.includes(searchTerm) || blessDate.includes(searchTerm) || blessTime.includes(searchTerm) || status.includes(searchTerm)) {
-          row.style.display = "";
-          shownEntries++;
-          if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-            row.style.display = "none";
-          }
-        } else {
-          row.style.display = "none";
-        }
-      }
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple9');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
     }
-
-  });
-  </script>
+});
+</script>

@@ -106,7 +106,7 @@
 
                       <div class="mb-3">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                        <input type="number" class="form-control" id="amount" name="amount" value="1000" readonly required>
                       </div>
                       <div class="mb-3">
                         <label for="amount" class="form-label">Reference Number</label>

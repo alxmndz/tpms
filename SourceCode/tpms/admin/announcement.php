@@ -6,20 +6,10 @@
 					<div class="card-header d-flex align-items-center">
 			      <i class="fa-solid fa-bell me-2"></i>
 			      <span class="fs-5 fw-bold">Announcements</span>
-			      <div class="ms-auto" style="margin-right: 5px;">
-		          <label class="me-2">Show entries:</label>
-		          <select id="entriesSelect3" class="form-select form-select-sm">
-		            <option value="all">All</option>
-		            <option value="5">5</option>
-		            <option value="10">10</option>
-		            <option value="20">20</option>
-		          </select>
-		        </div>
 			    </div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<input type="text" id="searchInput3" class="form-control mb-3" placeholder="Type to search...">
-					        <table class="table table-light table-hover">
+					        <table class="table table-light table-hover" id="datatablesSimple15">
 					          <?php
 					            include_once 'php/dbconn.php';
 					            $result = mysqli_query($conn, "SELECT * FROM announcement LIMIT 5");
@@ -244,45 +234,10 @@
 	</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const searchInput = document.getElementById("searchInput3");
-  const searchResults = document.getElementById("searchResults3").getElementsByTagName("tr");
-  const entriesSelect = document.getElementById("entriesSelect3");
-
-  // Add event listener to the search input
-  searchInput.addEventListener("input", function() {
-    applyFilter();
-  });
-
-  // Add event listener to the entries select
-  entriesSelect.addEventListener("change", function() {
-    applyFilter();
-  });
-
-  function applyFilter() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const entriesToShow = entriesSelect.value;
-
-    // Loop through the table rows and show/hide based on search term and entries select
-    let shownEntries = 0;
-    for (let i = 0; i < searchResults.length; i++) {
-      const row = searchResults[i];
-      const title = row.cells[0].innerText.toLowerCase();
-      const date = row.cells[1].innerText.toLowerCase();
-      const location = row.cells[2].innerText.toLowerCase();
-      const description = row.cells[3].innerText.toLowerCase();
-
-      if (title.includes(searchTerm) || date.includes(searchTerm) || location.includes(searchTerm) || description.includes(searchTerm))  {
-        row.style.display = "";
-        shownEntries++;
-        if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-          row.style.display = "none";
-        }
-      } else {
-        row.style.display = "none";
-      }
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple15');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
     }
-  }
-
 });
 </script>
