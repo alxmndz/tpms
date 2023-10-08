@@ -8,7 +8,7 @@
         <table class="table table-striped" id="datatablesSimple3" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM blessing_tbl WHERE transactType = 'Walk-In'");
+            $result = mysqli_query($conn, "SELECT * FROM blessing_tbl WHERE transactType = 'Walk-In' ORDER BY id DESC;");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -16,8 +16,8 @@
               <th>Name</th>
               <th>Contact Number</th>
               <th>Transaction Date</th>
-              <th>Blessing Date</th>
-              <th>Blessing Time</th>
+              <th>Reserved Date</th>
+              <th>Reserved Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -60,7 +60,7 @@
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                            <form class="" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                            <form action="php/updateBless.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

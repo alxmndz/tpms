@@ -34,14 +34,6 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                                <label class="form-label" for="typeText"><i class="fa-solid fa-envelope"></i> Email</label>
-                                <input class="form-control" type="text" id="email" name="email" value="<?php echo $_SESSION['email']?>" required readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
                       <div class="col-md-6" style="margin-top: 10px;">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>

@@ -8,7 +8,17 @@
       </div>
       <div class="modal-body">
         <form action="php/saveFuneral.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-          
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label" for="typeText">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Requested By (Firstname-Middle Initial-Surname)
+                      </label>
+                      <input class="form-control" type="text" id="reqBy" name="reqBy" placeholder="Enter the name of the person who requested" required />
+                    </div>
+                  </div>
+              </div>
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -26,8 +36,8 @@
                 <div class="col-md-6">
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-user"></i> 
-                        Father's name
+                        <i class="fa-solid fa-person"></i>
+                        Father's name (Firstname-Middle Initial-Surname)
                       </label>
                       <input class="form-control" type="text" id="fName" name="fName" placeholder="Enter father's name" required />
                     </div>
@@ -36,8 +46,8 @@
                   <div class="col-md-6">
                      <div class="form-outline">
                        <label class="form-label" for="typeText">
-                        <i class="fa-solid fa-user"></i> 
-                          Mother's name
+                        <i class="fa-solid fa-person-dress"></i> 
+                          Mother's name (Firstname-Middle Initial-Surname)
                         </label>
                       <input class="form-control" type="tel" id="mName" name="mName" placeholder="Enter mother's name" required />
                     </div>
@@ -72,7 +82,7 @@
                           <i class="fa-solid fa-phone"></i> 
                           Contact Number
                         </label>
-                        <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter contact number" required />
+                        <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter your contact number" maxlength="11" onkeyup="limitDigits(this)" required />
                       </div>
                   </div>
               </div>
@@ -83,7 +93,7 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar-days"></i> 
-                        Date
+                        Date of Death
                       </label>
                       <input class="form-control" type="date" id="deathDate" name="deathDate" required />
                     </div>
@@ -105,7 +115,7 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar-days"></i> 
-                        Bury Date
+                        Internment
                       </label>
                       <input class="form-control" type="date" id="buryDate" name="buryDate" required />
                     </div>
@@ -120,6 +130,18 @@
                       <input class="form-control" type="text" id="cause" name="cause" placeholder="Enter cause of death" required />
                     </div>
                 </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label" for="typeText">
+                        <i class="fa-solid fa-clock"></i>
+                        Reserved Time
+                      </label>
+                      <input class="form-control" type="time" id="resTime" name="resTime" required>
+                    </div>
+                  </div>
               </div>
 
               <div class="row my-3">
@@ -268,4 +290,11 @@
     // Initial call to set the initial state based on the default selected payment method
     toggleInputFields();
   });
+</script>
+<script type="text/javascript">
+  function limitDigits(input) {
+  if (input.value.length > 11) {
+    input.value = input.value.substring(0, 11);
+  }
+}
 </script>

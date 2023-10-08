@@ -12,11 +12,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 <?php include "header.php"; ?>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="patron.php"><img class="logo" src="assets/icons/svf.png"> St. Vincent Ferrer</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="patron.php"><img class="logo" src="assets/icons/svf.png"> Tuy Parish Management System</a>
+
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -45,6 +45,13 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 Reservation
                             </a>
 
+                            <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
+                                Request Certificate
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Status</div>
+                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-table-list"></i></div>
                                 Reservation Status
@@ -61,10 +68,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 </nav>
                             </div>
 
-                            <div class="sb-sidenav-menu-heading">Credentials/Services</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
-                                Request Certificate
+                            <a class="nav-link tablinks" onclick="openCity(event, 'reqStat')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-column"></i></div>
+                                Request Status
                             </a>
 
                             <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
@@ -135,6 +141,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                         ?>
                 <main class="tabcontent" id="eventlist">
                     <?php include "patron/calendar.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqStat" style="display: none;">
+                    <?php include "patron/reqStat.php" ?>
                 </main>
 
                 <main class="tabcontent" id="status" style="display: none;">

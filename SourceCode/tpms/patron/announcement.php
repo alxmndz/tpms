@@ -18,7 +18,7 @@
               <div class="card-body">
                 <img src="announcement/<?php echo $row["announcePic"]; ?>" class="img-fluid mb-2" alt="Announcement Image">
                 <div class="card-title"><b><?php echo $row["title"]; ?></b></div>
-                <div class="card-text"><i class="fa-solid fa-calendar-days"></i> <?php echo $row["eventdate"]; ?></div>
+                <div class="card-text"><i class="fa-solid fa-calendar-days"></i> Posted on: <b><?php echo date("M d, Y", strtotime($row["postDate"])); ?></b></div>
                 <div class="card-text"><small class="text-muted"><?php echo $row["description"]; ?></small></div>
               </div>
             </div>

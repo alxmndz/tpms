@@ -8,7 +8,7 @@
         <table class="table table-striped" id="datatablesSimple7" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM wedding_tbl WHERE transactType = 'Walk-In'");
+            $result = mysqli_query($conn, "SELECT * FROM wedding_tbl WHERE transactType = 'Walk-In' ORDER BY id DESC;");
             // Create an array to store the requirements from the database
             $databaseRequirements = array();
             $dataFromDatabase = [
@@ -28,8 +28,8 @@
               <th>Groom</th>
               <th>Bride</th>
               <th>Transaction Date</th>
-              <th>Wedding Date</th>
-              <th>Wedding Time</th>
+              <th>Reserved Date</th>
+              <th>Reserved Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -70,7 +70,7 @@
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/updateWedd.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
@@ -206,7 +206,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Parents Marriage Contract" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
+            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Baptismal Certificate" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
             <label class="form-check-label" for="bapCert">Baptismal Certificate</label>
           </div>
         </div>
@@ -226,19 +226,19 @@
         </div>
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="marriageLicense" name="marriageLicense" value="Certificate of No Marriage" <?php echo ($row['marriageLicense'] === 'Marriage License') ? 'checked' : ''; ?>>
+            <input class="form-check-input" type="checkbox" id="marriageLicense" name="marriageLicense" value="Marriage License" <?php echo ($row['marriageLicense'] === 'Marriage License') ? 'checked' : ''; ?>>
             <label class="form-check-label" for="marriageLicense">Marriage License</label>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="RPic" name="RPic" value="Certificate of No Marriage" <?php echo ($row['RPic'] === '3R Size Pictures') ? 'checked' : ''; ?>>
+            <input class="form-check-input" type="checkbox" id="RPic" name="RPic" value="3R Size Pictures" <?php echo ($row['RPic'] === '3R Size Pictures') ? 'checked' : ''; ?>>
             <label class="form-check-label" for="RPic">3R Size Pictures</label>
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="MBPic" name="MBPic" value="Certificate of No Marriage" <?php echo ($row['MBPic'] === '2x2 Pictures for Marriage Bann') ? 'checked' : ''; ?>>
+            <input class="form-check-input" type="checkbox" id="MBPic" name="MBPic" value="2x2 Pictures for Marriage Bann" <?php echo ($row['MBPic'] === '2x2 Pictures for Marriage Bann') ? 'checked' : ''; ?>>
             <label class="form-check-label" for="MBPic">2x2 Pictures for Marriage Bann</label>
           </div>
         </div>

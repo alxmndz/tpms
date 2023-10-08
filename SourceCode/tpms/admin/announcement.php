@@ -1,5 +1,5 @@
-	<div class="container-fluid">
-		<div class="row" style="margin-top: 10px;">
+	<div class="container mx-auto">
+		<div class="row">
 			<!-- Left column for Announcements -->
 			<div class="col-md-6">
 				<div class="card">
@@ -12,7 +12,7 @@
 					        <table class="table table-light table-hover" id="datatablesSimple15">
 					          <?php
 					            include_once 'php/dbconn.php';
-					            $result = mysqli_query($conn, "SELECT * FROM announcement LIMIT 5");
+					            $result = mysqli_query($conn, "SELECT * FROM announcement ORDER BY id DESC");
 					            if (mysqli_num_rows($result) > 0) {
 					          ?>
 					          <thead>
@@ -30,11 +30,10 @@
 					            ?>
 					            <tr>
 					              <td><?php echo $row["title"]; ?></td>
-					              <td><?php echo date("M-d-y", strtotime($row["eventdate"])); ?></td>
+					              <td><?php echo date("M d, Y", strtotime($row["postDate"])); ?></td>
 					              <td><?php echo $row["description"]; ?></td>
 					              <td>
 					                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
-					                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#viewModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
 					                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
 					              </td>
 					            </tr>
@@ -49,7 +48,16 @@
 					            			</div>
 					            			<div class="modal-body">
 					            				<form action="php/announcement/update.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-																<div class="row my-3">
+																<div class="row">
+				                              <div class="col-md-6">
+				                              		<label class="form-label" for="typeText">
+										                          <b>Announcement Picture</b>
+										                      </label>
+				                                  <img id="announcePic" src="announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+				                                      alt="Announcement Picture" class="mx-auto mb-3">
+				                              </div>
+				                              <div class="col-md-6">
+				                                  <div class="row my-3">
 																				<input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
 										                          <div class="col-md-12">
 										                              <div class="form-outline">
@@ -61,18 +69,6 @@
 										                            </div>
 										                        </div>
 										                    </div>
-
-										                    <div class="row my-3">
-										                    	<div class="col-md-12">
-										                            <div class="form-outline">
-										                                <label class="form-label" for="typeText">
-										                                  <i class="fa-solid fa-calendar"></i>
-										                                    Event Day
-										                                </label>
-										                    			<input type="date" name="eventdate" class="form-control" value="<?php echo $row['eventdate']; ?>" required>
-										                            </div>
-										                        </div>
-										                    </div>
 											                    <div class="row my-3">
 										                          	<div class="col-md-12">
 										                              <div class="form-outline">
@@ -80,11 +76,13 @@
 										                                    <i class="fa-solid fa-pen-nib"></i>
 										                                    Event Description
 										                                  </label>
-										                                <input type="text" name="description" class="form-control" value="<?php echo $row['description']; ?>" required>
+										                                  <input type="text" name="description" class="form-control" value="<?php echo $row['description']; ?>" required>
 										                            	</div>
 										                        	</div>
 										                    	</div>
-															<button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
+				                              </div>
+				                          </div>
+															<button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>
 															</form>
 					            			</div>
 													 </div>
@@ -111,34 +109,6 @@
 				                </div>
 				              </div>
 				            </div>
-
-				            <!-- View Modal -->
-				            <div class="modal fade" id="viewModal4<?php echo $row['id']; ?>">
-				              <div class="modal-dialog modal-dialog-centered modal-md">
-				                  <div class="modal-content">
-				                      <div class="modal-header">
-				                          <h5 class="modal-title" id="viewModalLabel">View Data</h5>
-				                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				                      </div>
-				                      <div class="modal-body">
-				                          <div class="row">
-				                              <div class="col-md-6">
-				                                  <img id="announcePic" src="announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
-				                                      alt="Announcement Picture" class="mx-auto mb-3">
-				                              </div>
-				                              <div class="col-md-6">
-				                                  <p><strong>Title:</strong> <?php echo $row["title"]; ?></p>
-				                                  <p><strong>Date:</strong> <?php echo $row["eventdate"]; ?></p>
-				                                  <p><strong>Description:</strong> <?php echo $row["description"]; ?></p>
-				                              </div>
-				                          </div>
-				                      </div>
-				                      <div class="modal-footer">
-				                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				                      </div>
-				                  </div>
-				              </div>
-				          </div>
 
 				          <script>
 			            $(document).ready(function() {
@@ -185,18 +155,6 @@
 	                                    Announcement Title
 	                                  </label>
 	                                <input type="text" name="title" class="form-control" placeholder="Enter Event Title" required>
-	                            </div>
-	                        </div>
-	                    </div>
-
-	                    <div class="row my-3">
-	                    	<div class="col-md-12">
-	                            <div class="form-outline">
-	                                <label class="form-label" for="typeText">
-	                                  <i class="fa-solid fa-calendar"></i>
-	                                    Event Day
-	                                </label>
-	                    			<input type="date" name="eventdate" class="form-control" required>
 	                            </div>
 	                        </div>
 	                    </div>

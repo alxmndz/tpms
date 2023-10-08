@@ -17,6 +17,8 @@ if(isset($_POST['btn-save']))
   $lastsacrament = $_POST['lastsacrament'];
   $payMethod = $_POST['payMethod'];
   $transactType = $_POST['transactType'];
+  $reqBy = $_POST['reqBy'];
+  $resTime = $_POST['resTime'];
   $refNum = $_POST['refNum'];
   $amount = $_POST['amount'];
 
@@ -31,7 +33,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO funeralmass_tbl(name,fName,mName,widow,address,deathDate,age,buryDate,cause,sacrament,lastsacrament,amount,addedBy,receipt,payMethod,transactType,refNum,contact) VALUES('$name','$fName','$mName','$widow','$address','$deathDate','$age','$buryDate','$cause','$sacrament','$lastsacrament','$amount','$addedBy','$targetFilePath','$payMethod','$transactType','$refNum','$contact')";
+    $sql_query = "INSERT INTO funeralmass_tbl(name,fName,mName,widow,address,deathDate,age,buryDate,cause,sacrament,lastsacrament,amount,addedBy,receipt,payMethod,transactType,refNum,contact,reqBy,resTime) VALUES('$name','$fName','$mName','$widow','$address','$deathDate','$age','$buryDate','$cause','$sacrament','$lastsacrament','$amount','$addedBy','$targetFilePath','$payMethod','$transactType','$refNum','$contact','$reqBy','$resTime')";
     mysqli_query($conn,$sql_query);
   
     echo "<script type='text/javascript'>

@@ -3,9 +3,6 @@ include_once 'dbconn.php';
 if(isset($_POST['btn-save']))
 {
   $title = $_POST['title'];
-  $eventdate = $_POST['eventdate'];
-  $start = $_POST['start'];
-  $endtime = $_POST['endtime'];
   $description = $_POST['description'];
   $announcePic = $_FILES['announcePic'];  
 
@@ -19,7 +16,7 @@ if(isset($_POST['btn-save']))
   if(in_array($fileType, $allowTypes)){
     if(move_uploaded_file($_FILES["announcePic"]["tmp_name"], $targetFilePath)){
     echo $targetFilePath;
-    $sql_query = "INSERT INTO announcement(title,eventdate,start,endtime,description,announcePic) VALUES('$title','$eventdate','$start','$endtime','$description','$targetFilePath')";
+    $sql_query = "INSERT INTO announcement(title,description,announcePic) VALUES('$title','$description','$targetFilePath')";
 
     mysqli_query($conn,$sql_query);
   

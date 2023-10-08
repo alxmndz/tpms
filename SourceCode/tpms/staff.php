@@ -12,11 +12,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 <?php include "header.php"; ?>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="staff.php"><img class="logo" src="assets/icons/svf.png"> St. Vincent Ferrer</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="staff.php"><img class="logo" src="assets/icons/svf.png"> Tuy Parish Management System</a>
+
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -40,37 +40,53 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 Dashboard
                             </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'eventlist')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-days"></i></div>
                                 Create Event
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">Credentials/Services</div>
-                            <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
-                                Request Certificate
-                            </a>
-                            <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-certificate"></i></div>
-                                Certificate
+                            <a class="nav-link tablinks" onclick="openCity(event, 'reserve')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                                Reservation
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">Appointments</div>
+                            <div class="sb-sidenav-menu-heading">Status</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-plus"></i></div>
-                                Event Reservation
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-handshake"></i></div>
+                                Walk-In Reservation
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Baptismal</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Blessings</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Communion</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Confirmation</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Funeral</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Thanks Giving</a>
-                                    <a class="nav-link tablinks" onclick="openCity(event, '')" href="#">Wedding</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqBap')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqBless')" href="#">Blessings</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqCom')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqCon')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqFuneral')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqWedd')" href="#">Wedding</a>
                                 </nav>
                             </div>
+
+                            <!-- Online Reservation -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
+                                Online Reservation
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqBap1')" href="#">Baptismal</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqBless1')" href="#">Blessings</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqCom1')" href="#">Communion</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqCon1')" href="#">Confirmation</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqFuneral1')" href="#">Funeral</a>
+                                    <a class="nav-link tablinks" onclick="openCity(event, 'reqWedd1')" href="#">Wedding</a>
+                                </nav>
+                            </div>
+
+                            <a class="nav-link tablinks" onclick="openCity(event, 'request')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
+                                Request Certificate
+                            </a>
 
                             <div class="sb-sidenav-menu-heading">Announcements/Reports</div>
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
@@ -96,10 +112,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "staff/eventlist.php"; ?>
                 </main>
 
-                <main class="tabcontent" id="accounts" style="display: none;">
-                    
-                </main>
-
                 <main class="tabcontent" id="donation" style="display: none;">
                     
                 </main>
@@ -108,9 +120,77 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "staff/request.php"; ?>
                 </main>
 
+                <main class="tabcontent" id="reserve" style="display: none;">
+                    <?php include "staff/reserve.php"; ?>
+                </main>
+
                 <main class="tabcontent" id="announcement" style="display: none;">
                     <?php include "staff/announcement.php"; ?>
                 </main>
+
+                <!-- Walk In Reservation -->
+
+                <main class="tabcontent" id="reqBap" style="display: none;">
+                    <?php include "staff/reqBap.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqBless" style="display: none;">
+                    <?php include "staff/reqBless.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqCom" style="display: none;">
+                    <?php include "staff/reqCom.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqCon" style="display: none;">
+                    <?php include "staff/reqCon.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqFuneral" style="display: none;">
+                    <?php include "staff/reqFuneral.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqWedd" style="display: none;">
+                    <?php include "staff/reqWedd.php"; ?>
+                </main>
+                
+
+                <!-- Online Reservation -->
+
+                <main class="tabcontent" id="reqBap1" style="display: none;">
+                    <?php include "staff/reqBap1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqBless1" style="display: none;">
+                    <?php include "staff/reqBless1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqCom1" style="display: none;">
+                    <?php include "staff/reqCom1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqCon1" style="display: none;">
+                    <?php include "staff/reqCon1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqFuneral1" style="display: none;">
+                    <?php include "staff/reqFuneral1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqWedd1" style="display: none;">
+                    <?php include "staff/reqWedd1.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="reqCert" style="display: none;">
+                    <?php include "staff/reqCert.php"; ?>
+                </main>
+
+                <?php include "staff/bapModal.php" ?>
+                <?php include "staff/blessModal.php" ?>
+                <?php include "staff/commModal.php" ?>
+                <?php include "staff/conModal.php" ?>
+                <?php include "staff/funeralModal.php" ?>
+                <?php include "staff/weddModal.php" ?>
 
                     <?php 
                           } else {

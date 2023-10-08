@@ -6,7 +6,19 @@
     <div class="card-body">
 
       <form action="php/saveFuneral1.php" method="post" enctype="multipart/form-data" autocomplete="off">
-          
+              
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label" for="typeText">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Requested By (Firstname-Middle Initial-Surname)
+                      </label>
+                      <input class="form-control" type="text" id="reqBy" name="reqBy" placeholder="Enter the name of the person who requested" required />
+                    </div>
+                  </div>
+              </div>
+
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -15,7 +27,7 @@
                     <input value="gcash" name="payMethod" style="display: none;" id="payMethod">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
-                        Name
+                        Name (Firstname-Middle Initial-Surname)
                       </label>
                       <input class="form-control" type="text" id="name" name="name" placeholder="Enter the name of the deceased" required />
                     </div>
@@ -27,7 +39,7 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
-                        Father's name
+                        Father's name (Firstname-Middle Initial-Surname)
                       </label>
                       <input class="form-control" type="text" id="fName" name="fName" placeholder="Enter father's name" required />
                     </div>
@@ -37,7 +49,7 @@
                      <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-user"></i> 
-                          Mother's name
+                          Mother's name (Firstname-Middle Initial-Surname)
                         </label>
                       <input class="form-control" type="tel" id="mName" name="mName" placeholder="Enter mother's name" required />
                     </div>
@@ -119,6 +131,18 @@
                       <input class="form-control" type="text" id="cause" name="cause" placeholder="Enter cause of death" required />
                     </div>
                 </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label" for="typeText">
+                        <i class="fa-solid fa-clock"></i>
+                        Reserved Time
+                      </label>
+                      <input class="form-control" type="time" id="resTime" name="resTime" required>
+                    </div>
+                  </div>
               </div>
 
               <div class="row my-3">

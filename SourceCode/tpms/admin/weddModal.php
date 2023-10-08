@@ -39,7 +39,7 @@
                     <i class="fa-solid fa-phone"></i> 
                     Groom's Contact Number
                   </label>
-                  <input  class="form-control" type="number" name="gContact" placeholder="Enter the groom's contact number" required>
+                  <input  class="form-control" type="number" name="gContact" placeholder="Enter the groom's contact number" maxlength="11" onkeyup="limitDigits(this)" required>
                 </div>
               </div>
           </div>
@@ -51,7 +51,7 @@
                     <i class="fa-solid fa-phone"></i> 
                       Bride's Contact Number
                     </label>
-                  <input class="form-control" type="number" name="bContact" placeholder="Enter the bride's contact number" required />
+                  <input class="form-control" type="number" name="bContact" placeholder="Enter the bride's contact number" maxlength="11" onkeyup="limitDigits(this)" required />
                 </div>
               </div>
           </div>
@@ -324,4 +324,11 @@
     // Initial call to set the initial state based on the default selected payment method
     toggleInputFields();
   });
+</script>
+<script type="text/javascript">
+  function limitDigits(input) {
+  if (input.value.length > 11) {
+    input.value = input.value.substring(0, 11);
+  }
+}
 </script>

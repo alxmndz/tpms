@@ -8,7 +8,7 @@
         <table class="table table-striped" id="datatablesSimple10" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM communion_tbl WHERE transactType != 'Walk-In'");
+            $result = mysqli_query($conn, "SELECT * FROM communion_tbl WHERE transactType != 'Walk-In' ORDER BY id DESC;");
             // Create an array to store the requirements from the database
             $databaseRequirements = array();
             $dataFromDatabase = [
@@ -87,7 +87,7 @@
 
                     <!-- Right Side (Form) -->
                     <div class="col-md-6">
-                    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/updateCom1.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

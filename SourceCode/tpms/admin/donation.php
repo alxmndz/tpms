@@ -10,7 +10,7 @@
           <table class="table table-striped" style="margin-top: 10px;" id="datatablesSimple">
             <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM donation");
+            $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY id DESC");
             if (mysqli_num_rows($result) > 0) {
             ?>
               <thead>

@@ -1,16 +1,15 @@
 <div class="container px-4" style="margin-top: 20px;">
 	<div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex align-items-center">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
-                    Donation
+                    <span class="fs-5 fw-bold">Donation</span>
+                    <div class="ms-auto">
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donate"><i class="fa-solid fa-hand-holding-dollar"></i></button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <div class="d-flex mb-2">
-                            <input type="text" id="searchInput2" class="form-control form-control-sm me-2" placeholder="Type to search..." autocomplete="off">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donate"><i class="fa-solid fa-hand-holding-dollar"></i></button>
-                        </div>
-                        <table class="table table-striped">
+           <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped" id="datatablesSimple22">
                     <?php
                     include_once 'php/dbconn.php';
                     $result = mysqli_query($conn, "SELECT 
@@ -22,7 +21,7 @@
                                                 d.receipt
                                                 FROM donation d
                                                 LEFT JOIN users u ON u.id = d.addedBy
-                                                WHERE d.addedBy = '$id' LIMIT 5");
+                                                WHERE d.addedBy = '$id' ORDER BY id DESC");
                     if (mysqli_num_rows($result) > 0) {
                     ?>
                     <thead>
@@ -131,4 +130,11 @@
                 </div>
             </div>                  
 </div>
-
+<script>
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple22');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
+    }
+});
+</script>

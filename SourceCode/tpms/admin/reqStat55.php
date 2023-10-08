@@ -8,7 +8,7 @@
         <table class="table table-striped" id="datatablesSimple13" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM wedding_tbl WHERE transactType != 'Walk-In'");
+            $result = mysqli_query($conn, "SELECT * FROM wedding_tbl WHERE transactType != 'Walk-In' ORDER BY id DESC;");
             // Create an array to store the requirements from the database
             $databaseRequirements = array();
             $dataFromDatabase = [
@@ -28,8 +28,8 @@
               <th>Groom</th>
               <th>Bride</th>
               <th>Transaction Date</th>
-              <th>Wedding Date</th>
-              <th>Wedding Time</th>
+              <th>Reserved Date</th>
+              <th>Reserved Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -124,7 +124,7 @@
 
                     <!-- Right Side (Form) -->
                     <div class="col-md-6">
-                    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/updateWedd1.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

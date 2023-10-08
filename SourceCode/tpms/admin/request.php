@@ -12,7 +12,7 @@
         <table class="table table-striped" id="datatablesSimple14" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM request");
+            $result = mysqli_query($conn, "SELECT * FROM request ORDER BY id DESC");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -21,6 +21,7 @@
               <th>Contact</th>
               <th>Address</th>
               <th>Certificate Type</th>
+              <th>Transaction Date</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -35,6 +36,7 @@
               <td><?php echo $row["contact"]; ?></td>
               <td><?php echo $row["address"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update</button>
@@ -135,9 +137,11 @@
                                       <select class="form-select" id="status" name="status" required>
                                           <option value="Ready to pick up" <?php echo ($row['status'] === 'Ready to pick up') ? 'selected' : ''; ?>>Ready to pick up</option>
 
+                                          <option value="Picked Up" <?php echo ($row['status'] === 'Picked Up') ? 'selected' : ''; ?>>Picked Up</option>
+
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                                          <option value="Disapproved due to file mismatch" <?php echo ($row['status'] === 'Disapproved due to file mismatch') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
                                       </select>
                                   </div>
                               </div>

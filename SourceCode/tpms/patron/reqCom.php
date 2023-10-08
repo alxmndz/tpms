@@ -2,23 +2,10 @@
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
         <span class="fs-5 fw-bold">Communion Status</span>
-        <div class="ms-auto" style="margin-right: 5px;">
-          <label class="me-2">Show entries:</label>
-          <select id="entriesSelect4" class="form-select form-select-sm">
-            <option value="all">All</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-        </div>
       </div>
     <div class="card-body">
       <div class="table-responsive">
-        <div class="d-flex">
-          <input type="text" id="searchInput4" class="form-control form-control-sm me-2" placeholder="Type to search...">
-        </div>
-
-        <table class="table table-striped" id="dataTable" style="margin-top: 10px;">
+        <table class="table table-striped" id="datatablesSimple18" style="margin-top: 10px;">
           <?php
               include_once 'php/dbconn.php';
               $result = mysqli_query($conn, "SELECT
@@ -37,7 +24,7 @@
                           c.bapCert
                     FROM communion_tbl c
                     LEFT JOIN users u ON u.id = c.addedBy
-                    WHERE c.addedBy = '$id'");
+                    WHERE c.addedBy = '$id' ORDER BY c.id DESC");
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -45,8 +32,8 @@
               <th>Name</th>
               <th>Contact Number</th>
               <th>Transaction Date</th>
-              <th>Baptismal Date</th>
-              <th>Baptismal Time</th>
+              <th>Reserved Date</th>
+              <th>Reserved Time</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -64,7 +51,7 @@
               <td><?php echo date("h:i A", strtotime($row["comTime"])); ?></td>
               <td><?php echo $row["status"]; ?></td>
               <td>
-                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-eye"></i> Update
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-eye"></i> View
                 </button>
               </td>
             </tr>
@@ -209,45 +196,10 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput4");
-    const searchResults = document.getElementById("searchResults4").getElementsByTagName("tr");
-    const entriesSelect = document.getElementById("entriesSelect4");
-
-    // Add event listener to the search input
-    searchInput.addEventListener("input", function() {
-      applyFilter();
-    });
-
-    // Add event listener to the entries select
-    entriesSelect.addEventListener("change", function() {
-      applyFilter();
-    });
-
-    function applyFilter() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const entriesToShow = entriesSelect.value;
-
-      // Loop through the table rows and show/hide based on search term and entries select
-      let shownEntries = 0;
-      for (let i = 0; i < searchResults.length; i++) {
-        const row = searchResults[i];
-        const name = row.cells[0].innerText.toLowerCase();
-        const blessDate = row.cells[1].innerText.toLowerCase();
-        const blessTime = row.cells[2].innerText.toLowerCase();
-        const status = row.cells[3].innerText.toLowerCase();
-
-        if (name.includes(searchTerm) || bapDate.includes(searchTerm) || bapTime.includes(searchTerm) || status.includes(searchTerm)) {
-          row.style.display = "";
-          shownEntries++;
-          if (entriesToShow !== "all" && shownEntries > entriesToShow) {
-            row.style.display = "none";
-          }
-        } else {
-          row.style.display = "none";
-        }
-      }
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple18');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
     }
-
-  });
-  </script>
+});
+</script>

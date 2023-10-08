@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-phone"></i> 
                       Contact Number
                     </label>
-                  <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required />
+                  <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter your contact number" maxlength="11" onkeyup="limitDigits(this)" required />
                 </div>
             </div>
           </div>
@@ -232,4 +232,12 @@
     // Initial call to set the initial state based on the default selected payment method
     toggleInputFields();
   });
+</script>
+
+<script type="text/javascript">
+  function limitDigits(input) {
+  if (input.value.length > 11) {
+    input.value = input.value.substring(0, 11);
+  }
+}
 </script>
