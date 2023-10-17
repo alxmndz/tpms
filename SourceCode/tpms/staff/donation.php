@@ -10,7 +10,7 @@
                 </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-striped" style="margin-top: 10px;" id="datatablesSimple">
+          <table class="table table-striped" style="margin-top: 10px;" id="datatablesSimple38">
             <?php
             include_once 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM donation ORDER BY id DESC");
@@ -102,4 +102,11 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="js/datatables-simple-demo.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', event => {
+    const datatablesSimple = document.getElementById('datatablesSimple38');
+    if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
+    }
+});
+</script>

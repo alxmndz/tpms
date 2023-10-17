@@ -40,6 +40,8 @@
               </td>
             </tr>
 
+
+
   <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">

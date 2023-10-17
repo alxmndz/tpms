@@ -11,7 +11,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-                    <form class="" action="php/donate1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form class="" action="php/donate2.php" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="row my-3">
                           <div class="col-md-12">
                               <div class="form-outline">
@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="payMethod" value="gcash" id="gcashRadio11" checked>
+                    <input class="form-check-input" type="radio" name="payMethod" value="gcash" id="gcashRadio01" checked>
                     <label class="form-check-label" for="gcashRadio">
                       GCash Payment
                     </label>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="payMethod" value="face-to-face" id="faceToFaceRadio11">
+                    <input class="form-check-input" type="radio" name="payMethod" value="face-to-face" id="faceToFaceRadio01">
                     <label class="form-check-label" for="faceToFaceRadio">
                       Face-to-face Payment
                     </label>
@@ -69,11 +69,11 @@
                 <!-- ... (GCash details content) -->
                 <div class="mb-3">
                   <label for="amount" class="form-label">Amount</label>
-                  <input type="number" class="form-control" id="inputNumber11" name="amount" value="1000" readonly required>
+                  <input type="number" class="form-control" id="inputNumber01" name="amount" value="1000" readonly required>
                 </div>
                 <div class="mb-3">
                   <label for="receipt" class="form-label">Receipt Image</label>
-                  <input type="file" class="form-control" id="inputFile11" name="receipt" required>
+                  <input type="file" class="form-control" id="inputFile01" name="receipt" required>
                 </div>
               </div>
             </div>
@@ -92,25 +92,25 @@
 <script>
   // Add an event listener to the payment method radio buttons
   document.addEventListener('DOMContentLoaded', function () {
-    var gcashRadio11 = document.getElementById('gcashRadio11');
-    var faceToFaceRadio11 = document.getElementById('faceToFaceRadio11');
-    var inputNumber11 = document.getElementById('inputNumber11');
-    var inputFile11 = document.getElementById('inputFile11');
+    var gcashRadio01 = document.getElementById('gcashRadio01');
+    var faceToFaceRadio01 = document.getElementById('faceToFaceRadio01');
+    var inputNumber01 = document.getElementById('inputNumber01');
+    var inputFile01 = document.getElementById('inputFile01');
 
     // Function to enable or disable input fields based on the selected payment method
     function toggleInputFields() {
-      if (gcashRadio11.checked) {
-        inputNumber11.removeAttribute('disabled');
-        inputFile11.removeAttribute('disabled');
+      if (gcashRadio01.checked) {
+        inputNumber01.removeAttribute('disabled');
+        inputFile01.removeAttribute('disabled');
       } else {
-        inputNumber11.setAttribute('disabled', 'disabled');
-        inputFile11.setAttribute('disabled', 'disabled');
+        inputNumber01.setAttribute('disabled', 'disabled');
+        inputFile01.setAttribute('disabled', 'disabled');
       }
     }
 
     // Add event listeners for changes in the selected payment method
-    gcashRadio11.addEventListener('change', toggleInputFields);
-    faceToFaceRadio11.addEventListener('change', toggleInputFields);
+    gcashRadio01.addEventListener('change', toggleInputFields);
+    faceToFaceRadio01.addEventListener('change', toggleInputFields);
 
     // Initial call to set the initial state based on the default selected payment method
     toggleInputFields();

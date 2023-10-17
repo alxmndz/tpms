@@ -265,7 +265,7 @@
                         <div class="col-md-12">
                           <div class="form-outline">
                             <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                            <select class="form-select" id="status" name="status" required>
+                            <select class="form-select" id="status" name="status" required disabled>
                               <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                               <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>

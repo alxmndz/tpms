@@ -88,7 +88,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 Request Certificate
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">Announcements/Reports</div>
+                            <div class="sb-sidenav-menu-heading">OTHERS</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scroll"></i></div>
+                                Donation
+                            </a>
+
                             <a class="nav-link tablinks" onclick="openCity(event, 'announcement')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></div>
                                 Announcements
@@ -112,12 +117,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "staff/eventlist.php"; ?>
                 </main>
 
-                <main class="tabcontent" id="donation" style="display: none;">
-                    
-                </main>
-
                 <main class="tabcontent" id="request" style="display: none;">
                     <?php include "staff/request.php"; ?>
+                </main>
+
+                <main class="tabcontent" id="donation" style="display: none;">
+                    <?php include "staff/donation.php"; ?>
                 </main>
 
                 <main class="tabcontent" id="reserve" style="display: none;">
@@ -191,6 +196,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <?php include "staff/conModal.php" ?>
                 <?php include "staff/funeralModal.php" ?>
                 <?php include "staff/weddModal.php" ?>
+                <?php include "staff/saveDonation.php" ?>
 
                     <?php 
                           } else {

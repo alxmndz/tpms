@@ -89,6 +89,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Others</div>
+                            <a class="nav-link tablinks" onclick="openCity(event, 'cert')" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-print"></i></div>
+                                Generate Certificate
+                            </a>
                             <a class="nav-link tablinks" onclick="openCity(event, 'donation')" href="#">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                                 Donation

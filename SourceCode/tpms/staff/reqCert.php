@@ -4,7 +4,7 @@
 		<i class="fa-solid fa-circle-arrow-left" style="float: right; cursor: pointer;" onclick="openCity(event, 'request')"></i>
 	</div>
 	<div class="card-body">
-		<form class="" action="php/addreq1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+		<form class="" action="php/addreq2.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="form-group">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
                     <input type="hidden" name="transactType" class="form-control" value="Walk-In">
@@ -25,7 +25,7 @@
                                   <i class="fa-solid fa-phone"></i> 
                                     Contact Number
                                 </label>
-                    <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required>
+                    <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" maxlength="11" required>
                             </div>
                         </div>
                     </div>
@@ -46,19 +46,6 @@
                                     <option value="Confirmation Certificate">Confirmation Certificate</option>
                                     <option value="Death Certificate">Death Certificate</option>
                                     <option value="Marriage Certificate">Marriage Certificate</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col-md-12">
-                            <div class="form-outline">
-                              <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                <select class="form-select" id="status" name="status" required>
-                                    <option disabled selected>Select an option</option>
-                                    <option value="Ready to pick up">Ready to pick up</option>
-                                    <option value="In Process">In Process</option>
-                                    <option value="Disapproved, Because mismatch files">Disapproved due to file mismatch</option>
                                 </select>
                             </div>
                         </div>

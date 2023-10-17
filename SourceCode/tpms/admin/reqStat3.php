@@ -38,8 +38,75 @@
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
                   <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#printCert<?php echo $row['id']; ?>"> <i class="fa-solid fa-print"></i> Generate
+                </button>
               </td>
             </tr>
+
+
+
+            <div class="modal modal-lg fade" id="printCert<?php echo $row['id']; ?>">
+    <div class="modal-dialog">
+        <div class="modal-content" style="text-align: center;">
+
+            <!-- Modal Body -->
+            <div class="modal-body mb-5">
+              <div class="certificate" style="border: 2px solid black; padding: 100px;">
+                  <div class="certificate-title mt-2">
+                      <h4 style="font-family: 'Old English Five', sans-serif;">
+                        <img src="assets/img/nav-logo.png" alt="Logo" class="img-fluid rounded-circle" style="width: 40px;"> Confirmation Certificate<br>
+                        <span><b>Saint Vincent Ferrer Parish</b></span>
+                      </h4>
+                      
+                  </div>
+                  <div class="certificate-content" style="margin-top: 60px;">
+                    <p>This is to certify that</p>
+                      <h5 style="font-family: Lucida Handwriting, cursive; border-bottom: 3px solid gold; display: inline-block;padding-bottom: 7px;">
+                        <?php echo $row['name']; ?>
+                      </h5>
+                    <div class="mt-3">
+                      <p>Child of [father]</p>
+                      <p>and [mother]</p>
+                      <p>Born in [birthplace]</p>
+                      <p>on the [birthday]</p>
+                      <p>has received</p>
+                      <h4><b style="font-family: 'Old English Five', sans-serif;" class="mt-3">The Holy Sacrament of Baptism</b></h4>
+                      <p>according to the rite of the Roman Catholic Church</p>
+                      <div class="mt-5">
+                        <p>on the <b><?php echo date("M d, Y", strtotime($row["conDate"])); ?></b></p>
+                        <p>By the [priest]</p>
+                        <p>The sponsors being [sponsor1 name]</p>
+                        <p>and [sponsor2 name]</p>
+                      </div>
+                      <div class="mt-5">
+                        <p>As appears on the Baptismal Register No. <?php echo $row['id']; ?> of this church.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="baptized-by mt-5">
+                    <div class="left-side" style="float: left; margin-left: 15px;">
+                      <span>
+                        Date Issued: <?php echo date("M d, Y", strtotime($row["conDate"])); ?>
+                      </span>
+                      <br>
+                      <span>
+                        Purpose: For Record/Reference
+                      </span>
+                    </div>
+                    <div class="right-side" style="float: right; margin-right: 15px;">
+                      <span>
+                        Rev. Fr. Leo Edgardo Villostas
+                      </span><br>
+                      <p>Parish Priest</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+  </div>
 
             <div class="modal modal-lg fade" id="myModal1<?php echo $row['id']; ?>">
     <div class="modal-dialog">

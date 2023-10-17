@@ -31,7 +31,7 @@
 					            <tr>
 					              <td><?php echo $row["title"]; ?></td>
 					              <td><?php echo $row["description"]; ?></td>
-					              <td><td><?php echo date("M d, Y", strtotime($row["postDate"])); ?></td></td>
+					              <td><?php echo date("M d, Y", strtotime($row["postDate"])); ?></td>
 					              <td>
 					                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#upModal<?php echo $row['id']; ?>">
 												    <i class="fa-solid fa-pen-to-square"></i>
