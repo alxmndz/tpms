@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&family=Varela+Round&display=swap');
+
+*{
+	font-family: 'Varela Round', sans-serif;
+}
+
+.sidebar-nav ul li a {
+    font-size: 26px;
+    text-decoration: none;
+    display: block;
+    padding: 6px 10px;
+    transition: 0.5s;
+}
+.sidebar-nav ul li a:hover {
+    background-color: #eeeeee;
+    color: #148F77;
+    border-radius: 20px;
+}
+.sidebar-nav .offcanvas {
+    width: 300px;
+    border: none;
+}
+.sidebar-nav .offcanvas ul li a span {
+    font-size: 18px;
+    position: relative;
+    top: -4px;
+    transition: 0.5s;
+}
+.sidebar-nav .offcanvas.show ul li a:hover span {
+    padding-left: 10px;
+}
+.sidebar-nav .dropdown-toggle::after {
+    position: relative;
+    top: 3px;
+}
+
+.content {
+  min-height: 100vh;
+  margin-top: 60px;
+}
+
+@media (max-width: 575px) {
+  .content {
+    margin-top: 56px;
+  }
+}
+
+
+.sidebar,
+.navbar {
+  z-index: 0;
+}
+
+.content {
+  z-index: 1;
+}
+
+.custom-dropdown-item {
+    font-size: 5px;
+}
+
+
+.offcanvas {
+    background-color: #148F77;
+    color: white;
+}
+
+.sidebar-nav ul li a {
+    color: whitesmoke;
+}
+
+.navbar{
+    background-color: #148F77;
+    color: white;
+}
+
+.dropdown-menu{
+    background-color: #148F77;
+    color: white;
+}
+
+.dropdown-item:hover{
+    background-color: white;
+    color: #148F77;
+}
+
+.no-border{
+    border: none;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.usericon img {
+    width: 24px; /* Set the desired width */
+    height: 24px; /* Set the desired height */
+}
