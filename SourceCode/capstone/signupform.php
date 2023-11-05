@@ -20,7 +20,7 @@
         }
 
         .left-column {
-            background-image: url('assets/background.png');
+            background-image: url('assets/background1.png');
             background-size: cover;
             background-position: center;
             min-height: 100vh;
