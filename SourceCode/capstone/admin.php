@@ -98,10 +98,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                                 <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'onWedd')">Wedding</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'requests')"><i class="fas fa-folder-open"></i> <span class="item-text">Request Certificate</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'reqs')"><i class="fas fa-folder-open"></i> <span class="item-text">Request Certificate</span></a></li>
 
                                         <li class="mb-3 mt-3"><span>OTHERS</span></li>
-                                        <li><a href="#" class="tablinks"><i class="fas fa-people-carry-box"></i> <span class="item-text">Donation</span></a></li>
+                                        <li><a onclick="openCity(event, 'donate')" class="tablinks"><i class="fas fa-people-carry-box"></i> <span class="item-text">Donation</span></a></li>
                                         <li><a href="#" class="tablinks"><i class="fas fa-bell"></i> <span class="item-text">Announcement</span></a></li>
                                          <li><a href="#" class="tablinks"><i class="fas fa-chart-pie"></i> <span class="item-text">Reports</span></a></li>
                                     </ul>
@@ -116,7 +116,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <ul class="dropdown-menu dropdown-menu-end" style="background: #fff; color: #148F77;">
                                     <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Profile</button></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right"></i>Sign out</button></li>
+                                    <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right"></i><a href="php/logout.php"><h5>Sign out</h5></a></button></li>
                                 </ul>
                             </div>
 
@@ -193,12 +193,23 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       <?php include"admin/onWedd.php"; ?>
                     </div>
 
+                    <!-- Other Content -->
+
+                    <div class="tabcontent" id="reqs" style="display: none;">
+                      <?php include"admin/reqs.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="donate" style="display: none;">
+                      <?php include"admin/donate.php"; ?>
+                    </div>
+
                     <?php include "admin/bapModal.php" ?>
                     <?php include "admin/blessedModal.php" ?>
                     <?php include "admin/commModal.php" ?>
                     <?php include "admin/conModal.php" ?>
                     <?php include "admin/funeralModal.php" ?>
                     <?php include "admin/weddModal.php" ?>
+                    <?php include "admin/donateModal.php" ?>
                 </div>
             </div>
 
