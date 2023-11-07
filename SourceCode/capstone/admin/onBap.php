@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/datatables.min.css">
+<link rel="stylesheet" href="css/datatable.css">  
 <div class="container" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
@@ -5,7 +7,7 @@
       </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-striped" id="datatablesSimple8" style="margin-top: 10px;">
+        <table class="table table-striped" id="onBapTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM baptismal_tbl WHERE transactType != 'Walk-In' ORDER BY id DESC;");
@@ -206,3 +208,23 @@
     </div>
   </div>
 </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script>
+      $(document).ready(function(){
+    
+          var table = $('#onBapTable').DataTable({
+              
+              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
+              
+          });
+          
+          
+          table.buttons().container()
+          .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+      });
+    </script>
