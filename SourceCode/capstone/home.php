@@ -172,7 +172,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="assets/img/portfolio/communion.jpg" class="card-img-top img-fluid" alt="Communion">
+                                    <img src="assets/img/portfolio/comm.jpg" class="card-img-top img-fluid" alt="Communion">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
@@ -193,7 +193,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="assets/img/portfolio/kumpil.jpg" class="card-img-top img-fluid" alt="Confirmation">
+                                    <img src="assets/img/portfolio/confirmation.jpg" class="card-img-top img-fluid" alt="Confirmation">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
@@ -214,7 +214,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="assets/img/portfolio/funeral.jpg" class="card-img-top img-fluid" alt="Funeral">
+                                    <img src="assets/img/portfolio/funeral.png" class="card-img-top img-fluid" alt="Funeral">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
@@ -235,7 +235,7 @@
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="assets/img/portfolio/marriage.jpg" class="card-img-top img-fluid" alt="Wedding">
+                                    <img src="assets/img/portfolio/wedd.jpg" class="card-img-top img-fluid" alt="Wedding">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">

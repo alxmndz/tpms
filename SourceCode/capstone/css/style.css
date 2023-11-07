@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&family=Varela+Round&display=swap');
 
 *{
-	font-family: 'Varela Round', sans-serif;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .sidebar-nav ul li a {
@@ -37,11 +37,13 @@
 .content {
   min-height: 100vh;
   margin-top: 60px;
+  z-index: 1040;
 }
 
 @media (max-width: 575px) {
   .content {
     margin-top: 56px;
+    z-index: 1040;
   }
 }
 
@@ -49,6 +51,7 @@
 .sidebar,
 .navbar {
   z-index: 0;
+  z-index: 1042;
 }
 
 .content {
@@ -62,7 +65,17 @@
 
 .offcanvas {
     background-color: #148F77;
+    z-index: 1042;
     color: white;
+}
+
+.offcanvas-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1041;
+    width: 100vw;
+    height: 100vh;
 }
 
 .sidebar-nav ul li a {
@@ -95,4 +108,50 @@
 .usericon img {
     width: 24px; /* Set the desired width */
     height: 24px; /* Set the desired height */
+}
+
+.scrollable-container {
+  max-height: 400px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+
+/* Custom CSS for the event container */
+.event-container {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Style the event table */
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.event-table th,
+.event-table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+}
+
+.event-table thead {
+  background-color: #f8f9fa;
+}
+
+/* Style table rows */
+.event-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Hover effect for table rows */
+.event-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+.tablinks{
+    cursor: pointer;
 }

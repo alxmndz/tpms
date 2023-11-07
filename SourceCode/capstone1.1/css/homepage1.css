@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Poppins&family=Raleway&family=Varela+Round&display=swap');
+    body{
+    	background: #D7DBDD;
+    }
+    .offcanvas-content {
+      padding: 15px;
+    }
+    header.masthead {
+      padding-top: 10.5rem;
+      padding-bottom: 6rem;
+      text-align: center;
+      color: #fff;
+      height: 550px;
+      background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.20)), url(../assets/img/home-bg.jpg);
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: center center;
+      background-size: cover;
+    }
+    header.masthead .masthead-subheading {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      margin-bottom: 25px;
+      font-family: 'Varela Round', sans-serif;
+    }
+    header.masthead .masthead-heading {
+      font-size: 3.25rem;
+      font-weight: 700;
+      line-height: 3.25rem;
+      margin-bottom: 2rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .navbar-brand{
+    	font-family: 'Varela Round', sans-serif;
+    }
+    .section-heading{
+    	font-family: 'Poppins', sans-serif;
+    }
+    .section-subheading{
+    	font-family: 'Raleway', sans-serif;
+    }
+    .text-muted{
+    	font-family: 'Valera Round', sans-serif;
+    }
+
+    .carousel {
+            display: flex;
+            flex-direction: column; /* Stack cards vertically in portrait mode */
+            align-items: center;
+            text-align: center;
+        }
+
+        .card {
+            text-align: center;
+            padding: 10px;
+            background-color: #f0f0f0; /* Card background color */
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-description {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333; /* Text color */
+        }
+.team-member {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.team-member img {
+  width: 14rem;
+  height: 14rem;
+  border: 0.5rem solid rgba(0, 0, 0, 0.1);
+}
+.team-member h4, .team-member .h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.events-section{
+  background: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.20)), url(../assets/background2.png);
+  height: 300px;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+}

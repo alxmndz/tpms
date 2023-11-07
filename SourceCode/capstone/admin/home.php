@@ -1,9 +1,84 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="css/counter.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="css/calendars.css">
+<style type="text/css">
+  .card-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+        }
 
+        .icon-container {
+            background: #C0392B;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container1 {
+            background: #2E86C1;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container2 {
+            background: #F1C40F;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container3 {
+            background: #52BE80;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .counter-value {
+            font-size: 24px;
+        }
+.card{
+    align-content: center;
+}
+
+.icon-contain{
+ background: #52BE80;
+ width: 50px;
+ height: 50px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-left: 50px;
+ color: whitesmoke;
+}
+</style>
 <div class="container">
   <h5><i class="fas fa-house"></i> Home</h5>
+  <hr>
         <div class="row">
             <div class="col-md-3 mt-3">
                 <div class="card-counter">
@@ -152,7 +227,7 @@
                   <h4>Events List Schedule</h4>
                 </div>
                 <div class="table-container">
-                  <table class="event-table">
+                  <table class="event-table" id="eventListTbl">
                     <thead>
                       <tr>
                         <th>Event Name</th>
@@ -212,71 +287,112 @@
 
 <div class="container mt-2">
     <div class="card">
-      <div class="card-header">
-        <h5>Event Reservations</h5>
-      </div>
-      <div class="card-body">
-        <div class="row justify-content-center mt-2">
-        <!-- Six Bootstrap cards -->
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_1.jpg" class="card-img-top" alt="Image 1">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 1</h5>
-                      <p class="card-text">Description for Card 1 goes here.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_2.jpg" class="card-img-top" alt="Image 2">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 2</h5>
-                      <p class="card-text">Description for Card 2 goes here.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_3.jpg" class="card-img-top" alt="Image 3">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 3</h5>
-                      <p class="card-text">Description for Card 3 goes here.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_4.jpg" class="card-img-top" alt="Image 4">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 4</h5>
-                      <p class="card-text">Description for Card 4 goes here.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_5.jpg" class="card-img-top" alt="Image 5">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 5</h5>
-                      <p class="card-text">Description for Card 5 goes here.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card">
-                  <img src="your_image_url_6.jpg" class="card-img-top" alt="Image 6">
-                  <div class="card-body">
-                      <h5 class="card-title">Card 6</h5>
-                      <p class="card-text">Description for Card 6 goes here.</p>
-                  </div>
-              </div>
-          </div>
+        <div class="card-header">
+            <h5>Total Event Reservations</h5>
         </div>
-      </div>
+        <div class="card-body">
+            <div class="row justify-content-center mt-2">
+                <!-- Six Bootstrap cards -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #17A589;">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 1</h5>
+                            <p class="card-text">Baptismal</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #2E86C1;">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 2</h5>
+                            <p class="card-text">Blessing</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #A569BD;">
+                            <i class="fas fa-book-bible"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 1</h5>
+                            <p class="card-text">Communion</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #EC7063;">
+                            <i class="fas fa-person-praying"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 2</h5>
+                            <p class="card-text">Confirmation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #28B463;">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 1</h5>
+                            <p class="card-text">Funeral</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="icon-contain mt-3" style="background: #F1C40F;">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card 2</h5>
+                            <p class="card-text">Wedding</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script>
+      $(document).ready(function(){
+    
+          var table = $('#eventListTbl').DataTable({
+              
+              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
+              
+          });
+          
+          
+          table.buttons().container()
+          .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+      });
+    </script>
 
 
     <script>
@@ -328,6 +444,7 @@
 
     setInterval(updateCurrentDate, 1000);
     </script>
+
 
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
