@@ -10,9 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" href="css/datatables.min.css">
-  <link rel="stylesheet" href="css/datatable.css">
-
   <style>
         .status-badge {
             display: flex;
@@ -152,50 +149,25 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     </div>
 
                     <div class="tabcontent" id="walkBless" style="display: none;">
-                      <?php include"admin/walkBless.php"; ?>
+                      
                     </div>
 
                     <div class="tabcontent" id="walkComm" style="display: none;">
-                      <?php include"admin/walkComm.php"; ?>
+                      
                     </div>
 
                     <div class="tabcontent" id="walkCon" style="display: none;">
-                      <?php include"admin/walkCon.php"; ?>
+                      
                     </div>
 
                     <div class="tabcontent" id="walkFun" style="display: none;">
-                      <?php include"admin/walkFun.php"; ?>
+                      
                     </div>
 
                     <div class="tabcontent" id="walkWedd" style="display: none;">
-                      <?php include"admin/walkWedd.php"; ?>
+                      
                     </div>
 
-
-                    <!-- Online Reservation -->
-                    <div class="tabcontent" id="onBap" style="display: none;">
-                      <?php include"admin/walkBap.php"; ?>
-                    </div>
-
-                    <div class="tabcontent" id="onBless" style="display: none;">
-                      <?php include"admin/walkBless.php"; ?>
-                    </div>
-
-                    <div class="tabcontent" id="onComm" style="display: none;">
-                      <?php include"admin/walkComm.php"; ?>
-                    </div>
-
-                    <div class="tabcontent" id="onCon" style="display: none;">
-                      <?php include"admin/walkCon.php"; ?>
-                    </div>
-
-                    <div class="tabcontent" id="onFun" style="display: none;">
-                      <?php include"admin/walkFun.php"; ?>
-                    </div>
-
-                    <div class="tabcontent" id="onWedd" style="display: none;">
-                      <?php include"admin/walkWedd.php"; ?>
-                    </div>
 
                     <?php include "admin/bapModal.php" ?>
                     <?php include "admin/blessedModal.php" ?>
