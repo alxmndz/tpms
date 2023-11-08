@@ -1,0 +1,175 @@
+  <link rel="stylesheet" href="css/datatables.min.css">
+  <link rel="stylesheet" href="css/datatable.css">  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <div class="container-fluid" style="margin-top: 10px;">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="fs-5 fw-bold">Announcement</span>
+                    <div class="ms-auto">
+                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#announceModal">
+                        <i class="fa-solid fa-pen-to-square"></i> Add Announcement
+                      </button>
+                    </div>
+                </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped" style="margin-top: 10px;" id="announceTbl">
+            <?php
+                      include_once 'php/dbconn.php';
+                      $result = mysqli_query($conn, "SELECT * FROM announcement ORDER BY id DESC");
+                      if (mysqli_num_rows($result) > 0) {
+                    ?>
+                    <thead>
+                      <tr>
+                        <th>Announcement Title</th>
+                        <th>Date Posted</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="searchResults3">
+                      <?php
+                        $i = 0;
+                        while ($row = mysqli_fetch_array($result)) {
+                      ?>
+                      <tr>
+                        <td><?php echo $row["title"]; ?></td>
+                        <td><?php echo date("M d, Y", strtotime($row["postDate"])); ?></td>
+                        <td><?php echo $row["description"]; ?></td>
+                        <td>
+                          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                      </tr>
+
+                      <!-- Update Modal -->
+                      <div class="modal fade" id="updateModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5><i class="fa-solid fa-bell"></i> Update Announcement</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="php/announcement/update.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                                <div class="row">
+                                      <div class="col-md-6">
+                                          <label class="form-label" for="typeText">
+                                              <b>Announcement Picture</b>
+                                          </label>
+                                          <img id="announcePic" src="announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+                                              alt="Announcement Picture" class="mx-auto mb-3">
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="row my-3">
+                                                <div class="col-md-12">
+                                                  <div class="form-outline">
+                                                      <label class="form-label" for="typeText">
+                                                        <i class="fa-solid fa-image"></i>
+                                                        Event Image
+                                                      </label>
+                                                      <input type="file" name="announcePic" class="form-control" value="<?php echo $row['announcePic']; ?>" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row my-3">
+                                            <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                                              <div class="col-md-12">
+                                                  <div class="form-outline">
+                                                      <label class="form-label" for="typeText">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                        Announcement Title
+                                                      </label>
+                                                    <input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="row my-3">
+                                                <div class="col-md-12">
+                                                  <div class="form-outline">
+                                                      <label class="form-label" for="typeText">
+                                                        <i class="fa-solid fa-pen-nib"></i>
+                                                        Event Description
+                                                      </label>
+                                                      <input type="text" name="description" class="form-control" value="<?php echo $row['description']; ?>" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>
+                              </form>
+                            </div>
+                           </div>
+                        </div>
+                      </div>
+
+                      <!-- Delete Modal -->
+                      <div class="modal fade" id="deleteModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title"><i class="fa-solid fa-trash" style="color: red;"></i> Delete Announcement</h5>
+                          </div>
+                          <form id="deleteForm" action="php/announcement/delete.php" autocomplete="off" method="POST">
+                            <div class="modal-body">
+                              <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                              <span>Do you really want to delete the announcement for <b><?php echo $row['title']; ?></b>?</span>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                  <script>
+                  $(document).ready(function() {
+                      $('[id^="viewModal"]').on('shown.bs.modal', function() {
+                          var modalId = $(this).attr('id');
+                          var rowId = modalId.replace('viewModal', '');
+                          var announceSrc = 'announcement/<?php echo $row["announcePic"]; ?>'; 
+                          
+                          $('#receiptImage' + rowId).attr('src', announceSrc);
+                      });
+                  });
+                  </script>
+
+                      <?php
+                          $i++;
+                        }
+                      ?>
+                      <?php
+                        } else {
+                          echo "No result found";
+                        }
+                      ?>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script>
+      $(document).ready(function(){
+    
+          var table = $('#announceTbl').DataTable({
+              
+              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
+              
+          });
+          
+          
+          table.buttons().container()
+          .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+      });
+    </script>

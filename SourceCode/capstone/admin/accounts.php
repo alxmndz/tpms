@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/datatables.min.css">
+<link rel="stylesheet" href="css/datatable.css">    
 <div class="container-fluid">
   <div class="card">
     <div class="card-header d-flex align-items-center">
@@ -6,7 +8,7 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-light table-hover table-responsive" id="accountsTable">
+        <table class="table table-light table-hover table-responsive" id="accTbl">
           <?php
             include 'php/dbconn.php';
             $result = mysqli_query($conn, "SELECT * FROM users ORDER BY name");
@@ -128,3 +130,22 @@
 </div>
 
 
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/datatables.min.js"></script>
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script>
+      $(document).ready(function(){
+    
+          var table = $('#accTbl').DataTable({
+              
+              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
+              
+          });
+          
+          
+          table.buttons().container()
+          .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+      });
+    </script>

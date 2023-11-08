@@ -4,10 +4,10 @@
   <div class="container-fluid" style="margin-top: 10px;">
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <i class="fa-solid fa-peso-sign"></i>
                     <span class="fs-5 fw-bold">Donation</span>
                     <div class="ms-auto">
-                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donation"><i class="fa-solid fa-hand-holding-dollar"></i></button>
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#donation"><i class="fa-solid fa-peso-sign"></i> Add Donation</button>
                     </div>
                 </div>
       <div class="card-body">

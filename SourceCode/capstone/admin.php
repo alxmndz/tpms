@@ -102,8 +102,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                                         <li class="mb-3 mt-3"><span>OTHERS</span></li>
                                         <li><a onclick="openCity(event, 'donate')" class="tablinks"><i class="fas fa-people-carry-box"></i> <span class="item-text">Donation</span></a></li>
-                                        <li><a href="#" class="tablinks"><i class="fas fa-bell"></i> <span class="item-text">Announcement</span></a></li>
-                                         <li><a href="#" class="tablinks"><i class="fas fa-chart-pie"></i> <span class="item-text">Reports</span></a></li>
+                                        <li><a onclick="openCity(event, 'announce')" class="tablinks"><i class="fas fa-bell"></i> <span class="item-text">Announcement</span></a></li>
+                                         <li><a onclick="openCity(event, 'report')" class="tablinks"><i class="fas fa-chart-pie"></i> <span class="item-text">Reports</span></a></li>
                                     </ul>
                                 </div>
                               </div>
@@ -203,6 +203,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       <?php include"admin/donate.php"; ?>
                     </div>
 
+                    <div class="tabcontent" id="announce" style="display: none;">
+                      <?php include"admin/announce.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="report" style="display: ;">
+                      <?php include"admin/report.php"; ?>
+                    </div>
+
                     <?php include "admin/bapModal.php" ?>
                     <?php include "admin/blessedModal.php" ?>
                     <?php include "admin/commModal.php" ?>
@@ -210,6 +218,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/funeralModal.php" ?>
                     <?php include "admin/weddModal.php" ?>
                     <?php include "admin/donateModal.php" ?>
+                    <?php include "admin/announceModal.php" ?>
                 </div>
             </div>
 
