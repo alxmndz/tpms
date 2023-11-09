@@ -299,7 +299,19 @@
                             <i class="fas fa-baby"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 1</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM baptismal_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Baptismal</p>
                         </div>
                     </div>
@@ -312,7 +324,19 @@
                             <i class="fas fa-cross"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 2</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM blessing_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Blessing</p>
                         </div>
                     </div>
@@ -325,7 +349,19 @@
                             <i class="fas fa-book-bible"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 1</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM communion_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Communion</p>
                         </div>
                     </div>
@@ -338,7 +374,19 @@
                             <i class="fas fa-person-praying"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 2</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM confirmation_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Confirmation</p>
                         </div>
                     </div>
@@ -350,7 +398,19 @@
                             <i class="fas fa-hands-praying"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 1</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM funeralmass_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Funeral</p>
                         </div>
                     </div>
@@ -362,7 +422,19 @@
                             <i class="fas fa-ring"></i>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title">Card 2</h5>
+                            <h5 class="card-title">
+                                <?php
+                                                    $conn = new mysqli("localhost","root","","tpms");
+                                                      if ($conn->connect_error) {
+                                                        die("Connection failed : " . $conn->connect_error);
+                                                      }
+                                                      $sql = "SELECT COUNT(*) FROM wedding_tbl";
+                                                      $result = $conn->query($sql);
+                                                      while($row = mysqli_fetch_array($result)){
+                                                      echo $row['COUNT(*)'];
+                                                    }
+                                                  ?>
+                            </h5>
                             <p class="card-text">Wedding</p>
                         </div>
                     </div>

@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <title>Offcanvas Example</title>
-  <link rel="stylesheet" type="text/css" href="css/homepage1.css">
+  <link rel="icon" type="image/x-icon" href="assets/icons/svf.png">
+  <title>Tuy Parish Management System</title>
+  <link rel="stylesheet" type="text/css" href="css/homepage.css">
 </head>
 <body>
 
@@ -117,151 +118,71 @@
         </section>
 
 <!-- Third Section -->
-<section class="mt-2 events-section page-section" id="events">
-  <div class="text-center">
-     <h1 class="section-heading text-uppercase" style="color: white;"><b>EVENTS</b></h1>
-  </div>
-  <div id="carouselExampleControls" class="carousel slide mb-5" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
+<section class="page-section bg-light events" id="events">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
+                <div class="text-center">
+                    <h1 class="section-heading text-uppercase mb-3"><b>Events</b></h1>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4 mt-3">
                         <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/baptize.jpg" class="card-img-top img-fluid" alt="Baptismal">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Baptismal</h5>
-                                        <p class="card-text">Baptism is a vital spiritual initiation symbolizing forgiveness, cleansing from sin (especially in infant baptism), and a commitment to follow Christ, marking the start of one's Christian journey.</p>
-                                    </div>
-                                </div>
+                            <img src="assets/img/portfolio/baptize.jpg" class="card-img-top" alt="Baptismal">
+                            <div class="card-body">
+                              <h5 class="card-title">Baptismal</h5>
+                              <p class="card-text">Baptism is a vital spiritual initiation symbolizing forgiveness, cleansing from sin (especially in infant baptism), and a commitment to follow Christ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="assets/img/portfolio/bless.jpg" class="card-img-top img-fluid" alt="Blessing">
+                            <div class="card-body">
+                              <h5 class="card-title">Blessing</h5>
+                              <p class="card-text">Blessing is a sacred practice of seeking divine favor, protection, and grace for people, objects, places, and events.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="assets/img/portfolio/comm.jpg" class="card-img-top img-fluid" alt="Communion">
+                            <div class="card-body">
+                              <h5 class="card-title">Communion</h5>
+                              <p class="card-text">Communion is a key Christian practice symbolizing faith in Christ's sacrifice, forgiveness, and spiritual connection with God and fellow believers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="assets/img/portfolio/confirmation.jpg" class="card-img-top img-fluid" alt="Confirmation">
+                            <div class="card-body">
+                              <h5 class="card-title">Confirmation</h5>
+                              <p class="card-text">Confirmation, after baptism and First Communion, empowers candidates with the Holy Spirit,marking a significant step in their faith journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="assets/img/portfolio/funeral.png" class="card-img-top img-fluid" alt="Funeral">
+                            <div class="card-body">
+                                 <h5 class="card-title">Funeral</h5>
+                                 <p class="card-text">A funeral is a gathering to remember and find support in times of loss, where friends and family honor and pay respects to the departed.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="assets/img/portfolio/wedd.jpg" class="card-img-top img-fluid" alt="Wedding">
+                            <div class="card-body">
+                              <h5 class="card-title">Wedding</h5>
+                              <p class="card-text">Marriage, a universal institution, is a recognized union between two people based on love, commitment, and mutual consent</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/blessing.jpg" class="card-img-top img-fluid" alt="Blessing">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Blessing</h5>
-                                        <p class="card-text">Blessing is a sacred practice of seeking divine favor, protection, and grace for people, objects, places, and events.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/comm.jpg" class="card-img-top img-fluid" alt="Communion">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Communion</h5>
-                                        <p class="card-text">Communion is a key Christian practice symbolizing faith in Christ's sacrifice, forgiveness, and spiritual connection with God and fellow believers.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/confirmation.jpg" class="card-img-top img-fluid" alt="Confirmation">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Confirmation</h5>
-                                        <p class="card-text">Confirmation, after baptism and First Communion, empowers candidates with the Holy Spirit to be active church members, marking a significant step in their faith journey.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/funeral.png" class="card-img-top img-fluid" alt="Funeral">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Funeral</h5>
-                                        <p class="card-text">A funeral is a gathering to remember and find support in times of loss, where friends and family honor and pay respects to the departed.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="assets/img/portfolio/wedd.jpg" class="card-img-top img-fluid" alt="Wedding">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Wedding</h5>
-                                        <p class="card-text">Marriage, a universal institution, is a recognized union between two people based on love, commitment, and mutual consent, both legally and socially.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Repeat the same structure for other carousel items -->
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 </section>
+
 
       <section class="page-section bg-light" id="team">
             <div class="container">

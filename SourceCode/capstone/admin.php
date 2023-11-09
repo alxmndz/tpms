@@ -69,7 +69,18 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-house"></i> <span class="item-text">Home</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Reservation</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'accounts')"><i class="fas fa-users"></i> <span class="item-text">Accounts</span></a></li>
-                                        <li><a href="#" class="tablinks"><i class="fas fa-print"></i> <span class="item-text">Generate Certificate</span></a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                <i class="fas fa-print"></i> <span class="item-text">Generate Certificate</span>
+                                            </a>
+                                            <ul class="dropdown-menu no-border">
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certBap')">Baptismal</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certComm')">Communion</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certCon')">Confirmation</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certFun')">Funeral</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certWedd')">Wedding</a></li>
+                                            </ul>
+                                        </li>
 
                                         <li class="mb-3 mt-3"><span>STATUS</span></li>
                                         <li class="dropdown">
@@ -211,6 +222,29 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       <?php include"admin/report.php"; ?>
                     </div>
 
+
+                    <!-- certificate -->
+
+                    <div class="tabcontent" id="certBap" style="display: none;">
+                      <?php include"admin/certBap.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="certComm" style="display: none;">
+                      <?php include"admin/certComm.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="certCon" style="display: none;">
+                      <?php include"admin/certCon.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="certFun" style="display: none;">
+                      <?php include"admin/certFun.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="certWedd" style="display: none;">
+                      <?php include"admin/certWedd.php"; ?>
+                    </div>
+
                     <?php include "admin/bapModal.php" ?>
                     <?php include "admin/blessedModal.php" ?>
                     <?php include "admin/commModal.php" ?>
@@ -219,6 +253,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/weddModal.php" ?>
                     <?php include "admin/donateModal.php" ?>
                     <?php include "admin/announceModal.php" ?>
+
+
+                    <?php include "admin/genBap.php" ?>
                 </div>
             </div>
 
