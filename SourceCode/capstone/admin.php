@@ -207,7 +207,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       <?php include"admin/announce.php"; ?>
                     </div>
 
-                    <div class="tabcontent" id="report" style="display: ;">
+                    <div class="tabcontent" id="report" style="display: none;">
                       <?php include"admin/report.php"; ?>
                     </div>
 
