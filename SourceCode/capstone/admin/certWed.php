@@ -1,26 +1,25 @@
-  <link rel="stylesheet" href="css/datatables.min.css">
-  <link rel="stylesheet" href="css/datatable.css">  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <div class="container-fluid" style="margin-top: 10px;">
-    <div class="card mb-4">
-      <div class="card-header d-flex align-items-center">
-                    <i class="fa-solid fa-print"></i>
-                    <span class="fs-5 fw-bold">Communion Certificate Status</span>
-                    <div class="ms-auto">
-                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#genComm"><i class="fa-solid fa-pen-to-square"></i> Generate</button>
-                    </div>
-                </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-striped" style="margin-top: 10px;" id="certCommTbl">
-            <?php
+<link rel="stylesheet" href="css/datatables.min.css">
+<link rel="stylesheet" href="css/datatable.css"> 
+<div class="container" style="margin-top: 10px;">
+  <div class="card mb-4">
+    <div class="card-header d-flex align-items-center">
+        <span class="fs-5 fw-bold">Marriage Certificate Status</span>
+        <div class="ms-auto">
+          <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#genWedd"><i class="fa-solid fa-pen-to-square"></i> Generate</button>
+        </div>
+      </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped" id="s" style="margin-top: 10px;">
+          <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM certcomm ORDER BY id DESC");
+            $result = mysqli_query($conn, "SELECT * FROM certmarriage ORDER BY id DESC");
             if (mysqli_num_rows($result) > 0) {
             ?>
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Groom</th>
+                  <th>Bride</th>
                   <th>Date</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -32,7 +31,8 @@
                 while ($row = mysqli_fetch_array($result)) {
                 ?>
                   <tr>
-                    <td><?php echo $row["name"]; ?></td>
+                    <td><?php echo $row["groom"]; ?></td>
+                    <td><?php echo $row["bride"]; ?></td>
                     <td><?php echo date("M d, Y", strtotime($row["generatedDate"])); ?></td>
                     <td>
                       <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
@@ -56,11 +56,11 @@
                 }
               ?>
               </tbody>
-          </table>
-        </div>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/datatables.min.js"></script>
@@ -69,7 +69,7 @@
     <script>
       $(document).ready(function(){
     
-          var table = $('#certCommTbl').DataTable({
+          var table = $('#s').DataTable({
               
               buttons:['copy', 'csv', 'excel', 'pdf', 'print']
               

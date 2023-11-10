@@ -132,14 +132,17 @@
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
-                                        <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                                      <label class="form-label" for="typeText">Payment method</label>
+                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
 
-                                          <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
-
-                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
-                                      </select>
+                           <div class="row my-3">
+                              <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Reference Number</label>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -181,18 +184,17 @@
     </div>
   </div>
 </div>
-                        
                           <div class="row my-3">
-                            <div class="col-md-6">
+                              <div class="col-md-12">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Payment method</label>
-                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText">Reference Number</label>
-                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                                      <select class="form-select" id="status" name="status" required>
+                                        <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+
+                                          <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+
+                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                                      </select>
                                   </div>
                               </div>
                           </div>

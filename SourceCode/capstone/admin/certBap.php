@@ -5,7 +5,7 @@
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center">
                     <i class="fa-solid fa-print"></i>
-                    <span class="fs-5 fw-bold">Baptismal Certificate</span>
+                    <span class="fs-5 fw-bold">Baptismal Certificate Status</span>
                     <div class="ms-auto">
                       <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#genBap"><i class="fa-solid fa-pen-to-square"></i> Generate</button>
                     </div>

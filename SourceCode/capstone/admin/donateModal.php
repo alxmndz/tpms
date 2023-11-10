@@ -11,7 +11,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-                    <form class="" action="php/donate1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form class="" action="php/donateAdmin.php" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="row my-3">
                           <div class="col-md-12">
                               <div class="form-outline">
@@ -69,11 +69,11 @@
                 <!-- ... (GCash details content) -->
                 <div class="mb-3">
                   <label for="amount" class="form-label">Amount</label>
-                  <input type="number" class="form-control" id="inputNumber11" name="amount" value="1000" readonly required>
+                  <input type="number" class="form-control" id="donateAmount" name="amount" placeholder="Enter amount of donation" required>
                 </div>
                 <div class="mb-3">
                   <label for="receipt" class="form-label">Receipt Image</label>
-                  <input type="file" class="form-control" id="inputFile11" name="receipt" required>
+                  <input type="file" class="form-control" id="donateReceipt" name="receipt" required>
                 </div>
               </div>
             </div>
@@ -94,17 +94,17 @@
   document.addEventListener('DOMContentLoaded', function () {
     var gcashRadio11 = document.getElementById('gcashRadio11');
     var faceToFaceRadio11 = document.getElementById('faceToFaceRadio11');
-    var inputNumber11 = document.getElementById('inputNumber11');
-    var inputFile11 = document.getElementById('inputFile11');
+    var donateAmount = document.getElementById('donateAmount');
+    var donateReceipt = document.getElementById('donateReceipt');
 
     // Function to enable or disable input fields based on the selected payment method
     function toggleInputFields() {
       if (gcashRadio11.checked) {
-        inputNumber11.removeAttribute('disabled');
-        inputFile11.removeAttribute('disabled');
+        donateAmount.removeAttribute('disabled');
+        donateReceipt.removeAttribute('disabled');
       } else {
-        inputNumber11.setAttribute('disabled', 'disabled');
-        inputFile11.setAttribute('disabled', 'disabled');
+        donateAmount.setAttribute('disabled', 'disabled');
+        donateReceipt.setAttribute('disabled', 'disabled');
       }
     }
 

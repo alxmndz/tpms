@@ -9,6 +9,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Include SweetAlert CSS -->
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <style>
         .status-badge {
@@ -74,11 +80,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                                 <i class="fas fa-print"></i> <span class="item-text">Generate Certificate</span>
                                             </a>
                                             <ul class="dropdown-menu no-border">
-                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certBap')">Baptismal</a></li>
-                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certComm')">Communion</a></li>
-                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certCon')">Confirmation</a></li>
-                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certFun')">Funeral</a></li>
-                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certWedd')">Wedding</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certBap')">Baptismal Certificate</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certComm')">Communion Certificate</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certCon')">Confirmation Certificate</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certFun')">Death Certificate</a></li>
+                                                <li><a class="dropdown-item custom-dropdown-item tablinks" onclick="openCity(event, 'certWedd')">Marriage Certificate</a></li>
                                             </ul>
                                         </li>
 
@@ -242,7 +248,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     </div>
 
                     <div class="tabcontent" id="certWedd" style="display: none;">
-                      <?php include"admin/certWedd.php"; ?>
+                      <?php include"admin/certWed.php"; ?>
                     </div>
 
                     <?php include "admin/bapModal.php" ?>
@@ -255,7 +261,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "admin/announceModal.php" ?>
 
 
-                    <?php include "admin/genBap.php" ?>
+                    <?php include "admin/genCert.php" ?>
                 </div>
             </div>
 
