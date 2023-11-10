@@ -5,10 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <title>Reporting</title>
 </head>
 <body>
 
+
+<!-- WalkIn reserve -->
 <?php 
   $con = new mysqli('localhost', 'root', '', 'test');
 
@@ -44,6 +48,8 @@
 
 ?>
 
+
+<!-- online reserve -->
 <?php 
   $con = new mysqli('localhost', 'root', '', 'test');
 
@@ -79,6 +85,9 @@
 
 ?>
 
+
+
+<!-- reserve -->
 <?php 
   $con = new mysqli('localhost', 'root', '', 'test');
 
@@ -104,6 +113,8 @@
 
 ?>
 
+
+<!-- month -->
 <?php 
   $con = new mysqli('localhost','root','','tpms');
   $query = $con->query("
@@ -143,7 +154,13 @@
     <div class="col-md-6 mt-3">
       <div class="card">
         <div class="card-body">
-          <canvas id="chart"></canvas>
+          <div>
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
+              <div id="barFilter" class="collapse">
+                <input id="barFilterDate" class="form-control" type="text" placeholder="Select Date">
+             </div>
+           </div>
+          <canvas id="barGraph"></canvas>
         </div>
       </div>
     </div>
@@ -200,7 +217,7 @@
   };
 
   const chart = new Chart(
-    document.getElementById('chart'),
+    document.getElementById('barGraph'),
     config
   );
 </script>
@@ -312,6 +329,52 @@ const chartOnline = new Chart(
       config
     );
     });
+</script>
+
+
+<!-- Filter -->
+<script type="text/javascript">
+ flatpickr("#barFilterDate", {
+            mode: "single",  // Allows selecting a single date
+            dateFormat: "Y-m-d",  // Date format (year-month-day)
+            onChange: function(selectedDates, dateStr) {
+                // Update the bar graph when a date is selected
+                updateBarGraph(dateStr);
+            }
+        });
+
+        flatpickr("#pieFilterDate", {
+            mode: "single",  // Allows selecting a single date
+            dateFormat: "Y-m-d",  // Date format (year-month-day)
+            onChange: function(selectedDates, dateStr) {
+                // Update the pie graph when a date is selected
+                updatePieGraph(dateStr);
+            }
+        });
+
+        function updateBarGraph(dateStr) {
+            // Example: Convert the selected date to year and month
+            const parts = dateStr.split("-");
+            const year = parts[0];
+            const month = parts[1];
+            const day = parts[2];
+
+            // Use the year, month, and day to fetch data (you may need to adjust this)
+            const dataKey = `${year}-${month}-${day}`;
+            
+            if (evacueeData[dataKey]) {
+                // Update Bar Graph
+                barGraph.data.datasets = [{
+                    label: `Evacuees in ${year} - ${month} - ${day}`,
+                    data: <?php echo json_encode($onlineCounts); ?>,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                }];
+                barGraph.update();
+            }
+        }
+
 </script>
 
 </body>

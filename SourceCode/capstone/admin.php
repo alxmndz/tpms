@@ -36,6 +36,14 @@
         .status-disapproved {
             color: red; /* Text color for Disapproved status */
         }
+
+        .status-pickedUp {
+            color: #16A085; /* Text color for Disapproved status */
+        }
+
+        .status-pickUp {
+            color: #2E86C1; /* Text color for Disapproved status */
+        }
     </style>
 
 </head>
@@ -251,6 +259,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       <?php include"admin/certWed.php"; ?>
                     </div>
 
+                    <div class="tabcontent" id="reqcert" style="display: none;">
+                      <?php include"admin/reqCert.php"; ?>
+                    </div>
+
                     <?php include "admin/bapModal.php" ?>
                     <?php include "admin/blessedModal.php" ?>
                     <?php include "admin/commModal.php" ?>
@@ -299,6 +311,10 @@ function getStatusColorClass($status) {
             return 'status-in-process';
         case 'Disapproved, Because mismatch files':
             return 'status-disapproved';
+        case 'Ready to pick up':
+            return 'status-pickUp';
+        case 'Picked Up':
+            return 'status-pickedUp';
         default:
             return ''; // Default style for other statuses
     }

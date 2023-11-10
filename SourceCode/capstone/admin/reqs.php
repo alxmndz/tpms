@@ -39,7 +39,11 @@
               <td><?php echo $row["address"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
-              <td><?php echo $row["status"]; ?></td>
+              <td>
+                <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                  <?php echo $row["status"]; ?>
+                 </span>
+              </td>
               <td>
                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update</button>
               </td>
@@ -143,7 +147,7 @@
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                                          <option value="Disapproved due to file mismatch" <?php echo ($row['status'] === 'Disapproved due to file mismatch') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved, Because mismatch files</option>
                                       </select>
                                   </div>
                               </div>

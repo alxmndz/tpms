@@ -62,17 +62,6 @@
                                               alt="Announcement Picture" class="mx-auto mb-3">
                                       </div>
                                       <div class="col-md-6">
-                                        <div class="row my-3">
-                                                <div class="col-md-12">
-                                                  <div class="form-outline">
-                                                      <label class="form-label" for="typeText">
-                                                        <i class="fa-solid fa-image"></i>
-                                                        Event Image
-                                                      </label>
-                                                      <input type="file" name="announcePic" class="form-control" value="<?php echo $row['announcePic']; ?>" required>
-                                                  </div>
-                                              </div>
-                                          </div>
                                           <div class="row my-3">
                                             <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                                               <div class="col-md-12">
