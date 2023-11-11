@@ -140,7 +140,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <ul class="dropdown-menu dropdown-menu-end" style="background: #fff; color: #148F77;">
                                     <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Profile</button></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right"></i><a href="php/logout.php"><h5>Sign out</h5></a></button></li>
+                                    <li>
+                                        <button class="dropdown-item" type="button" onclick="logout()">
+                                            <i class="bi bi-box-arrow-right"></i>Sign out
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -275,7 +279,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <?php include "staff/donateModal.php" ?>
                     <?php include "staff/announceModal.php" ?>
 
-
+                    <?php include "staff/eventlistModal.php" ?>
                     <?php include "staff/genCert.php" ?>
                 </div>
             </div>
@@ -304,6 +308,44 @@ function openCity(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 </script>
+
+<script>
+    function logout() {
+        // Redirect to logout.php when the button is clicked
+        window.location.href = 'php/logout.php';
+    }
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<?php 
+if(isset($_SESSION['alert'])){
+    $value = $_SESSION['alert'];
+    if($value == "success"){
+        $message = $_SESSION['message'];
+        echo "
+        <script type='text/javascript'>
+            swal({
+                title: 'Success!',
+                text: '$message',
+                icon: 'success'
+            });
+        </script>";
+    } elseif($value == "error"){
+        $message = $_SESSION['message'];
+        echo "
+        <script type='text/javascript'>
+            swal({
+                title: 'Error!',
+                text: '$message',
+                icon: 'error'
+            });
+        </script>";
+    }
+    // Clear the session alert and message after displaying
+    unset($_SESSION['alert']);
+    unset($_SESSION['message']);
+}
+?>
 
 <?php
 function getStatusColorClass($status) {

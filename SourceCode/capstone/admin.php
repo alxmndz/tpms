@@ -141,7 +141,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 <ul class="dropdown-menu dropdown-menu-end" style="background: #fff; color: #148F77;">
                                     <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Profile</button></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right"></i><a href="php/logout.php"><h5>Sign out</h5></a></button></li>
+                                    <li>
+                                        <button class="dropdown-item" type="button" onclick="logout()">
+                                            <i class="bi bi-box-arrow-right"></i>Sign out
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -300,6 +304,13 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+</script>
+
+<script>
+    function logout() {
+        // Redirect to logout.php when the button is clicked
+        window.location.href = 'php/logout.php';
+    }
 </script>
 
 <?php
