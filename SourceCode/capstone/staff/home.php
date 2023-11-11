@@ -89,16 +89,36 @@
                         <p class="mb-0 text-secondary">Total Events</p>
                                                 <h4 class="my-1 text-center">
                                                   <?php
-                                                    $conn = new mysqli("localhost","root","","tpms");
-                                                      if ($conn->connect_error) {
-                                                        die("Connection failed : " . $conn->connect_error);
-                                                      }
-                                                      $sql = "SELECT COUNT(*) FROM eventlist";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+    $conn = new mysqli("localhost", "root", "", "tpms");
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Get the current month and year
+    $currentMonth = date("m");
+    $currentYear = date("Y");
+
+    // Construct the SQL query with the WHERE clause
+    $sql = "SELECT COUNT(*) FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear";
+
+    $result = $conn->query($sql);
+
+    if ($result === false) {
+        // Handle the query error
+        echo "Error: " . $conn->error;
+    } else {
+        // Fetch the result
+        $row = $result->fetch_assoc();
+
+        // Display the count
+        echo $row['COUNT(*)'];
+    }
+
+    // Close the database connection
+    $conn->close();
+?>
+
                                               </h4>
                     </div>
                 </div>
@@ -112,16 +132,36 @@
                         <p class="mb-0 text-secondary">Total Requests</p>
                                                    <h4 class="my-1 text-center">
                                                      <?php
-                                                       $conn = new mysqli("localhost","root","","tpms");
-                                                        if ($conn->connect_error) {
-                                                         die("Connection failed : " . $conn->connect_error);
-                                                       }
-                                                       $sql = "SELECT COUNT(*) FROM request";
-                                                       $result = $conn->query($sql);
-                                                       while($row = mysqli_fetch_array($result)){
-                                                       echo $row['COUNT(*)'];
-                                                       }
-                                                     ?>
+    $conn = new mysqli("localhost", "root", "", "tpms");
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Get the current month and year
+    $currentMonth = date("m");
+    $currentYear = date("Y");
+
+    // Construct the SQL query with the WHERE clause
+    $sql = "SELECT COUNT(*) FROM request WHERE MONTH(transactDate) = $currentMonth AND YEAR(transactDate) = $currentYear";
+
+    $result = $conn->query($sql);
+
+    if ($result === false) {
+        // Handle the query error
+        echo "Error: " . $conn->error;
+    } else {
+        // Fetch the result
+        $row = $result->fetch_assoc();
+
+        // Display the count
+        echo $row['COUNT(*)'];
+    }
+
+    // Close the database connection
+    $conn->close();
+?>
+
                                                    </h4>
                     </div>
                 </div>
@@ -134,27 +174,61 @@
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Certificates</p>
                                                  <h4 class="my-1 text-center">
-                                                   <?php
-                                                  $conn = new mysqli("localhost", "root", "", "tpms");
-                                                  if ($conn->connect_error) {
-                                                      die("Connection failed: " . $conn->connect_error);
-                                                  }
+                                                  <?php
+    $conn = new mysqli("localhost", "root", "", "tpms");
 
-                                                  $sql = "SELECT SUM(amount) AS total FROM request"; // Use an alias for the SUM() result.
-                                                  $result = $conn->query($sql);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-                                                  if ($result) {
-                                                      $row = $result->fetch_assoc();
-                                                      $sum = $row['total'];
+    // Get the current month and year
+    $currentMonth = date("m");
+    $currentYear = date("Y");
 
-                                                      // Format the sum with a comma for thousands separator and a peso sign.
-                                                      $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+    // Construct the SQL queries with the WHERE clauses
+    $sql = "SELECT COUNT(*) AS total FROM certbap WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+    $sql1 = "SELECT COUNT(*) AS total FROM certcomm WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+    $sql2 = "SELECT COUNT(*) AS total FROM certcon WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+    $sql3 = "SELECT COUNT(*) AS total FROM certfun WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+    $sql4 = "SELECT COUNT(*) AS total FROM certmarriage WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
 
-                                                      echo $formatted_sum;
-                                                  } else {
-                                                      echo "Error: " . $conn->error;
-                                                  }
-                                                  ?>
+    // Execute the queries
+    $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
+    $result2 = $conn->query($sql2);
+    $result3 = $conn->query($sql3);
+    $result4 = $conn->query($sql4);
+
+    // Check for errors and display the results
+    if ($result && $result1 && $result2 && $result3 && $result4) {
+        $row = $result->fetch_assoc();
+        $sum = $row['total'];
+
+        $row1 = $result1->fetch_assoc();
+        $sum1 = $row1['total'];
+
+        $row2 = $result2->fetch_assoc();
+        $sum2 = $row2['total'];
+
+        $row3 = $result3->fetch_assoc();
+        $sum3 = $row3['total'];
+
+        $row4 = $result4->fetch_assoc();
+        $sum4 = $row4['total'];
+
+        // Calculate the total sum
+        $totalSum = $sum + $sum1 + $sum2 + $sum3 + $sum4;
+
+        // Display the total sum
+        echo $totalSum;
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    // Close the database connection
+    $conn->close();
+?>
+
                                                  </h4>
                     </div>
                 </div>
@@ -166,31 +240,40 @@
                     </div>
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Total Donations</p>
-                                                 <h4 class="my-1 text-center">
-                                                  <?php
-                                                      $conn = new mysqli("localhost", "root", "", "tpms");
-                                                      if ($conn->connect_error) {
-                                                          die("Connection failed: " . $conn->connect_error);
-                                                      }
+                          <h4 class="my-1 text-center">
+  <?php
+    $conn = new mysqli("localhost", "root", "", "tpms");
 
-                                                      $sql = "SELECT SUM(amount) AS total FROM donation";
-                                                      $result = $conn->query($sql);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-                                                      if ($result) {
-                                                          $row = $result->fetch_assoc();
-                                                          $sum = $row['total'];
+    // Get the current month and year
+    $currentMonth = date("m");
+    $currentYear = date("Y");
 
-                                                          // Format the sum with a comma for thousands separator and a peso sign.
-                                                          $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+    // Construct the SQL query with the WHERE clause
+    $sql = "SELECT SUM(amount) AS total FROM donation WHERE MONTH(donatedDate) = $currentMonth AND YEAR(donatedDate) = $currentYear";
 
-                                                          echo $formatted_sum;
-                                                      } else {
-                                                          echo "Error: " . $conn->error;
-                                                      }
+    $result = $conn->query($sql);
 
-                                                      $conn->close();
-                                                      ?>
-                                                </h4>
+    if ($result) {
+        $row = $result->fetch_assoc();
+        $sum = $row['total'];
+
+        // Format the sum with a comma for thousands separator and a peso sign.
+        $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+
+        echo $formatted_sum;
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    // Close the database connection
+    $conn->close();
+  ?>
+
+                       </h4>
                     </div>
                 </div>
             </div>
@@ -198,94 +281,7 @@
         </div>
     </div>
 
-<div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="calendar calendar-first" id="calendar_first">
-                    <div class="calendar_header">
-                        <button class="switch-month switch-left"></button>
-                        <h2 id="currentMonthYear"></h2>
-                        <button class="switch-month switch-right"></button>
-                    </div>
-                    <div class="calendar_weekdays">
-                        <div class="weekday">Sun</div>
-                        <div class="weekday">Mon</div>
-                        <div class="weekday">Tue</div>
-                        <div class="weekday">Wed</div>
-                        <div class="weekday">Thu</div>
-                        <div class="weekday">Fri</div>
-                        <div class="weekday">Sat</div>
-                    </div>
-                    <div class="calendar_content" id="calendarDates">
-                        <!-- You can populate the calendar with events or dates here -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mt-3">
-              <div class="event-container">
-                <div class="table-header">
-                  <h4>Events List Schedule</h4>
-                </div>
-                <div class="table-container">
-                  <table class="event-table" id="eventListTbl">
-                    <thead>
-                      <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Event 1</td>
-                        <td>2023-11-05</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 2</td>
-                        <td>2023-11-10</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 3</td>
-                        <td>2023-11-15</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 4</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 5</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 6</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <!-- Add more events as needed -->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-
-        </div>
-    </div>
-
-
-<div class="container mt-2">
+    <div class="container mt-2">
     <div class="card">
         <div class="card-header">
             <h5>Total Event Reservations</h5>
@@ -445,6 +441,91 @@
     </div>
 </div>
 
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="calendar calendar-first" id="calendar_first">
+                    <div class="calendar_header">
+                        <button class="switch-month switch-left"></button>
+                        <h2 id="currentMonthYear"></h2>
+                        <button class="switch-month switch-right"></button>
+                    </div>
+                    <div class="calendar_weekdays">
+                        <div class="weekday">Sun</div>
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                    </div>
+                    <div class="calendar_content" id="calendarDates">
+                        <!-- You can populate the calendar with events or dates here -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-3">
+              <div class="event-container">
+                <div class="table-header">
+                  <h4>Events List Schedule</h4>
+                </div>
+                <div class="table-container">
+                  <table class="event-table" id="eventListTbl">
+                    <thead>
+                      <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Event 1</td>
+                        <td>2023-11-05</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <tr>
+                        <td>Event 2</td>
+                        <td>2023-11-10</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <tr>
+                        <td>Event 3</td>
+                        <td>2023-11-15</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <tr>
+                        <td>Event 4</td>
+                        <td>2023-11-20</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <tr>
+                        <td>Event 5</td>
+                        <td>2023-11-20</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <tr>
+                        <td>Event 6</td>
+                        <td>2023-11-20</td>
+                        <td>10:00 AM</td>
+                        <td>Event Desc</td>
+                      </tr>
+                      <!-- Add more events as needed -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+    </div>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/datatables.min.js"></script>

@@ -4,7 +4,7 @@
 		<i class="fa-solid fa-circle-arrow-left" style="float: right; cursor: pointer;" onclick="openCity(event, 'reqs')"></i>
 	</div>
 	<div class="card-body">
-		<form class="" action="php/addReqCert.php" method="post" enctype="multipart/form-data" autocomplete="off">
+		<form class="" action="php/addReqCertST.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="form-group">
                     <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
                     <input type="hidden" name="transactType" class="form-control" value="Walk-In">

@@ -10,7 +10,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="php/addAnnounce.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/addAnnounce1.php" method="POST" enctype="multipart/form-data" autocomplete="off">
               <div class="row my-3">
                             <div class="col-md-12">
                                 <div class="form-outline">

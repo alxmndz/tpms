@@ -45,7 +45,7 @@
                  </span>
               </td>
               <td>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View</button>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View</button>
               </td>
             </tr>
             <!-- Update Modal -->
