@@ -1,27 +1,23 @@
 <link rel="stylesheet" href="css/datatables.min.css">
-<link rel="stylesheet" href="css/datatable.css">               
+<link rel="stylesheet" href="css/datatable.css">   
 <div class="container" style="margin-top: 10px;">
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
-        <span class="fs-5 fw-bold">Baptismal Status</span>
+        <span class="fs-5 fw-bold">Communion Status</span>
       </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-striped" style="margin-top: 10px;" id="walkBapTable">
+        <table class="table table-striped" id="walkCommTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
-            $result = mysqli_query($conn, "SELECT * FROM baptismal_tbl WHERE transactType = 'Walk-In' ORDER BY id DESC;");
+            $result = mysqli_query($conn, "SELECT * FROM communion_tbl WHERE transactType = 'Walk-In' ORDER BY id DESC;");
             // Create an array to store the requirements from the database
             $databaseRequirements = array();
             $dataFromDatabase = [
-                'Birth Certificate',   // Assume this data is retrieved from the database
-                'Parents Marriage Contract',
-                'Sponsor 1',
-                'Sponsor 2'
+                'Baptismal Certificate'
                 // Add other data items as needed
             ];
 
-                
             if (mysqli_num_rows($result) > 0) {
           ?>
           <thead>
@@ -35,7 +31,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="searchResults4">
+          <tbody id="searchResults5">
             <?php
               $i = 0;
               while ($row = mysqli_fetch_array($result)) {
@@ -43,21 +39,21 @@
             <tr>
               <td><?php echo $row["name"]; ?></td>
               <td><?php echo $row["contact"]; ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["tDate"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["bapDate"])); ?></td>
-              <td><?php echo date("h:i A", strtotime($row["bapTime"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["comDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["comDate"])); ?></td>
+              <td><?php echo date("h:i A", strtotime($row["comTime"])); ?></td>
               <td>
-                 <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
                  </span>
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#upModalBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
 
-  <div class="modal modal-lg fade" id="upModalBap<?php echo $row['id']; ?>">
+            <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -68,15 +64,16 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <div class="row">
-                    <!-- Left Side (Image) -->
-                    <div class="col-md-6">
-                        <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
-                    </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Left Side (Image) -->
+                        <div class="col-md-6">
+                            <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
+                        </div>
 
-                    <!-- Right Side (Form) -->
-                    <div class="col-md-6">
-                        <form action="php/updateBap.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <!-- Right Side (Form) -->
+                        <div class="col-md-6">
+                    <form action="php/updateComm.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
@@ -111,73 +108,28 @@
                           <div class="row my-3">
                             <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Baptismal Date</label>
-                                      <input class="form-control" type="date" id="bapDate" name="bapDate" value="<?php echo $row['bapDate']; ?>" required disabled>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Communion Date</label>
+                                      <input class="form-control" type="date" id="comDate" name="comDate" value="<?php echo $row['comDate']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Baptismal Time</label>
-                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required disabled>
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Communion Time</label>
+                                      <input class="form-control" type="time" id="comTime" name="comTime" value="<?php echo $row['comTime']; ?>" required disabled>
                                   </div>
                             </div>
                           </div>
-
-                          <div class="row my-3">
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled readonly>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText">Payment method</label>
-                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
-                                  </div>
-                              </div>
-                          </div>
-
-                           <div class="row my-3">
-                              <div class="col-md-12">
-                                  <div class="form-outline">
-                                      <label class="form-label" for="typeText">Reference Number</label>
-                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
-                                  </div>
-                              </div>
-                          </div>
-
-<div class="container mb-3">
+                          <div class="container mb-3">
   <div class="card">
     <div class="card-body">
       <div class="text-center">
         <span class="modal-header mb-3 text-center"><strong>Baptismal Requirements</strong></span>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="birthCertificate" name="birthCert" value="Birth Certificate" <?php echo ($row['birthCert'] === 'Birth Certificate') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="birthCertificate">Birth Certificate</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="marriageContract" name="marriageCont" value="Parents Marriage Contract" <?php echo ($row['marriageCont'] === 'Parents Marriage Contract') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="marriageContract">Parents Marriage Contract</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="sponsor1" name="sponsor1" value="Sponsor 1" <?php echo ($row['sponsor1'] === 'Sponsor 1') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="sponsor1">Sponsor 1</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="sponsor2" name="sponsor2" value="Sponsor 2" <?php echo ($row['sponsor2'] === 'Sponsor 2') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="sponsor2">Sponsor 2</label>
+            <input class="form-check-input" type="checkbox" id="bapCert" name="bapCert" value="Baptismal Certificate" <?php echo ($row['bapCert'] === 'Baptismal Certificate') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="bapCert">Baptismal Certificate</label>
           </div>
         </div>
       </div>
@@ -187,8 +139,32 @@
                           <div class="row my-3">
                               <div class="col-md-12">
                                   <div class="form-outline">
+                                      <label class="form-label" for="typeText">Transaction Type</label>
+                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row my-3">
+                              <div class="col-md-6">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference No.</label>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row my-3">
+                              <div class="col-md-12">
+                                  <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required disabled>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
@@ -198,7 +174,7 @@
                                   </div>
                               </div>
                           </div>
-                          
+
                         <div class="form-group mb-2">             
                           <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
                         </div>                      
@@ -210,8 +186,8 @@
             </div>
           </div>
         </div>
+      </div>
 
-            
             <?php
                 $i++;
               }
@@ -228,6 +204,7 @@
   </div>
 </div>
 
+
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/datatables.min.js"></script>
     <script src="js/pdfmake.min.js"></script>
@@ -235,7 +212,7 @@
     <script>
       $(document).ready(function(){
     
-          var table = $('#walkBapTable').DataTable({
+          var table = $('#walkCommTable').DataTable({
               
               buttons:['copy', 'csv', 'excel', 'pdf', 'print']
               

@@ -127,7 +127,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled readonly>
+                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" readonly required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -188,7 +188,7 @@
                               <div class="col-md-12">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required disabled>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
