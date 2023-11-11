@@ -46,7 +46,11 @@
               <td><?php echo date("M d, Y", strtotime($row["tDate"])); ?></td>
               <td><?php echo date("M d, Y", strtotime($row["bapDate"])); ?></td>
               <td><?php echo date("h:i A", strtotime($row["bapTime"])); ?></td>
-              <td><?php echo $row["status"]; ?></td>
+              <td>
+                <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                  <?php echo $row["status"]; ?>
+                 </span>
+              </td>
               <td>
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
