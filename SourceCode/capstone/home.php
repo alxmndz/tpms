@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="assets/icons/svf.png">
   <title>Tuy Parish Management System</title>
-  <link rel="stylesheet" type="text/css" href="css/homepage.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
 </head>
 <body>
 
@@ -38,10 +38,10 @@
   <div class="offcanvas-body">
     <!-- Menu items go here -->
     <ul class="list-group">
-      <li class="list-group-item">Home</li>
-      <li class="list-group-item">About</li>
-      <li class="list-group-item">Services</li>
-      <li class="list-group-item">Contact</li>
+      <li class="list-group-item"><a class="nav-link mx-2" href="#home">Home</a></li>
+      <li class="list-group-item"><a class="nav-link mx-2" href="#services">Services</a></li>
+      <li class="list-group-item"><a class="nav-link mx-2" href="#events">Events</a></li>
+      <li class="list-group-item"><a class="nav-link mx-2" href="#team">Team</a></li>
     </ul>
   </div>
 </div>
@@ -58,7 +58,7 @@
 </header>
 
 <!-- Second Section -->
-<section class="page-section bg-light" id="services">
+<section class="page-section bg-light events-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h1 class="section-heading text-uppercase mb-3"><b>Services Offer</b></h1>
@@ -118,10 +118,11 @@
         </section>
 
 <!-- Third Section -->
-<section class="page-section bg-light events" id="events">
+<section class="page-section eventlist events-section" id="events">
             <div class="container">
                 <div class="text-center">
-                    <h1 class="section-heading text-uppercase mb-3"><b>Events</b></h1>
+                    <h1 class="section-heading text-uppercase mb-2 text-white"><b>Events</b></h1>
+                    <hr>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4 mt-3">
@@ -181,39 +182,40 @@
                     </div>
                 </div>
             </div>
+
+             
+            <section class="page-section bg-light events-section" id="team">
+               <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-heading text-uppercase mb-3 mt-3" style="font-family: 'Poppins',sans-serif;"><b>Church Leaders</b></h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="team-member">
+                                <img class="mx-auto rounded-circle" src="assets/img/team/fr.leo.png" alt="..." />
+                                <h4>Rev. Fr. Leo Edgardo Villostas</h4>
+                                <p class="text-muted">Church Head</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="team-member">
+                                <img class="mx-auto rounded-circle" src="assets/img/team/bro.jeeper.jpg" alt="..." />
+                                <h4>Bro. Jeeper Bisnan</h4>
+                                <p class="text-muted">Administrator</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="team-member">
+                                <img class="mx-auto rounded-circle" src="assets/img/team/bro.lorenz.jpg" alt="..." />
+                                <h4>Bro. John Lorenz Lapitan</h4>
+                                <p class="text-muted">Office Staff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 </section>
 
-
-      <section class="page-section bg-light" id="team">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase mb-3 mt-3" style="font-family: 'Poppins',sans-serif;"><b>Church Leaders</b></h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/fr.leo.png" alt="..." />
-                            <h4>Rev. Fr. Leo Edgardo Villostas</h4>
-                            <p class="text-muted">Church Head</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/bro.jeeper.jpg" alt="..." />
-                            <h4>Bro. Jeeper Bisnan</h4>
-                            <p class="text-muted">Administrator</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/bro.lorenz.jpg" alt="..." />
-                            <h4>Bro. John Lorenz Lapitan</h4>
-                            <p class="text-muted">Office Staff</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 <footer class="footer py-4">
    <div class="container">
       <div class="row align-items-center">
