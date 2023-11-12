@@ -10,7 +10,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="php/saveCom1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveComPT.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-6">

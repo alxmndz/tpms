@@ -10,7 +10,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="php/saveBless1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveBlessPT.php" method="post" enctype="multipart/form-data" autocomplete="off">
             
             <div class="row my-3">
               <div class="col-md-6">
