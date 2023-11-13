@@ -20,6 +20,10 @@
 
 <?php include "charts/requestCert.php"; ?>
 
+<?php include "charts/donationChart.php"; ?>
+
+<?php include "charts/eventList.php"; ?>
+
 <div class="container">
   <div class="card">
     <div class="card-body">
@@ -72,21 +76,12 @@
 
          <div class="col-md-6 mt-3 row">
             <div class="card card-sm">
-                <div class="card-header">
-                    <h5 class="fw-bold text-center" style="font-family: 'Poppins', sans-serif;">Most Reserved Event</h5>
-                </div>
                 <div class="card-body">
-                    <?php if ($maxEventTable || $maxEventTableWalk): ?>
-                        <?php if ($maxEventTable): ?>
-                            <p>The event with the most ONLINE reservations for the selected month and year is: <strong style="color: #16A085;"><?= $maxEventTable ?></strong></p>
-                        <?php endif; ?>
-                        <?php if ($maxEventTableWalk): ?>
-                            <hr>
-                            <p>The event with the most WALK-IN reservations for the selected month and year is: <strong style="color: #D35400;"><?= $maxEventTableWalk ?></strong></p>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <p>No reservations found for the selected month and year.</p>
-                    <?php endif; ?>
+                  <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total Donation Amount</h5>
+                  <p class="card-text">For <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?>: <?= $formattedSum ?></p>
+                  <hr>
+                  <h5 class="card-title">Total Events</h5>
+                  <p class="card-text">Total events for <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?>: <?= $totalEvents ?></p>
                 </div>
             </div>
         </div>
