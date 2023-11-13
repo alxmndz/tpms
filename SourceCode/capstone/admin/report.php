@@ -24,30 +24,32 @@
   <div class="card">
     <div class="card-body">
       <h5 style="font-family: 'Poppins', sans-serif;" class="fw-bold">Generate Report</h5>
-      <button class="btn btn-primary" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
-      <div id="barFilter" class="collapse">
-        <form method="get">
-          <div class="row">
-            <select name="selectedMonth" class="form-select shorteneds mt-2">
-              <?php
-              for ($month = 1; $month <= 12; $month++) {
-                $selected = ($selectedMonth == $month) ? 'selected' : '';
-                echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
-              }
-              ?>
-            </select>
-            <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $selectedYear; ?>">
-          </div>
-          <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
-        </form>
-      </div>
+
+        <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
+            <div id="barFilter" class="collapse">
+              <form method="get">
+                <div class="row">
+                  <select name="selectedMonth" class="form-select shorteneds mt-2">
+                    <?php
+                    for ($month = 1; $month <= 12; $month++) {
+                      $selected = ($selectedMonth == $month) ? 'selected' : '';
+                      echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
+                    }
+                    ?>
+                  </select>
+                  <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $selectedYear; ?>">
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
+              </form>
+            </div>
+            <button class="btn btn-success btn-sm" onclick="printReport()">Print Report</button>
 
       <div class="row mt-3">
 
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <canvas id="barGraph"></canvas>
+                <canvas id="barGraph"></canvas>
             </div>
           </div>
         </div>
@@ -60,16 +62,35 @@
           </div>
         </div>
 
-      </div>
-
-      <div class="row mt-3">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <canvas id="pieChart" width="100%" height="400"></canvas>
+          <div class="col-md-6 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <canvas id="pieChart" width="100%" height="400"></canvas>
+              </div>
             </div>
           </div>
+
+         <div class="col-md-6 mt-3 row">
+            <div class="card card-sm">
+                <div class="card-header">
+                    <h5 class="fw-bold text-center" style="font-family: 'Poppins', sans-serif;">Most Reserved Event</h5>
+                </div>
+                <div class="card-body">
+                    <?php if ($maxEventTable || $maxEventTableWalk): ?>
+                        <?php if ($maxEventTable): ?>
+                            <p>The event with the most ONLINE reservations for the selected month and year is: <strong style="color: #16A085;"><?= $maxEventTable ?></strong></p>
+                        <?php endif; ?>
+                        <?php if ($maxEventTableWalk): ?>
+                            <hr>
+                            <p>The event with the most WALK-IN reservations for the selected month and year is: <strong style="color: #D35400;"><?= $maxEventTableWalk ?></strong></p>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <p>No reservations found for the selected month and year.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
+
       </div>
 
     </div>
@@ -176,4 +197,38 @@
       });
 
     });
+</script>
+
+
+<script type="text/javascript">
+  function printReport() {
+    var selectedMonth = document.querySelector('select[name="selectedMonth"]').value;
+    var selectedYear = document.getElementById('barFilterDate').value;
+
+    var canvas = document.getElementById('barGraph');
+    var canvas1 = document.getElementById('barChart');
+    var canvas2 = document.getElementById('pieChart');
+    var win = window.open('', '_blank');
+
+    // Construct the title with the selected month and year
+    var title = "Report Summary - " + getMonthName(selectedMonth) + " " + selectedYear;
+    
+    win.document.write("<html><head><title>" + title + "</title></head><body>");
+    win.document.write("<img src='" + canvas.toDataURL() + "'/>");
+    win.document.write("<img src='" + canvas1.toDataURL() + "'/>");
+    win.document.write("<img src='" + canvas2.toDataURL() + "'/>");
+    win.document.write("</body></html>");
+    win.document.close();
+    win.print();
+    win.onafterprint = function () {
+        win.close();
+    };
+
+    // Function to get the month name from the month number
+    function getMonthName(monthNumber) {
+      var d = new Date();
+      d.setMonth(monthNumber - 1); // Months are zero-based in JavaScript
+      return d.toLocaleString('en-US', { month: 'long' });
+    }
+  }
 </script>
