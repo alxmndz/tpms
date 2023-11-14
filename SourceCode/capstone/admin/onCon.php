@@ -86,7 +86,7 @@
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                    <form action="php/updateCon1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/updateCon.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

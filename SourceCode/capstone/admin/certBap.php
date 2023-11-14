@@ -40,8 +40,8 @@
                        </span>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Print
-                      </button>
+                      <a type="button" class="btn btn-sm btn-primary" href="admin/previewBap.php?id=<?php echo $row["id"]; ?>"> <i class="fa-solid fa-pen-to-square"></i> Preview
+                      </a>
                       <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateGenBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                       </button>
                     </td>
@@ -206,8 +206,6 @@
               buttons:['copy', 'csv', 'excel', 'pdf', 'print']
               
           });
-          
-          
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 

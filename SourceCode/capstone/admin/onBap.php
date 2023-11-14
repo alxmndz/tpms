@@ -57,7 +57,7 @@
               </td>
             </tr>
 
-            <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
+  <div class="modal modal-lg fade" id="myModal<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -106,7 +106,7 @@
 
                     <!-- Right Side (Form) -->
                     <div class="col-md-6">
-                        <form action="php/updateBap1.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <form action="php/updateBap.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
