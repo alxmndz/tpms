@@ -1,9 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "tpms");
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include"php/dbconn.php";
 
     // Extract month and year from the selected date or use the default values
     $selectedMonth = isset($_GET['selectedMonth']) ? $_GET['selectedMonth'] : $defaultMonth;

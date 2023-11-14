@@ -42,10 +42,177 @@
                     <td>
                       <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Print
                       </button>
-                      <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                      <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateGenFun<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                       </button>
                     </td>
                   </tr>
+
+<div class="modal fade" id="updateGenFun<?php echo $row['id']; ?>">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Death Certificate Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="php/certificate/updateFun.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                       <label class="form-label fw-bold" for="typeText">
+                        Name (Firstname-Middle Initial-Surname)
+                      </label>
+                      <input class="form-control" type="text" id="deceasedName" name="deceasedName" value="<?php echo $row['deceasedName']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Father's name (Firstname-Middle Initial-Surname)
+                      </label>
+                      <input class="form-control" type="text" id="fName" name="fName" value="<?php echo $row['fatherName']; ?>" required disabled/>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                     <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                          Mother's name (Firstname-Middle Initial-Surname)
+                        </label>
+                      <input class="form-control" type="tel" id="mName" name="mName" value="<?php echo $row['motherName']; ?>" required disabled/>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Husband or Wife (Widowed of)
+                      </label>
+                      <input class="form-control" type="text" id="widow" name="widow" value="<?php echo $row['widow']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Address
+                      </label>
+                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['residentAdd']; ?>" required disabled/>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-outline">
+                         <label class="form-label fw-bold" for="typeText">
+                          Date of Death
+                        </label>
+                        <input class="form-control" type="date" id="deathDate" name="deathDate" value="<?php echo $row['deathDate']; ?>" required disabled/>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="row my-3">
+                <div class="col-md-6">
+                 <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                          Age
+                        </label>
+                      <input class="form-control" type="number" id="age" name="age" value="<?php echo $row['age']; ?>" required disabled/>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                     <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Internment
+                      </label>
+                      <input class="form-control" type="date" id="buryDate" name="buryDate" value="<?php echo $row['internment']; ?>" required disabled/>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                          Cause of death
+                        </label>
+                      <input class="form-control" type="text" id="cause" name="cause" value="<?php echo $row['causeOfDeath']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        He / She received the last Sacrament before Death?
+                      </label>
+                      <select class="form-select" id="sacrament" name="sacrament">
+                        <option disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        He / She was not able to receive the last Sacraments before death?
+                      </label>
+                      <select class="form-select" id="lastsacrament" name="lastsacrament">
+                        <option disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Priest
+                      </label>
+                      <input class="form-control" type="text" id="priest" name="priest" value="<?php echo $row['priest']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="form-outline">
+                          <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                            <select class="form-select" id="status" name="status" required>
+                              <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+
+                              <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+
+                              <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                              </select>
+                            </div>
+                        </div>
+                  </div>
+
+        <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
                    <?php

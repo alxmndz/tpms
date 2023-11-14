@@ -64,11 +64,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <div class="row">
             <!-- Sidebar -->
             <div class="col-lg-3">
-                <div class="sidebar-nav">
-                    <nav class="navbar navbar-dark fixed-top">
+                <div class="sidebar-nav noPrint">
+                    <nav class="navbar navbar-dark noPrint fixed-top">
                         <div class="container">
                             <!-- Mobile Menu Toggle Button -->
-                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                            <button class="navbar-toggler noPrint" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
@@ -133,7 +133,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                 </div>
                               </div>
 
-                            <div class="btn-group">
+                            <div class="btn-group noPrint">
                                 <a href="#" class="dropdown-toggle text-white text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="usericon"><img src="assets/img/profile/<?php echo $_SESSION['profile']; ?>"></span>
                                     <span class="textnone"><?php echo $_SESSION['uname']; ?></span>

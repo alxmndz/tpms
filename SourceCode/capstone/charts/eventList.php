@@ -1,9 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "tpms");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include"php/dbconn.php";
 
 // Default values to the current month and year
 $defaultMonth = date('m');

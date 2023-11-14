@@ -1,5 +1,5 @@
 <?php 
-  $con = new mysqli('localhost', 'root', '', 'test');
+  include"php/dbconn.php";
 
   // Default values to the current month and year
   $defaultMonth = date('m');

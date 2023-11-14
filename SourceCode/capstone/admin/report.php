@@ -12,6 +12,63 @@
   width: 50%;
   margin-right: 10px;
 }
+ @media print {
+    /* Hide non-essential elements */
+    .noPrint {
+      display: none;
+    }
+
+    /* Adjust styles for the printed page */
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 10px;
+    }
+
+    .container {
+      width: 100%;
+      margin: 0;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .form-select,
+    .form-control {
+      width: 100%;
+    }
+
+    .pieChart {
+      margin-top: 50px; /* Adjust the margin-top value to ensure the pie chart is not cut in portrait mode */
+    }
+
+    .row {
+      margin: 0 -5px;
+    }
+
+    .col-md-6 {
+      width: 50%;
+      float: center;
+      box-sizing: border-box;
+      padding: 0 5px;
+    }
+    
+    .pieChart{
+      max-width: 100%;
+    }
+
+    canvas {
+      max-width: 100%; /* Make charts responsive */
+      height: auto; /* Prevent charts from being stretched */
+    }
+
+    /* Additional styles as needed for your layout */
+  }
 </style>
 
 <?php include "charts/walkInReserve.php"; ?>
@@ -27,9 +84,9 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
-      <h5 style="font-family: 'Poppins', sans-serif;" class="fw-bold">Generate Report</h5>
+      <h5 style="font-family: 'Poppins', sans-serif;" class="fw-bold">Summary Report</h5>
 
-        <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
+        <button class="btn btn-primary btn-sm noPrint" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
             <div id="barFilter" class="collapse">
               <form method="get">
                 <div class="row">
@@ -46,7 +103,7 @@
                 <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
               </form>
             </div>
-            <button class="btn btn-success btn-sm" onclick="printReport()">Print Report</button>
+            <button class="btn btn-success btn-sm noPrint" onclick="printReport()">Print Report</button>
 
       <div class="row mt-3">
 
@@ -74,17 +131,23 @@
             </div>
           </div>
 
-         <div class="col-md-6 mt-3 row">
-            <div class="card card-sm">
-                <div class="card-body">
-                  <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total Donation Amount</h5>
-                  <p class="card-text">For <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?>: <?= $formattedSum ?></p>
-                  <hr>
-                  <h5 class="card-title">Total Events</h5>
-                  <p class="card-text">Total events for <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?>: <?= $totalEvents ?></p>
-                </div>
+         <div class="col-md-6 mt-3 row" id="summaryEvnts">
+
+          <div class="card summary card-sm mt-3">
+            <div class="card-body text-center">
+              <h1 class="card-text"><?= $formattedSum ?></h1>
+              <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total Donation Amount:</h5>
             </div>
-        </div>
+          </div>
+
+          <div class="card summary card-sm mt-3 mb-2">
+            <div class="card-body text-center">
+              <h1 class="card-text"><?= $totalEvents ?></h1>
+              <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total events for <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?></h5>
+            </div>
+          </div>
+
+      </div>
 
       </div>
 
@@ -197,33 +260,6 @@
 
 <script type="text/javascript">
   function printReport() {
-    var selectedMonth = document.querySelector('select[name="selectedMonth"]').value;
-    var selectedYear = document.getElementById('barFilterDate').value;
-
-    var canvas = document.getElementById('barGraph');
-    var canvas1 = document.getElementById('barChart');
-    var canvas2 = document.getElementById('pieChart');
-    var win = window.open('', '_blank');
-
-    // Construct the title with the selected month and year
-    var title = "Report Summary - " + getMonthName(selectedMonth) + " " + selectedYear;
-    
-    win.document.write("<html><head><title>" + title + "</title></head><body>");
-    win.document.write("<img src='" + canvas.toDataURL() + "'/>");
-    win.document.write("<img src='" + canvas1.toDataURL() + "'/>");
-    win.document.write("<img src='" + canvas2.toDataURL() + "'/>");
-    win.document.write("</body></html>");
-    win.document.close();
-    win.print();
-    win.onafterprint = function () {
-        win.close();
-    };
-
-    // Function to get the month name from the month number
-    function getMonthName(monthNumber) {
-      var d = new Date();
-      d.setMonth(monthNumber - 1); // Months are zero-based in JavaScript
-      return d.toLocaleString('en-US', { month: 'long' });
-    }
+    window.print();
   }
 </script>

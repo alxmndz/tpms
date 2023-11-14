@@ -42,10 +42,140 @@
                     <td>
                       <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Print
                       </button>
-                      <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                      <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateGenCon<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                       </button>
                     </td>
                   </tr>
+
+
+ <div class="modal fade" id="updateGenCon<?php echo $row['id']; ?>">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Confirmation Certificate Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="php/certificate/updateCon.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+              <div class="row my-3">
+                  <div class="col-md-12">
+                     <div class="form-outline">
+                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                       <label class="form-label fw-bold" for="typeText">
+                          Name
+                        </label>
+                      <input class="form-control" type="text" id="fullname" name="fullname" value="<?php echo $row['name']; ?>" required disabled/>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Father's Name
+                      </label>
+                      <input  class="form-control" type="text" name="fatherName" value="<?php echo $row['fatherName']; ?>" required disabled>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <div class="form-outline">
+                         <label class="form-label fw-bold" for="typeText">
+                          Mother's Name
+                        </label>
+                        <input  class="form-control" type="text" name="motherName" value="<?php echo $row['motherName']; ?>" required disabled>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                  <div class="col-md-6">
+                     <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                          Birth Place
+                        </label>
+                      <input class="form-control" type="text" id="birthPlace" name="birthPlace" value="<?php echo $row['birthPlace']; ?>" required disabled/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Birth Date
+                      </label>
+                      <input class="form-control" type="date" id="birthDate" name="birthDate" value="<?php echo $row['birthDate']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                <div class="col-md-12">
+                  <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                        Reserved Date
+                      </label>
+                      <input class="form-control" type="date" id="resDate" name="resDate" value="<?php echo $row['resDate']; ?>" required disabled/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row my-3">
+                  <div class="col-md-12">
+                     <div class="form-outline">
+                       <label class="form-label fw-bold" for="typeText">
+                          Priest's Name
+                        </label>
+                      <input class="form-control" type="text" id="priest" name="priest" value="<?php echo $row['priest']; ?>" required disabled/>
+                    </div>
+                </div>
+              </div>
+     
+               <div class="row my-3">
+                  <div class="col-md-6">
+                    <div class="form-outline">
+                         <label class="form-label fw-bold" for="typeText">
+                          Sponsor's Name
+                        </label>
+                        <input  class="form-control" type="text" name="sponsor1" value="<?php echo $row['sponsor1']; ?>" required disabled>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                           <label class="form-label fw-bold" for="typeText">
+                            Sponsor's Name
+                          </label>
+                          <input  class="form-control" type="text" name="sponsor2" value="<?php echo $row['sponsor2']; ?>" required disabled>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="form-outline">
+                          <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                            <select class="form-select" id="status" name="status" required>
+                              <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+
+                              <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+
+                              <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                              </select>
+                            </div>
+                        </div>
+                  </div>
+            
+            <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>
+            </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
                    <?php
