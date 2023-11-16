@@ -1,6 +1,9 @@
 <?php
   include "php/dbconn.php";
 
+  // Assume $selectedYear is the selected year; you should set this value based on user input or any other source
+  $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear;// Change this accordingly
+
   // Define an array to map numerical months to month names
   $monthNames = [
     1 => 'January',
@@ -22,12 +25,12 @@
   $tableCounts = [];
 
   foreach ($months as $month) {
-    $query1 = "SELECT COUNT(*) AS countsReserved FROM baptismal_tbl WHERE MONTH(tDate) = $month";
-    $query2 = "SELECT COUNT(*) AS countsReserved FROM blessing_tbl WHERE MONTH(transactDate) = $month";
-    $query3 = "SELECT COUNT(*) AS countsReserved FROM communion_tbl WHERE MONTH(transactDate) = $month";
-    $query4 = "SELECT COUNT(*) AS countsReserved FROM confirmation_tbl WHERE MONTH(transactDate) = $month";
-    $query5 = "SELECT COUNT(*) AS countsReserved FROM funeralmass_tbl WHERE MONTH(transactDate) = $month";
-    $query6 = "SELECT COUNT(*) AS countsReserved FROM wedding_tbl WHERE MONTH(transactDate) = $month";
+    $query1 = "SELECT COUNT(*) AS countsReserved FROM baptismal_tbl WHERE MONTH(tDate) = $month AND YEAR(tDate) = $selectedYear";
+    $query2 = "SELECT COUNT(*) AS countsReserved FROM blessing_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
+    $query3 = "SELECT COUNT(*) AS countsReserved FROM communion_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
+    $query4 = "SELECT COUNT(*) AS countsReserved FROM confirmation_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
+    $query5 = "SELECT COUNT(*) AS countsReserved FROM funeralmass_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
+    $query6 = "SELECT COUNT(*) AS countsReserved FROM wedding_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
 
     $result1 = mysqli_query($conn, $query1);
     $result2 = mysqli_query($conn, $query2);

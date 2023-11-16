@@ -1,0 +1,65 @@
+ .shortened {
+  width: 45%;
+}
+
+.shorteneds {
+  width: 50%;
+  margin-right: 10px;
+}
+ @media print {
+    /* Hide non-essential elements */
+    .noPrint {
+      display: none;
+    }
+
+    /* Adjust styles for the printed page */
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 10px;
+    }
+
+    .container {
+      width: 100%;
+      margin: 0;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .form-select,
+    .form-control {
+      width: 100%;
+    }
+
+    .pieChart {
+      margin-top: 50px; /* Adjust the margin-top value to ensure the pie chart is not cut in portrait mode */
+    }
+
+    .row {
+      margin: 0 -5px;
+    }
+
+    .col-md-6 {
+      width: 50%;
+      float: center;
+      box-sizing: border-box;
+      padding: 0 5px;
+    }
+    
+    .pieChart{
+      max-width: 100%;
+    }
+
+    canvas {
+      max-width: 100%; /* Make charts responsive */
+      height: auto; /* Prevent charts from being stretched */
+    }
+
+    /* Additional styles as needed for your layout */
+  }

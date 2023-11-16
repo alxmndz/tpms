@@ -2,74 +2,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<style type="text/css">
-  .shortened {
-  width: 45%;
-}
-
-.shorteneds {
-  width: 50%;
-  margin-right: 10px;
-}
- @media print {
-    /* Hide non-essential elements */
-    .noPrint {
-      display: none;
-    }
-
-    /* Adjust styles for the printed page */
-    body {
-      font-family: 'Poppins', sans-serif;
-      padding: 10px;
-    }
-
-    .container {
-      width: 100%;
-      margin: 0;
-    }
-
-    .card {
-      border: 1px solid #ddd;
-      margin-bottom: 10px;
-    }
-
-    .card-body {
-      padding: 10px;
-    }
-
-    .form-select,
-    .form-control {
-      width: 100%;
-    }
-
-    .pieChart {
-      margin-top: 50px; /* Adjust the margin-top value to ensure the pie chart is not cut in portrait mode */
-    }
-
-    .row {
-      margin: 0 -5px;
-    }
-
-    .col-md-6 {
-      width: 50%;
-      float: center;
-      box-sizing: border-box;
-      padding: 0 5px;
-    }
-    
-    .pieChart{
-      max-width: 100%;
-    }
-
-    canvas {
-      max-width: 100%; /* Make charts responsive */
-      height: auto; /* Prevent charts from being stretched */
-    }
-
-    /* Additional styles as needed for your layout */
-  }
-</style>
+  <link rel="stylesheet" type="text/css" href="css/report.css">
 
 <?php include "charts/walkInReserve.php"; ?>
 
@@ -84,6 +17,58 @@
 <?php include "charts/donationLine.php"; ?>
 
 <?php include "charts/reservationList.php"; ?>
+
+<?php include "charts/JanDonationSummary.php"; ?>
+
+<?php include "charts/FebDonationSummary.php"; ?>
+
+<?php include "charts/MarDonationSummary.php"; ?>
+
+<?php include "charts/AprDonationSummary.php"; ?>
+
+<?php include "charts/MayDonationSummary.php"; ?>
+
+<?php include "charts/JunDonationSummary.php"; ?>
+
+<?php include "charts/JulDonationSummary.php"; ?>
+
+<?php include "charts/AugDonationSummary.php"; ?>
+
+<?php include "charts/SepDonationSummary.php"; ?>
+
+<?php include "charts/OctDonationSummary.php"; ?>
+
+<?php include "charts/NovDonationSummary.php"; ?>
+
+<?php include "charts/DecDonationSummary.php"; ?>
+
+<?php include "charts/TotalDonationSummary.php"; ?>
+
+<?php include "reserveData/janReservedList.php"; ?>
+
+<?php include "reserveData/febReservedList.php"; ?>
+
+<?php include "reserveData/marReservedList.php"; ?>
+
+<?php include "reserveData/aprReservedList.php"; ?>
+
+<?php include "reserveData/mayReservedList.php"; ?>
+
+<?php include "reserveData/junReservedList.php"; ?>
+
+<?php include "reserveData/julReservedList.php"; ?>
+
+<?php include "reserveData/augReservedList.php"; ?>
+
+<?php include "reserveData/sepReservedList.php"; ?>
+
+<?php include "reserveData/octReservedList.php"; ?>
+
+<?php include "reserveData/novReservedList.php"; ?>
+
+<?php include "reserveData/decReservedList.php"; ?>
+
+<?php include "reserveData/totalReservedList.php"; ?>
 
 <div class="container">
   <div class="card">
@@ -130,7 +115,7 @@
           <div class="col-md-6 mt-3">
             <div class="card">
               <div class="card-body">
-                <canvas id="barCert" width="100%"></canvas>
+                <canvas id="barCert" width="100%" height="400px"></canvas>
               </div>
             </div>
           </div>
@@ -212,22 +197,31 @@
       <div class="col-md-12 mt-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Table Section</h5>
+              <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Donation Summary</h5>
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <!-- Add more columns as needed -->
+                    <th>Months</th>
+                    <th>Donation Price</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                     // Replace the sample data below with your actual data retrieval logic
                     $sampleData = [
-                      ['Data 1', 'Data 2'],
-                      ['Data 3', 'Data 4'],
-                      // Add more rows as needed
+                      ['Jannuary', $formattedSumJan],
+                      ['February', $formattedSumFeb],
+                      ['March', $formattedSumMar],
+                      ['April', $formattedSumApr],
+                      ['May', $formattedSumMay],
+                      ['June', $formattedSumJun],
+                      ['July', $formattedSumJul],
+                      ['August', $formattedSumAug],
+                      ['September', $formattedSumSep],
+                      ['October', $formattedSumOct],
+                      ['November', $formattedSumNov],
+                      ['December', $formattedSumDec],
+                      ['Total Amount', $formattedSumTotal],
                     ];
 
                     foreach ($sampleData as $row) {
@@ -243,6 +237,58 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-12 mt-3">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Report Summary</h5>
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th>Month</th>
+                              <th>Baptismal</th>
+                              <th>Blessing</th>
+                              <th>Communion</th>
+                              <th>Confirmation</th>
+                              <th>Funeral</th>
+                              <th>Wedding</th>
+                              <!-- Add more columns as needed -->
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                              // Replace the sample data below with your actual data retrieval logic
+                              $sampleData = [
+                                  ['January', $baptismCount, $blessingCount, $communionCount, $confirmationCount, $funeralMassCount, $weddingCount],
+                                  ['February', $baptismCountFeb, $blessingCountFeb, $communionCountFeb, $confirmationCountFeb, $funeralMassCountFeb, $weddingCountFeb],
+                                  ['March', $baptismCountMar, $blessingCountMar, $communionCountMar, $confirmationCountMar, $funeralMassCountMar, $weddingCountMar],
+                                  ['April', $baptismCountApr, $blessingCountApr, $communionCountApr, $confirmationCountApr, $funeralMassCountApr, $weddingCountApr],
+                                  ['May', $baptismCountMay, $blessingCountMay, $communionCountMay, $confirmationCountMay, $funeralMassCountMay, $weddingCountMay],
+                                  ['June', $baptismCountJun, $blessingCountJun, $communionCountJun, $confirmationCountJun, $funeralMassCountJun, $weddingCountJun],
+                                  ['July', $baptismCountJul, $blessingCountJul, $communionCountJul, $confirmationCountJul, $funeralMassCountJul, $weddingCountJul],
+                                  ['August', $baptismCountAug, $blessingCountAug, $communionCountAug, $confirmationCountAug, $funeralMassCountAug, $weddingCountAug],
+                                  ['September', $baptismCountSep, $blessingCountSep, $communionCountSep, $confirmationCountSep, $funeralMassCountSep, $weddingCountSep],
+                                  ['October', $baptismCountOct, $blessingCountOct, $communionCountOct, $confirmationCountOct, $funeralMassCountOct, $weddingCountOct],
+                                  ['November', $baptismCountNov, $blessingCountNov, $communionCountNov, $confirmationCountNov, $funeralMassCountNov, $weddingCountNov],
+                                  ['December', $baptismCountDec, $blessingCountDec, $communionCountDec, $confirmationCountDec, $funeralMassCountDec, $weddingCountDec],
+                                  ['Total', $baptismCountSum, $blessingCountSum, $communionCountSum, $confirmationCountSum, $funeralMassCountSum, $weddingCountSum],
+                                  // Add more rows as needed
+                              ];
+
+                              foreach ($sampleData as $row) {
+                                  echo '<tr>';
+                                  foreach ($row as $cell) {
+                                      echo '<td>' . $cell . '</td>';
+                                  }
+                                  echo '</tr>';
+                              }
+                          ?>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
 
     </div>
   </div>
