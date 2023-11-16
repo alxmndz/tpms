@@ -7,6 +7,18 @@
         <span class="fs-5 fw-bold">Request Status</span>
         <div class="ms-auto">
           <button class="btn btn-primary btn-sm" onclick="openCity(event, 'reqcert')"> Request</button>
+          <div class="status-dropdown btn-group">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter by Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+              <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Picked Up" href="#">Picked Up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Disapproved, Because mismatch files" href="#">Disapproved</a></li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="card-body">
@@ -20,7 +32,7 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Contact</th>
+              <th>Contact Number</th>
               <th>Address</th>
               <th>Certificate Type</th>
               <th>Transaction Date</th>
@@ -40,7 +52,7 @@
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
               <td>
-                <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
                  </span>
               </td>
@@ -147,7 +159,7 @@
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved, Because mismatch files</option>
+                                          <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                                       </select>
                                   </div>
                               </div>
@@ -184,18 +196,22 @@
     <script src="js/datatables.min.js"></script>
     <script src="js/pdfmake.min.js"></script>
     <script src="js/vfs_fonts.js"></script>
-    <script>
-      $(document).ready(function(){
-    
-          var table = $('#reqsTbl').DataTable({
-              
-              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
-              
-          });
-          
-          
-          table.buttons().container()
-          .appendTo('#example_wrapper .col-md-6:eq(0)');
+<script>
+  $(document).ready(function(){
+    // DataTable initialization
+    var table = $('#reqsTbl').DataTable({
+      buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
 
-      });
-    </script>
+    // Move buttons container
+    table.buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+
+    // Status filter button click event
+    $('.filter-btn').on('click', function () {
+      var status = $(this).data('status');
+
+      // Show all rows if 'All' is selected, otherwise filter by status
+      table.column(5).search(status === 'all' ? '' : status).draw();
+    });
+  });
+</script>

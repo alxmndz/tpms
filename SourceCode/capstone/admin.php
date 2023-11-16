@@ -16,35 +16,42 @@
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <style>
-        .status-badge {
-            display: flex;
-            align-items: center;
-            padding: 5px; /* Adjust padding for spacing */
-            border-radius: 15px;
-            font-weight: bold; /* Make the text bold */
-        }
+<style>
+    .status-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center text vertically */
+        padding: 2px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-align: center; /* Center text horizontally */
+    }
 
-        .status-approved {
-            color: green; /* Text color for Approved status */
-        }
+    .status-approved {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-in-process {
-            color: orange; /* Text color for In Process status */
-        }
+    .status-in-process {
+        background-color: #F39C12;
+        color: white;
+    }
 
-        .status-disapproved {
-            color: red; /* Text color for Disapproved status */
-        }
+    .status-disapproved {
+        background-color: #CB4335;
+        color: white;
+    }
 
-        .status-pickedUp {
-            color: #16A085; /* Text color for Disapproved status */
-        }
+    .status-pickedUp {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-pickUp {
-            color: #2E86C1; /* Text color for Disapproved status */
-        }
-    </style>
+    .status-pickUp {
+        background-color: #2E86C1;
+        color: white;
+    }
+</style>
 
 </head>
 <body>
@@ -81,6 +88,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                                         <li class="mb-3 mt-2"><span>MAIN</span></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-house"></i> <span class="item-text">Home</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'calendar')"><i class="fas fa-calendar"></i> <span class="item-text">Calendar</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Reservation</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'accounts')"><i class="fas fa-users"></i> <span class="item-text">Accounts</span></a></li>
                                         <li class="dropdown">
@@ -161,6 +169,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                     <div class="tabcontent" id="home">
                       <?php include"admin/home.php"; ?>
+                    </div>
+                    <div class="tabcontent" id="calendar" style="display: none;">
+                      <?php include"admin/calendar.php"; ?>
                     </div>
                     <div class="tabcontent" id="reservation" style="display: none;">
                       <?php include"admin/reservation.php"; ?>
@@ -320,7 +331,7 @@ function getStatusColorClass($status) {
             return 'status-approved';
         case 'In Process':
             return 'status-in-process';
-        case 'Disapproved, Because mismatch files':
+        case 'Disapprove, mismatch files':
             return 'status-disapproved';
         case 'Ready to pick up':
             return 'status-pickUp';

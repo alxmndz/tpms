@@ -4,6 +4,19 @@
   <div class="card mb-4">
     <div class="card-header d-flex align-items-center">
         <span class="fs-5 fw-bold">Wedding Reservation Status</span>
+        <div class="ms-auto">
+          <div class="status-dropdown btn-group">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter by Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+              <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -294,7 +307,7 @@
 
                               <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                              <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                              <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                             </select>
                           </div>
                         </div>
@@ -346,5 +359,20 @@
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
-      });
+          switch(status) {
+            case 'all':
+              // Show all rows if 'All' is selected
+              table.column(5).search('').draw();
+              break;
+            case 'Approved':
+              table.column(5).search('Approved').draw();
+              break;
+            case 'In Process':
+              table.column(5).search('In Process').draw();
+              break;
+            case 'Disapprove, mismatch files':
+              table.column(5).search('Disapprove, mismatch files').draw();
+              break;
+          }
+        });
     </script>

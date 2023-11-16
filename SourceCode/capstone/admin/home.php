@@ -291,7 +291,7 @@
                 <!-- Six Bootstrap cards -->
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #17A589;">
+                        <div class="icon-contain mt-3" style="background: #2E86C1;">
                             <i class="fas fa-baby"></i>
                         </div>
                         <div class="card-body text-center">
@@ -313,7 +313,7 @@
 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #2E86C1;">
+                        <div class="icon-contain mt-3" style="background: #F1C40F;">
                             <i class="fas fa-cross"></i>
                         </div>
                         <div class="card-body text-center">
@@ -335,7 +335,7 @@
 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #A569BD;">
+                        <div class="icon-contain mt-3" style="background: #52BE80;">
                             <i class="fas fa-book-bible"></i>
                         </div>
                         <div class="card-body text-center">
@@ -357,7 +357,7 @@
 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #EC7063;">
+                        <div class="icon-contain mt-3" style="background: #2E86C1;">
                             <i class="fas fa-person-praying"></i>
                         </div>
                         <div class="card-body text-center">
@@ -378,7 +378,7 @@
                 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #28B463;">
+                        <div class="icon-contain mt-3" style="background: #F1C40F;">
                             <i class="fas fa-hands-praying"></i>
                         </div>
                         <div class="card-body text-center">
@@ -399,7 +399,7 @@
                 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #F1C40F;">
+                        <div class="icon-contain mt-3" style="background: #52BE80;">
                             <i class="fas fa-ring"></i>
                         </div>
                         <div class="card-body text-center">
@@ -453,7 +453,12 @@
                 </div>
                  <?php
                     include_once 'php/dbconn.php';
-                    $result = mysqli_query($conn, "SELECT * FROM eventlist ORDER BY id DESC");
+
+                    // Get the current month and year
+                    $currentMonth = date("m");
+                    $currentYear = date("Y");
+
+                    $result = mysqli_query($conn, "SELECT * FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear ORDER BY id DESC");
 
                     if (mysqli_num_rows($result) > 0) {
                         // Open the card-container outside the loop

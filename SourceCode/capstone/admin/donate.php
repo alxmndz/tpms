@@ -21,7 +21,7 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Contact</th>
+                  <th>Contact Number</th>
                   <th>Transaction Date</th>
                   <th>Amount</th>
                   <th>Action</th>

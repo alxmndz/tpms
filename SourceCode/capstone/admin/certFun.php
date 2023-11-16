@@ -40,8 +40,8 @@
                        </span>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Print
-                      </button>
+                      <a type="button" class="btn btn-sm btn-primary" href="admin/previewFun.php?id=<?php echo $row["id"]; ?>"> <i class="fa-solid fa-pen-to-square"></i> Preview
+                      </a>
                       <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateGenFun<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                       </button>
                     </td>
@@ -151,34 +151,28 @@
               </div>
 
               <div class="row my-3">
-                <div class="col-md-12">
-                  <div class="form-outline">
-                       <label class="form-label fw-bold" for="typeText">
-                        He / She received the last Sacrament before Death?
-                      </label>
-                      <select class="form-select" id="sacrament" name="sacrament">
-                        <option disabled selected>Select an option</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                      </select>
-                    </div>
-                  </div>
-              </div>
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"> He/She received Last Sacrament before Death?</label>
+                                      <select class="form-select" id="sbd" name="sbd" required disabled>
+                                          <option value="Yes" <?php echo ($row['sbd'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                                          <option value="No" <?php echo ($row['sbd'] === 'No') ? 'selected' : ''; ?>>No</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
 
               <div class="row my-3">
-                <div class="col-md-12">
-                  <div class="form-outline">
-                       <label class="form-label fw-bold" for="typeText">
-                        He / She was not able to receive the last Sacraments before death?
-                      </label>
-                      <select class="form-select" id="lastsacrament" name="lastsacrament">
-                        <option disabled selected>Select an option</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                      </select>
-                    </div>
-                  </div>
-              </div>
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText"> He/She was not able receive Last Sacrament before Death?</label>
+                                      <select class="form-select" id="sbd2" name="sbd2" required disabled>
+                                          <option value="Yes" <?php echo ($row['sbd2'] === 'Yes') ? 'selected' : ''; ?>>Yes</option>
+                                          <option value="No" <?php echo ($row['sbd2'] === 'No') ? 'selected' : ''; ?>>No</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
 
               <div class="row my-3">
                 <div class="col-md-12">
@@ -200,7 +194,7 @@
 
                               <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                              <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                              <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                               </select>
                             </div>
                         </div>

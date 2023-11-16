@@ -28,5 +28,4 @@
 	$data5 = mysqli_fetch_array($result5);
 
 	$reqCounts = [$data1['countReq1'], $data2['countReq2'], $data3['countReq3'], $data4['countReq4'], $data5['countReq5']];
-
 ?>

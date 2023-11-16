@@ -35,7 +35,7 @@
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo date("M d, Y", strtotime($row["generatedDate"])); ?></td>
                     <td>
-                      <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                      <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
                         <?php echo $row["status"]; ?>
                        </span>
                     </td>
@@ -163,7 +163,7 @@
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
 
-                                          <option value="Disapproved, Because mismatch files" <?php echo ($row['status'] === 'Disapproved, Because mismatch files') ? 'selected' : ''; ?>>Disapproved due to file mismatch</option>
+                                          <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                                       </select>
                                   </div>
                               </div>

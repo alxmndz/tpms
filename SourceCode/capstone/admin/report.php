@@ -81,6 +81,10 @@
 
 <?php include "charts/eventList.php"; ?>
 
+<?php include "charts/donationLine.php"; ?>
+
+<?php include "charts/reservationList.php"; ?>
+
 <div class="container">
   <div class="card">
     <div class="card-body">
@@ -126,7 +130,29 @@
           <div class="col-md-6 mt-3">
             <div class="card">
               <div class="card-body">
-                <canvas id="pieChart" width="100%" height="400"></canvas>
+                <canvas id="barCert" width="100%"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="card">
+              <div class="card-header">
+                <h5>Total Reserved per Month</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="reservedChart" width="100%"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="card">
+              <div class="card-header">
+                <h5>Total Donation per Month</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="lineChart" width="100%"></canvas>
               </div>
             </div>
           </div>
@@ -135,15 +161,47 @@
 
           <div class="card summary card-sm mt-3">
             <div class="card-body text-center">
-              <h1 class="card-text"><?= $formattedSum ?></h1>
-              <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total Donation Amount:</h5>
+              <h3 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total Donation Amount:</h3>
+              <h3 class="card-text"><?= $formattedSum ?></h3>
             </div>
           </div>
 
           <div class="card summary card-sm mt-3 mb-2">
             <div class="card-body text-center">
-              <h1 class="card-text"><?= $totalEvents ?></h1>
-              <h5 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total events for <?= date("F Y", strtotime("$selectedYear-$selectedMonth-01")) ?></h5>
+              <h3 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total events for <?= date("M Y", strtotime("$selectedYear-$selectedMonth")) ?></h3>
+              <h2 class="card-text">
+                <?php
+                include "php/dbconn.php";
+
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Get the current month and year
+                $defaultMonth = date("m");
+                $defaultYear = date("Y");
+
+                $selectedMonth = isset($_GET['selectedMonth']) ? $_GET['selectedMonth'] : $defaultMonth;
+                $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear;
+
+                // Construct the SQL query with the WHERE clause
+                $sql = "SELECT COUNT(*) as eventCount FROM eventlist WHERE MONTH(eventDate) = $selectedMonth AND YEAR(eventDate) = $selectedYear";
+
+                $result = $conn->query($sql);
+
+                if ($result === false) {
+                    // Handle the query error
+                    echo "Error: " . $conn->error;
+                } else {
+                    // Fetch the result
+                    $row = $result->fetch_assoc();
+
+                    // Display the count
+                    echo $row['eventCount'];
+                }
+                ?>
+
+              </h2>
             </div>
           </div>
 
@@ -151,9 +209,155 @@
 
       </div>
 
+      <div class="col-md-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Table Section</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <!-- Add more columns as needed -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    // Replace the sample data below with your actual data retrieval logic
+                    $sampleData = [
+                      ['Data 1', 'Data 2'],
+                      ['Data 3', 'Data 4'],
+                      // Add more rows as needed
+                    ];
+
+                    foreach ($sampleData as $row) {
+                      echo '<tr>';
+                      foreach ($row as $cell) {
+                        echo '<td>' . $cell . '</td>';
+                      }
+                      echo '</tr>';
+                    }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>
 </div>
+
+
+<script>
+  $(function () {
+    const data = {
+      labels: <?php echo json_encode(array_values($monthNames)); ?>,
+      datasets: [
+        {
+          label: 'Baptism',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Baptism']); ?>,
+        },
+        {
+          label: 'Blessing',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Blessing']); ?>,
+        },
+        {
+          label: 'Communion',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Communion']); ?>,
+        },
+        {
+          label: 'Confirmation',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Confirmation']); ?>,
+        },
+        {
+          label: 'Funeral Mass',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['FuneralMass']); ?>,
+        },
+        {
+          label: 'Wedding',
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Wedding']); ?>,
+        },
+      ]
+    };
+
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    const lineChart = new Chart(
+      document.getElementById('reservedChart'),
+      config
+    );
+  });
+</script>
+
+<script>
+    $(function () {
+        const labels = <?php echo json_encode($donatedDate); ?>;
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Total Donation Amount',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                data: <?php echo json_encode($totalAmount); ?>,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const lineChart = new Chart(
+            document.getElementById('lineChart'),
+            config
+        );
+    });
+</script>
 
 
 
@@ -223,12 +427,14 @@
   );
 </script>
 
-<script type="text/javascript">
+
+  <script type="text/javascript">
   $(function () {
-      // Pie Chart Data
-      var pieChartData = {
+      // Bar Chart Data
+      var barChartData = {
         datasets: [
           {
+            label: 'Certificates',
             data: <?php echo json_encode($reqCounts); ?>,
             backgroundColor: ['#16A085', '#3498DB', '#8E44AD', '#C0392B', '#DC7633'],
           },
@@ -236,24 +442,28 @@
         labels: ['Baptismal Certificate', 'Communion Certificate', 'Confirmation Certificate', 'Death Certificate', 'Marriage Certificate'],
       };
 
-      var pieChartOptions = {
+      var barChartOptions = {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          position: 'bottom',
-          labels: {
-            boxWidth: 12,
+        scales: {
+          x: {
+            stacked: true,
           },
+          y: {
+            stacked: true,
+          }
+        },
+        legend: {
+          display: false,
         },
       };
 
-      var ctx_2 = document.getElementById('pieChart').getContext('2d');
+      var ctx_2 = document.getElementById('barCert').getContext('2d');
       new Chart(ctx_2, {
-        type: 'doughnut',
-        data: pieChartData,
-        options: pieChartOptions,
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions,
       });
-
     });
 </script>
 

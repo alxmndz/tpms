@@ -4,9 +4,8 @@ include_once 'dbconn.php';
 if (isset($_POST['btn-save'])) {
     $payMethod = $_POST['payMethod'];
     if ($payMethod === 'face-to-face') {
-        $amount = null; // Set amount to null for face-to-face payments
         $targetFilePath = null; // Set receipt to null for face-to-face payments
-        
+        $amount = $_POST['amount'];
         $addedBy = $_POST['addedBy'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];

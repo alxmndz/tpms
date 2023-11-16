@@ -1,5 +1,5 @@
 <?php
-include"php/dbconn.php";
+include "php/dbconn.php";
 
 // Default values to the current month and year
 $defaultMonth = date('m');
@@ -15,10 +15,8 @@ $sql = "SELECT * FROM eventlist WHERE MONTH(generatedDate) = $selectedMonth AND 
 $result = $conn->query($sql);
 
 if ($result) {
-    // Calculate the total number of events
     $totalEvents = $result->num_rows;
 } else {
     echo "Error: " . $conn->error;
 }
-
 ?>
