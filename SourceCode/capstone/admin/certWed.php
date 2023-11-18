@@ -6,6 +6,17 @@
         <span class="fs-5 fw-bold">Marriage Certificate Status</span>
         <div class="ms-auto">
           <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#genWedd"><i class="fa-solid fa-pen-to-square"></i> Generate</button>
+          <div class="status-dropdown btn-group">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                          Filter by Status
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+                          <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+                          <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+                          <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+                          <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+                        </ul>
+                      </div>
         </div>
       </div>
     <div class="card-body">
@@ -300,6 +311,22 @@
           
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+          $('.filter-btn').on('click', function () {
+          var status = $(this).data('status');
+
+          // Use a switch statement to handle each status separately
+          switch (status) {
+            case 'all':
+              // Show all rows if 'All' is selected
+              table.column(3).search('').draw();
+              break;
+            default:
+              // Show rows based on the selected status
+              table.column(3).search(status).draw();
+              break;
+          }
+        });
 
       });
     </script>

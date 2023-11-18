@@ -60,21 +60,21 @@
         .counter-value {
             font-size: 24px;
         }
-.card{
-    align-content: center;
-}
+        .card{
+            align-content: center;
+        }
 
-.icon-contain{
- background: #52BE80;
- width: 50px;
- height: 50px;
- border-radius: 50%;
- display: flex;
- justify-content: center;
- align-items: center;
- margin-left: 50px;
- color: whitesmoke;
-}
+        .icon-contain{
+         background: #52BE80;
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-left: 50px;
+         color: whitesmoke;
+        }
 </style>
 <div class="container">
   <h5><i class="fas fa-house"></i> Home</h5>
@@ -87,39 +87,38 @@
                     </div>
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Total Events</p>
-                                                <h4 class="my-1 text-center">
-                                                  <?php
-    include"php/dbconn.php";
+                            <h4 class="my-1 text-center">
+                                  <?php
+                                    include"php/dbconn.php";
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
 
-    // Get the current month and year
-    $currentMonth = date("m");
-    $currentYear = date("Y");
+                                    // Get the current month and year
+                                    $currentMonth = date("m");
+                                    $currentYear = date("Y");
 
-    // Construct the SQL query with the WHERE clause
-    $sql = "SELECT COUNT(*) FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear";
+                                    // Construct the SQL query with the WHERE clause
+                                    $sql = "SELECT COUNT(*) FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear";
 
-    $result = $conn->query($sql);
+                                    $result = $conn->query($sql);
 
-    if ($result === false) {
-        // Handle the query error
-        echo "Error: " . $conn->error;
-    } else {
-        // Fetch the result
-        $row = $result->fetch_assoc();
+                                    if ($result === false) {
+                                        // Handle the query error
+                                        echo "Error: " . $conn->error;
+                                    } else {
+                                        // Fetch the result
+                                        $row = $result->fetch_assoc();
 
-        // Display the count
-        echo $row['COUNT(*)'];
-    }
+                                        // Display the count
+                                        echo $row['COUNT(*)'];
+                                    }
 
-    // Close the database connection
-    $conn->close();
-?>
-
-                                              </h4>
+                                    // Close the database connection
+                                    $conn->close();
+                                ?>
+                          </h4>
                     </div>
                 </div>
             </div>
@@ -130,39 +129,38 @@
                     </div>
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Total Requests</p>
-                                                   <h4 class="my-1 text-center">
-                                                     <?php
-    include"php/dbconn.php";
+                            <h4 class="my-1 text-center">
+                                <?php
+                                    include"php/dbconn.php";
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
 
-    // Get the current month and year
-    $currentMonth = date("m");
-    $currentYear = date("Y");
+                                    // Get the current month and year
+                                    $currentMonth = date("m");
+                                    $currentYear = date("Y");
 
-    // Construct the SQL query with the WHERE clause
-    $sql = "SELECT COUNT(*) FROM request WHERE MONTH(transactDate) = $currentMonth AND YEAR(transactDate) = $currentYear";
+                                    // Construct the SQL query with the WHERE clause
+                                    $sql = "SELECT COUNT(*) FROM request WHERE MONTH(transactDate) = $currentMonth AND YEAR(transactDate) = $currentYear";
 
-    $result = $conn->query($sql);
+                                    $result = $conn->query($sql);
 
-    if ($result === false) {
-        // Handle the query error
-        echo "Error: " . $conn->error;
-    } else {
-        // Fetch the result
-        $row = $result->fetch_assoc();
+                                    if ($result === false) {
+                                        // Handle the query error
+                                        echo "Error: " . $conn->error;
+                                    } else {
+                                        // Fetch the result
+                                        $row = $result->fetch_assoc();
 
-        // Display the count
-        echo $row['COUNT(*)'];
-    }
+                                        // Display the count
+                                        echo $row['COUNT(*)'];
+                                    }
 
-    // Close the database connection
-    $conn->close();
-?>
-
-                                                   </h4>
+                                    // Close the database connection
+                                    $conn->close();
+                                ?>
+                              </h4>
                     </div>
                 </div>
             </div>
@@ -173,62 +171,61 @@
                     </div>
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Certificates</p>
-                                                 <h4 class="my-1 text-center">
-                                                  <?php
-    include"php/dbconn.php";
+                    <h4 class="my-1 text-center">
+                  <?php
+                    include"php/dbconn.php";
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
 
-    // Get the current month and year
-    $currentMonth = date("m");
-    $currentYear = date("Y");
+                    // Get the current month and year
+                    $currentMonth = date("m");
+                    $currentYear = date("Y");
 
-    // Construct the SQL queries with the WHERE clauses
-    $sql = "SELECT COUNT(*) AS total FROM certbap WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
-    $sql1 = "SELECT COUNT(*) AS total FROM certcomm WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
-    $sql2 = "SELECT COUNT(*) AS total FROM certcon WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
-    $sql3 = "SELECT COUNT(*) AS total FROM certfun WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
-    $sql4 = "SELECT COUNT(*) AS total FROM certmarriage WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+                    // Construct the SQL queries with the WHERE clauses
+                    $sql = "SELECT COUNT(*) AS total FROM certbap WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+                    $sql1 = "SELECT COUNT(*) AS total FROM certcomm WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+                    $sql2 = "SELECT COUNT(*) AS total FROM certcon WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+                    $sql3 = "SELECT COUNT(*) AS total FROM certfun WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
+                    $sql4 = "SELECT COUNT(*) AS total FROM certmarriage WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear";
 
-    // Execute the queries
-    $result = $conn->query($sql);
-    $result1 = $conn->query($sql1);
-    $result2 = $conn->query($sql2);
-    $result3 = $conn->query($sql3);
-    $result4 = $conn->query($sql4);
+                    // Execute the queries
+                    $result = $conn->query($sql);
+                    $result1 = $conn->query($sql1);
+                    $result2 = $conn->query($sql2);
+                    $result3 = $conn->query($sql3);
+                    $result4 = $conn->query($sql4);
 
-    // Check for errors and display the results
-    if ($result && $result1 && $result2 && $result3 && $result4) {
-        $row = $result->fetch_assoc();
-        $sum = $row['total'];
+                    // Check for errors and display the results
+                    if ($result && $result1 && $result2 && $result3 && $result4) {
+                        $row = $result->fetch_assoc();
+                        $sum = $row['total'];
 
-        $row1 = $result1->fetch_assoc();
-        $sum1 = $row1['total'];
+                        $row1 = $result1->fetch_assoc();
+                        $sum1 = $row1['total'];
 
-        $row2 = $result2->fetch_assoc();
-        $sum2 = $row2['total'];
+                        $row2 = $result2->fetch_assoc();
+                        $sum2 = $row2['total'];
 
-        $row3 = $result3->fetch_assoc();
-        $sum3 = $row3['total'];
+                        $row3 = $result3->fetch_assoc();
+                        $sum3 = $row3['total'];
 
-        $row4 = $result4->fetch_assoc();
-        $sum4 = $row4['total'];
+                        $row4 = $result4->fetch_assoc();
+                        $sum4 = $row4['total'];
 
-        // Calculate the total sum
-        $totalSum = $sum + $sum1 + $sum2 + $sum3 + $sum4;
+                        // Calculate the total sum
+                        $totalSum = $sum + $sum1 + $sum2 + $sum3 + $sum4;
 
-        // Display the total sum
-        echo $totalSum;
-    } else {
-        echo "Error: " . $conn->error;
-    }
+                        // Display the total sum
+                        echo $totalSum;
+                    } else {
+                        echo "Error: " . $conn->error;
+                    }
 
-    // Close the database connection
-    $conn->close();
-?>
-
+                    // Close the database connection
+                    $conn->close();
+                ?>
                        </h4>
                     </div>
                 </div>
@@ -241,38 +238,37 @@
                     <div class="counter-value">
                         <p class="mb-0 text-secondary">Total Donations</p>
                           <h4 class="my-1 text-center">
-  <?php
-    include"php/dbconn.php";
+                          <?php
+                            include"php/dbconn.php";
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
 
-    // Get the current month and year
-    $currentMonth = date("m");
-    $currentYear = date("Y");
+                            // Get the current month and year
+                            $currentMonth = date("m");
+                            $currentYear = date("Y");
 
-    // Construct the SQL query with the WHERE clause
-    $sql = "SELECT SUM(amount) AS total FROM donation WHERE MONTH(donatedDate) = $currentMonth AND YEAR(donatedDate) = $currentYear";
+                            // Construct the SQL query with the WHERE clause
+                            $sql = "SELECT SUM(amount) AS total FROM donation WHERE MONTH(donatedDate) = $currentMonth AND YEAR(donatedDate) = $currentYear";
 
-    $result = $conn->query($sql);
+                            $result = $conn->query($sql);
 
-    if ($result) {
-        $row = $result->fetch_assoc();
-        $sum = $row['total'];
+                            if ($result) {
+                                $row = $result->fetch_assoc();
+                                $sum = $row['total'];
 
-        // Format the sum with a comma for thousands separator and a peso sign.
-        $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
+                                // Format the sum with a comma for thousands separator and a peso sign.
+                                $formatted_sum = '₱' . number_format($sum, 2, '.', ',');
 
-        echo $formatted_sum;
-    } else {
-        echo "Error: " . $conn->error;
-    }
+                                echo $formatted_sum;
+                            } else {
+                                echo "Error: " . $conn->error;
+                            }
 
-    // Close the database connection
-    $conn->close();
-  ?>
-
+                            // Close the database connection
+                            $conn->close();
+                          ?>
                        </h4>
                     </div>
                 </div>
@@ -297,13 +293,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM baptismal_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                    include"php/dbconn.php";
+                                    $sql = "SELECT COUNT(*) FROM baptismal_tbl";
+                                    $result = $conn->query($sql);
+                                    while($row = mysqli_fetch_array($result)){
+                                    echo $row['COUNT(*)'];
+                                  }
+                                ?>
                             </h5>
                             <p class="card-text">Baptismal</p>
                         </div>
@@ -319,13 +315,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM blessing_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                    include"php/dbconn.php";
+                                    $sql = "SELECT COUNT(*) FROM blessing_tbl";
+                                    $result = $conn->query($sql);
+                                    while($row = mysqli_fetch_array($result)){
+                                    echo $row['COUNT(*)'];
+                                  }
+                                ?>
                             </h5>
                             <p class="card-text">Blessing</p>
                         </div>
@@ -341,13 +337,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM communion_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                    include"php/dbconn.php";
+                                    $sql = "SELECT COUNT(*) FROM communion_tbl";
+                                    $result = $conn->query($sql);
+                                    while($row = mysqli_fetch_array($result)){
+                                    echo $row['COUNT(*)'];
+                                  }
+                                ?>
                             </h5>
                             <p class="card-text">Communion</p>
                         </div>
@@ -363,13 +359,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM confirmation_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                    include"php/dbconn.php";
+                                    $sql = "SELECT COUNT(*) FROM confirmation_tbl";
+                                    $result = $conn->query($sql);
+                                    while($row = mysqli_fetch_array($result)){
+                                    echo $row['COUNT(*)'];
+                                  }
+                                ?>
                             </h5>
                             <p class="card-text">Confirmation</p>
                         </div>
@@ -384,13 +380,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM funeralmass_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                    include"php/dbconn.php";
+                                    $sql = "SELECT COUNT(*) FROM funeralmass_tbl";
+                                    $result = $conn->query($sql);
+                                    while($row = mysqli_fetch_array($result)){
+                                    echo $row['COUNT(*)'];
+                                  }
+                                ?>
                             </h5>
                             <p class="card-text">Funeral</p>
                         </div>
@@ -405,13 +401,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">
                                 <?php
-                                                      include"php/dbconn.php";
-                                                      $sql = "SELECT COUNT(*) FROM wedding_tbl";
-                                                      $result = $conn->query($sql);
-                                                      while($row = mysqli_fetch_array($result)){
-                                                      echo $row['COUNT(*)'];
-                                                    }
-                                                  ?>
+                                       include"php/dbconn.php";
+                                      $sql = "SELECT COUNT(*) FROM wedding_tbl";
+                                      $result = $conn->query($sql);
+                                      while($row = mysqli_fetch_array($result)){
+                                      echo $row['COUNT(*)'];
+                                   }
+                                ?>
                             </h5>
                             <p class="card-text">Wedding</p>
                         </div>
@@ -447,44 +443,44 @@
                 </div>
             </div>
             <div class="col-md-6 mt-3">
-              <div class="event-container">
-                <div class="table-header">
-                  <h4 class="text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Events List Schedule</h4>
-                </div>
-                 <?php
-                    include_once 'php/dbconn.php';
+    <div class="event-container">
+        <div class="table-header">
+            <h4 class="fw-bold" style="font-family: 'Poppins', sans-serif;">Events List Schedule</h4>
+        </div>
+        <?php
+        include_once 'php/dbconn.php';
 
-                    // Get the current month and year
-                    $currentMonth = date("m");
-                    $currentYear = date("Y");
+        // Get the current month and year
+        $currentMonth = date("m");
+        $currentYear = date("Y");
 
-                    $result = mysqli_query($conn, "SELECT * FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear ORDER BY id DESC");
+        $result = mysqli_query($conn, "SELECT * FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear ORDER BY id DESC");
 
-                    if (mysqli_num_rows($result) > 0) {
-                        // Open the card-container outside the loop
-                        echo '<div class="card-container">';
+        if (mysqli_num_rows($result) > 0) {
+            // Open the card-container outside the loop
+            echo '<div class="card-container">';
 
-                        while ($row = mysqli_fetch_array($result)) {
-                            // Events Card
-                            echo '<div class="card mt-2">';
-                            echo '<div class="card-body">';
-                            echo '<h5 class="card-title fw-bold">' . $row["title"] . '</h5>';
-                            echo '<p class="card-text">Date: ' . date("M d, Y", strtotime($row["eventDate"])) . '</p>';
-                            echo '<p class="card-text">Time: ' . date("h:i A", strtotime($row["eventTime"])) . '</p>';
-                            echo '<p class="card-text">Description: ' . $row["description"] . '</p>';
-                            echo '</div>';
-                            echo '</div>';
-                        }
+            while ($row = mysqli_fetch_array($result)) {
+                // Events Card
+                echo '<div class="card mt-2">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title fw-bold">' . $row["title"] . '</h5>';
+                echo '<p class="card-text">Date: ' . date("M d, Y", strtotime($row["eventDate"])) . '</p>';
+                echo '<p class="card-text">Time: ' . date("h:i A", strtotime($row["eventTime"])) . '</p>';
+                echo '<p class="card-text">Description: ' . $row["description"] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
 
-                        // Close the card-container outside the loop
-                        echo '</div>';
-                    } else {
-                        echo "No result found";
-                    }
-                ?>
-                  <!-- Repeat the above structure for other events -->
-              </div>
-            </div>
+            // Close the card-container outside the loop
+            echo '</div>';
+        } else {
+            echo "No result found";
+        }
+        ?>
+    </div>
+</div>
+
 
 
         </div>

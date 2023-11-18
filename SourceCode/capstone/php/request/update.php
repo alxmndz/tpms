@@ -3,10 +3,11 @@
 
   if (count($_POST) > 0) {
     $status = $_POST['status'];
+    $pickUpDt = $_POST['pickUpDt'];
     $id = $_POST['id'];
 
       // Update the account type in the database
-      mysqli_query($conn, "UPDATE request SET status='$status' WHERE id='$id'");
+      mysqli_query($conn, "UPDATE request SET status='$status',pickUpDt='$pickUpDt' WHERE id='$id'");
 
        echo "<script type='text/javascript'>
         alert('Request Updated!');

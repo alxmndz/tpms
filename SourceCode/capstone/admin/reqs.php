@@ -33,9 +33,9 @@
             <tr>
               <th>Name</th>
               <th>Contact Number</th>
-              <th>Address</th>
               <th>Certificate Type</th>
               <th>Transaction Date</th>
+              <th>Pick-Up Date</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -48,9 +48,9 @@
             <tr>
               <td><?php echo $row["name"]; ?></td>
               <td><?php echo $row["contact"]; ?></td>
-              <td><?php echo $row["address"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["pickUpDt"])); ?></td>
               <td>
                 <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
@@ -82,6 +82,7 @@
                         <!-- Right Side (Input Fields) -->
                      <div class="col-md-6">
                         <div class="form-group">
+                          <input type="hidden" name="pickUpDt" class="form-control" value="<?php echo date('Y-m-d'); ?>">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
                               <div class="row my-3">

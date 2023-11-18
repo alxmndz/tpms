@@ -359,20 +359,21 @@
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
-          switch(status) {
-            case 'all':
-              // Show all rows if 'All' is selected
-              table.column(5).search('').draw();
-              break;
-            case 'Approved':
-              table.column(5).search('Approved').draw();
-              break;
-            case 'In Process':
-              table.column(5).search('In Process').draw();
-              break;
-            case 'Disapprove, mismatch files':
-              table.column(5).search('Disapprove, mismatch files').draw();
-              break;
-          }
+          // Status filter button click event
+          $('.filter-btn').on('click', function () {
+            var status = $(this).data('status');
+
+            // Use a switch statement to handle each status separately
+            switch (status) {
+              case 'all':
+                // Show all rows if 'All' is selected
+                table.column(5).search('').draw();
+                break;
+              default:
+                // Show rows based on the selected status
+                table.column(5).search(status).draw();
+                break;
+            }
+          });
         });
     </script>

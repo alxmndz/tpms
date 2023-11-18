@@ -3,6 +3,33 @@ include_once 'dbconn.php';
 
 if (isset($_POST['btn-save'])) {
     $payMethod = $_POST['payMethod'];
+    $conDate = $_POST['conDate'];
+    $conTime = $_POST['conTime'];
+
+    // Validate bapTime
+    $startTime = strtotime('07:00 AM');
+    $endTime = strtotime('04:00 PM');
+
+    $conTimeTimestamp = strtotime($conTime);
+
+    if ($conTimeTimestamp < $startTime || $conTimeTimestamp > $endTime) {
+        echo "<script type='text/javascript'>
+                alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
+                window.location = '../admin.php';
+              </script>";
+        exit;
+    }
+
+    $checkQuery = "SELECT * FROM confirmation_tbl WHERE conDate = '$conDate' AND conTime = '$conTime'";
+    $checkResult = mysqli_query($conn, $checkQuery);
+
+    if (mysqli_num_rows($checkResult) > 0) {
+        echo "<script type='text/javascript'>
+            alert('Your Reservation Time has already been taken!');
+            window.location = '../admin.php';
+        </script>";
+        exit;
+    }
     if ($payMethod === 'face-to-face') {
         $addedBy = $_POST['addedBy'];
         $name = $_POST['name'];

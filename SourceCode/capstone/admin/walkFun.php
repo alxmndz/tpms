@@ -265,38 +265,30 @@
     <script src="js/datatables.min.js"></script>
     <script src="js/pdfmake.min.js"></script>
     <script src="js/vfs_fonts.js"></script>
-    <script>
-      $(document).ready(function(){
-    
-          var table = $('#walkFunTable').DataTable({
-              
-              buttons:['copy', 'csv', 'excel', 'pdf', 'print']
-              
-          });
-          
-          
-          table.buttons().container()
-          .appendTo('#example_wrapper .col-md-6:eq(0)');
+<script>
+$(document).ready(function(){
 
-          $('.filter-btn').on('click', function () {
-          var status = $(this).data('status');
+    var table = $('#walkFunTable').DataTable({
+        buttons:['copy', 'csv', 'excel', 'pdf', 'print']
+    });
 
-          // Use a switch statement to handle each status separately
-          switch(status) {
+    table.buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+
+    // Status filter button click event
+    $('.filter-btn').on('click', function () {
+        var status = $(this).data('status');
+
+        // Use a switch statement to handle each status separately
+        switch (status) {
             case 'all':
-              // Show all rows if 'All' is selected
-              table.column(5).search('').draw();
-              break;
-            case 'Approved':
-              table.column(5).search('Approved').draw();
-              break;
-            case 'In Process':
-              table.column(5).search('In Process').draw();
-              break;
-            case 'Disapprove, mismatch files':
-              table.column(5).search('Disapprove, mismatch files').draw();
-              break;
-          }
-        });
-      });
-    </script>
+                // Show all rows if 'All' is selected
+                table.column(6).search('').draw();
+                break;
+            default:
+                // Show rows based on the selected status
+                table.column(6).search(status).draw();
+                break;
+        }
+    });
+});
+</script>
