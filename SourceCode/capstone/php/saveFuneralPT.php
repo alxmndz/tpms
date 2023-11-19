@@ -1,17 +1,17 @@
 <?php
 include_once 'dbconn.php';
-if(isset($_POST['btn-save']))
-{
-  $buryDate = $_POST['buryDate'];
+
+if (isset($_POST['btn-save'])) {
+    $buryDate = $_POST['buryDate'];
     $resTime = $_POST['resTime'];
 
-    // Validate bapTime
+    // Validate resTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
 
-    $funTimeTimestamp = strtotime($resTime);
+    $resTimeTimestamp = strtotime($resTime);
 
-    if ($funTimeTimestamp < $startTime || $funTimeTimestamp > $endTime) {
+    if ($resTimeTimestamp < $startTime || $resTimeTimestamp > $endTime) {
         echo "<script type='text/javascript'>
                 alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
                 window.location = '../patron.php';
@@ -29,62 +29,34 @@ if(isset($_POST['btn-save']))
         </script>";
         exit;
     }
-  $addedBy = $_POST['addedBy'];
-  $name = $_POST['name'];
-  $fName = $_POST['fName'];
-  $mName = $_POST['mName'];
-  $widow = $_POST['widow'];
-  $address = $_POST['address'];
-  $contact = $_POST['contact'];
-  $deathDate = $_POST['deathDate'];
-  $age = $_POST['age'];
-  $buryDate = $_POST['buryDate'];
-  $cause = $_POST['cause'];
-  $sacrament = $_POST['sacrament'];
-  $lastsacrament = $_POST['lastsacrament'];
-  $payMethod = $_POST['payMethod'];
-  $transactType = $_POST['transactType'];
-  $reqBy = $_POST['reqBy'];
-  $resTime = $_POST['resTime'];
-  $refNum = $_POST['refNum'];
-  $amount = $_POST['amount'];
 
-  $receipt = $_FILES['receipt'];
-  $targetDir = "../receipt/";
-  $fileName5 = $_FILES['receipt']['name'];
-  $targetFilePath = $targetDir . $fileName5;
-  $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);   
-                            
-  $fileTmpName5 = $_FILES['receipt']['tmp_name'];
-  $allowTypes = array('jpg','png','jpeg','gif','pdf');
-  if(in_array($fileType, $allowTypes)){
-    if(move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath)){
-    echo $targetFilePath;
-    $sql_query = "INSERT INTO funeralmass_tbl(name,fName,mName,widow,address,deathDate,age,buryDate,cause,sacrament,lastsacrament,amount,addedBy,receipt,payMethod,transactType,refNum,contact,reqBy,resTime) VALUES('$name','$fName','$mName','$widow','$address','$deathDate','$age','$buryDate','$cause','$sacrament','$lastsacrament','$amount','$addedBy','$targetFilePath','$payMethod','$transactType','$refNum','$contact','$reqBy','$resTime')";
-    mysqli_query($conn,$sql_query);
-  
+    $addedBy = $_POST['addedBy'];
+    $name = $_POST['name'];
+    $fName = $_POST['fName'];
+    $mName = $_POST['mName'];
+    $widow = $_POST['widow'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+    $deathDate = $_POST['deathDate'];
+    $age = $_POST['age'];
+    $buryDate = $_POST['buryDate'];
+    $cause = $_POST['cause'];
+    $sacrament = $_POST['sacrament'];
+    $lastsacrament = $_POST['lastsacrament'];
+    $transactType = $_POST['transactType'];
+    $reqBy = $_POST['reqBy'];
+    $resTime = $_POST['resTime'];
+
+    $sql_query = "INSERT INTO funeralmass_tbl(name, fName, mName, widow, address, deathDate, age, buryDate, cause, sacrament, lastsacrament, addedBy, transactType, contact, reqBy, resTime)
+                  VALUES('$name', '$fName', '$mName', '$widow', '$address', '$deathDate', '$age', '$buryDate', '$cause', '$sacrament', '$lastsacrament', '$addedBy', '$transactType', '$contact', '$reqBy', '$resTime')";
+    
+    mysqli_query($conn, $sql_query);
+
     echo "<script type='text/javascript'>
-      alert('Funeral Reserved Successfully!');
-      window.location = '../patron.php';
-    </script>";
-  }
-  else{
-    echo "<script type='text/javascript'>
-      alert('Request Failed!');
-      window.location = '../patron.php';
-    </script>";
-      }
-  }
-  else{
-    echo "<script type='text/javascript'>
-      alert('Funeral Reserved Successfully!');
-      window.location = '../patron.php';
-    </script>";
-      }
-  }
-      
+          alert('Funeral Reserved Successfully!');
+          window.location = '../patron.php';
+        </script>";
+}
+
+mysqli_close($conn);
 ?>
-
-<?php
-  mysqli_close($conn);
-      ?>

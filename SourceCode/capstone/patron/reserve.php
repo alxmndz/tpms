@@ -17,57 +17,82 @@
         }
     </style>
 
-    <div class="container">
-      <h1 class="text-center text-uppercase" style="font-family: 'Poppins', sans-serif; font-weight: bolder;">Event Reservation</h1>
-      <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/baptize.jpg" alt="Image 1">
-                    <h3>Baptismal</h3>
+<div class="container">
+    <h1 class="text-center text-uppercase" style="font-family: 'Poppins', sans-serif; font-weight: bolder;">Event Reservation</h1>
+    <hr>
+    <div class="row">
+        <!-- Baptismal Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/baptize.jpg" class="card-img-top" alt="Image 1">
+                <div class="card-body">
+                    <h3 class="card-title">Baptismal</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#baptismModal">Reserve</button>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/bless.jpg" alt="Image 2">
-                    <h3>Blessing</h3>
+        <!-- Blessing Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/bless.jpg" class="card-img-top" alt="Image 2">
+                <div class="card-body">
+                    <h3 class="card-title">Blessing</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#blessModal">Reserve</button>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/comm.jpg" alt="Image 3">
-                    <h3>Communion</h3>
+        <!-- Communion Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/comm.jpg" class="card-img-top" alt="Image 3">
+                <div class="card-body">
+                    <h3 class="card-title">Communion</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#commModal">Reserve</button>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/confirmation.jpg" alt="Image 4">
-                    <h3>Confirmation</h3>
+        <!-- Confirmation Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/confirmation.jpg" class="card-img-top" alt="Image 4">
+                <div class="card-body">
+                    <h3 class="card-title">Confirmation</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#conModal">Reserve</button>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/funeral.png" alt="Image 5">
-                    <h3>Funeral</h3>
+        <!-- Funeral Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/funeral.png" class="card-img-top" alt="Image 5">
+                <div class="card-body">
+                    <h3 class="card-title">Funeral</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#funeralModal">Reserve</button>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <div class="image-card">
-                    <img src="assets/img/portfolio/wedd.jpg" alt="Image 6">
-                    <h3>Marriage</h3>
+        <!-- Marriage Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="assets/img/portfolio/wedd.jpg" class="card-img-top" alt="Image 6">
+                <div class="card-body">
+                    <h3 class="card-title">Marriage</h3>
+                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#weddModal">Reserve</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 

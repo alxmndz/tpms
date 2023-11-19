@@ -53,4 +53,6 @@
     $tableCounts['FuneralMass'][] = $data5['countsReserved'];
     $tableCounts['Wedding'][] = $data6['countsReserved'];
   }
+
+  $title = "Total events for " . date("M Y", strtotime("$selectedYear-$selectedMonth"));
 ?>

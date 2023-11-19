@@ -5,7 +5,7 @@ if (isset($_POST['btn-save'])) {
     $conDate = $_POST['conDate'];
     $conTime = $_POST['conTime'];
 
-    // Validate bapTime
+    // Validate conTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
 
@@ -29,6 +29,7 @@ if (isset($_POST['btn-save'])) {
         </script>";
         exit;
     }
+
     $addedBy = $_POST['addedBy'];
     $name = $_POST['name'];
     $contact = $_POST['contact'];
@@ -37,15 +38,6 @@ if (isset($_POST['btn-save'])) {
     $conTime = $_POST['conTime'];
     $desc = $_POST['desc'];
     $transactType = $_POST['transactType'];
-    $payMethod = $_POST['payMethod'];
-    $refNum = $_POST['refNum'];
-    $amount = $_POST['amount'];
-
-    $receipt = $_FILES['receipt'];
-    $targetDir = "../receipt/";
-    $fileName = $_FILES['receipt']['name'];
-    $targetFilePath = $targetDir . $fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
     $bapCert = $_FILES['bapCert'];
     $targetDir1 = "../bapCert/";
@@ -55,12 +47,16 @@ if (isset($_POST['btn-save'])) {
 
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
 
-    if (in_array($fileType, $allowTypes) && in_array($fileType1, $allowTypes)) {
-        if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
-            move_uploaded_file($_FILES["bapCert"]["tmp_name"], $targetFilePath1)) {
+    if (in_array($fileType1, $allowTypes)) {
+        // Create target directory if it doesn't exist
+        if (!is_dir($targetDir1)) {
+            mkdir($targetDir1, 0755, true);
+        }
 
-            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, address, conDate, conTime, bapCert, description, amount, receipt, transactType, payMethod, refNum)
-                          VALUES('$addedBy', '$name', '$contact', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$amount', '$targetFilePath', '$transactType', '$payMethod', '$refNum')";
+        if (move_uploaded_file($bapCert["tmp_name"], $targetFilePath1)) {
+
+            $sql_query = "INSERT INTO confirmation_tbl(addedBy, name, contact, address, conDate, conTime, bapCert, description, transactType)
+                          VALUES('$addedBy', '$name', '$contact', '$address', '$conDate', '$conTime', '$targetFilePath1', '$desc', '$transactType')";
 
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>

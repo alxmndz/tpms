@@ -32,7 +32,7 @@
                         <i class="fa-solid fa-phone"></i> 
                           Contact Number
                         </label>
-                      <input class="form-control" type="tel" id="contact" name="contact" placeholder="Enter your contact number" required />
+                      <input class="form-control" type="number" id="contact" name="contact" placeholder="Enter your contact number" maxlength="11" onkeyup="limitDigits(this)" required />
                     </div>
                 </div>
               </div>
@@ -93,39 +93,6 @@
                     </div>
                 </div>
               </div>
-
-          <div class="container my-4">
-              <div class="card">
-                <div class="card-header bg-primary text-white">
-                  GCash Details
-                </div>
-                <div class="card-body">
-                   <div class="row my-3">
-                    <div class="col-md-6">
-                      <div class="text-center">
-                        <img class="img-fluid" src="assets/icons/gcash.png" alt="GCash Logo" style="max-width: 100px; max-height: 100px;">
-                        <p class="card-text">For payment method contact:</p>
-                        <p class="mt-2"><i class="fas fa-phone"></i> 0917 835 0117</p>
-                      </div>
-                    </div>
-                   <div class="col-md-6">
-                        <div class="mb-3">
-                          <label for="amount" class="form-label">Amount</label>
-                          <input type="number" class="form-control" id="amount" name="amount" value="1500" readonly required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="amount" class="form-label">Reference Number</label>
-                          <input type="number" class="form-control" id="refNum" name="refNum" placeholder="Enter the Reference Number" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="receipt" class="form-label">Receipt Image</label>
-                          <input type="file" class="form-control" id="receipt" name="receipt" accept="image/*" required>
-                        </div>
-                   </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             
             <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
         </form>
@@ -134,3 +101,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function limitDigits(input) {
+  if (input.value.length > 11) {
+    input.value = input.value.substring(0, 11);
+  }
+}
+</script>

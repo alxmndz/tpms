@@ -77,14 +77,18 @@
               <form method="get">
                 <div class="row">
                   <select name="selectedMonth" class="form-select shorteneds mt-2">
-                    <?php
-                    for ($month = 1; $month <= 12; $month++) {
-                      $selected = ($selectedMonth == $month) ? 'selected' : '';
-                      echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
-                    }
-                    ?>
+                      <?php
+                      $currentMonth = date('n'); // Get the current month without leading zeros
+                      $currentYear = date('Y');  // Get the current year
+
+                      for ($month = 1; $month <= 12; $month++) {
+                          $selected = ($currentMonth == $month) ? 'selected' : '';
+                          echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
+                      }
+                      ?>
                   </select>
-                <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $selectedYear; ?>">
+
+                  <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $currentYear; ?>">
             </div>
             <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
           </form>
@@ -125,7 +129,7 @@
         <div class="col-md-6 mt-2">
           <div class="card summary card-sm mt-3 mb-2">
             <div class="card-body text-center">
-              <h3 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;">Total events for <?= date("M Y", strtotime("$selectedYear-$selectedMonth")) ?></h3>
+              <h3 class="card-title text-center fw-bold" style="font-family: 'Poppins', sans-serif;"><?= $title ?></h3>
               <h2 class="card-text">
                 <?php
                 include "php/dbconn.php";
@@ -481,7 +485,7 @@
         datasets: [
           {
             label: 'Certificates',
-            data: <?php echo json_encode($reqCounts); ?>,
+            data: <?php echo json_encode($requestCounts); ?>,
             backgroundColor: ['#16A085', '#3498DB', '#8E44AD', '#C0392B', '#DC7633'],
           },
         ],

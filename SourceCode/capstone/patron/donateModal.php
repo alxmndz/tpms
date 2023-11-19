@@ -10,7 +10,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-       <form class="" action="php/donate.php" method="post" enctype="multipart/form-data" autocomplete="off">
+       <form class="" action="php/donatePT.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
                                 <input value="<?php echo $id?>" name="addedBy" style="display: none;" id="addedBy">
 

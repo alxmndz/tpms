@@ -18,32 +18,39 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <style>
         .status-badge {
-            display: flex;
-            align-items: center;
-            padding: 5px; /* Adjust padding for spacing */
-            border-radius: 15px;
-            font-weight: bold; /* Make the text bold */
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center text vertically */
+        padding: 2px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-align: center; /* Center text horizontally */
+    }
 
-        .status-approved {
-            color: green; /* Text color for Approved status */
-        }
+    .status-approved {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-in-process {
-            color: orange; /* Text color for In Process status */
-        }
+    .status-in-process {
+        background-color: #F39C12;
+        color: white;
+    }
 
-        .status-disapproved {
-            color: red; /* Text color for Disapproved status */
-        }
+    .status-disapproved {
+        background-color: #CB4335;
+        color: white;
+    }
 
-        .status-pickedUp {
-            color: #16A085; /* Text color for Disapproved status */
-        }
+    .status-pickedUp {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-pickUp {
-            color: #2E86C1; /* Text color for Disapproved status */
-        }
+    .status-pickUp {
+        background-color: #2E86C1;
+        color: white;
+    }
     </style>
 
 </head>
@@ -81,11 +88,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                                         <li class="mb-3 mt-2"><span>MAIN</span></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-house"></i> <span class="item-text">Home</span></a></li>
-                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'eventlist')"><i class="fas fa-calendar-days"></i> <span class="item-text">Events List</span></a></li>
-                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Reservation</span></a></li>
-                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'request')"><i class="fas fa-folder-open"></i> <span class="item-text">Request Certificate</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Event Reservation</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'reqCert')"><i class="fa-solid fa-file-pen"></i> <span class="item-text">Request Certificate</span></a></li>
+                                        
 
                                         <li class="mb-3 mt-3"><span>STATUS</span></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'request')"><i class="fas fa-folder-open"></i> <span class="item-text">Request Status</span></a></li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                                 <i class="fas fa-calendar-days"></i> <span class="item-text">Reservation Status</span>
@@ -133,7 +141,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="content">
                     <!-- Your main content goes here -->
                     <div class="tabcontent" id="home">
-                      <?php include"patron/home.php"; ?>
+                      <?php include"patron/main.php"; ?>
                     </div>
 
                     <div class="tabcontent" id="reservation" style="display: none;">
@@ -159,22 +167,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                     <!-- events -->
                     <div class="tabcontent" id="baptismal" style="display: none;">
-                      <?php include"patron/reqBap.php"; ?>
+                      <?php include"patron/resBap.php"; ?>
                     </div>
                     <div class="tabcontent" id="blessing" style="display: none;">
-                      <?php include"patron/reqBless.php"; ?>
+                      <?php include"patron/resBless.php"; ?>
                     </div>
                     <div class="tabcontent" id="communion" style="display: none;">
-                      <?php include"patron/reqCom.php"; ?>
+                      <?php include"patron/resCom.php"; ?>
                     </div>
                     <div class="tabcontent" id="confirmation" style="display: none;">
-                      <?php include"patron/reqCon.php"; ?>
+                      <?php include"patron/resCon.php"; ?>
                     </div>
                     <div class="tabcontent" id="funeralmass" style="display: none;">
-                      <?php include"patron/reqFuneral.php"; ?>
+                      <?php include"patron/resFuneral.php"; ?>
                     </div>
                     <div class="tabcontent" id="wedding" style="display: none;">
-                      <?php include"patron/reqWed.php"; ?>
+                      <?php include"patron/resWed.php"; ?>
                     </div>
 
                     <?php include"patron/donateModal.php"; ?>
@@ -229,7 +237,7 @@ function getStatusColorClass($status) {
             return 'status-approved';
         case 'In Process':
             return 'status-in-process';
-        case 'Disapproved, Because mismatch files':
+        case 'Disapprove, mismatch files':
             return 'status-disapproved';
         case 'Ready to pick up':
             return 'status-pickUp';

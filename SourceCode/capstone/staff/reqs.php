@@ -7,6 +7,18 @@
         <span class="fs-5 fw-bold">Request Status</span>
         <div class="ms-auto">
           <button class="btn btn-primary btn-sm" onclick="openCity(event, 'reqcert')"> Request</button>
+          <div class="status-dropdown btn-group">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter by Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+              <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Picked Up" href="#">Picked Up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Disapproved, mismatch files" href="#">Disapprove</a></li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="card-body">
@@ -192,6 +204,14 @@
           
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+          // Status filter button click event
+          $('.filter-btn').on('click', function () {
+            var status = $(this).data('status');
+
+            // Show all rows if 'All' is selected, otherwise filter by status
+            table.column(5).search(status === 'all' ? '' : status).draw();
+          });
 
       });
     </script>

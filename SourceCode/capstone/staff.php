@@ -17,33 +17,40 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <style>
-        .status-badge {
-            display: flex;
-            align-items: center;
-            padding: 5px; /* Adjust padding for spacing */
-            border-radius: 15px;
-            font-weight: bold; /* Make the text bold */
-        }
+         .status-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center text vertically */
+        padding: 2px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-align: center; /* Center text horizontally */
+    }
 
-        .status-approved {
-            color: green; /* Text color for Approved status */
-        }
+    .status-approved {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-in-process {
-            color: orange; /* Text color for In Process status */
-        }
+    .status-in-process {
+        background-color: #F39C12;
+        color: white;
+    }
 
-        .status-disapproved {
-            color: red; /* Text color for Disapproved status */
-        }
+    .status-disapproved {
+        background-color: #CB4335;
+        color: white;
+    }
 
-        .status-pickedUp {
-            color: #16A085; /* Text color for Disapproved status */
-        }
+    .status-pickedUp {
+        background-color: #16A085;
+        color: white;
+    }
 
-        .status-pickUp {
-            color: #2E86C1; /* Text color for Disapproved status */
-        }
+    .status-pickUp {
+        background-color: #2E86C1;
+        color: white;
+    }
     </style>
 
 </head>

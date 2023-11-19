@@ -82,7 +82,7 @@
                         <!-- Right Side (Input Fields) -->
                      <div class="col-md-6">
                         <div class="form-group">
-                          <input type="hidden" name="pickUpDt" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                          <input type="date" name="pickUpDt" class="form-control" value="<?php echo date('Y-m-d'); ?>" style="display: none;">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
                               <div class="row my-3">

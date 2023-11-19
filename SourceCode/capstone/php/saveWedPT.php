@@ -5,13 +5,12 @@ if (isset($_POST['btn-save'])) {
     $wdate = $_POST['wdate'];
     $resTime = $_POST['resTime'];
 
-    // Validate bapTime
+    // Validate reservation time
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
+    $resTimeTimestamp = strtotime($resTime);
 
-    $funTimeTimestamp = strtotime($resTime);
-
-    if ($funTimeTimestamp < $startTime || $funTimeTimestamp > $endTime) {
+    if ($resTimeTimestamp < $startTime || $resTimeTimestamp > $endTime) {
         echo "<script type='text/javascript'>
                 alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
                 window.location = '../patron.php';
@@ -29,6 +28,9 @@ if (isset($_POST['btn-save'])) {
         </script>";
         exit;
     }
+
+    // Continue with your other form data and file uploads...
+
     $addedBy = $_POST['addedBy'];
     $groom = $_POST['groom'];
     $bride = $_POST['bride'];
@@ -41,15 +43,13 @@ if (isset($_POST['btn-save'])) {
     $wdate = $_POST['wdate'];
     $resTime = $_POST['resTime'];
     $transactType = $_POST['transactType'];
-    $payMethod = $_POST['payMethod'];
-    $refNum = $_POST['refNum'];
-    $amount = $_POST['amount'];
 
-    $receipt = $_FILES['receipt'];
-    $targetDir = "../receipt/";
-    $fileName = $_FILES['receipt']['name'];
-    $targetFilePath = $targetDir . $fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+    // Example for handling file uploads
+    $gBirthCert = $_FILES['gBirthCert'];
+    $targetDir1 = "../upload/birthCert/";
+    $fileName1 = $gBirthCert['name'];
+    $targetFilePath1 = $targetDir1 . $fileName1;
+    $fileType1 = pathinfo($targetFilePath1, PATHINFO_EXTENSION);
 
     $gBirthCert = $_FILES['gBirthCert'];
     $targetDir1 = "../upload/birthCert/";
@@ -123,12 +123,10 @@ if (isset($_POST['btn-save'])) {
     $targetFilePath12 = $targetDir12. $fileName12;
     $fileType12 = pathinfo($targetFilePath12, PATHINFO_EXTENSION);
 
-
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
 
-    if (in_array($fileType, $allowTypes) && in_array($fileType1, $allowTypes)) {
-        if (move_uploaded_file($_FILES["receipt"]["tmp_name"], $targetFilePath) &&
-            move_uploaded_file($_FILES["gBirthCert"]["tmp_name"], $targetFilePath1) &&
+    if (in_array($fileType1, $allowTypes)) {
+        if (move_uploaded_file($gBirthCert['tmp_name'], $targetFilePath1) &&
             move_uploaded_file($_FILES["bBirthCert"]["tmp_name"], $targetFilePath2) &&
             move_uploaded_file($_FILES["gBapCert"]["tmp_name"], $targetFilePath3) &&
             move_uploaded_file($_FILES["bBapCert"]["tmp_name"], $targetFilePath4) &&
@@ -140,27 +138,33 @@ if (isset($_POST['btn-save'])) {
             move_uploaded_file($_FILES["RPic2"]["tmp_name"], $targetFilePath10) &&
             move_uploaded_file($_FILES["MBPic1"]["tmp_name"], $targetFilePath11) &&
             move_uploaded_file($_FILES["MBPic2"]["tmp_name"], $targetFilePath12)
-        ) {
-
-            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, receipt, amount, transactType, payMethod,refNum)
-                          VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12','$targetFilePath','$amount', '$transactType', '$payMethod', '$refNum')";
-
+    ) {
+            // Continue with your SQL query for database insertion...
+            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, transactType)
+                          VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12', '$transactType')";
+            
             if (mysqli_query($conn, $sql_query)) {
                 echo "<script type='text/javascript'>
-                    alert('Wedding Reserved Successfully!');
-                    window.location = '../patron.php';
-                </script>";
+                        alert('Wedding Reserved Successfully!');
+                        window.location = '../patron.php';
+                      </script>";
             } else {
                 echo "<script type='text/javascript'>
-                    alert('Insertion Failed: " . mysqli_error($conn) . "');
-                    window.location = '../patron.php';
-                </script>";
+                        alert('Insertion Failed: " . mysqli_error($conn) . "');
+                        window.location = '../patron.php';
+                      </script>";
             }
         } else {
-            echo "mysqli_error($conn)";
+            echo "<script type='text/javascript'>
+                    alert('File Upload Failed!');
+                    window.location = '../patron.php';
+                  </script>";
         }
     } else {
-        echo "mysqli_error($conn)";
+        echo "<script type='text/javascript'>
+                alert('Invalid File Type! Only JPG, PNG, JPEG, GIF, or PDF allowed.');
+                window.location = '../patron.php';
+              </script>";
     }
 }
 

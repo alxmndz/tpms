@@ -38,11 +38,7 @@
               <td>
 
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row['id']; ?>">
-                  <i class="fa-solid fa-pen-to-square">
-                </i></button>
-                
-                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id']; ?>">
-                    <i class="fa-solid fa-trash"></i>
+                  <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
@@ -85,26 +81,6 @@
                     </div>
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Save changes</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal fade" id="deleteModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa-solid fa-trash" style="color: red;"></i> Delete Account</h5>
-                  </div>
-                  <form id="deleteForm" action="php/accounts/delete.php" autocomplete="off" method="POST">
-                    <div class="modal-body">
-                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-                      <span>Do you really want to delete the data of <b><?php echo $row['uname']; ?></b>?</span>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-danger">Delete</button>
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                   </form>

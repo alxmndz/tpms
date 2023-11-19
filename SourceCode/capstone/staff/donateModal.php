@@ -94,16 +94,13 @@
   document.addEventListener('DOMContentLoaded', function () {
     var gcashRadio11 = document.getElementById('gcashRadio11');
     var faceToFaceRadio11 = document.getElementById('faceToFaceRadio11');
-    var donateAmount = document.getElementById('donateAmount');
     var donateReceipt = document.getElementById('donateReceipt');
 
     // Function to enable or disable input fields based on the selected payment method
     function toggleInputFields() {
       if (gcashRadio11.checked) {
-        donateAmount.removeAttribute('disabled');
         donateReceipt.removeAttribute('disabled');
       } else {
-        donateAmount.setAttribute('disabled', 'disabled');
         donateReceipt.setAttribute('disabled', 'disabled');
       }
     }

@@ -6,7 +6,17 @@
         <i class="fa-solid fa-folder-open me-2"></i>
         <span class="fs-5 fw-bold">Request Status</span>
         <div class="ms-auto">
-          <button type="button" class="btn btn-primary btn-sm" onclick="openCity(event, 'reqCert')"><i class="fa-solid fa-pen-to-square"></i> Add Request</button>
+          <div class="status-dropdown btn-group">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter by Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+              <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+            </ul>
+          </div>
         </div>
     </div>
     <div class="card-body">
@@ -63,11 +73,80 @@
                  </span>
               </td>
               <td>
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View</button>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#reqCertM<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View</button>
+                <?php
+                // Show additional button if the status is "Approved" and necessary fields are filled
+                if ($row['status'] === 'Approved' && empty($row['refNum']) && empty($row['amount']) && empty($row['receipt'])) {
+                ?>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#payReq<?php echo $row['id']; ?>">
+                        <i class="fa-solid fa-peso-sign"></i>
+                    </button>
+                <?php
+                }
+                ?>
               </td>
             </tr>
 
-            <div class="modal fade" id="updateModal1<?php echo $row['id']; ?>">
+
+ <div class="modal fade" id="payBap<?php echo $row['id']; ?>">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Baptismal Payment Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="php/payBap.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+          <div class="container my-4" id="gcashDetails">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                GCash Details
+              </div>
+              <div class="card-body">
+
+                <div class="row my-3">
+                    <div class="col-md-6 mt-5">
+                      <div class="text-center">
+                        <img class="img-fluid" src="assets/icons/gcash.png" alt="GCash Logo" style="max-width: 100px; max-height: 100px;">
+                        <p class="card-text">For payment method contact:</p>
+                        <p class="mt-2"><i class="fas fa-phone"></i> 0917 835 0117</p>
+                      </div>
+                    </div>
+
+                  <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                  <input type="text" class="form-control" id="payMethod" name="payMethod" value="gcash" required style="display: none;">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="amount" class="form-label">Amount</label>
+                      <input type="number" class="form-control" id="inputNumber" name="amount" value="1000" readonly required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="refNum" class="form-label">Reference Number</label>
+                      <input type="number" class="form-control" id="inputRefNum" name="refNum" placeholder="Enter your Reference Number" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="receipt" class="form-label">Receipt Image</label>
+                      <input type="file" class="form-control" id="inputFile" name="receipt" required>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 ms-auto">
+            <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Pay</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="modal fade" id="reqCertM<?php echo $row['id']; ?>">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   
