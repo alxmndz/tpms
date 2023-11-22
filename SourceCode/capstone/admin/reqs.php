@@ -32,10 +32,11 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Contact Number</th>
               <th>Certificate Type</th>
               <th>Transaction Date</th>
-              <th>Pick-Up Date</th>
+              <th>Pick Up Date</th>
+              <th>Picked Up Date</th>
+              
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -47,9 +48,9 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo $row["contact"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["whenToPickUp"])); ?></td>
               <td><?php echo date("M d, Y", strtotime($row["pickUpDt"])); ?></td>
               <td>
                 <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
@@ -150,7 +151,14 @@
                               </div>
                           </div>
                           <div class="row my-3">
-                              <div class="col-md-12">
+                              <div class="col-md-6">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Pick Up Date</label>
+                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
                                       <select class="form-select" id="status" name="status" required>
@@ -162,6 +170,21 @@
 
                                           <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                                       </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row my-3">
+                              <div class="col-md-6">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Pick Up Date</label>
+                                      <input class="form-control" type="date" id="whenToPickUp" name="whenToPickUp" value="<?php echo $row['whenToPickUp']; ?>" required>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Picked Up Date</label>
+                                      <input class="form-control" type="date" id="pickUpDt" name="pickUpDt" value="<?php echo $row['pickUpDt']; ?>" required>
                                   </div>
                               </div>
                           </div>
@@ -198,7 +221,7 @@
     <script src="js/pdfmake.min.js"></script>
     <script src="js/vfs_fonts.js"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     // DataTable initialization
     var table = $('#reqsTbl').DataTable({
       buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
@@ -213,6 +236,19 @@
 
       // Show all rows if 'All' is selected, otherwise filter by status
       table.column(5).search(status === 'all' ? '' : status).draw();
+
+      // Show/hide columns based on the selected filter
+      if (status === 'Ready to pick up') {
+        table.column(3).visible(true);
+        table.column(4).visible(false);
+      } else if (status === 'Picked Up') {
+        table.column(3).visible(false);
+        table.column(4).visible(true);
+      } else {
+        table.column(3).visible(false);
+        table.column(4).visible(false);
+      }
     });
   });
 </script>
+

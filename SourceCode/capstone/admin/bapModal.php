@@ -125,11 +125,11 @@
                     Status
                   </label>
                  <div class="form-outline">
-                  <select class="form-select" id="status" name="status">
-                    <option disabled selected>Select a status</option>
-                    <option value="Approved">Approved</option>
-                    <option value="In Process">In Process</option>
-                    <option value="Disapprove, mismatch files">Disapprove, mismatch files</option>
+                  <select class="form-select" id="status" name="status" required>
+                      <option value="" disabled selected>Select a status</option>
+                      <option value="Approved">Approved</option>
+                      <option value="In Process">In Process</option>
+                      <option value="Disapprove, mismatch files">Disapprove, mismatch files</option>
                   </select>
                 </div>
             </div>
@@ -181,7 +181,23 @@
                 <!-- ... (GCash details content) -->
                 <div class="mb-3">
                   <label for="amount" class="form-label">Amount</label>
-                  <input type="number" class="form-control" id="inputNumber" name="amount" value="1000" readonly required>
+                  <?php
+                  include_once 'php/dbconn.php';
+
+                  // Assuming you have a query to fetch the value from the table
+                  $selectQuery = "SELECT baptismal FROM eventsprice";
+                  $result = mysqli_query($conn, $selectQuery);
+
+                  if ($result && mysqli_num_rows($result) > 0) {
+                      // Fetch the value
+                      $row = mysqli_fetch_assoc($result);
+                      $baptismal = $row['baptismal'];
+                  } else {
+                      // Default value if no data is found
+                      $baptismal = 1000; // You can set any default value here
+                  }
+                  ?>
+                  <input type="number" class="form-control" id="inputNumber" name="amount" value="<?php echo $baptismal; ?>" readonly required>
                 </div>
                 <div class="mb-3">
                   <label for="refNum" class="form-label">Reference Number</label>

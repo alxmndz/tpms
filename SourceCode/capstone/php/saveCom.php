@@ -6,6 +6,21 @@ if (isset($_POST['btn-save'])) {
     $comDate = $_POST['comDate'];
     $comTime = $_POST['comTime'];
 
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT communion FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $communion = $row['communion'];
+    } else {
+        // Default value if no data is found
+        $communion = 1000; // You can set any default value here
+    }
+
+    $amount = $communion;
+
     // Validate bapTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
@@ -43,7 +58,7 @@ if (isset($_POST['btn-save'])) {
         $status = $_POST['status'];
 
         $refNum = null;
-        $amount = null;
+        $amount = $amount;
         $targetFilePath = null;
 
     } elseif ($payMethod === 'gcash') {
@@ -55,7 +70,7 @@ if (isset($_POST['btn-save'])) {
         $comTime = $_POST['comTime'];
         $bapCert = $_POST['bapCert'];
         $desc = $_POST['desc'];
-        $amount = $_POST['amount'];
+        $amount = $amount;
         $transactType = $_POST['transactType'];
         $status = $_POST['status'];
         $refNum = $_POST['refNum'];

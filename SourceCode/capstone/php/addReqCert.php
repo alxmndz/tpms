@@ -2,10 +2,25 @@
 include_once 'dbconn.php';
 
 if (isset($_POST['btn-save'])) {
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT baptismal FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $baptismal = $row['baptismal'];
+    } else {
+        // Default value if no data is found
+        $baptismal = 1000; // You can set any default value here
+    }
+
+    $amount = $baptismal;
+
     $payMethod = $_POST['payMethod'];
     if ($payMethod === 'face-to-face') {
         $refNum = null;
-        $amount = null; // Set amount to null for face-to-face payments
+        $amount = $amount; // Set amount to null for face-to-face payments
         $targetFilePath = null; // Set receipt to null for face-to-face payments
         
         $addedBy = $_POST['addedBy'];
@@ -26,7 +41,7 @@ if (isset($_POST['btn-save'])) {
         $status = $_POST['status'];
         $payMethod = $_POST['payMethod'];
         $transactType = $_POST['transactType'];
-        $amount = $_POST['amount'];
+        $amount = $amount;
         $refNum = $_POST['refNum'];
 
         $receipt = $_FILES['receipt'];

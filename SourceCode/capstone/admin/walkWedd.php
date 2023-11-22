@@ -284,7 +284,7 @@
                                 <i class="fa-solid fa-money-bill-1-wave"></i>
                                 Amount
                               </label>
-                            <input type="number" class="form-control" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled />
+                            <input type="number" class="form-control" value="<?php echo $row['amount']; ?>" required disabled />
                           </div>
                         </div>
                         <div class="col-md-6">

@@ -6,6 +6,21 @@ if (isset($_POST['btn-save'])) {
     $wdate = $_POST['wdate'];
     $resTime = $_POST['resTime'];
 
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT wedding FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $wedding = $row['wedding'];
+    } else {
+        // Default value if no data is found
+        $wedding = 1000; // You can set any default value here
+    }
+
+    $amount = $wedding;
+
     // Validate bapTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
@@ -32,7 +47,7 @@ if (isset($_POST['btn-save'])) {
     }
     if ($payMethod === 'face-to-face') {
         $refNum = null;
-        $amount = null; // Set amount to null for face-to-face payments
+        $amount = $amount; // Set amount to null for face-to-face payments
         $targetFilePath = null; // Set receipt to null for face-to-face payments
         
         $addedBy = $_POST['addedBy'];
@@ -77,7 +92,7 @@ if (isset($_POST['btn-save'])) {
         $RPic = $_POST['RPic'];
         $MBPic = $_POST['MBPic'];
         $transactType = $_POST['transactType'];
-        $amount = $_POST['amount'];
+        $amount = $amount;
         $refNum = $_POST['refNum'];
 
         $receipt = $_FILES['receipt'];

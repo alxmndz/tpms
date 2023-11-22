@@ -2,11 +2,26 @@
 include_once 'dbconn.php';
 
 if (isset($_POST['btn-save'])) {
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT baptismal FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $baptismal = $row['baptismal'];
+    } else {
+        // Default value if no data is found
+        $baptismal = 1000; // You can set any default value here
+    }
+
+    $amount = $baptismal;
+    
     // Assuming you have variables like $id defined somewhere in your code
     $id = mysqli_real_escape_string($conn, $_POST['id']);
 
     $payMethod = mysqli_real_escape_string($conn, $_POST['payMethod']);
-    $amount = mysqli_real_escape_string($conn, $_POST['amount']);
+    $amount = $amount;
     $refNum = mysqli_real_escape_string($conn, $_POST['refNum']);
 
     // File upload
@@ -37,7 +52,10 @@ if (isset($_POST['btn-save'])) {
     $sql_query = "UPDATE baptismal_tbl SET payMethod='$payMethod', amount='$amount', receipt='$targetFilePath', refNum='$refNum' WHERE id='$id'";
 
     if (mysqli_query($conn, $sql_query)) {
-        echo "mysqli_error($conn)";
+        echo "<script type='text/javascript'>
+            alert('Reservation Paid Successfully!');
+            window.location = '../patron.php';
+        </script>";
     } else {
         echo "<script type='text/javascript'>
             alert('Update Failed: " . mysqli_error($conn) . "');

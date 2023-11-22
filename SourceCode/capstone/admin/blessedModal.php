@@ -154,8 +154,24 @@
                 <div class="card-body">
                   <!-- ... (GCash details content) -->
                   <div class="mb-3">
+                    <?php
+                  include_once 'php/dbconn.php';
+
+                  // Assuming you have a query to fetch the value from the table
+                  $selectQuery = "SELECT blessing FROM eventsprice";
+                  $result = mysqli_query($conn, $selectQuery);
+
+                  if ($result && mysqli_num_rows($result) > 0) {
+                      // Fetch the value
+                      $row = mysqli_fetch_assoc($result);
+                      $blessing = $row['blessing'];
+                  } else {
+                      // Default value if no data is found
+                      $blessing = 1000; // You can set any default value here
+                  }
+                  ?>
                     <label for="amount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="inputNumber1" name="amount" value="2500" readonly required>
+                    <input type="number" class="form-control" id="inputNumber1" name="amount" value="<?php echo $blessing; ?>" readonly required>
                   </div>
                   <div class="mb-3">
                     <label for="refNum" class="form-label">Reference Number</label>

@@ -6,6 +6,21 @@ if (isset($_POST['btn-save'])) {
     $buryDate = $_POST['buryDate'];
     $resTime = $_POST['resTime'];
 
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT funeralmass FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $funeralmass = $row['funeralmass'];
+    } else {
+        // Default value if no data is found
+        $funeralmass = 1000; // You can set any default value here
+    }
+
+    $amount = $funeralmass;
+
     // Validate bapTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
@@ -49,7 +64,7 @@ if (isset($_POST['btn-save'])) {
         $resTime = $_POST['resTime'];
 
         $refNum = null;
-        $amount = null;
+        $amount = $amount;
         $targetFilePath = null;
         
     } elseif ($payMethod === 'gcash') {
@@ -65,7 +80,7 @@ if (isset($_POST['btn-save'])) {
         $cause = $_POST['cause'];
         $sacrament = $_POST['sacrament'];
         $lastsacrament = $_POST['lastsacrament'];
-        $amount = $_POST['amount'];
+        $amount = $amount;
         $transactType = $_POST['transactType'];
         $reqBy = $_POST['reqBy'];
         $resTime = $_POST['resTime'];

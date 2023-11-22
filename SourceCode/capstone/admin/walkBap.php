@@ -140,7 +140,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled readonly>
+                                      <input class="form-control" value="<?php echo $row['amount']; ?>" required readonly disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

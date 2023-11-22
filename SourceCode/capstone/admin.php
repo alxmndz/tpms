@@ -134,6 +134,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reqs')"><i class="fas fa-folder-open"></i> <span class="item-text">Request Certificate</span></a></li>
 
                                         <li class="mb-3 mt-3"><span>OTHERS</span></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'pricing')"><i class="fas fa-peso-sign"></i> <span class="item-text">Pricing</span></a></li>
                                         <li><a onclick="openCity(event, 'donate')" class="tablinks"><i class="fas fa-people-carry-box"></i> <span class="item-text">Donation</span></a></li>
                                         <li><a onclick="openCity(event, 'announce')" class="tablinks"><i class="fas fa-bell"></i> <span class="item-text">Announcement</span></a></li>
                                          <li><a onclick="openCity(event, 'report')" class="tablinks"><i class="fas fa-chart-pie"></i> <span class="item-text">Reports</span></a></li>
@@ -147,7 +148,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                     <span class="textnone"><?php echo $_SESSION['uname']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background: #fff; color: #148F77;">
-                                    <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Profile</button></li>
+                                    <li><button class="dropdown-item" type="button" onclick="openCity(event, 'profile')"><i class="bi bi-lock-fill"></i> Profile</button></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <button class="dropdown-item" type="button" onclick="logout()">
@@ -169,6 +170,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                     <div class="tabcontent" id="home">
                       <?php include"admin/home.php"; ?>
+                    </div>
+                    <div class="tabcontent" id="profile" style="display: none;">
+                      <?php include"admin/profile.php"; ?>
                     </div>
                     <div class="tabcontent" id="calendar" style="display: none;">
                       <?php include"admin/calendar.php"; ?>
@@ -237,6 +241,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                     <div class="tabcontent" id="reqs" style="display: none;">
                       <?php include"admin/reqs.php"; ?>
+                    </div>
+
+                    <div class="tabcontent" id="pricing" style="display: none;">
+                      <?php include"admin/pricing.php"; ?>
                     </div>
 
                     <div class="tabcontent" id="donate" style="display: none;">

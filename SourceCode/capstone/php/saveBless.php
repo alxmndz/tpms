@@ -6,6 +6,21 @@ if (isset($_POST['btn-save'])) {
     $blessDate = $_POST['blessDate'];
     $blessTime = $_POST['blessTime'];
 
+    // Assuming you have a query to fetch the value from the table
+    $selectQuery = "SELECT blessing FROM eventsprice";
+    $result = mysqli_query($conn, $selectQuery);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the value
+        $row = mysqli_fetch_assoc($result);
+        $blessing = $row['blessing'];
+    } else {
+        // Default value if no data is found
+        $blessing = 1000; // You can set any default value here
+    }
+
+    $amount = $blessing;
+
     // Validate bapTime
     $startTime = strtotime('07:00 AM');
     $endTime = strtotime('04:00 PM');
@@ -42,7 +57,7 @@ if (isset($_POST['btn-save'])) {
         $transactType = $_POST['transactType'];
         
         $refNum = null;
-        $amount = null;
+        $amount = $amount;
         $targetFilePath = null;
 
     } elseif ($payMethod === 'gcash') {
@@ -52,7 +67,7 @@ if (isset($_POST['btn-save'])) {
         $blessDate = $_POST['blessDate'];
         $blessTime = $_POST['blessTime'];
         $intention = $_POST['intention'];
-        $amount = $_POST['amount'];
+        $amount = $amount;
         $addedBy = $_POST['addedBy'];
         $status = $_POST['status'];
         $transactType = $_POST['transactType'];

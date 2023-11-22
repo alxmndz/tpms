@@ -28,63 +28,43 @@
                 </div>
             </div>
             <div class="col-md-6 mt-3">
-              <div class="event-container">
-                <div class="table-header">
-                  <h4>Events List Schedule</h4>
-                </div>
-                <div class="table-container">
-                  <table class="event-table" id="eventListTbl">
-                    <thead>
-                      <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Event 1</td>
-                        <td>2023-11-05</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 2</td>
-                        <td>2023-11-10</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 3</td>
-                        <td>2023-11-15</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 4</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 5</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <tr>
-                        <td>Event 6</td>
-                        <td>2023-11-20</td>
-                        <td>10:00 AM</td>
-                        <td>Event Desc</td>
-                      </tr>
-                      <!-- Add more events as needed -->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+    <div class="event-container">
+        <div class="table-header">
+            <h4 class="fw-bold" style="font-family: 'Poppins', sans-serif;">Events List Schedule</h4>
+        </div>
+        <?php
+        include_once 'php/dbconn.php';
+
+        // Get the current month and year
+        $currentMonth = date("m");
+        $currentYear = date("Y");
+
+        $result = mysqli_query($conn, "SELECT * FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear ORDER BY id DESC");
+
+        if (mysqli_num_rows($result) > 0) {
+            // Open the card-container outside the loop
+            echo '<div class="card-container">';
+
+            while ($row = mysqli_fetch_array($result)) {
+                // Events Card
+                echo '<div class="card mt-2">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title fw-bold">' . $row["title"] . '</h5>';
+                echo '<p class="card-text">Date: ' . date("M d, Y", strtotime($row["eventDate"])) . '</p>';
+                echo '<p class="card-text">Time: ' . date("h:i A", strtotime($row["eventTime"])) . '</p>';
+                echo '<p class="card-text">Description: ' . $row["description"] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+
+            // Close the card-container outside the loop
+            echo '</div>';
+        } else {
+            echo "No result found";
+        }
+        ?>
+    </div>
+</div>
 
 
         </div>
