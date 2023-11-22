@@ -88,6 +88,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                                         <li class="mb-3 mt-2"><span>MAIN</span></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-house"></i> <span class="item-text">Home</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'calendar')"><i class="fas fa-calendar"></i> <span class="item-text">Calendar</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'eventlist')"><i class="fas fa-calendar-days"></i> <span class="item-text">Event List</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Reservation</span></a></li>
                                         <li class="dropdown">
@@ -145,7 +146,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                     <span class="textnone"><?php echo $_SESSION['uname']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background: #fff; color: #148F77;">
-                                    <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Profile</button></li>
+                                    <li><button class="dropdown-item" type="button" onclick="openCity(event, 'profile')"><i class="bi bi-lock-fill"></i> Profile</button></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <button class="dropdown-item" type="button" onclick="logout()">
@@ -168,8 +169,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="tabcontent" id="home">
                       <?php include"staff/home.php"; ?>
                     </div>
+                    <div class="tabcontent" id="calendar" style="display: none;">
+                      <?php include"staff/calendar.php"; ?>
+                    </div>
+
                     <div class="tabcontent" id="reservation" style="display: none;">
                       <?php include"staff/reservation.php"; ?>
+                    </div>
+                    <div class="tabcontent" id="profile" style="display: none;">
+                      <?php include"staff/profile.php"; ?>
                     </div>
                     <div class="tabcontent" id="accounts" style="display: none;">
                       <?php include"staff/accounts.php"; ?>

@@ -54,14 +54,14 @@
                  </span>
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewConw<?php echo $row['id']; ?>">
                   <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
 
 
-   <div class="modal modal-lg fade" id="myModal1<?php echo $row['id']; ?>">
+   <div class="modal modal-lg fade" id="viewConw<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -81,7 +81,7 @@
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                    <form action="php/updateCon.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/staffTbl/updateCon.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

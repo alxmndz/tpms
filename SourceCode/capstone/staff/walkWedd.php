@@ -66,10 +66,10 @@
                 </span>
               </td>
               <td>
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update</button>
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewWedw<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update</button>
             </tr>
 
-            <div class="modal modal-lg fade" id="updateModal1<?php echo $row['id']; ?>">
+            <div class="modal modal-lg fade" id="viewWedw<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -89,7 +89,7 @@
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                    <form action="php/updateWedd.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="php/staffTbl/updateWed.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

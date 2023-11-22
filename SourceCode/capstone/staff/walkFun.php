@@ -58,18 +58,18 @@
               </td>
               <td>
 
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal33<?php echo $row['id']; ?>">
-                  <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewFunw<?php echo $row['id']; ?>">
+                  <i class="fa-solid fa-eye"></i> View
                 </button>
               </td>
             </tr>
 
-            <div class="modal modal-lg fade" id="myModal33<?php echo $row['id']; ?>">
+            <div class="modal modal-lg fade" id="viewFunw<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Update Reservation</h4>
+                <h4 class="modal-title">View Funeral Mass Reservation</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 

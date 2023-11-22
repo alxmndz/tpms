@@ -65,12 +65,12 @@
                  </span>
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#upModalBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewBapw<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Update
                 </button>
               </td>
             </tr>
 
-  <div class="modal modal-lg fade" id="upModalBap<?php echo $row['id']; ?>">
+  <div class="modal modal-lg fade" id="viewBapw<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -89,7 +89,7 @@
 
                     <!-- Right Side (Form) -->
                     <div class="col-md-6">
-                        <form action="php/updateBap.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <form action="php/staffTbl/updateBap.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>

@@ -32,10 +32,11 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Contact</th>
-              <th>Address</th>
               <th>Certificate Type</th>
               <th>Transaction Date</th>
+              <th>Pick Up Date</th>
+              <th>Picked Up Date</th>
+              
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -47,10 +48,10 @@
             ?>
             <tr>
               <td><?php echo $row["name"]; ?></td>
-              <td><?php echo $row["contact"]; ?></td>
-              <td><?php echo $row["address"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["whenToPickUp"])); ?></td>
+              <td><?php echo date("M d, Y", strtotime($row["pickUpDt"])); ?></td>
               <td>
                 <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
@@ -211,6 +212,18 @@
 
             // Show all rows if 'All' is selected, otherwise filter by status
             table.column(5).search(status === 'all' ? '' : status).draw();
+
+            // Show/hide columns based on the selected filter
+            if (status === 'Ready to pick up') {
+              table.column(3).visible(true);
+              table.column(4).visible(false);
+            } else if (status === 'Picked Up') {
+              table.column(3).visible(false);
+              table.column(4).visible(true);
+            } else {
+              table.column(3).visible(false);
+              table.column(4).visible(false);
+            }
           });
 
       });

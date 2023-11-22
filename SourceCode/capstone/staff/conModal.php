@@ -148,7 +148,23 @@
                   <!-- ... (GCash details content) -->
                   <div class="mb-3">
                     <label for="amount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="inputNumber3" name="amount" value="1500" readonly required>
+                    <?php
+                    include_once 'php/dbconn.php';
+
+                    // Assuming you have a query to fetch the value from the table
+                    $selectQuery = "SELECT confirmation FROM eventsprice";
+                    $result = mysqli_query($conn, $selectQuery);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        // Fetch the value
+                        $row = mysqli_fetch_assoc($result);
+                        $confirmation = $row['confirmation'];
+                    } else {
+                        // Default value if no data is found
+                        $confirmation = 1000; // You can set any default value here
+                    }
+                    ?>
+                    <input type="number" class="form-control" id="inputNumber3" name="amount" value="<?php echo $confirmation; ?>" readonly required>
                   </div>
                   <div class="mb-3">
                     <label for="refNum" class="form-label">Reference Number</label>

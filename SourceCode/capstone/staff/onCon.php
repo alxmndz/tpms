@@ -54,18 +54,18 @@
                  </span>
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1<?php echo $row['id']; ?>">
-                  <i class="fa-solid fa-pen-to-square"></i> Update
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewCon<?php echo $row['id']; ?>">
+                  <i class="fa-solid fa-eye"></i> View
                 </button>
               </td>
             </tr>
 
-            <div class="modal modal-lg fade" id="myModal1<?php echo $row['id']; ?>">
+            <div class="modal modal-lg fade" id="viewCon<?php echo $row['id']; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Update Reservation</h4>
+                <h4 class="modal-title">View Confirmation Reservation</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -172,7 +172,7 @@
                               <div class="col-md-12">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
+                                      <select class="form-select" id="status" name="status" required disabled>
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
@@ -181,11 +181,7 @@
                                       </select>
                                   </div>
                               </div>
-                          </div>
-
-                        <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
-                        </div>                      
+                          </div>                    
                     </form>
                   </div>
 

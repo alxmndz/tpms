@@ -149,7 +149,23 @@
                   <!-- ... (GCash details content) -->
                   <div class="mb-3">
                     <label for="amount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="inputNumber2" name="amount" value="2000" readonly required>
+                    <?php
+                    include_once 'php/dbconn.php';
+
+                    // Assuming you have a query to fetch the value from the table
+                    $selectQuery = "SELECT communion FROM eventsprice";
+                    $result = mysqli_query($conn, $selectQuery);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        // Fetch the value
+                        $row = mysqli_fetch_assoc($result);
+                        $communion = $row['communion'];
+                    } else {
+                        // Default value if no data is found
+                        $communion = 1000; // You can set any default value here
+                    }
+                    ?>
+                    <input type="number" class="form-control" id="inputNumber2" name="amount" value="<?php echo $communion; ?>" readonly required>
                   </div>
                   <div class="mb-3">
                     <label for="refNum" class="form-label">Reference Number</label>

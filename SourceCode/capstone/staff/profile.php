@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
 
-            <form action="php/profile/adminProf.php" method="post" enctype="multipart/form-data" class="row g-3" autocomplete="off">
+            <form action="php/profile/staffProf.php" method="post" enctype="multipart/form-data" class="row g-3" autocomplete="off">
 
                 <!-- Profile Picture (on the left) -->
                 <div class="col-md-4">
