@@ -21,6 +21,20 @@
         <table class="table table-striped" id="bapTbl" style="margin-top: 10px;">
           <?php
               include_once 'php/dbconn.php';
+
+              // Assuming you have a query to fetch the value from the table
+                      $selectQuery = "SELECT baptismal FROM eventsprice";
+                      $result = mysqli_query($conn, $selectQuery);
+
+                      if ($result && mysqli_num_rows($result) > 0) {
+                          // Fetch the value
+                          $row = mysqli_fetch_assoc($result);
+                          $baptismal = $row['baptismal'];
+                      } else {
+                          // Default value if no data is found
+                          $baptismal = 1000; // You can set any default value here
+                      }
+                      
               $result = mysqli_query($conn, "SELECT
                           b.id ,
                           b.name ,
@@ -70,7 +84,7 @@
                  </span>
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-eye"></i>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#upModal<?php echo $row['id']; ?>"> <i class="fa-solid fa-eye"></i>
                 </button>
                 <?php
                 // Show additional button if the status is "Approved" and necessary fields are filled
@@ -117,7 +131,8 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
-                      <input type="number" class="form-control" id="inputNumber" name="amount" value="1000" readonly required>
+
+                      <input type="number" class="form-control" id="inputNumber" name="amount" value="<?php echo $baptismal; ?>" readonly required>
                     </div>
                     <div class="mb-3">
                       <label for="refNum" class="form-label">Reference Number</label>
@@ -145,7 +160,7 @@
 </div>
 
 
-            <div class="modal fade" id="myModal<?php echo $row['id']; ?>">
+            <div class="modal fade" id="upModal<?php echo $row['id']; ?>">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 

@@ -5,6 +5,15 @@
 <div class="container">
 	<h5><i class="fas fa-house"></i> Home</h5>
 	<hr>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">Welcome, <span id="usernamePlaceholder"><?php echo $_SESSION['uname']; ?></span>!</h5>
+                <!-- Add any additional information or customization for the profile greeting card -->
+            </div>
+        </div>
+    </div>
+    
         <div class="row">
             <div class="col-md-6">
                 <div class="calendar calendar-first" id="calendar_first">

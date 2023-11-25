@@ -24,6 +24,18 @@
         <table class="table table-striped" id="reqStatTable" style="margin-top: 10px;">
           <?php
             include_once 'php/dbconn.php';
+            // Assuming you have a query to fetch the value from the table
+                      $selectQuery = "SELECT cert FROM eventsprice";
+                      $result = mysqli_query($conn, $selectQuery);
+
+                      if ($result && mysqli_num_rows($result) > 0) {
+                          // Fetch the value
+                          $row = mysqli_fetch_assoc($result);
+                          $cert = $row['cert'];
+                      } else {
+                          // Default value if no data is found
+                          $cert = 1000; // You can set any default value here
+                      }
             $result = mysqli_query($conn, "
             SELECT
                           r.id,
@@ -90,15 +102,15 @@
             </tr>
 
 
- <div class="modal fade" id="payBap<?php echo $row['id']; ?>">
+ <div class="modal fade" id="payReq<?php echo $row['id']; ?>">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Baptismal Payment Form</h4>
+        <h4 class="modal-title">Request Payment Form</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/payBap.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/payReq.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="container my-4" id="gcashDetails">
             <div class="card">
@@ -121,7 +133,7 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
-                      <input type="number" class="form-control" id="inputNumber" name="amount" value="1000" readonly required>
+                      <input type="number" class="form-control" id="inputNumber" name="amount" value="<?php echo $cert; ?>" readonly required>
                     </div>
                     <div class="mb-3">
                       <label for="refNum" class="form-label">Reference Number</label>

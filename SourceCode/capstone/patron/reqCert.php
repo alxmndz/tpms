@@ -55,24 +55,3 @@
 		</div>
 	</div>                  
 </div>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eventSelect = document.getElementById("event");
-    const amountInput = document.getElementById("amount");
-
-    eventSelect.addEventListener("change", function() {
-        const selectedOption = eventSelect.options[eventSelect.selectedIndex];
-        const price = selectedOption.getAttribute("data-price");
-        amountInput.value = price || "";
-    });
-
-    // Initialize the amount input with the price of the default selected option
-    const defaultOption = eventSelect.options[eventSelect.selectedIndex];
-    const defaultPrice = defaultOption.getAttribute("data-price");
-    amountInput.value = defaultPrice || "";
-});
-</script>
-
-
