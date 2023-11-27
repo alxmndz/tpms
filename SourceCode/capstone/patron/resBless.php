@@ -39,6 +39,7 @@
                           bl.name ,
                           bl.contact ,
                           bl.address ,
+                          bl.intention ,
                           bl.transactDate ,
                           bl.blessTime ,
                           bl.blessDate ,
@@ -209,6 +210,14 @@
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
                                       <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row my-3">
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                      <label class="form-label" for="typeText">Intention</label>
+                                      <input class="form-control" value="<?php echo $row['intention']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>

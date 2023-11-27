@@ -78,16 +78,7 @@
                      <label class="form-label" for="typeText">
                       Intention
                     </label>
-                    <select class="form-select" id="intention" name="intention" required>
-                      <option disabled selected>Select an Intention</option>
-                      <option value="Sponsor">Major Sponsor</option>
-                      <option value="Thanksgive">Thanksgiving</option>
-                      <option value="Birthday">Birthday</option>
-                      <option value="Wedding Anniversarry">Wedding Anniversarry</option>
-                      <option value="Petition">Petition</option>
-                      <option value="Recovery">Healing/Recovery</option>
-                      <option value="Soul">Soul</option>
-                    </select>
+                    <input class="form-control" type="text" id="intention" name="intention" placeholder="Enter your intention" required>
                   </div>
                 </div>
             </div>

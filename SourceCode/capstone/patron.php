@@ -9,6 +9,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="dist/simple-calendar.css">
+  <link rel="stylesheet" href="css/demo.css">
   <!-- Include SweetAlert CSS -->
     <script src="sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
@@ -87,7 +90,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                         <li class="mb-1 mt-2"><h5>Tuy Parish Management System</h5></li>
 
                                         <li class="mb-3 mt-2"><span>MAIN</span></li>
-                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-house"></i> <span class="item-text">Home</span></a></li>
+                                        <li><a href="#" class="tablinks" onclick="openCity(event, 'home')"><i class="fas fa-calendar"></i> <span class="item-text">Event Calendar</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reservation')"><i class="fas fa-pen"></i> <span class="item-text">Event Reservation</span></a></li>
                                         <li><a href="#" class="tablinks" onclick="openCity(event, 'reqCert')"><i class="fa-solid fa-file-pen"></i> <span class="item-text">Request Certificate</span></a></li>
                                         
@@ -252,5 +255,7 @@ function getStatusColorClass($status) {
     }
 }
 ?>
+
+<script src="dist/jquery.simple-calendar.js"></script>
 </body>
 </html>

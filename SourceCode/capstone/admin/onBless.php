@@ -129,15 +129,7 @@
                             <div class="col-md-6">
                                   <div class="form-outline">
                                     <label class="form-label" for="typeText">Intention</label>
-                                      <select class="form-select" id="intention" name="intention" required disabled>
-                                        <option value="Sponsor" <?php echo ($row['intention'] === 'Sponsor') ? 'selected' : ''; ?>>Major Sponsor</option>
-                                        <option value="Thanksgiving" <?php echo ($row['intention'] === 'Thanksgiving') ? 'selected' : ''; ?>>Thanksgiving</option>
-                                        <option value="Birthday" <?php echo ($row['intention'] === 'Birthday') ? 'selected' : ''; ?>>Birthday</option>
-                                        <option value="Wedding Anniversarry" <?php echo ($row['intention'] === 'Wedding Anniversarry') ? 'selected' : ''; ?>>Wedding Anniversarry</option>
-                                        <option value="Petition" <?php echo ($row['intention'] === 'Petition') ? 'selected' : ''; ?>>Petition</option>
-                                        <option value="Recovery" <?php echo ($row['intention'] === 'Recovery') ? 'selected' : ''; ?>>Healing/Recovery</option>
-                                        <option value="Soul" <?php echo ($row['intention'] === 'Soul') ? 'selected' : ''; ?>>Soul</option>
-                                      </select>
+                                      <input class="form-control" value="<?php echo $row['intention']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

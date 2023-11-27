@@ -172,7 +172,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="tabcontent" id="home">
                       <?php include"staff/home.php"; ?>
                     </div>
-                    <div class="tabcontent" id="calendar" style="display: ;">
+                    <div class="tabcontent" id="calendar" style="display: none;">
                       <?php include"staff/calendar.php"; ?>
                     </div>
 

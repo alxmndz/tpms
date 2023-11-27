@@ -285,9 +285,9 @@
         <div class="card-body">
             <div class="row justify-content-center mt-2">
                 <!-- Six Bootstrap cards -->
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #2E86C1;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-baby"></i>
                         </div>
                         <div class="card-body text-center">
@@ -307,9 +307,9 @@
                 </div>
                 
 
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #F1C40F;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-cross"></i>
                         </div>
                         <div class="card-body text-center">
@@ -329,9 +329,9 @@
                 </div>
                 
 
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #52BE80;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-book-bible"></i>
                         </div>
                         <div class="card-body text-center">
@@ -351,9 +351,9 @@
                 </div>
                 
 
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #2E86C1;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-person-praying"></i>
                         </div>
                         <div class="card-body text-center">
@@ -372,9 +372,9 @@
                     </div>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #F1C40F;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-hands-praying"></i>
                         </div>
                         <div class="card-body text-center">
@@ -393,9 +393,9 @@
                     </div>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
                     <div class="card d-flex flex-row">
-                        <div class="icon-contain mt-3" style="background: #52BE80;">
+                        <div class="icon-contain mt-3" style="background: #16A085;">
                             <i class="fas fa-ring"></i>
                         </div>
                         <div class="card-body text-center">
