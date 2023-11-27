@@ -274,8 +274,7 @@
                         <div class="col-md-6">
                           <div class="form-outline">
                               <label class="form-label" for="typeText">
-                                <i class="fa-solid fa-phone"></i> 
-                                Groom's Contact
+                                Groom's Contact No.
                               </label>
                             <input class="form-control" type="tel" id="gContact" name="gContact" value="<?php echo $row['gContact']; ?>" required disabled/>
                           </div>
@@ -284,8 +283,7 @@
                         <div class="col-md-6">
                            <div class="form-outline">
                                <label class="form-label" for="typeText">
-                                <i class="fa-solid fa-phone"></i> 
-                                Bride's Contact
+                                Bride's Contact No.
                                </label>
                             <input class="form-control" type="tel" id="bContact" name="bContact" value="<?php echo $row['bContact']; ?>" required disabled/>
                           </div>

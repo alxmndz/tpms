@@ -42,7 +42,7 @@
                   <div class="form-outline">
                       <label class="form-label" for="typeText">
                         <i class="fa-solid fa-phone"></i> 
-                        Groom's Contact
+                        Groom's Contact No.
                       </label>
                     <input class="form-control" type="number" id="groom" name="gContact" placeholder="Enter groom's contact" maxlength="11" onkeyup="limitDigits(this)" required />
                   </div>
@@ -52,7 +52,7 @@
                    <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-phone"></i> 
-                        Bride's Contact
+                        Bride's Contact No.
                        </label>
                     <input class="form-control" type="number" id="bContact" name="bContact" placeholder="Enter bride's contact" maxlength="11" onkeyup="limitDigits(this)" required />
                   </div>

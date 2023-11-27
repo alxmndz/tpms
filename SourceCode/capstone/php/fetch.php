@@ -1,20 +1,16 @@
 <?php
-// Connect to the database
-$db = new mysqli("localhost", "root", "", "tpms");
+    require_once "dbconn.php";
 
-// Prepare the SQL statement
-$stmt = $db->prepare('SELECT * FROM eventlist ORDER BY eventDate ASC');
+    $json = array();
+    $sqlQuery = "SELECT * FROM eventlist ORDER BY id";
 
-// Execute the prepared statement
-$stmt->execute();
+    $result = mysqli_query($conn, $sqlQuery);
+    $eventArray = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($eventArray, $row);
+    }
+    mysqli_free_result($result);
 
-// Get the event data from the prepared statement
-$events = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-// Close the database connection
-$db->close();
-
-// Output events in JSON format
-header('Content-Type: application/json');
-echo json_encode($events);
+    mysqli_close($conn);
+    echo json_encode($eventArray);
 ?>
