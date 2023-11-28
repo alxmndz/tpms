@@ -1,6 +1,9 @@
 <?php
   include "php/dbconn.php";
 
+  $defaultMonth = date("m");
+  $defaultYear = date("Y");
+
   // Assume $selectedYear is the selected year; you should set this value based on user input or any other source
   $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear; // Change this accordingly
 

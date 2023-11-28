@@ -347,5 +347,11 @@
       }
     });
 
+    $('.pay-btn').on('click', function() {
+           var baptismal = $(this).data('baptismal');
+           // Set the baptismal value in the payment modal
+           $('#inputNumber').val(baptismal);
+       });
+
   });
 </script>

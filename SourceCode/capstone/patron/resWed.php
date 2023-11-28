@@ -48,7 +48,7 @@
                           wed.gBirthCert,
                           wed.bBirthCert,
                           wed.gBapCert,
-                          wed.bBapcert,
+                          wed.bBapCert,
                           wed.gConCert,
                           wed.bConCert,
                           wed.cenomar,
@@ -142,7 +142,8 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>
-                      <input type="number" class="form-control" id="inputNumber" name="amount" value="<?php $wedding; ?>" readonly required>
+                      <input type="number" class="form-control" id="inputNumber" name="amount" value="<?php echo $wedding; ?>" readonly required>
+
                     </div>
                     <div class="mb-3">
                       <label for="refNum" class="form-label">Reference Number</label>
@@ -187,7 +188,7 @@
                     <div class="col-md-6">
                         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                                 <div class="carousel-item active">
                                     <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item">
@@ -456,6 +457,12 @@
           break;
       }
     });
+
+    $('.pay-btn').on('click', function() {
+           var wedding = $(this).data('wedding');
+           // Set the baptismal value in the payment modal
+           $('#inputNumber').val(wedding);
+       });
 
   });
 </script>

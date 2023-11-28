@@ -51,8 +51,8 @@
                        </span>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#generateBap<?php echo $row['id']; ?>"> <i class="fa-solid fa-pen-to-square"></i> Print
-                      </button>
+                      <a type="button" class="btn btn-sm btn-primary" href="staff/previewWedd.php?id=<?php echo $row["id"]; ?>"> <i class="fa-solid fa-pen-to-square"></i> Preview
+                      </a>
                     </td>
                   </tr>
 
