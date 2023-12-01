@@ -127,6 +127,8 @@
                     </div>
 
                   <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                  <input type="hidden" class="form-control" id="status" name="status" value="Reserved" required>
+                  <input type="hidden" class="form-control" id="payDate" name="payDate" value="<?php echo date('Y-m-d'); ?>" required>
                   <input type="text" class="form-control" id="payMethod" name="payMethod" value="gcash" required style="display: none;">
                   <div class="col-md-6">
                     <div class="mb-3">

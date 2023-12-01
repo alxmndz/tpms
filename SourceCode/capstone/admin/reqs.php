@@ -14,9 +14,8 @@
             <ul class="dropdown-menu" aria-labelledby="statusDropdown">
               <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
               <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
-              <li><a class="dropdown-item filter-btn" data-status="Picked Up" href="#">Picked Up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Released" href="#">Released</a></li>
               <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
-              <li><a class="dropdown-item filter-btn" data-status="Disapproved, Because mismatch files" href="#">Disapproved</a></li>
             </ul>
           </div>
         </div>
@@ -35,7 +34,7 @@
               <th>Certificate Type</th>
               <th>Transaction Date</th>
               <th>Pick Up Date</th>
-              <th>Picked Up Date</th>
+              <th>Released Date</th>
               
               <th>Status</th>
               <th>Action</th>
@@ -50,8 +49,24 @@
               <td><?php echo $row["name"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["whenToPickUp"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["pickUpDt"])); ?></td>
+              <td class="<?php echo ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00'); ?>">
+                  <?php
+                      if ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00') {
+                          echo "No Pick Up Date Yet";
+                      } else {
+                          echo date("M d, Y", strtotime($row["whenToPickUp"]));
+                      }
+                  ?>
+              </td>
+              <td class="<?php echo ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00'); ?>">
+                  <?php
+                      if ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00') {
+                          echo "No Release Date Yet";
+                      } else {
+                          echo date("M d, Y", strtotime($row["pickUpDt"]));
+                      }
+                  ?>
+              </td>
               <td>
                 <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
@@ -61,6 +76,8 @@
                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal1<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Update</button>
               </td>
             </tr>
+
+
             <!-- Update Modal -->
             <div class="modal fade" id="updateModal1<?php echo $row['id']; ?>">
               <div class="modal-dialog modal-lg">
@@ -151,25 +168,10 @@
                               </div>
                           </div>
                           <div class="row my-3">
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Pick Up Date</label>
-                                      <input class="form-control" type="text" id="transactType" name="transactType" value="<?php echo $row['transactType']; ?>" required disabled>
-                                  </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                  <div class="form-outline">
-                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
-                                      <select class="form-select" id="status" name="status" required>
-                                          <option value="Ready to pick up" <?php echo ($row['status'] === 'Ready to pick up') ? 'selected' : ''; ?>>Ready to pick up</option>
-
-                                          <option value="Picked Up" <?php echo ($row['status'] === 'Picked Up') ? 'selected' : ''; ?>>Picked Up</option>
-
-                                          <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
-
-                                          <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
-                                      </select>
+                                      <label class="form-label" for="typeText">Payment Method</label>
+                                      <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -178,17 +180,33 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText">Pick Up Date</label>
-                                      <input class="form-control" type="date" id="whenToPickUp" name="whenToPickUp" value="<?php echo $row['whenToPickUp']; ?>" required>
+                                      <input class="form-control" type="date" id="whenToPickUp" name="whenToPickUp" value="<?php echo $row['whenToPickUp']; ?>">
                                   </div>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-outline">
-                                      <label class="form-label" for="typeText">Picked Up Date</label>
-                                      <input class="form-control" type="date" id="pickUpDt" name="pickUpDt" value="<?php echo $row['pickUpDt']; ?>" required>
+                                      <label class="form-label" for="typeText">Released Date</label>
+                                      <input class="form-control" type="date" id="pickUpDt" name="pickUpDt" value="<?php echo $row['pickUpDt']; ?>">
                                   </div>
                               </div>
                           </div>
                           
+
+                          <div class="row my-3">
+                            <div class="col-md-12">
+                                  <div class="form-outline">
+                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                                      <select class="form-select" id="status" name="status" required>
+                                          <option value="Ready to pick up" <?php echo ($row['status'] === 'Ready to pick up') ? 'selected' : ''; ?>>Ready to pick up</option>
+
+                                          <option value="Released" <?php echo ($row['status'] === 'Released') ? 'selected' : ''; ?>>Released</option>
+
+                                          <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
                         <div class="form-group mb-2">             
                           <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
                         </div>                      

@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="mt-5">
-                      <p>on the date of <?php echo date("M d, Y", strtotime($row["marriedDate"])); ?></p>
+                      <p>on the date of <?php echo date("F j, Y", strtotime($row["marriedDate"])); ?></p>
                       <p>The Marriage was solemnized by <?php echo $row['priest']; ?></p>
                       <p> in the presence of <?php echo $row['sponsor1']; ?> and <?php echo $row['sponsor2']; ?> as appears from the Marriage Records of this Church.
                       </p>
@@ -96,7 +96,7 @@
                    <div class="baptized-by mt-5">
                     <div class="left-side" style="float: left; margin-left: 20px;">
                       <span class="fw-bold">
-                        Date Issued: <?php echo date("M d, Y", strtotime($row["generatedDate"])); ?>
+                        Date Issued: <?php echo date("F j, Y", strtotime($row["generatedDate"])); ?>
                       </span>
                       <br>
                       <span>

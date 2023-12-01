@@ -45,8 +45,13 @@
         color: white;
     }
 
-    .status-pickedUp {
+    .status-released {
         background-color: #16A085;
+        color: white;
+    }
+
+    .status-reserved {
+        background-color: #0E6655;
         color: white;
     }
 
@@ -188,7 +193,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="tabcontent" id="profile" style="display: none;">
                       <?php include"admin/profile.php"; ?>
                     </div>
-                    <div class="tabcontent" id="reportSum" style="display: ;">
+                    <div class="tabcontent" id="reportSum" style="display: none;">
                       <?php include"admin/reportSum.php"; ?>
                     </div>
                     <div class="tabcontent" id="calendar" style="display: none;">
@@ -391,8 +396,10 @@ function getStatusColorClass($status) {
             return 'status-disapproved';
         case 'Ready to pick up':
             return 'status-pickUp';
-        case 'Picked Up':
-            return 'status-pickedUp';
+        case 'Released':
+            return 'status-released';
+        case 'Reserved':
+            return 'status-reserved';
         default:
             return ''; // Default style for other statuses
     }

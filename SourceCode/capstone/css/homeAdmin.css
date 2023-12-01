@@ -1,0 +1,73 @@
+  .card-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .icon-container {
+            background: #C0392B;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container1 {
+            background: #2E86C1;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container2 {
+            background: #F1C40F;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container3 {
+            background: #52BE80;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .counter-value {
+            font-size: 24px;
+        }
+        .card{
+            align-content: center;
+        }
+
+        .icon-contain{
+         background: #52BE80;
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-left: 50px;
+         color: whitesmoke;
+        }

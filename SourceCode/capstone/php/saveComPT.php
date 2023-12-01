@@ -5,82 +5,96 @@ if (isset($_POST['btn-save'])) {
     $comDate = $_POST['comDate'];
     $comTime = $_POST['comTime'];
 
-    // Validate comTime
-    $startTime = strtotime('07:00 AM');
-    $endTime = strtotime('04:00 PM');
+    $comDateTimestamp = strtotime($comDate);
+    $currentDateTimestamp = time();
 
-    $comTimeTimestamp = strtotime($comTime);
-
-    if ($comTimeTimestamp < $startTime || $comTimeTimestamp > $endTime) {
+    // Check if the comDate has already passed
+    if ($comDateTimestamp < $currentDateTimestamp) {
         echo "<script type='text/javascript'>
-                alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
+                alert('Invalid Reservation Date! The selected date has already passed.');
                 window.location = '../patron.php';
               </script>";
         exit;
     }
 
-    $checkQuery = "SELECT * FROM communion_tbl WHERE comDate = '$comDate' AND comTime = '$comTime'";
-    $checkResult = mysqli_query($conn, $checkQuery);
-
-    if (mysqli_num_rows($checkResult) > 0) {
-        echo "<script type='text/javascript'>
-            alert('Your Reservation Time has already been taken!');
-            window.location = '../patron.php';
-        </script>";
-        exit;
-    }
-
-    $addedBy = $_POST['addedBy'];
-    $name = $_POST['name'];
-    $contact = $_POST['contact'];
-    $address = $_POST['address'];
-    $comDate = $_POST['comDate'];
-    $comTime = $_POST['comTime'];
-    $desc = $_POST['desc'];
-
+    // Check if the uploaded file is valid and move it to the target directory
     $bapCert = $_FILES['bapCert'];
-    $targetDir1 = "../upload/bapCert/";  // Updated target directory
-    $fileName1 = $_FILES['bapCert']['name'];
-    $targetFilePath1 = $targetDir1 . $fileName1;
-    $fileType1 = pathinfo($targetFilePath1, PATHINFO_EXTENSION);
+    $targetDir1 = "../upload/bapCert/";
 
-    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+    $uploadResult = handleFileUpload($bapCert, $targetDir1);
 
-    if (in_array($fileType1, $allowTypes)) {
-        // Create target directory if it doesn't exist
-        if (!is_dir($targetDir1)) {
-            mkdir($targetDir1, 0755, true);
-        }
+    if ($uploadResult['success']) {
+        $targetFilePath1 = $uploadResult['targetFilePath'];
 
-        if (move_uploaded_file($bapCert["tmp_name"], $targetFilePath1)) {
+        $checkQuery = "SELECT COUNT(*) as reservationCount FROM communion_tbl WHERE comDate = '$comDate' AND comTime = '$comTime'";
+        $checkResult = mysqli_query($conn, $checkQuery);
 
-            $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description)
-                          VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$targetFilePath1', '$desc')";
+        if ($checkResult) {
+            $row = mysqli_fetch_assoc($checkResult);
+            $reservationCount = $row['reservationCount'];
 
-            if (mysqli_query($conn, $sql_query)) {
-                echo "<script type='text/javascript'>
-                    alert('Communion Reserved Successfully!');
-                    window.location = '../patron.php';
-                </script>";
-            } else {
-                echo "<script type='text/javascript'>
-                    alert('Insertion Failed: " . mysqli_error($conn) . "');
-                    window.location = '../patron.php';
-                </script>";
+            if ($reservationCount >= 10) {
+                unlink($targetFilePath1); // Delete the uploaded file since the reservation limit is reached
+                handleError("Sorry, all reservations for this date and time are booked. Please choose a different date or time.");
             }
         } else {
+            unlink($targetFilePath1); // Delete the uploaded file on query error
+            handleError("Error checking reservations: " . mysqli_error($conn));
+        }
+
+        $addedBy = $_POST['addedBy'];
+        $name = $_POST['name'];
+        $contact = $_POST['contact'];
+        $address = $_POST['address'];
+        $desc = $_POST['desc'];
+
+        $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description)
+                      VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$targetFilePath1', '$desc')";
+
+        if (mysqli_query($conn, $sql_query)) {
             echo "<script type='text/javascript'>
-                alert('File Upload Failed!');
+                alert('Communion Reserved Successfully!');
                 window.location = '../patron.php';
             </script>";
+        } else {
+            unlink($targetFilePath1); // Delete the uploaded file on insertion error
+            handleError("Insertion Failed: " . mysqli_error($conn));
         }
     } else {
-        echo "<script type='text/javascript'>
-            alert('Invalid File Type! Only JPG, PNG, JPEG, GIF, or PDF allowed.');
-            window.location = '../patron.php';
-        </script>";
+        handleError($uploadResult['message']);
     }
 }
 
 mysqli_close($conn);
+
+function handleFileUpload($file, $targetDir) {
+    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+
+    $fileName = $file['name'];
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+    if (in_array($fileType, $allowTypes)) {
+        // Create target directory if it doesn't exist
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+            return array('success' => true, 'targetFilePath' => $targetFilePath);
+        } else {
+            return array('success' => false, 'message' => "File Upload Failed!");
+        }
+    } else {
+        return array('success' => false, 'message' => "Invalid File Type! Only JPG, PNG, JPEG, GIF, or PDF allowed.");
+    }
+}
+
+function handleError($errorMessage) {
+    echo "<script type='text/javascript'>
+            alert('$errorMessage');
+            window.location = '../patron.php';
+          </script>";
+    exit;
+}
 ?>

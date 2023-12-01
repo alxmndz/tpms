@@ -70,12 +70,12 @@
                   <div class="mt-3 text-justify">
                     <p>Son (daughter) of <?php echo $row['fatherName']; ?> and <?php echo $row['motherName']; ?></p>
                     <p>residents of <?php echo $row['residentAdd']; ?></p>
-                    <p>died on the day of <?php echo date("M d, Y", strtotime($row["deathDate"])); ?></p>
+                    <p>died on the day of <?php echo date("F j, Y", strtotime($row["deathDate"])); ?></p>
                     <p>The cause of death was <?php echo $row['causeOfDeath']; ?></p>
 
                     <p><?php echo $row['sbd']; ?> , He (She) received the last Sacrament before Death</p>
                     <p><?php echo $row['sbd2']; ?> , He (She) was not able to received the last Sacrament before Death</p>
-                    <p>Issued in this Parochial Offiece this date <?php echo date("M d, Y", strtotime($row["generatedDate"])); ?></p>
+                    <p>Issued in this Parochial Offiece this date <?php echo date("F j, Y", strtotime($row["generatedDate"])); ?></p>
                   </div>
                 </div>
               

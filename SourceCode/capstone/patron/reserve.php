@@ -27,7 +27,7 @@
                 <img src="assets/img/portfolio/baptize.jpg" class="card-img-top" alt="Image 1">
                 <div class="card-body">
                     <h3 class="card-title">Baptismal</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <p class="card-text">Available Time: 8:00 am - 10:30 am</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#baptismModal">Reserve</button>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <img src="assets/img/portfolio/bless.jpg" class="card-img-top" alt="Image 2">
                 <div class="card-body">
                     <h3 class="card-title">Blessing</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <p class="card-text">Available Time: 8:00 am - 11:30 am</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#blessModal">Reserve</button>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <img src="assets/img/portfolio/comm.jpg" class="card-img-top" alt="Image 3">
                 <div class="card-body">
                     <h3 class="card-title">Communion</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <p class="card-text">Available Time: 8:30 am - 10:30 am</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#commModal">Reserve</button>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <img src="assets/img/portfolio/confirmation.jpg" class="card-img-top" alt="Image 4">
                 <div class="card-body">
                     <h3 class="card-title">Confirmation</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <p class="card-text">Available Time: 8:00 am - 11:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#conModal">Reserve</button>
                 </div>
             </div>
@@ -74,20 +74,20 @@
             <div class="card">
                 <img src="assets/img/portfolio/funeral.png" class="card-img-top" alt="Image 5">
                 <div class="card-body">
-                    <h3 class="card-title">Funeral</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <h3 class="card-title">Funeral Mass</h3>
+                    <p class="card-text">Available Time: 8:00 am - 3:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#funeralModal">Reserve</button>
                 </div>
             </div>
         </div>
 
-        <!-- Marriage Card -->
+        <!-- Wedding Card -->
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="assets/img/portfolio/wedd.jpg" class="card-img-top" alt="Image 6">
                 <div class="card-body">
-                    <h3 class="card-title">Marriage</h3>
-                    <p class="card-text">Available Time: 7:00 am - 4:00 pm</p>
+                    <h3 class="card-title">Wedding</h3>
+                    <p class="card-text">Available Time: 7:00 am - 3:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#weddModal">Reserve</button>
                 </div>
             </div>

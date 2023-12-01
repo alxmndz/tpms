@@ -23,31 +23,31 @@
               <tbody>
                 <tr>
                   <td>Baptismal</td>
-                  <td>₱<?php echo number_format($row["baptismal"]); ?></td>
+                  <td>₱<?php echo number_format($row["baptismal"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Blessing</td>
-                  <td>₱<?php echo number_format($row["blessing"]); ?></td>
+                  <td>₱<?php echo number_format($row["blessing"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Communion</td>
-                  <td>₱<?php echo number_format($row["communion"]); ?></td>
+                  <td>₱<?php echo number_format($row["communion"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Confirmation</td>
-                  <td>₱<?php echo number_format($row["confirmation"]); ?></td>
+                  <td>₱<?php echo number_format($row["confirmation"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Funeral Mass</td>
-                  <td>₱<?php echo number_format($row["funeralmass"]); ?></td>
+                  <td>₱<?php echo number_format($row["funeralmass"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Wedding</td>
-                  <td>₱<?php echo number_format($row["wedding"]); ?></td>
+                  <td>₱<?php echo number_format($row["wedding"], 2); ?></td>
                 </tr>
                 <tr>
                   <td>Certificates</td>
-                  <td>₱<?php echo number_format($row["cert"]); ?></td>
+                  <td>₱<?php echo number_format($row["cert"], 2); ?></td>
                 </tr>
 
                 <div class="modal" id="eventUp<?php echo $row["id"]; ?>">

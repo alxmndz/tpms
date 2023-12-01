@@ -12,8 +12,8 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="statusDropdown">
               <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
-              <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
-              <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Picked Up" href="#">Picked Up</a></li>
               <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
             </ul>
           </div>
@@ -87,17 +87,17 @@
                  </span>
               </td>
               <td>
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#reqCertM<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i> View</button>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#reqCertM<?php echo $row['id']; ?>"><i class="fa-solid fa-eye"></i></button>
                 <?php
-                // Show additional button if the status is "Approved" and necessary fields are filled
-                if ($row['status'] === 'Approved' && empty($row['refNum']) && empty($row['amount']) && empty($row['receipt'])) {
-                ?>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#payReq<?php echo $row['id']; ?>">
-                        <i class="fa-solid fa-peso-sign"></i>
-                    </button>
-                <?php
-                }
-                ?>
+if ($row['status'] === 'Ready to pick up' && empty($row['refNum']) && empty($row['amount']) && empty($row['receipt'])) {
+?>
+    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#payReq<?php echo $row['id']; ?>">
+        <i class="fa-solid fa-peso-sign"></i>
+    </button>
+<?php
+}
+?>
+
               </td>
             </tr>
 
@@ -130,6 +130,8 @@
 
                   <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                   <input type="text" class="form-control" id="payMethod" name="payMethod" value="gcash" required style="display: none;">
+                  <input type="text" class="form-control" id="payDate" name="payDate" value="<?php echo date('F j, Y'); ?>" required style="display: none;">
+
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label for="amount" class="form-label">Amount</label>

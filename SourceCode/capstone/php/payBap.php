@@ -22,6 +22,8 @@ if (isset($_POST['btn-save'])) {
 
     $payMethod = mysqli_real_escape_string($conn, $_POST['payMethod']);
     $amount = $amount;
+    $payDate = mysqli_real_escape_string($conn, $_POST['payDate']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
     $refNum = mysqli_real_escape_string($conn, $_POST['refNum']);
 
     // File upload
@@ -49,7 +51,7 @@ if (isset($_POST['btn-save'])) {
     }
 
     // Database query to update data
-    $sql_query = "UPDATE baptismal_tbl SET payMethod='$payMethod', amount='$amount', receipt='$targetFilePath', refNum='$refNum' WHERE id='$id'";
+    $sql_query = "UPDATE baptismal_tbl SET payMethod='$payMethod', amount='$amount', payDate='$payDate', status='$status', receipt='$targetFilePath', refNum='$refNum' WHERE id='$id'";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

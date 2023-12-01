@@ -21,15 +21,13 @@ if (isset($_POST['btn-save'])) {
 
     $amount = $baptismal;
 
-    // Validate bapTime
-    $startTime = strtotime('07:00 AM');
-    $endTime = strtotime('04:00 PM');
+    $bapDateTimestamp = strtotime($bapDate);
+    $currentDateTimestamp = time();
 
-    $bapTimeTimestamp = strtotime($bapTime);
-
-    if ($bapTimeTimestamp < $startTime || $bapTimeTimestamp > $endTime) {
+    // Check if the bapDate has already passed
+    if ($bapDateTimestamp < $currentDateTimestamp) {
         echo "<script type='text/javascript'>
-                alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
+                alert('Invalid Reservation Date! The selected date has already passed.');
                 window.location = '../admin.php';
               </script>";
         exit;
@@ -38,9 +36,19 @@ if (isset($_POST['btn-save'])) {
     $checkQuery = "SELECT * FROM baptismal_tbl WHERE bapDate = '$bapDate' AND bapTime = '$bapTime'";
     $checkResult = mysqli_query($conn, $checkQuery);
 
-    if (mysqli_num_rows($checkResult) > 0) {
+    if ($checkResult) {
+        $reservationCount = mysqli_num_rows($checkResult);
+
+        if ($reservationCount >= 10) {
+            echo "<script type='text/javascript'>
+                alert('Sorry, all reservations for this date and time are booked. Please choose a different date.');
+                window.location = '../admin.php';
+            </script>";
+            exit;
+        }
+    } else {
         echo "<script type='text/javascript'>
-            alert('Your Reservation Time has already been taken!');
+            alert('Error checking reservations: " . mysqli_error($conn) . "');
             window.location = '../admin.php';
         </script>";
         exit;

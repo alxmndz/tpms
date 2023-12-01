@@ -51,31 +51,37 @@
                 </thead>
                 <tbody>
                   <?php
-                    // Replace the sample data below with your actual data retrieval logic
-                    $sampleData = [
-                      ['Jannuary', $formattedSumJan],
-                      ['February', $formattedSumFeb],
-                      ['March', $formattedSumMar],
-                      ['April', $formattedSumApr],
-                      ['May', $formattedSumMay],
-                      ['June', $formattedSumJun],
-                      ['July', $formattedSumJul],
-                      ['August', $formattedSumAug],
-                      ['September', $formattedSumSep],
-                      ['October', $formattedSumOct],
-                      ['November', $formattedSumNov],
-                      ['December', $formattedSumDec],
-                      ['Total Amount', $formattedSumTotal],
-                    ];
+// Replace the sample data below with your actual data retrieval logic
+$sampleData = [
+    ['January', $formattedSumJan],
+    ['February', $formattedSumFeb],
+    ['March', $formattedSumMar],
+    ['April', $formattedSumApr],
+    ['May', $formattedSumMay],
+    ['June', $formattedSumJun],
+    ['July', $formattedSumJul],
+    ['August', $formattedSumAug],
+    ['September', $formattedSumSep],
+    ['October', $formattedSumOct],
+    ['November', $formattedSumNov],
+    ['December', $formattedSumDec],
+    ['Total Amount', $formattedSumTotal],
+];
 
-                    foreach ($sampleData as $row) {
-                      echo '<tr>';
-                      foreach ($row as $cell) {
-                        echo '<td>' . $cell . '</td>';
-                      }
-                      echo '</tr>';
-                    }
-                  ?>
+foreach ($sampleData as $row) {
+    echo '<tr>';
+    foreach ($row as $cell) {
+        // Format numeric values with two decimal points
+        if (is_numeric($cell)) {
+            echo '<td>' . number_format($cell, 2) . '</td>';
+        } else {
+            echo '<td>' . $cell . '</td>';
+        }
+    }
+    echo '</tr>';
+}
+?>
+
                 </tbody>
               </table>
             </div>

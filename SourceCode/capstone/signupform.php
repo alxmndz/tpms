@@ -45,7 +45,7 @@
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="card">
                         <div class="card-header">
-                            <a href="home.php"><i class="fas fa-arrow-circle-left" style="color: #E74C3C;"></i></a>
+                            <a href="home.php"><i class="fas fa-arrow-circle-left" style="color: #117A65;"></i></a>
                             <h4 class="text-center"><b>Signup Form</b></h4>
                         </div>
                         <div class="card-body">

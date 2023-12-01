@@ -54,7 +54,7 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-calendar-days"></i> 
-                        Date
+                        Reserved Date
                       </label>
                       <input class="form-control" type="date" id="conDate" name="conDate" required />
                     </div>
@@ -66,9 +66,18 @@
                   <div class="form-outline">
                        <label class="form-label" for="typeText">
                         <i class="fa-solid fa-clock"></i> 
-                        Time
+                        Reserved Time
                       </label>
-                      <input class="form-control" type="time" id="conTime" name="conTime" required />
+                      <select class="form-select" id="conTime" name="conTime" required>
+                        <option value="" disabled selected>Select Time</option>
+                        <option value="08:00 AM">8:00 AM</option>
+                        <option value="08:30 AM">8:30 AM</option>
+                        <option value="09:00 AM">9:00 AM</option>
+                        <option value="09:30 AM">9:30 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                    </select>
                     </div>
                   </div>
               </div>

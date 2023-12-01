@@ -57,8 +57,8 @@
                                 <select class="form-select" id="status" name="status" required>
                                     <option disabled selected>Select an option</option>
                                     <option value="Ready to pick up">Ready to pick up</option>
+                                    <option value="Released">Released</option>
                                     <option value="In Process">In Process</option>
-                                    <option value="Disapprove, mismatch files">Disapprove, mismatch files</option>
                                 </select>
                             </div>
                         </div>

@@ -71,12 +71,12 @@
                       <p>Child of <?php echo $row['fatherName']; ?></p>
                       <p>and <?php echo $row['motherName']; ?></p>
                       <p>Born in <?php echo $row['birthPlace']; ?></p>
-                      <p>on the <?php echo date("M d, Y", strtotime($row["birthDate"])); ?></p>
+                      <p>on the <?php echo date("F j, Y", strtotime($row["birthDate"])); ?></p>
                       <p>has received</p>
                       <h4><b style="font-family: 'Old English Five', sans-serif;" class="mt-3">The Holy Sacrament of Communion</b></h4>
                       <p>according to the rite of the Roman Catholic Church</p>
                       <div class="mt-5">
-                        <p>on the <b><?php echo date("M d, Y", strtotime($row["birthDate"])); ?></b></p>
+                        <p>on the <b><?php echo date("F j, Y", strtotime($row["birthDate"])); ?></b></p>
                         <p>By the <?php echo $row['priest']; ?></p>
                         <p>The sponsors being <?php echo $row['sponsor1']; ?></p>
                         <p>and <?php echo $row['sponsor2']; ?></p>
@@ -90,7 +90,7 @@
                    <div class="baptized-by mt-5">
                     <div class="left-side" style="float: left; margin-left: 20px;">
                       <span class="fw-bold">
-                        Date Issued: <?php echo date("M d, Y", strtotime($row["generatedDate"])); ?>
+                        Date Issued: <?php echo date("F j, Y", strtotime($row["generatedDate"])); ?>
                       </span>
                       <br>
                       <span>

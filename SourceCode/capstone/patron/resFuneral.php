@@ -118,6 +118,8 @@
               <div class="card-body">
 
                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $row['id']; ?>" required>
+                <input type="hidden" class="form-control" id="status" name="status" value="Reserved" required>
+                <input type="hidden" class="form-control" id="payDate" name="payDate" value="<?php echo date('Y-m-d'); ?>" required>
                 <input type="hidden" class="form-control" id="payMethod" name="payMethod" value="gcash" required>
 
                 <div class="row my-3">

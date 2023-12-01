@@ -5,31 +5,41 @@ if (isset($_POST['btn-save'])) {
     $wdate = $_POST['wdate'];
     $resTime = $_POST['resTime'];
 
-    // Validate reservation time
-    $startTime = strtotime('07:00 AM');
-    $endTime = strtotime('04:00 PM');
-    $resTimeTimestamp = strtotime($resTime);
+    $wdateTimestamp = strtotime($wdate);
+    $currentDateTimestamp = time();
 
-    if ($resTimeTimestamp < $startTime || $resTimeTimestamp > $endTime) {
+    // Check if the reservation date has already passed
+    if ($wdateTimestamp < $currentDateTimestamp) {
         echo "<script type='text/javascript'>
-                alert('Invalid Reservation Time! The reservation must be between 7:00 AM and 4:00 PM.');
+                alert('Invalid Reservation Date! The selected date has already passed.');
                 window.location = '../patron.php';
               </script>";
         exit;
     }
 
-    $checkQuery = "SELECT * FROM wedding_tbl WHERE wdate = '$wdate' AND resTime = '$resTime'";
+    $checkQuery = "SELECT COUNT(*) as reservationCount FROM wedding_tbl WHERE wdate = '$wdate' AND resTime = '$resTime'";
     $checkResult = mysqli_query($conn, $checkQuery);
 
-    if (mysqli_num_rows($checkResult) > 0) {
+    if (!$checkResult) {
         echo "<script type='text/javascript'>
-            alert('Your Reservation Time has already been taken!');
-            window.location = '../patron.php';
-        </script>";
+                alert('Error checking reservations: " . mysqli_error($conn) . "');
+                window.location = '../patron.php';
+              </script>";
         exit;
     }
 
-    // Continue with your other form data and file uploads...
+    $row = mysqli_fetch_assoc($checkResult);
+    $reservationCount = $row['reservationCount'];
+
+    if ($reservationCount >= 10) {
+        echo "<script type='text/javascript'>
+                alert('Sorry, all reservations for this date and time are booked. Please choose a different date or time.');
+                window.location = '../patron.php';
+              </script>";
+        exit;
+    }
+
+    // Continue with other form data and file uploads...
 
     $addedBy = $_POST['addedBy'];
     $groom = $_POST['groom'];
@@ -40,20 +50,12 @@ if (isset($_POST['btn-save'])) {
     $bAddress = $_POST['bAddress'];
     $package = $_POST['package'];
     $intention = $_POST['intention'];
-    $wdate = $_POST['wdate'];
-    $resTime = $_POST['resTime'];
     $transactType = $_POST['transactType'];
 
     // Example for handling file uploads
     $gBirthCert = $_FILES['gBirthCert'];
     $targetDir1 = "../upload/birthCert/";
     $fileName1 = $gBirthCert['name'];
-    $targetFilePath1 = $targetDir1 . $fileName1;
-    $fileType1 = pathinfo($targetFilePath1, PATHINFO_EXTENSION);
-
-    $gBirthCert = $_FILES['gBirthCert'];
-    $targetDir1 = "../upload/birthCert/";
-    $fileName1 = $_FILES['gBirthCert']['name'];
     $targetFilePath1 = $targetDir1 . $fileName1;
     $fileType1 = pathinfo($targetFilePath1, PATHINFO_EXTENSION);
 
@@ -126,24 +128,17 @@ if (isset($_POST['btn-save'])) {
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
 
     if (in_array($fileType1, $allowTypes)) {
-        if (move_uploaded_file($gBirthCert['tmp_name'], $targetFilePath1) &&
-            move_uploaded_file($_FILES["bBirthCert"]["tmp_name"], $targetFilePath2) &&
-            move_uploaded_file($_FILES["gBapCert"]["tmp_name"], $targetFilePath3) &&
-            move_uploaded_file($_FILES["bBapCert"]["tmp_name"], $targetFilePath4) &&
-            move_uploaded_file($_FILES["gConCert"]["tmp_name"], $targetFilePath5) &&
-            move_uploaded_file($_FILES["bConCert"]["tmp_name"], $targetFilePath6) &&
-            move_uploaded_file($_FILES["cenomar"]["tmp_name"], $targetFilePath7) &&
-            move_uploaded_file($_FILES["marriageLicense"]["tmp_name"], $targetFilePath8) &&
-            move_uploaded_file($_FILES["RPic1"]["tmp_name"], $targetFilePath9) &&
-            move_uploaded_file($_FILES["RPic2"]["tmp_name"], $targetFilePath10) &&
-            move_uploaded_file($_FILES["MBPic1"]["tmp_name"], $targetFilePath11) &&
-            move_uploaded_file($_FILES["MBPic2"]["tmp_name"], $targetFilePath12)
-    ) {
+        if (move_uploaded_file($gBirthCert['tmp_name'], $targetFilePath1)) {
             // Continue with your SQL query for database insertion...
-            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, bBirthCert, gBapCert, bBapCert, gConCert, bConCert, cenomar, marriageLicense, RPic1, RPic2, MBPic1, MBPic2, transactType)
-                          VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$targetFilePath2','$targetFilePath3','$targetFilePath4', '$targetFilePath5','$targetFilePath6','$targetFilePath7','$targetFilePath8','$targetFilePath9','$targetFilePath10','$targetFilePath11','$targetFilePath12', '$transactType')";
+            $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, gBirthCert, transactType)
+                          VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$targetFilePath1', '$transactType')";
             
             if (mysqli_query($conn, $sql_query)) {
+                // Update the reservation count
+                $updatedCount = $reservationCount + 1;
+                $updateCountQuery = "UPDATE wedding_tbl SET reservationCount = $updatedCount WHERE wdate = '$wdate' AND resTime = '$resTime'";
+                mysqli_query($conn, $updateCountQuery);
+
                 echo "<script type='text/javascript'>
                         alert('Wedding Reserved Successfully!');
                         window.location = '../patron.php';
