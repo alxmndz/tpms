@@ -14,6 +14,7 @@
               <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
               <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
               <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Reserved" href="#">Reserved</a></li>
             </ul>
           </div>
         </div>
@@ -123,7 +124,16 @@
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Confirmation Time</label>
-                                      <input class="form-control" type="time" id="conTime" name="conTime" value="<?php echo $row['conTime']; ?>" required disabled>
+                                      <select class="form-select" id="conTime" name="conTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['conTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['conTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['conTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['conTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['conTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['conTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['conTime'] === '11:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                        </select>
                                   </div>
                             </div>
                           </div>
@@ -167,6 +177,8 @@
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+                                          
+                                          <option value="Reserved" <?php echo ($row['status'] === 'Reserved') ? 'selected' : ''; ?>>Reserved</option>
 
                                           <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                                       </select>
@@ -238,6 +250,9 @@
               break;
             case 'Disapprove, mismatch files':
               table.column(5).search('Disapprove, mismatch files').draw();
+              break;
+            case 'Reserved':
+              table.column(5).search('Reserved').draw();
               break;
           }
         });

@@ -2,7 +2,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="css/homeAdmin.css">
 <div class="container">
-  <h5><i class="fas fa-house"></i> Home</h5>
+  <div style="display: flex; justify-content: space-between;">
+       <h5><i class="fas fa-house"></i> Home</h5>
+       <h5><?php echo date('F d, Y'); ?></h5>
+  </div>
   <hr>
         <div class="row">
             <div class="col-md-3 mt-3 mx-auto text-center">
@@ -170,7 +173,7 @@
     <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h5>Total Event Reservations</h5>
+            <h5 class="text-center fw-bold mt-2" style="font-family: 'Poppins', sans-serif;">Total Event Reservations this <?php echo date('F'); ?></h5>
         </div>
         <div class="card-body">
             <div class="row justify-content-center mt-2">

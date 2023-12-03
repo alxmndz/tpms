@@ -122,6 +122,7 @@
                       <option disabled selected>Select a status</option>
                       <option value="Approved">Approved</option>
                       <option value="In Process">In Process</option>
+                      <option value="Reserved">Reserved</option>
                       <option value="Disapprove, mismatch files">Disapprove, mismatch files</option>
                     </select>
                   </div>

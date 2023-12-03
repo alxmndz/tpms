@@ -233,7 +233,17 @@
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Blessing Time</label>
-                                      <input class="form-control" type="time" id="blessTime" name="blessTime" value="<?php echo $row['blessTime']; ?>" required disabled>
+                                      <select class="form-select" id="blessTime" name="blessTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['blessTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['blessTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['blessTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['blessTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['blessTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['blessTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['blessTime'] === '11:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                            <option value="11:30 AM" <?php echo ($row['blessTime'] === '11:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                        </select>
                                   </div>
                             </div>
                           </div>
@@ -249,7 +259,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                      <input class="form-control" type="number" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

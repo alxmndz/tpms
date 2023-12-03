@@ -56,6 +56,7 @@ if (isset($_POST['btn-save'])) {
     }
     if ($payMethod === 'face-to-face') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $fName = $_POST['fName'];
         $mName = $_POST['mName'];
@@ -79,6 +80,7 @@ if (isset($_POST['btn-save'])) {
         
     } elseif ($payMethod === 'gcash') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $fName = $_POST['fName'];
         $mName = $_POST['mName'];
@@ -128,7 +130,7 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO funeralmass_tbl(name,fName,mName,widow,address,deathDate,age,buryDate,cause,sacrament,lastsacrament,amount,addedBy,receipt,payMethod,transactType,status,refNum,contact,reqBy,resTime) VALUES('$name','$fName','$mName','$widow','$address','$deathDate','$age','$buryDate','$cause','$sacrament','$lastsacrament','$amount','$addedBy','$targetFilePath','$payMethod','$transactType','$status','$refNum','$contact','$reqBy','$resTime')";
+    $sql_query = "INSERT INTO funeralmass_tbl(name,fName,mName,widow,address,deathDate,age,buryDate,cause,sacrament,lastsacrament,amount,addedBy,receipt,payMethod,transactType,status,refNum,contact,reqBy,resTime,payDate) VALUES('$name','$fName','$mName','$widow','$address','$deathDate','$age','$buryDate','$cause','$sacrament','$lastsacrament','$amount','$addedBy','$targetFilePath','$payMethod','$transactType','$status','$refNum','$contact','$reqBy','$resTime','$payDate')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

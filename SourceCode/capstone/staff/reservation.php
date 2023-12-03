@@ -56,7 +56,7 @@
             <div class="col-md-4">
                 <div class="image-card">
                     <img src="assets/img/portfolio/funeral.png" alt="Image 5">
-                    <h3>Funeral</h3>
+                    <h3>Funeral Mass</h3>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#funeral">Reserve</button>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="col-md-4">
                 <div class="image-card">
                     <img src="assets/img/portfolio/wedd.jpg" alt="Image 6">
-                    <h3>Marriage</h3>
+                    <h3>Wedding</h3>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#weddModal">Reserve</button>
                 </div>
             </div>

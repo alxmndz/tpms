@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="path/to/simple-calendar.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="path/to/simple-calendar.js"></script>
+    <style type="text/css">
+        .event-hour{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -70,11 +75,11 @@ if (mysqli_num_rows($resultBaptismal) > 0) {
 
         // Determine the source and set the summary accordingly
         $source = 'Baptismal';
-        $summary = ($name) ? "$name - $source" : $source;
+        $summary = ($name) ? "$name - $source ($bapTime)" : "$source ($bapTime)";
 
         $events[] = [
-            'startDate' => date('Y-m-d', strtotime("$bapDate $bapTime")),
-            'endDate' => date('Y-m-d H:i:s', strtotime("$bapDate $bapTime +1 hour")),
+            'startDate' => date('Y-m-d', strtotime("$bapDate")),
+            'endDate' => date('Y-m-d', strtotime("$bapDate")),
             'summary' => $summary,
         ];
     }
@@ -105,7 +110,7 @@ if (mysqli_num_rows($resultBlessing) > 0) {
 
         // Determine the source and set the summary accordingly
         $source = 'Blessing';
-        $summary = ($name) ? "$name - $source" : $source;
+        $summary = ($name) ? "$name - $source ($blessTime)" : "$source ($blessTime)";
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$blessDate $blessTime")),
@@ -141,7 +146,7 @@ if (mysqli_num_rows($resultCom) > 0) {
 
         // Determine the source and set the summary accordingly
         $source = 'Communion';
-        $summary = ($name) ? "$name - $source" : $source;
+        $summary = ($name) ? "$name - $source ($comTime)" : "$source ($comTime)";
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$comDate $comTime")),
@@ -175,7 +180,7 @@ if (mysqli_num_rows($resultCom) > 0) {
         }
         // Determine the source and set the summary accordingly
         $source = 'Confirmation';
-        $summary = ($name) ? "$name - $source" : $source;
+        $summary = ($name) ? "$name - $source ($conTime)" : "$source ($conTime)";
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$conDate $conTime")),
@@ -215,7 +220,7 @@ if (mysqli_num_rows($resultFuneral) > 0) {
 
         // Determine the source and set the summary accordingly
         $source = 'Funeral Mass';
-        $summary = ($name) ? "$name - $source" : $source;
+        $summary = ($name) ? "$name - $source ($resTime)" : "$source ($resTime)";
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$buryDate $resTime")),
@@ -253,7 +258,7 @@ if (mysqli_num_rows($resultWedding) > 0) {
 
         // Determine the source and set the summary accordingly
         $source = 'Wedding'; // Change source to 'Wedding'
-        $summary = ($groom && $bride) ? "$groom & $bride - $source" : $source;
+        $summary = ($groom && $bride) ? (($groom && $bride) ? "$groom & $bride - $source ($resTime)" : "$source ($resTime)") : $source;
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$wdate $resTime")),

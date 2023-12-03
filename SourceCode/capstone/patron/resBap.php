@@ -254,7 +254,15 @@
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Baptismal Time</label>
-                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required disabled>
+                                      <select class="form-select" id="bapTime" name="bapTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['bapTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['bapTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['bapTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['bapTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['bapTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['bapTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                        </select>
                                   </div>
                             </div>
                           </div>
@@ -270,7 +278,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                      <input class="form-control" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

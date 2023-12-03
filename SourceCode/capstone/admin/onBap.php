@@ -14,6 +14,7 @@
               <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
               <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
               <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Reserved" href="#">Reserved</a></li>
             </ul>
           </div>
         </div>
@@ -161,7 +162,15 @@
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Baptismal Time</label>
-                                      <input class="form-control" type="time" id="bapTime" name="bapTime" value="<?php echo $row['bapTime']; ?>" required disabled>
+                                      <select class="form-select" id="bapTime" name="bapTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['bapTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['bapTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['bapTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['bapTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['bapTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['bapTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                        </select>
                                   </div>
                             </div>
                           </div>
@@ -170,7 +179,7 @@
                               <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                      <input class="form-control" value="<?php echo $row['amount']; ?>" disabled>
                                   </div>
                               </div>
                           </div>
@@ -192,6 +201,8 @@
                                         <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
 
                                           <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+                                          
+                                          <option value="Reserved" <?php echo ($row['status'] === 'Reserved') ? 'selected' : ''; ?>>Reserved</option>
 
                                           <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
                                       </select>

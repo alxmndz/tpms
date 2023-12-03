@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <style>
-        .status-badge {
+       .status-badge {
         display: flex;
         align-items: center;
         justify-content: center; /* Center text vertically */
@@ -45,8 +45,13 @@
         color: white;
     }
 
-    .status-pickedUp {
+    .status-released {
         background-color: #16A085;
+        color: white;
+    }
+
+    .status-reserved {
+        background-color: #0E6655;
         color: white;
     }
 
@@ -248,8 +253,10 @@ function getStatusColorClass($status) {
             return 'status-disapproved';
         case 'Ready to pick up':
             return 'status-pickUp';
-        case 'Picked Up':
-            return 'status-pickedUp';
+        case 'Released':
+            return 'status-released';
+        case 'Reserved':
+            return 'status-reserved';
         default:
             return ''; // Default style for other statuses
     }

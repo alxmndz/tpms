@@ -56,7 +56,7 @@
                         <i class="fa-solid fa-user"></i> 
                           Mother's name (Firstname-Middle Initial-Surname)
                         </label>
-                      <input class="form-control" type="tel" id="mName" name="mName" placeholder="Enter mother's name" required />
+                      <input class="form-control" type="text" id="mName" name="mName" placeholder="Enter mother's name" required />
                     </div>
                 </div>
               </div>

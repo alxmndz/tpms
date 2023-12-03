@@ -199,7 +199,7 @@
                                           <i class="fa-solid fa-user"></i> 
                                           Name
                                         </label>
-                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required readonly>
+                                      <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -208,7 +208,7 @@
                                         <i class="fa-solid fa-phone"></i> 
                                           Contact Number
                                       </label>
-                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required readonly>
+                          <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -216,7 +216,7 @@
                             <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required readonly>
+                                      <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -224,13 +224,22 @@
                             <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Blessing Date</label>
-                                      <input class="form-control" type="date" id="conDate" name="conDate" value="<?php echo $row['conDate']; ?>" required readonly>
+                                      <input class="form-control" type="date" id="conDate" name="conDate" value="<?php echo $row['conDate']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                    <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Blessing Time</label>
-                                      <input class="form-control" type="time" id="conTime" name="conTime" value="<?php echo $row['conTime']; ?>" required readonly>
+                                      <select class="form-select" id="conTime" name="conTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['conTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['conTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['conTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['conTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['conTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['conTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['conTime'] === '11:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                        </select>
                                   </div>
                             </div>
                           </div>
@@ -238,7 +247,7 @@
                             <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText">Description</label>
-                                      <input class="form-control" type="text" id="description" name="description" value="<?php echo $row['description']; ?>" required readonly>
+                                      <input class="form-control" type="text" id="description" name="description" value="<?php echo $row['description']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -246,7 +255,7 @@
                             <div class="col-md-12">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference No.</label>
-                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required readonly>
+                                      <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
                                   </div>
                               </div>
                           </div>
@@ -254,7 +263,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required readonly>
+                                      <input class="form-control" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

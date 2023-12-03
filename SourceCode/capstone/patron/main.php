@@ -27,6 +27,13 @@ if (mysqli_num_rows($result) > 0) {
         $eventDate = $row['eventDate'];
         $eventTime = $row['eventTime'];
         $title = $row['title'];
+        
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($eventDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
 
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$eventDate $eventTime")),

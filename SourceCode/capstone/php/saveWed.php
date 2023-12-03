@@ -60,6 +60,7 @@ if (isset($_POST['btn-save'])) {
         $targetFilePath = null; // Set receipt to null for face-to-face payments
         
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $groom = $_POST['groom'];
         $bride = $_POST['bride'];
         $gContact = $_POST['gContact'];
@@ -83,6 +84,7 @@ if (isset($_POST['btn-save'])) {
 
     } elseif ($payMethod === 'gcash') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $groom = $_POST['groom'];
         $bride = $_POST['bride'];
         $gContact = $_POST['gContact'];
@@ -136,8 +138,8 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, birthCert, bapCert, conCert, cenomar, marriageLicense, RPic, MBPic, payMethod, amount, receipt, transactType, status, refNum)
-                  VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$birthCert', '$bapCert', '$conCert', '$cenomar', '$marriageLicense', '$RPic', '$MBPic', '$payMethod', '$amount', '$targetFilePath', '$transactType', '$status', '$refNum')";
+    $sql_query = "INSERT INTO wedding_tbl(addedBy, groom, bride, gContact, bContact, gAddress, bAddress, package, intention, wdate, resTime, birthCert, bapCert, conCert, cenomar, marriageLicense, RPic, MBPic, payMethod, amount, receipt, transactType, status, refNum,payDate)
+                  VALUES('$addedBy', '$groom', '$bride', '$gContact', '$bContact', '$gAddress', '$bAddress', '$package', '$intention', '$wdate', '$resTime', '$birthCert', '$bapCert', '$conCert', '$cenomar', '$marriageLicense', '$RPic', '$MBPic', '$payMethod', '$amount', '$targetFilePath', '$transactType', '$status', '$refNum','$payDate')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

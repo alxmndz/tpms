@@ -63,7 +63,14 @@
                       <i class="fa-solid fa-clock"></i> 
                       Time
                     </label>
-                    <input class="form-control" type="time" id="comTime" name="comTime" required />
+                    <select class="form-select" id="comTime" name="comTime" required>
+                        <option value="" disabled selected>Select Communion Time</option>
+                        <option value="08:30 AM">8:30 AM</option>
+                        <option value="09:00 AM">9:00 AM</option>
+                        <option value="09:30 AM">9:30 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                    </select>
                   </div>
                 </div>
             </div>

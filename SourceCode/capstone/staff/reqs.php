@@ -14,7 +14,7 @@
             <ul class="dropdown-menu" aria-labelledby="statusDropdown">
               <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
               <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
-              <li><a class="dropdown-item filter-btn" data-status="Picked Up" href="#">Picked Up</a></li>
+              <li><a class="dropdown-item filter-btn" data-status="Released" href="#">Released</a></li>
               <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
               <li><a class="dropdown-item filter-btn" data-status="Disapproved, mismatch files" href="#">Disapprove</a></li>
             </ul>
@@ -50,8 +50,24 @@
               <td><?php echo $row["name"]; ?></td>
               <td><?php echo $row["event"]; ?></td>
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["whenToPickUp"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["pickUpDt"])); ?></td>
+              <td class="<?php echo ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00'); ?>">
+                  <?php
+                      if ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00') {
+                          echo "No Pick Up Date Yet";
+                      } else {
+                          echo date("M d, Y", strtotime($row["whenToPickUp"]));
+                      }
+                  ?>
+              </td>
+              <td class="<?php echo ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00'); ?>">
+                  <?php
+                      if ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00') {
+                          echo "No Release Date Yet";
+                      } else {
+                          echo date("M d, Y", strtotime($row["pickUpDt"]));
+                      }
+                  ?>
+              </td>
               <td>
                 <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>

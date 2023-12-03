@@ -8,7 +8,7 @@
       while ($row = mysqli_fetch_array($result)) {
     ?>
         <div class="card-header">
-          <h5 class="fw-bold">Transactions Prices</h5>
+          <h5 class="fw-bold">Update Pricing</h5>
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#eventUp<?php echo $row["id"]; ?>"><i class="fas fa-pen-to-square"></i> Update</button>
         </div>
         <div class="card-body">

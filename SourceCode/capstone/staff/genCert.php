@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/saveGenBap.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveGenBapST.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -121,7 +121,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/saveGenComm.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveGenCommST.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -235,7 +235,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/saveGenCon.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveGenConST.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -349,7 +349,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/saveGenFun.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveGenFunST.php" method="POST" enctype="multipart/form-data" autocomplete="off">
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -502,7 +502,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="php/saveGenWedd.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="php/saveGenWeddST.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
             <div class="col-md-6">

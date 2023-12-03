@@ -52,7 +52,8 @@
                           f.status,
                           f.transactDate,
                           f.transactType,
-                          f.refNum
+                          f.refNum,
+                          f.resTime
                     FROM funeralmass_tbl f
                     LEFT JOIN users u ON u.id = f.addedBy
                     WHERE f.addedBy = '$id' ORDER BY f.id DESC");
@@ -79,7 +80,7 @@
               <td><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
               <td><?php echo date("M d, Y", strtotime($row["deathDate"])); ?></td>
               <td><?php echo date("M d, Y", strtotime($row["buryDate"])); ?></td>
-              <td><?php echo date("M d, Y", strtotime($row["buryDate"])); ?></td>
+              <td><?php echo $row["resTime"]; ?></td>
               <td>
                 <span class="status-badge <?php echo getStatusColorClass($row['status']); ?>">
                   <?php echo $row["status"]; ?>
@@ -264,7 +265,7 @@
                               <div class="col-md-6">
                                   <div class="form-outline">
                                       <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
-                                      <input class="form-control" type="number" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled>
+                                      <input class="form-control" value="<?php echo $row['amount']; ?>" required disabled>
                                   </div>
                               </div>
                               <div class="col-md-6">

@@ -56,6 +56,7 @@ if (isset($_POST['btn-save'])) {
     }
     if ($payMethod === 'face-to-face') {
         $name = $_POST['name'];
+        $payDate = $_POST['payDate'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
         $blessDate = $_POST['blessDate'];
@@ -71,6 +72,7 @@ if (isset($_POST['btn-save'])) {
 
     } elseif ($payMethod === 'gcash') {
         $name = $_POST['name'];
+        $payDate = $_POST['payDate'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
         $blessDate = $_POST['blessDate'];
@@ -112,7 +114,7 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO blessing_tbl(name,contact,address,blessDate,blessTime,intention,amount,addedBy,receipt,transactType, status, refNum, payMethod) VALUES('$name','$contact','$address','$blessDate','$blessTime','$intention','$amount','$addedBy','$targetFilePath','$transactType','$status','$refNum','$payMethod')";
+    $sql_query = "INSERT INTO blessing_tbl(name,contact,address,blessDate,blessTime,intention,amount,addedBy,receipt,transactType, status, refNum, payMethod, payDate) VALUES('$name','$contact','$address','$blessDate','$blessTime','$intention','$amount','$addedBy','$targetFilePath','$transactType','$status','$refNum','$payMethod', '$payDate')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

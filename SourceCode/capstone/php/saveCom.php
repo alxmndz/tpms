@@ -57,6 +57,7 @@ if (isset($_POST['btn-save'])) {
     }
     if ($payMethod === 'face-to-face') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
@@ -73,6 +74,7 @@ if (isset($_POST['btn-save'])) {
 
     } elseif ($payMethod === 'gcash') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
@@ -115,7 +117,7 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description, amount, receipt, transactType, status, refNum, payMethod)VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$bapCert', '$desc', '$amount', '$targetFilePath', '$transactType', '$status', '$refNum', '$payMethod')";
+    $sql_query = "INSERT INTO communion_tbl(addedBy, name, contact, address, comDate, comTime, bapCert, description, amount, receipt, transactType, status, refNum, payMethod, paydate)VALUES('$addedBy', '$name', '$contact', '$address', '$comDate', '$comTime', '$bapCert', '$desc', '$amount', '$targetFilePath', '$transactType', '$status', '$refNum', '$payMethod', '$payDate')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

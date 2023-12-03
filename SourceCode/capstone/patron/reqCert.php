@@ -37,7 +37,7 @@
                         <div class="col-md-6" style="margin-top: 10px;">
                             <div class="form-outline">
                                 <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Type of Certificate</label>
-                                <select class="form-control" id="event" name="event" required>
+                                <select class="form-select" id="event" name="event" required>
                                     <option disabled selected>Select a type of certificate</option>
                                     <option value="Baptismal Certificate">Baptismal Certificate</option>
                                     <option value="Communion Certificate">Communion Certificate</option>

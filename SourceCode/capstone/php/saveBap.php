@@ -62,6 +62,7 @@ if (isset($_POST['btn-save'])) {
         $targetFilePath = null; // Set receipt to null for face-to-face payments
         
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
@@ -77,6 +78,7 @@ if (isset($_POST['btn-save'])) {
 
     } elseif ($payMethod === 'gcash') {
         $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
         $name = $_POST['name'];
         $contact = $_POST['contact'];
         $address = $_POST['address'];
@@ -121,8 +123,8 @@ if (isset($_POST['btn-save'])) {
         exit;
     }
 
-    $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, payMethod, amount, receipt, birthCert, marriageCont, sponsor1 ,sponsor2, transactType, status, refNum)
-                  VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$payMethod', '$amount', '$targetFilePath', '$birthCert', '$marriageCont', '$sponsor1', '$sponsor2', '$transactType', '$status', '$refNum')";
+    $sql_query = "INSERT INTO baptismal_tbl(addedBy, name, contact, address, bapDate, bapTime, payMethod, amount, receipt, birthCert, marriageCont, sponsor1 ,sponsor2, transactType, status, refNum, payDate)
+                  VALUES('$addedBy', '$name', '$contact', '$address', '$bapDate', '$bapTime', '$payMethod', '$amount', '$targetFilePath', '$birthCert', '$marriageCont', '$sponsor1', '$sponsor2', '$transactType', '$status', '$refNum', '$payDate')";
 
     if (mysqli_query($conn, $sql_query)) {
         echo "<script type='text/javascript'>

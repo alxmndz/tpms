@@ -361,7 +361,24 @@
                                 <i class="fa-solid fa-clock"></i>
                                 Reserved Time
                               </label>
-                            <input type="time" class="form-control" id="resTime" name="resTime" value="<?php echo $row['resTime']; ?>" required disabled/>
+                            <select class="form-select" id="resTime" name="resTime" required disabled>
+                                            <option selected disabled>Select a time</option>
+                                            <option value="08:00 AM" <?php echo ($row['resTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                            <option value="08:30 AM" <?php echo ($row['resTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                            <option value="09:00 AM" <?php echo ($row['resTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                            <option value="09:30 AM" <?php echo ($row['resTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                            <option value="10:00 AM" <?php echo ($row['resTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                            <option value="10:30 AM" <?php echo ($row['resTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['resTime'] === '11:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                            <option value="11:30 AM" <?php echo ($row['resTime'] === '11:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['resTime'] === '12:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                            <option value="11:30 AM" <?php echo ($row['resTime'] === '12:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['resTime'] === '1:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                            <option value="11:30 AM" <?php echo ($row['resTime'] === '1:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['resTime'] === '2:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                            <option value="11:30 AM" <?php echo ($row['resTime'] === '2:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                            <option value="11:00 AM" <?php echo ($row['resTime'] === '3:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                        </select>
                           </div>
                         </div>
                       </div>
@@ -373,7 +390,7 @@
                                 <i class="fa-solid fa-money-bill-1-wave"></i>
                                 Amount
                               </label>
-                            <input type="number" class="form-control" id="amount" name="amount" value="<?php echo $row['amount']; ?>" required disabled />
+                            <input type="number" class="form-control" value="<?php echo $row['amount']; ?>" required disabled />
                           </div>
                         </div>
                         <div class="col-md-6">

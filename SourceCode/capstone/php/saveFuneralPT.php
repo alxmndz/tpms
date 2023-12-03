@@ -4,6 +4,23 @@ include_once 'dbconn.php';
 if (isset($_POST['btn-save'])) {
     $buryDate = $_POST['buryDate'];
     $resTime = $_POST['resTime'];
+    
+    $addedBy = $_POST['addedBy'];
+        $payDate = $_POST['payDate'];
+        $name = $_POST['name'];
+        $fName = $_POST['fName'];
+        $mName = $_POST['mName'];
+        $widow = $_POST['widow'];
+        $contact = $_POST['contact'];
+        $address = $_POST['address'];
+        $deathDate = $_POST['deathDate'];
+        $age = $_POST['age'];
+        $buryDate = $_POST['buryDate'];
+        $cause = $_POST['cause'];
+        $sacrament = $_POST['sacrament'];
+        $lastsacrament = $_POST['lastsacrament'];
+        $transactType = $_POST['transactType'];
+        $reqBy = $_POST['reqBy'];
 
     $buryDateTimestamp = strtotime($buryDate);
     $currentDateTimestamp = time();
