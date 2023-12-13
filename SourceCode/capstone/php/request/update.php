@@ -1,21 +1,33 @@
 <?php
-  include_once 'dbconn.php';
+include_once 'dbconn.php';
 
-  if (count($_POST) > 0) {
+if (count($_POST) > 0) {
     $status = $_POST['status'];
     $pickUpDt = $_POST['pickUpDt'];
     $whenToPickUp = $_POST['whenToPickUp'];
     $id = $_POST['id'];
 
-      // Update the account type in the database
-      mysqli_query($conn, "UPDATE request SET status='$status',pickUpDt='$pickUpDt',whenToPickUp='$whenToPickUp' WHERE id='$id'");
+    // Check if the status is "Ready to Pick Up"
+    if ($status === 'Ready to pick up') {
+        // Set whenToPickUp to the current date
+        date_default_timezone_set('Asia/Manila'); // Set the time zone to Philippines
+        $whenToPickUp = date('Y-m-d H:i:s');
+        mysqli_query($conn, "UPDATE request SET status='$status', whenToPickUp=NOW() WHERE id='$id'");
+    } 
 
-       echo "<script type='text/javascript'>
+    if ($status === 'Released') {
+        // Set pickUpDt to the current timestamp
+        date_default_timezone_set('Asia/Manila');
+        $pickUpDt = date('Y-m-d H:i:s');
+        mysqli_query($conn, "UPDATE request SET status='$status', pickUpDt=NOW() WHERE id='$id'");
+    }
+
+    echo "<script type='text/javascript'>
         alert('Request Updated!');
         window.location = '../../admin.php';
-      </script>";
-  }
+    </script>";
+}
 
-  $result = mysqli_query($conn, "SELECT * FROM request WHERE id='" . $_GET['id'] . "'");
-  $row = mysqli_fetch_array($result);
+$result = mysqli_query($conn, "SELECT * FROM request WHERE id='" . $_GET['id'] . "'");
+$row = mysqli_fetch_array($result);
 ?>

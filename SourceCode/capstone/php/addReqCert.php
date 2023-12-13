@@ -3,19 +3,19 @@ include_once 'dbconn.php';
 
 if (isset($_POST['btn-save'])) {
     // Assuming you have a query to fetch the value from the table
-    $selectQuery = "SELECT baptismal FROM eventsprice";
+    $selectQuery = "SELECT cert FROM eventsprice";
     $result = mysqli_query($conn, $selectQuery);
 
     if ($result && mysqli_num_rows($result) > 0) {
         // Fetch the value
         $row = mysqli_fetch_assoc($result);
-        $baptismal = $row['baptismal'];
+        $cert = $row['baptismal'];
     } else {
         // Default value if no data is found
-        $baptismal = 1000; // You can set any default value here
+        $cert = 1000; // You can set any default value here
     }
 
-    $amount = $baptismal;
+    $amount = $cert;
 
     $payMethod = $_POST['payMethod'];
     if ($payMethod === 'face-to-face') {

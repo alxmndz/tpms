@@ -56,7 +56,7 @@
               <div class="certificate" style="border: 2px solid black; padding: 100px;">
                 <div class="certificate-title mt-2 text-center">
                   <h4 style="font-family: 'Old English Five', sans-serif;">
-                    <img src="../assets/img/nav-logo.png" alt="Logo" class="img-fluid rounded-circle" style="width: 40px;"> Certificate of Death<br>
+                    <img src="../assets/icons/lipa.png" alt="Logo" class="img-fluid rounded-circle" style="width: 40px;"> Certificate of Death<br>
                   </h4>
                   <div class="mt-3">
                     <span><b>Saint Vincent Ferrer Parish</b></span> <br>

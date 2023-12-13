@@ -69,31 +69,76 @@
 
 <?php include "reserveData/totalReservedList.php"; ?>
 
+<style type="text/css">
+  /* Add this in your CSS file (report.css) or in a style tag within your HTML */
+  @media print {
+    /* Hide unnecessary elements */
+    body * {
+      visibility: hidden;
+    }
+    .container, .container * {
+      visibility: visible;
+    }
+    /* Adjust the styles for better print visualization */
+    body {
+      font-size: 12pt;
+    }
+    .card {
+      border: 1px solid #ddd; /* Add a border for better separation */
+      margin-bottom: 10pt;
+      page-break-inside: avoid; /* Avoid breaking inside cards */
+    }
+    canvas {
+      max-width: 100%;
+      height: 400px; /* Set a fixed height for the canvas */
+      page-break-inside: avoid; /* Avoid breaking inside canvas */
+    }
+    /* Add additional styling as needed */
+    /* ... */
+  }
+</style>
+
 <div class="container">
   <h5 style="font-family: 'Poppins', sans-serif;" class="fw-bold">Summary Report</h5>
+  
+            <div class="container mt-4 noPrint">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div id="barFilter">
+                        <form method="get" class="row align-items-center">
+                            <div class="col-auto">
+                                <label for="selectedMonth" class="form-label">Select Month</label>
+                                <select name="selectedMonth" id="selectedMonth" class="form-select">
+                                    <?php
+                                    $currentMonth = date('n');
+                                    $currentYear = date('Y');
 
-        <button class="btn btn-primary btn-sm noPrint" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
-            <div id="barFilter" class="collapse">
-              <form method="get">
-                <div class="row">
-                  <select name="selectedMonth" class="form-select shorteneds mt-2">
-                      <?php
-                      $currentMonth = date('n'); // Get the current month without leading zeros
-                      $currentYear = date('Y');  // Get the current year
-
-                      for ($month = 1; $month <= 12; $month++) {
-                          $selected = ($currentMonth == $month) ? 'selected' : '';
-                          echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
-                      }
-                      ?>
-                  </select>
-
-                  <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $currentYear; ?>">
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        $selected = ($currentMonth == $month) ? 'selected' : '';
+                                        echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="selectedYear" class="form-label">Select Year</label>
+                                <input name="selectedYear" id="selectedYear" class="form-control" type="number" placeholder="Year" value="<?php echo $currentYear; ?>">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-sm btn-primary mt-3">Apply</button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-success btn-block btn-sm noPrint mt-3" onclick="printReport()">Print</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
-          </form>
         </div>
-      <button class="btn btn-success btn-sm noPrint" onclick="printReport()">Print Report</button>
+    </div>
+</div>
 
 
       <div class="row mt-3">

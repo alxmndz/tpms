@@ -1,7 +1,5 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <link rel="stylesheet" type="text/css" href="css/report.css">
+
 
 <?php include "charts/JanDonationSummary.php"; ?>
 
@@ -29,19 +27,59 @@
 
 <?php include "charts/TotalDonationSummary.php"; ?>
 
-<button class="btn btn-primary btn-sm noPrint" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
-            <div id="barFilter" class="collapse">
-              <form method="get">
-                  <input name="selectedYear" id="barFilterDate" class="form-control shortened mt-2" type="number" placeholder="Select Year" value="<?php echo $currentYear; ?>">
-            	  <button type="submit" class="btn btn-sm btn-primary mt-2">Apply Filter</button>
-          </form>
-        </div>
-      <button class="btn btn-success btn-sm noPrint" onclick="printReport()">Print Report</button>
+<style>
+  @media print {
+    @page {
+      margin: 0;
+    }
+
+    /* Hide unnecessary elements for printing */
+    body {
+      margin: 1.6cm;
+    }
+
+    #filterSection,
+    .noPrint {
+      display: none;
+    }
+
+    /* Adjust the table styles for printing */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    /* Hide page details in print mode */
+    @page {
+      margin: 0;
+    }
+
+    /* Add more print styles as needed */
+  }
+</style>
 
 <div class="col-md-12 mt-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Donation Summary</h5>
+  <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Donation Summary</h5>
+              <div class="ms-auto mb-2">
+               <form method="get">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input name="selectedYear" id="barFilterDate" class="form-control mt-1 noPrint" type="number" placeholder="Select Year" value="<?php echo $defaultYear; ?>">
+                    </div>
+                    <div class="col-md-6">
+                      <button type="submit" class="btn btn-sm btn-primary mt-2 noPrint">Apply</button>
+                      <button class="btn btn-success btn-sm noPrint mt-2" onclick="printReport()">Print</button>
+                    </div>
+                  </div>
+                </form>
+             </div>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -51,42 +89,40 @@
                 </thead>
                 <tbody>
                   <?php
-// Replace the sample data below with your actual data retrieval logic
-$sampleData = [
-    ['January', $formattedSumJan],
-    ['February', $formattedSumFeb],
-    ['March', $formattedSumMar],
-    ['April', $formattedSumApr],
-    ['May', $formattedSumMay],
-    ['June', $formattedSumJun],
-    ['July', $formattedSumJul],
-    ['August', $formattedSumAug],
-    ['September', $formattedSumSep],
-    ['October', $formattedSumOct],
-    ['November', $formattedSumNov],
-    ['December', $formattedSumDec],
-    ['Total Amount', $formattedSumTotal],
-];
+                  // Replace the sample data below with your actual data retrieval logic
+                  $sampleData = [
+                      ['January', $formattedSumJan],
+                      ['February', $formattedSumFeb],
+                      ['March', $formattedSumMar],
+                      ['April', $formattedSumApr],
+                      ['May', $formattedSumMay],
+                      ['June', $formattedSumJun],
+                      ['July', $formattedSumJul],
+                      ['August', $formattedSumAug],
+                      ['September', $formattedSumSep],
+                      ['October', $formattedSumOct],
+                      ['November', $formattedSumNov],
+                      ['December', $formattedSumDec],
+                      ['Total Amount', $formattedSumTotal],
+                  ];
 
-foreach ($sampleData as $row) {
-    echo '<tr>';
-    foreach ($row as $cell) {
-        // Format numeric values with two decimal points
-        if (is_numeric($cell)) {
-            echo '<td>' . number_format($cell, 2) . '</td>';
-        } else {
-            echo '<td>' . $cell . '</td>';
-        }
-    }
-    echo '</tr>';
-}
-?>
+                  foreach ($sampleData as $row) {
+                      echo '<tr>';
+                      foreach ($row as $cell) {
+                          // Format numeric values with two decimal points
+                          if (is_numeric($cell)) {
+                              echo '<td>' . number_format($cell, 2) . '</td>';
+                          } else {
+                              echo '<td>' . $cell . '</td>';
+                          }
+                      }
+                      echo '</tr>';
+                  }
+                  ?>
 
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
+</div>
 
 <script type="text/javascript">
   function printReport() {

@@ -19,18 +19,25 @@
             min-height: 100vh;
         }
 
-        .left-column {
-            background-image: url('assets/background1.png');
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('assets/bg_update.jpg'); /* Update this path */
             background-size: cover;
             background-position: center;
+        }
+
+        .left-column {
             min-height: 100vh;
         }
 
-        .right-column {
-            background-image: url('assets/svf-background.jpg'); /* Update this path */
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
+        .card {
+            background-color: rgba(0, 0, 0, 0.5); /* Set card background color with alpha for darkness */
+            color: white; /* Set text color to white */
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -42,7 +49,7 @@
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="card">
                         <div class="card-header">
-                            <a href="home.php"><i class="fas fa-arrow-circle-left" style="color: #117A65;"></i></a>
+                            <a href="home.php"><i class="fas fa-arrow-circle-left" style="color: #48C9B0;"></i></a>
                             <h4 class="text-center"><b>Login Form</b></h4>
                         </div>
                         <div class="card-body">
@@ -60,8 +67,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label"><i class="fas fa-unlock"></i> Password</label>
-                                    <input class="form-control" type="password" id="password" name="password"
-                                        placeholder="Enter your password" required>
+                                    <div class="input-group">
+                                        <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" required>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                                            <i id="eyeIcon" class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-success w-100"><i class="fas fa-key"></i> Login</button>
@@ -73,11 +84,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-7 right-column d-none d-md-block">
-                <!-- Right column content, such as your image -->
-            </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var eyeIcon = document.getElementById("eyeIcon");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -9,37 +9,113 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://fonts.cdnfonts.com/css/old-english-five" rel="stylesheet">
-  <style type="text/css">
-  	@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat&family=Poppins&family=Raleway&family=Varela+Round&display=swap');
-  	p{
-  		font-family: 'Montserrat', sans-serif;
-  	}
-  	@media print {
-	    /* Hide non-essential elements */
-	    .noPrint {
-	      display: none;
-	    }
-	    body {
-	      margin: 0;
-	      padding: 0;
-	    }
+<style>
+        @import url('https://fonts.cdnfonts.com/css/tr-dauphin');
+    </style>
 
-	    .container-fluid {
-	      width: 100%;
-	      margin: 0;
-	      padding: 0;
-	    }
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat&family=Poppins&family=Raleway&family=Varela+Round&display=swap');
 
-	    .card-body {
-	      page-break-before: always;
-	      margin: 0;
-	      padding: 0;
-	    }
-	    .certificate {
-	      font-size: 12px; /* Adjust font size for printing */
-	    }
-	  }
-  </style>
+        h5 {
+            font-family: 'TR Dauphin', sans-serif;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 12px; /* Adjust font size for printing */
+            }
+
+            .container-fluid {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .card-body {
+                page-break-before: always;
+                margin: 0;
+                padding: 0;
+            }
+
+            .certificate {
+                border: 2px solid black;
+                padding: 20px;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .certificate-title {
+                margin-bottom: 20px;
+            }
+
+            .certificate-content {
+                margin-top: 30px;
+            }
+
+            .baptized-by {
+                margin-top: 5px;
+            }
+
+            .left-side,
+            .right-side {
+                margin: 0;
+                padding: 0;
+            }
+
+            .noPrint {
+                display: none;
+            }
+
+            /* Remove URL and page number */
+            @page {
+                margin: 0;
+            }
+
+            body::after {
+                content: none !important;
+            }
+
+            body::before {
+                content: none !important;
+            }
+
+            /* Additional elements to hide when printing */
+            .btn,
+            .navbar,
+            .footer {
+                display: none;
+            }
+
+            /* Adjustments for better printing */
+            .certificate-title h2,
+            .certificate-title h5 {
+                margin: 0;
+            }
+
+            .certificate-content h5,
+            .certificate-content h4 {
+                margin: 0;
+            }
+
+            .baptized-by h5 {
+                margin: 0;
+            }
+
+            @page {
+            margin: 0;
+            }
+
+            body::after {
+                content: none !important;
+            }
+
+            body::before {
+                content: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -54,54 +130,60 @@
 	<button class="btn btn-danger btn-sm mb-2 mt-3 noPrint" onclick="back()"><i class="fas fa-right-from-bracket"></i> Return</button>
             <div class="card-body mb-5"style="text-align: center;">
               <div class="certificate" style="border: 2px solid black; padding: 100px;">
-                  <div class="certificate-title mt-2">
-                      <h4 style="font-family: 'Old English Five', sans-serif;">
-                        <img src="../assets/img/nav-logo.png" alt="Logo" class="img-fluid rounded-circle" style="width: 40px;"> Communion Certificate<br>
-                        <span><b>Saint Vincent Ferrer Parish</b></span>
-                      </h4>
-                      <hr>
-                      
-                  </div>
+                  <div class="certificate-title" style="text-align: center; margin-right: 155px;">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <!-- Logo on the left of the Text -->
+                        <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end; margin-right: 10px;">
+                            <img src="../assets/icons/lipa.png" alt="Logo" class="img-fluid rounded-circle" style="width: 40px;">
+                        </div>
+
+                        <!-- Text -->
+                        <div style="flex: 1; text-align: left;">
+                            <h1 style="font-family: 'TR Dauphin', sans-serif; font-size: 24px;" class="fw-bold">Communion Certificate</h1>
+                            <h4 style="font-family: 'Times New Roman', Times, serif; font-size: 15px;" class="fw-bold">Saint Vincent Ferrer Parish</h4>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                   <div class="certificate-content" style="margin-top: 30px;">
-                    <p>This is to certify that</p>
-                      <h5 style="font-family: Lucida Handwriting, cursive; border-bottom: 3px solid gold; display: inline-block;padding-bottom: 7px;">
-                        <?php echo $row['name']; ?>
-                      </h5>
+                    <h5>This is to certify that</h5>
+                      <h4 class="fw-bold" style="font-family: 'TR Dauphin', sans-serif; text-transform: uppercase; font-size: 20px;">
+                        <?php echo strtoupper($row['name']); ?>
+                      </h4>
                     <div class="mt-3">
-                      <p>Child of <?php echo $row['fatherName']; ?></p>
-                      <p>and <?php echo $row['motherName']; ?></p>
-                      <p>Born in <?php echo $row['birthPlace']; ?></p>
-                      <p>on the <?php echo date("F j, Y", strtotime($row["birthDate"])); ?></p>
-                      <p>has received</p>
-                      <h4><b style="font-family: 'Old English Five', sans-serif;" class="mt-3">The Holy Sacrament of Communion</b></h4>
-                      <p>according to the rite of the Roman Catholic Church</p>
+                      <h5>Child of <?php echo $row['fatherName']; ?></h5>
+                      <h5>and <?php echo $row['motherName']; ?></h5>
+                      <h5>Born in <?php echo $row['birthPlace']; ?></h5>
+                      <h5>on the <?php echo date("F j, Y", strtotime($row["birthDate"])); ?></h5>
+                      <h5>has received</h5>
+                      <h4><b style="font-family: 'TR Dauphin', sans-serif; font-size: 20px;" class="mt-3">The Holy Sacrament of Communion</b></h4>
+                      <h5>according to the rite of the Roman Catholic Church</h5>
                       <div class="mt-5">
-                        <p>on the <b><?php echo date("F j, Y", strtotime($row["birthDate"])); ?></b></p>
-                        <p>By the <?php echo $row['priest']; ?></p>
-                        <p>The sponsors being <?php echo $row['sponsor1']; ?></p>
-                        <p>and <?php echo $row['sponsor2']; ?></p>
+                        <h5>on the <b><?php echo date("F j, Y", strtotime($row["birthDate"])); ?></b></h5>
+                        <h5>By the <?php echo $row['priest']; ?></h5>
+                        <h5>The sponsors being <?php echo $row['sponsor1']; ?></h5>
+                        <h5>and <?php echo $row['sponsor2']; ?></h5>
                       </div>
                       <div class="mt-5">
-                        <p>As appears on the Communion Register No. <?php echo $row['id']; ?> of this church.</p>
+                        <h5>As appears on the Communion Register No. <?php echo $row['id']; ?> of this church.</h5>
                       </div>
                     </div>
                   </div>
 
                    <div class="baptized-by mt-5">
                     <div class="left-side" style="float: left; margin-left: 20px;">
-                      <span class="fw-bold">
-                        Date Issued: <?php echo date("F j, Y", strtotime($row["generatedDate"])); ?>
-                      </span>
-                      <br>
-                      <span>
+                      <h5>
+                        Date Issued: <?php echo date("M d, Y", strtotime($row["generatedDate"])); ?>
+                      </h5>
+                      <h5>
                         Purpose: For Record/Reference
-                      </span>
+                      </h5>
                     </div>
                     <div class="right-side" style="float: right; margin-right: 20px;margin-left: 50px;">
-                      <span class="fw-bold">
+                      <h5 class="fw-bold">
                         Rev. Fr. Leo Edgardo Villostas
-                      </span><br>
-                      <p>Parish Priest</p>
+                      </h5>
+                      <h5 class="fw-bold">Parish Priest</h5>
                     </div>
                   </div>
               </div>
