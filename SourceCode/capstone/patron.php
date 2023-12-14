@@ -149,7 +149,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                         UNION ALL
                         SELECT COUNT(*) AS total_count FROM wedding_tbl WHERE transactType != 'Walk-In' AND status = 'Approved' AND addedBy = '$sessionId'
                         UNION ALL
-                        SELECT COUNT(*) AS total_count FROM request WHERE transactType != 'Walk-In' AND status = 'Approved' AND addedBy = '$sessionId'
+                        SELECT COUNT(*) AS total_count FROM request WHERE transactType != 'Walk-In' AND status = 'Ready to pick up' AND addedBy = '$sessionId'
                     ) AS combined_counts");
 
                     $row = mysqli_fetch_assoc($result);
@@ -176,7 +176,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
               UNION
               SELECT id, CONCAT(groom, ' and ', bride) AS name, 'Wedding' AS type FROM wedding_tbl WHERE transactType != 'Walk-In' AND status = 'Approved' AND addedBy = '$sessionId'
               UNION
-              SELECT id, name, 'Certificate' AS type FROM request WHERE transactType != 'Walk-In' AND status = 'Approved' AND addedBy = '$sessionId'
+              SELECT id, event, 'Certificate' AS type FROM request WHERE transactType != 'Walk-In' AND status = 'Ready to pick up' AND addedBy = '$sessionId'
               ORDER BY id DESC LIMIT 6";
 
     $result = mysqli_query($conn, $query);
@@ -200,14 +200,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             ?>
             <!-- Add your combined notification items here -->
             <a class="dropdown-item" href="#">
-                <?php
+            <?php
                 // Display a customized message for certificate requests
                 if ($notification['type'] === 'Certificate') {
-                    echo $notification['name'] . ' has requested a ' . $notification['type'];
+                    echo "Your certificate request for '{$notification['name']}' is ready to pick up.";
                     // Add more details if needed
                 } else {
                     // Display 'reqBy' instead of 'name' if the type is 'Funeral Mass'
-                    echo $notification['name'] . ' has requested a reservation (' . $notification['type'] . ')';
+                    echo ' Your Reservation for (' . $notification['type'] . ') has been Approved.';
                 }
                 ?>
             </a>
