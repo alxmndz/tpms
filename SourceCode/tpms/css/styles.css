@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalnia&family=Montserrat&family=Poppins&family=Rubik&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 0;
+    font-family: 'Monserrat', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #094B96; /* Set the alpha channel to control transparency */
+}
+
+.home-text{
+    margin-top: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #F3F3F3; /* Optional text color */
+}
+
+.logo img {
+    width: 40px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #F3F3F3;
+    font-weight: bolder;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smoother effect */
+}
+
+.navbar a:hover {
+    color: #2E86C1;
+}
+
+/* Home section styles with background image */
+.home {
+    background-image: url('../assets/background/homepage.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    color: #fff;
+    text-align: center;
+    height: 650px;
+    padding: 100px 20px;
+    position: relative;
+}
+
+.home-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.home::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control transparency */
+    z-index: 1; /* Bring the overlay to the front */
+}
+
+/* Additional styles for better alignment */
+.home-text h1,
+.home-text h5,
+.home-text p,
+.home-text button {
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin-right: 1000px;
+    text-align: left;
+    z-index: 2;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Box shadow */
+}
+
+.home-text .verse {
+    margin-right: 1160px;
+}
+
+.home-text button {
+    margin-right: 1175px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Box shadow */
+}
+
+/* Offers section styles */
+.offers {
+    background-color: #094B96;
+    padding: 50px 20px;
+}
+
+@media (max-width: 767px) {
+    /* Hide navbar for screens smaller than 768px (typical small screens like phones and tablets) */
+    .navbar {
+        display: none;
+    }
+}
+
+  .card {
+    width: calc(33.33% - 20px);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .card img {
+    max-width: 100%;
+    height: auto;
+    width: 80px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-body h5 {
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 767px) {
+    .card {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+
+  .team {
+    background-color: #3795D3;
+    padding: 5px 10px;
+  }
+
+  .card-team {
+      width: calc(33.33% - 20px);
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+  }
+
+  .card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+  }
+
+  .card-team .card-body img {
+      max-width: 250px;
+      border-radius: 50%; /* Make the image rounded */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the image */
+      margin-bottom: 15px;
+  }
+
+  .card-body h5 {
+      margin-bottom: 10px;
+      font-weight: bolder;
+  }
+
+  .card-body p {
+      text-align: justify;
+  }
+
+  /* Center-align all content in responsive view */
+  @media (max-width: 767px) {
+    body {
+        text-align: center;
+    }
+
+    .home-text h1,
+    .home-text h5,
+    .home-text p,
+    .home-text button,
+    .home-text .verse {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .home-text button {
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .navbar li {
+        margin: 0 10px;
+    }
+
+    .offers,
+    .team {
+        text-align: center;
+    }
+
+    .card,
+    .card-team {
+        width: 100%; /* Full width on smaller screens */
+        margin: 10px auto; /* Center-align and add space around cards */
+    }
+
+    .row {
+        justify-content: center;
+    }
+
+    .card-body img {
+        margin-bottom: 10px;
+    }
+  }
+
+  section{
+    display: block;
+  }
+
+  .team{
+    background-color: #094B96;
+    color: #FFF;
+  }
+
+  .team-member {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .team-member img {
+    width: 14rem;
+    height: 14rem;
+    border: 0.5rem solid rgba(0, 0, 0, 0.1);
+  }
+  .team-member h4, .team-member .h4 p{
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    color: #FFF;
+  }
+
+  /* Your existing CSS styles */
+
+footer {
+    background-color: #042F4C; /* Set the background color for the footer */
+    color: #fff; /* Set the text color for the footer */
+    padding: 20px 0; /* Add padding for top and bottom spacing inside the footer */
+}
+
+.footer-container {
+    text-align: center; /* Center-align the content inside the container */
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #094B96;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 3;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #FFF;
+    display: block;
+    transition: 0.3s;
+    right: 0;
+}
+
+.menu{
+    display: none;
+}
+
+.sidebar a:hover {
+    color: #094B96;
+    background-color: #FFF;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: block; /* Show on smaller screens */
+    }
+
+    /* Additional styling for responsive view if needed */
+    /* For example, you might want to hide the regular navbar */
+    .navbar {
+        display: none;
+    }
+}
+
+.fade-in-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in-out.fade-in {
+    opacity: 1;
+}
+
+span{
+    color: #0CBCF9;
+    margin-right: 5px;
+    font-family: 'Open Sans', sans-serif;
+}

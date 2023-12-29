@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalnia&family=Montserrat&family=Poppins&family=Rubik&display=swap');
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh; /* Adjusted to occupy at least the full height of the viewport */
+}
+
+#sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #105BB5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 15px;
+}
+
+#sidebar a {
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #FFF;
+    display: block;
+}
+
+#sidebar a:hover {
+    transition: 0.3s;
+    color: #094B96;
+    background-color: #FFF;
+    border-radius: 15px; /* Added border-radius */
+}
+
+#content {
+    margin-left: 250px;
+    padding: 15px;
+}
+
+#sidebar h5 {
+    margin-left: 10px;
+    color: white;
+    font-weight: bolder;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.main-content h1 {
+    color: #333;
+}
+
+.main-content p {
+    color: #555;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 30px; /* Adjust the size as needed */
+    height: auto;
+    margin-right: 10px; /* Add some spacing between the logo and text */
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+/* Add this to your existing CSS or create a new CSS file */
+.menu-bar {
+    width: 20px; /* Adjust the size as needed */
+    height: 20px;
+    cursor: pointer;
+}
+
+.profile {
+    width: 30px; /* Adjust the size as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+header {
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #094B96;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0; /* Adjusted to make the dropdown appear on the left */
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #FFF;
+    color: #094B96;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Optional: Add margin to the h1 for better spacing */
+.main-content h1 {
+    margin-top: 20px;
+}
+
+.counter-cards {
+    margin-top: 20px;
+}
+
+.card {
+    border-radius: 15px;
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.card h5,
+.card p {
+    margin: 0;
+}
+
+.dashboard-icon {
+    width: 30px; /* Adjust the size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add some spacing */
+}
+
+.left-side{
+    float: center;
+}
+
+.centered-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.centered-text h5{
+    font-weight: bold;
+}
+
+/* Default styles for larger screens (PC view) */
+.menu-bar {
+    display: none; /* Hide the menu-bar by default */
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 767px) {
+    /* Adjust the max-width value based on your specific design needs */
+    .menu-bar {
+        display: block; /* Display the menu-bar for smaller screens */
+    }
+}
+
+/* Style for the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px; /* Adjust margin as needed */
+}
+
+/* Style for the profile image */
+.profile {
+    width: 40px; /* Adjust the width of the profile image */
+    height: 40px; /* Adjust the height of the profile image */
+    border-radius: 50%; /* Make the image round */
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #094B96; /* Adjust the background color */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+    z-index: 1;
+    right: 0; /* Position the dropdown to the right */
+    border-radius: 15px;
+}
+
+/* Style for the dropdown links */
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #094B96; /* Adjust the text color */
+    color: #FFF;
+    border-radius: 15px;
+}
+
+/* Style for the dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #FFF; /* Adjust the background color on hover */
+    color: #094B96;
+    border-radius: 15px;
+}
+
+/* Show the dropdown content when the dropdown is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav-link-custom.active {
+    background-color: #094B96; /* Highlight color for active link */
+    color: #094B96; /* Font color for active link */
+    border-radius: 15px;
+ }
+
+
+/* Add this CSS to your existing CSS file or create a new one */
+.profile-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Optional: You can add some additional styling to the img inside the profile-picture */
+.profile-picture img {
+    max-width: 100%;
+    max-height: 100%;
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+ .align-middle{
+    justify-content: center;
+    text-align: center;
+ }
+
+ .update-btn{
+    color: #16A085;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+ }
+
+ .pricing-text {
+    font-weight: bolder;
+    font-family: 'Open Sans', sans-serif;
+ }
+
+/* Add this style to your existing CSS file or create a new one */
+
+.event-type {
+    font-size: 1.2rem; /* Adjust the font size as needed */
+    color: #333; /* Set the color as needed */
+    margin-top: 10px; /* Add top margin for spacing */
+}
+
+.view-btn{
+    color: #2E86C1;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+ }

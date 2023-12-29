@@ -52,25 +52,25 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                     exit();
                 } else {
                     $error = "Incorrect user or password input.";
-                     header("Location: ../loginform.php?error=Incorrect user or password input.");
+                     header("Location: ../login.php?error=Incorrect user or password input.");
                     // exit();
                     echo "Incorrect user or password input.";
                 }
             } else {
                 $error = "Incorrect user or password input.";
-                 header("Location: ../loginform.php?error=Incorrect user or password input.");
+                 header("Location: ../login.php?error=Incorrect user or password input.");
                 // exit();
                 echo "Incorrect user or password input.";
             }
         } else {
             $error = "Incorrect user or password input.";
-             header("Location: ../loginform.php?error=Incorrect user or password input.");
+             header("Location: ../login.php?error=Incorrect user or password input.");
             // exit();
             echo "Incorrect user or password input.";
         }
     }
 } else {
-    header("Location: ../loginform.php?error=Incorrect user or password input.");
+    header("Location: ../login.php?error=Incorrect user or password input.");
     exit();
     echo "Incorrect user or password input.";
 }

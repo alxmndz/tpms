@@ -1,201 +1,208 @@
-	<div class="container mx-auto">
-		<div class="row">
-			<!-- Left column for Announcements -->
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-header d-flex align-items-center">
-			      <i class="fa-solid fa-bell me-2"></i>
-			      <span class="fs-5 fw-bold">Announcements</span>
-			    </div>
-					<div class="card-body">
-						<div class="table-responsive">
-					        <table class="table table-light table-hover" id="datatablesSimple15">
-					          <?php
-					            include_once 'php/dbconn.php';
-					            $result = mysqli_query($conn, "SELECT * FROM announcement ORDER BY id DESC");
-					            if (mysqli_num_rows($result) > 0) {
-					          ?>
-					          <thead>
-					            <tr>
-					              <th>Title</th>
-					              <th>Date</th>
-					              <th>Description</th>
-					              <th>Action</th>
-					            </tr>
-					          </thead>
-					          <tbody id="searchResults3">
-					            <?php
-					              $i = 0;
-					              while ($row = mysqli_fetch_array($result)) {
-					            ?>
-					            <tr>
-					              <td><?php echo $row["title"]; ?></td>
-					              <td><?php echo date("M d, Y", strtotime($row["postDate"])); ?></td>
-					              <td><?php echo $row["description"]; ?></td>
-					              <td>
-					                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button>
-					                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal4<?php echo $row['id']; ?>"><i class="fa-solid fa-trash"></i></button>
-					              </td>
-					            </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../assets/icons/team_icon/admin.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Admin - Tuy Parish Management System</title>
+</head>
+<body>
 
-					            <!-- Update Modal -->
-					            <div class="modal fade" id="updateModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" role="dialog">
-					            	<div class="modal-dialog">
-					            		<div class="modal-content">
-					            			<div class="modal-header">
-					            				<h5><i class="fa-solid fa-bell"></i> Update Announcement</h5>
-					            				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					            			</div>
-					            			<div class="modal-body">
-					            				<form action="php/announcement/update.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-																<div class="row">
-				                              <div class="col-md-6">
-				                              		<label class="form-label" for="typeText">
-										                          <b>Announcement Picture</b>
-										                      </label>
-				                                  <img id="announcePic" src="announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
-				                                      alt="Announcement Picture" class="mx-auto mb-3">
-				                              </div>
-				                              <div class="col-md-6">
-				                                  <div class="row my-3">
-																				<input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-										                          <div class="col-md-12">
-										                              <div class="form-outline">
-										                                  <label class="form-label" for="typeText">
-										                                    <i class="fa-solid fa-pen-to-square"></i>
-										                                    Announcement Title
-										                                  </label>
-										                                <input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>" required>
-										                            </div>
-										                        </div>
-										                    </div>
-											                    <div class="row my-3">
-										                          	<div class="col-md-12">
-										                              <div class="form-outline">
-										                                  <label class="form-label" for="typeText">
-										                                    <i class="fa-solid fa-pen-nib"></i>
-										                                    Event Description
-										                                  </label>
-										                                  <input type="text" name="description" class="form-control" value="<?php echo $row['description']; ?>" required>
-										                            	</div>
-										                        	</div>
-										                    	</div>
-				                              </div>
-				                          </div>
-															<button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>
-															</form>
-					            			</div>
-													 </div>
-					            	</div>
-					            </div>
+    <div id="sidebar">
+        <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.php"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="calendar.php"><i class="fas fa-calendar-days"></i> Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="accounts.php"><i class="fas fa-users"></i> Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reserve.php"><i class="fa-solid fa-user-pen"></i> Reservation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#cert">
+                    <i class="fas fa-caret-down"></i> Generate Certificate
+                </a>
+                <div class="collapse" id="cert">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="certificate/bapGenCert.php"> Baptismal Certificate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="certificate/comGenCert.php"> Communion Certificate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="certificate/conGenCert.php"> Confirmation Certificate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="certificate/deathGenCert.php"> Death Certificate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="certificate/marriageGenCert.php"> Marriage Certificate</a></li>
+                    </ul>
+                </div>
+            </li>
+    
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#walkIn-reserve">
+                    <i class="fas fa-caret-down"></i> Walk-In Reservations
+                </a>
+                <div class="collapse" id="walkIn-reserve">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="walk-in/baptismal.php"> Baptismal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="walk-in/blessing.php"> Blessing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="walk-in/communion.php"> Communion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="walk-in/confirmation.php"> Confirmation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="walk-in/funeralmass.php"> Funeral Mass</a></li>
+                        <li class="nav-item"><a class="nav-link" href="walk-in/wedding.php"> Wedding</a></li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#online-reserve">
+                    <i class="fas fa-caret-down"></i> Online Reservations
+                </a>
+                <div class="collapse" id="online-reserve">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="online/baptismal.php"> Baptismal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="online/blessing.php"> Blessing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="online/communion.php"> Communion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="online/confirmation.php"> Confirmation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="online/funeralmass.php"> Funeral Mass</a></li>
+                        <li class="nav-item"><a class="nav-link" href="online/wedding.php"> Wedding</a></li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="request.php"><i class="fas fa-folder-open"></i> Request Certificates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pricing.php"><i class="fas fa-peso-sign"></i> Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="donation.php"><i class="fas fa-heart-pulse"></i> Donation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom active" href="announcement.php"><i class="fas fa-bell"></i> Announcement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#reports-menu">
+                    <i class="fas fa-caret-down"></i> Reports
+                </a>
+                <div class="collapse" id="reports-menu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="charts.php"><i class="fas fa-pie-chart"></i> Charts Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="summary.php"><i class="fas fa-table"></i> Report Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="donation-sum.php"><i class="fas fa-heart-pulse"></i> Donation Summary</a></li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-					            <!-- Delete Modal -->
-					            <div class="modal fade" id="deleteModal4<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" role="dialog">
-				              <div class="modal-dialog">
-				                <div class="modal-content">
-				                  <div class="modal-header">
-				                    <h5 class="modal-title"><i class="fa-solid fa-trash" style="color: red;"></i> Delete Account</h5>
-				                  </div>
-				                  <form id="deleteForm" action="php/announcement/delete.php" autocomplete="off" method="POST">
-				                    <div class="modal-body">
-				                      <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
-				                      <span>Do you really want to delete the announcement for <b><?php echo $row['title']; ?></b>?</span>
-				                    </div>
-				                    <div class="modal-footer">
-				                      <button type="submit" class="btn btn-danger">Delete</button>
-				                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				                    </div>
-				                  </form>
-				                </div>
-				              </div>
-				            </div>
-
-				          <script>
-			            $(document).ready(function() {
-			                $('[id^="viewModal"]').on('shown.bs.modal', function() {
-			                    var modalId = $(this).attr('id');
-			                    var rowId = modalId.replace('viewModal', '');
-			                    var announceSrc = 'announcement/<?php echo $row["announcePic"]; ?>'; 
-			                    
-			                    $('#receiptImage' + rowId).attr('src', announceSrc);
-			                });
-			            });
-			            </script>
-
-					            <?php
-					                $i++;
-					              }
-					            ?>
-					            <?php
-					              } else {
-					                echo "No result found";
-					              }
-					            ?>
-					          </tbody>
-					        </table>
-					      </div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Right column for the form -->
-			<div class="col-md-6" style="margin-top: 5px;">
-				<div class="card">
-					<div class="card-header">
-						<i class="fa-solid fa-plus"></i>
-						Create Announcement
-					</div>
-					<div class="card-body">
-						<form action="php/addAnnounce.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-							<div class="row my-3">
-	                          <div class="col-md-12">
-	                              <div class="form-outline">
-	                                  <label class="form-label" for="typeText">
-	                                    <i class="fa-solid fa-pen-to-square"></i>
-	                                    Announcement Title
-	                                  </label>
-	                                <input type="text" name="title" class="form-control" placeholder="Enter Event Title" required>
-	                            </div>
-	                        </div>
-	                    </div>
-
-		                    <div class="row my-3">
-	                          	<div class="col-md-12">
-	                              <div class="form-outline">
-	                                  <label class="form-label" for="typeText">
-	                                    <i class="fa-solid fa-pen-nib"></i>
-	                                    Event Description
-	                                  </label>
-	                                <input type="text" name="description" class="form-control" placeholder="Enter Event Description" required>
-	                            	</div>
-	                        	</div>
-	                    	</div>
-
-	                    	<div class="row my-3">
-	                    	<div class="col-md-12">
-	                            <div class="form-outline">
-	                                <label class="form-label" for="typeText">
-	                                  <i class="fa-solid fa-image"></i>
-	                                    Announcement Picture
-	                                </label>
-	                    					<input type="file" name="announcePic" class="form-control" required>
-	                            </div>
-	                        </div>
-	                    </div>
-
-						<button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Submit</button>
-						</form>
-					</div>
+<div id="content">
+    <header>
+        <img src="../assets/icons/system/menus.png" class="menu-bar">
+        <div class="ms-auto">
+			<div class="dropdown">
+				<img src="../assets/icons/team_icon/admin.png" class="profile">
+				<div class="dropdown-content">
+					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="#">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
-	</div>
+    </header>
+    <h3 class="fw-bold">Welcome User</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <p><span class="text-muted">Admin ></span> Announcement</p>
+        </div>
+        <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
+            <p>December 21, 2023</p>
+        </div>
+    </div>
 
-<script>
-window.addEventListener('DOMContentLoaded', event => {
-    const datatablesSimple = document.getElementById('datatablesSimple15');
-    if (datatablesSimple) {
-        new simpleDatatables.DataTable(datatablesSimple);
-    }
-});
-</script>
+    <div class="container-fluid" id="accounts">
+        <table id="example" class="display responsive nowrap table" style="width:100%">
+            <thead class="thead-dark">
+                <tr class="align-middle">
+                    <th>Event Picture</th>
+                    <th>Event Title</th>
+                    <th>Date Posted</th>
+                    <th>Event Date</th>
+                    <th>Event Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">
+                        <div class="profile-picture">
+                            <img src="../assets/icons/team_icon/admin.png" alt="Profile 1" class="img-thumbnail">
+                        </div>
+                    </td>
+                    <td class="align-middle">Title</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Time</td>
+                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="align-middle">
+                        <div class="profile-picture">
+                            <img src="../assets/icons/team_icon/admin.png" alt="Profile 2" class="img-thumbnail">
+                        </div>
+                    </td>
+                    <td class="align-middle">Title</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Time</td>
+                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="align-middle">
+                        <div class="profile-picture">
+                            <img src="../assets/icons/team_icon/admin.png" alt="Profile 3" class="img-thumbnail">
+                        </div>
+                    </td>
+                    <td class="align-middle">Title</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Time</td>
+                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                </tr>
+                <!-- Add more rows as needed -->
+                <tr>
+                    <td class="align-middle">
+                        <div class="profile-picture">
+                            <img src="../assets/icons/team_icon/admin.png" alt="Profile 4" class="img-thumbnail">
+                        </div>
+                    </td>
+                    <td class="align-middle">Title</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Date</td>
+                    <td class="align-middle">Time</td>
+                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+           
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+</body>
+</html>

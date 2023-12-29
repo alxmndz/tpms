@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap');
+
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .full-height {
+    min-height: 100vh;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url('../assets/background/login.jpg'); /* Update this path */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .left-column {
+   min-height: 100vh;
+  }
+
+  .card {
+   background-color: rgba(0, 0, 0, 0.5); /* Set card background color with alpha for darkness */
+   color: white; /* Set text color to white */
+   border: none;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+	.error{
+		background: #FF4433;
+		color: #fff;
+		padding: 10px;
+		width: 95%;
+		border-radius: 5px;
+		margin: 20px auto;
+		text-align: center;
+	}
+	
+	.success{
+		background: #00A36C;
+		color: #fff;
+		padding: 10px;
+		width: 95%;
+		border-radius: 5px;
+		margin: 20px auto;
+		text-align: center;
+	}
