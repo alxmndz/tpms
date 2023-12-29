@@ -16,16 +16,16 @@
     <h5 class="logo"><img src="../../assets/icons/logo.png">Tuy Parish Management</h5>
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link" href="../dashboard.html"><i class="fas fa-home"></i> Home</a>
+            <a class="nav-link" href="../dashboard.php"><i class="fas fa-home"></i> Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../calendar.html"><i class="fas fa-calendar-days"></i> Calendar</a>
+            <a class="nav-link" href="../calendar.php"><i class="fas fa-calendar-days"></i> Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../accounts.html"><i class="fas fa-users"></i> Accounts</a>
+            <a class="nav-link" href="../accounts.php"><i class="fas fa-users"></i> Accounts</a>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" href="../reserve.html"><i class="fa-solid fa-user-pen"></i> Reservation</a>
+            <a class="nav-link" href="../reserve.php"><i class="fa-solid fa-user-pen"></i> Reservation</a>
         </li>
 		<li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#cert">
@@ -33,11 +33,11 @@
             </a>
             <div class="collapse" id="cert">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="../certificate/bapGenCert.html"> Baptismal Certificate</a></li>
-					<li class="nav-item"><a class="nav-link" href="../certificate/comGenCert.html"> Communion Certificate</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../certificate/conGenCert.html"> Confirmation Certificate</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../certificate/deathGenCert.html"> Death Certificate</a></li>
-					<li class="nav-item"><a class="nav-link" href="../certificate/marriageGenCert.html"> Marriage Certificate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../certificate/bapGenCert.php"> Baptismal Certificate</a></li>
+					<li class="nav-item"><a class="nav-link" href="../certificate/comGenCert.php"> Communion Certificate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../certificate/conGenCert.php"> Confirmation Certificate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../certificate/deathGenCert.php"> Death Certificate</a></li>
+					<li class="nav-item"><a class="nav-link" href="../certificate/marriageGenCert.php"> Marriage Certificate</a></li>
                 </ul>
             </div>
         </li>
@@ -48,12 +48,12 @@
             </a>
             <div class="collapse" id="walkIn-reserve">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="../walk-in/baptismal.html"> Baptismal</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../walk-in/blessing.html"> Blessing</a></li>
-					<li class="nav-item"><a class="nav-link" href="../walk-in/communion.html"> Communion</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../walk-in/confirmation.html"> Confirmation</a></li>
-					<li class="nav-item"><a class="nav-link" href="../walk-in/funeralmass.html"> Funeral Mass</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../walk-in/wedding.html"> Wedding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../walk-in/baptismal.php"> Baptismal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../walk-in/blessing.php"> Blessing</a></li>
+					<li class="nav-item"><a class="nav-link" href="../walk-in/communion.php"> Communion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../walk-in/confirmation.php"> Confirmation</a></li>
+					<li class="nav-item"><a class="nav-link" href="../walk-in/funeralmass.php"> Funeral Mass</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../walk-in/wedding.php"> Wedding</a></li>
                     <!-- Add more items as needed -->
                 </ul>
             </div>
@@ -64,27 +64,27 @@
             </a>
             <div class="collapse" id="online-reserve">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="baptismal.html"> Baptismal</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blessing.html"> Blessing</a></li>
-					<li class="nav-item"><a class="nav-link nav-link-custom active" href="communion.html"> Communion</a></li>
-                    <li class="nav-item"><a class="nav-link" href="confirmation.html"> Confirmation</a></li>
-					<li class="nav-item"><a class="nav-link" href="funeralmass.html"> Funeral Mass</a></li>
-                    <li class="nav-item"><a class="nav-link" href="wedding.html"> Wedding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="baptismal.php"> Baptismal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blessing.php"> Blessing</a></li>
+					<li class="nav-item"><a class="nav-link nav-link-custom active" href="communion.php"> Communion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="confirmation.php"> Confirmation</a></li>
+					<li class="nav-item"><a class="nav-link" href="funeralmass.php"> Funeral Mass</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wedding.php"> Wedding</a></li>
                     <!-- Add more items as needed -->
                 </ul>
             </div>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" href="../request.html"><i class="fas fa-folder-open"></i> Request Certificates</a>
+            <a class="nav-link" href="../request.php"><i class="fas fa-folder-open"></i> Request Certificates</a>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" href="../pricing.html"><i class="fas fa-peso-sign"></i> Pricing</a>
+            <a class="nav-link" href="../pricing.php"><i class="fas fa-peso-sign"></i> Pricing</a>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" href="../donation.html"><i class="fas fa-heart-pulse"></i> Donation</a>
+            <a class="nav-link" href="../donation.php"><i class="fas fa-heart-pulse"></i> Donation</a>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" href="../announcement.html"><i class="fas fa-bell"></i> Announcement</a>
+            <a class="nav-link" href="../announcement.php"><i class="fas fa-bell"></i> Announcement</a>
         </li>
 		<li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#reports-menu">
@@ -92,9 +92,9 @@
             </a>
             <div class="collapse" id="reports-menu">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="../charts.html"><i class="fas fa-pie-chart"></i> Charts Summary</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../summary.html"><i class="fas fa-table"></i> Report Summary</a></li>
-					<li class="nav-item"><a class="nav-link" href="../donation-sum.html"><i class="fas fa-heart-pulse"></i> Donation Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../charts.php"><i class="fas fa-pie-chart"></i> Charts Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../summary.php"><i class="fas fa-table"></i> Report Summary</a></li>
+					<li class="nav-item"><a class="nav-link" href="../donation-sum.php"><i class="fas fa-heart-pulse"></i> Donation Summary</a></li>
                     <!-- Add more items as needed -->
                 </ul>
             </div>
