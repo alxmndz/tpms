@@ -29,7 +29,7 @@
                         if(in_array($img_type, $types) === true){
                             $time = time();
                             $new_img_name = $time.$img_name;
-                            if(move_uploaded_file($tmp_name,"../assets/img/profile/".$new_img_name)){
+                            if(move_uploaded_file($tmp_name,"../assets/profile/".$new_img_name)){
                                 $ran_id = rand(time(), 100000000);
                                 $encrypt_pass = md5($password);
                                 $insert_query = mysqli_query($conn, "INSERT INTO users (unique_id, uname, name, email, address, password, contact, profile)
@@ -39,33 +39,33 @@
                                     if(mysqli_num_rows($select_sql2) > 0){
                                         $result = mysqli_fetch_assoc($select_sql2);
                                         $_SESSION['unique_id'] = $result['unique_id'];
-                                        header("Location: ../signupform.php?success=Successful created an account!");
+                                        header("Location: ../signup.php?success=Successful created an account!");
                                         exit();
                                     }else{
-                                        header("Location: ../signupform.php?error=This email address not Exist!&$email");
+                                        header("Location: ../signup.php?error=This email address not Exist!&$email");
                                         exit();
                                     }
                                 }else{
-                                    header("Location: ../signupform.php?error=Something went wrong. Please try again!");
+                                    header("Location: ../signup.php?error=Something went wrong. Please try again!");
                                     exit();
                                 }
                             }
                         }else{
-                            header("Location: ../signupform.php?error=Please upload an image file - jpeg, png, jpg");
+                            header("Location: ../signup.php?error=Please upload an image file - jpeg, png, jpg");
                             exit();
                         }
                     }else{
-                        header("Location: ../signupform.php?error=Please upload an image file - jpeg, png, jpg");
+                        header("Location: ../signup.php?error=Please upload an image file - jpeg, png, jpg");
                         exit();
                     }
                 }
             }
         }else{
-            header("Location: ../signupform.php?error=$email is not a valid email!");
+            header("Location: ../signup.php?error=$email is not a valid email!");
             exit();
         }
     }else{
-        header("Location: ../signupform.php?error=All input fields are required!!");
+        header("Location: ../signup.php?error=All input fields are required!!");
         exit();
     }
 ?>
