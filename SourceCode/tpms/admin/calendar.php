@@ -6,11 +6,22 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/team_icon/admin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dist/calendar.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
+<?php
+include_once '../php/dbconn.php';
+session_start();
 
+if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'])){
+  $id = $_SESSION['id'];
+  $email = $_SESSION['email'];
+  $sql=mysqli_query($conn,"SELECT profile FROM users WHERE id = '$id'");
+  $img = mysqli_fetch_assoc($sql);
+  $userIMG = $img['profile'];
+?>
     <div id="sidebar">
         <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
         <ul class="nav flex-column">
@@ -102,32 +113,321 @@
     </div>
 
 <div id="content">
-    <header>
-        <img src="../assets/icons/system/menus.png" class="menu-bar">
-        <div class="ms-auto">
-			<div class="dropdown">
-				<img src="../assets/icons/team_icon/admin.png" class="profile">
-				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
-					<a href="#">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
-				</div>
+<header class="menu">
+    <img src="../assets/icons/system/menus.png" class="menu-bar">
+    <div class="ms-auto">
+		<div class="dropdown">
+			<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
+			<div class="dropdown-content">
+				<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+				<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 			</div>
 		</div>
-    </header>
-    <h3 class="fw-bold">Welcome User</h3>
+	</div>
+</header>
+    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
     <div class="row">
         <div class="col-md-6">
             <p><span class="text-muted">Admin ></span> Calendar</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-            <p>December 21, 2023</p>
+		<?php
+		date_default_timezone_set('Asia/Manila');
+		$manilaTime = date('F j, Y ');
+		?>
+            <p><?php echo $manilaTime; ?></p>
         </div>
     </div>
-    
-    
+    <div id="container" class="calendar-container" style=".event-hour{display:none;}"></div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="../js/dist/jquery.simple-calendar.js"></script>
+<?php
+include_once '../php/dbconn.php';
+
+// Initialize separate arrays for each type of event
+$events = [];
+
+// Fetch events from 'eventlist' table
+$resultEventList = mysqli_query($conn, "SELECT * FROM eventlist;");
+
+if (mysqli_num_rows($resultEventList) > 0) {
+    while ($row = mysqli_fetch_array($resultEventList)) {
+        $eventDate = $row['eventDate'];
+        $eventTime = $row['eventTime'];
+        $title = $row['title'];
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($eventDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$eventDate $eventTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$eventDate $eventTime +1 hour")),
+            'summary' => $title,
+        ];
+    }
+}
+
+// Fetch events from 'baptismal_tbl' table with status 'Reserved'
+$resultBaptismal = mysqli_query($conn, "SELECT * FROM baptismal_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultBaptismal) > 0) {
+    while ($row = mysqli_fetch_assoc($resultBaptismal)) {
+        $bapDate = $row['bapDate'];
+        $bapTime = $row['bapTime'];
+        $name = $row['name'];
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($bapDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        // Determine the source and set the summary accordingly
+        $source = 'Baptismal';
+        $summary = ($name) ? "$name - $source ($bapTime)" : "$source ($bapTime)";
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$bapDate")),
+            'endDate' => date('Y-m-d', strtotime("$bapDate")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+$resultBlessing = mysqli_query($conn, "SELECT * FROM blessing_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultBlessing) > 0) {
+    while ($row = mysqli_fetch_assoc($resultBlessing)) {
+        $blessDate = $row['blessDate'];
+        $blessTime = $row['blessTime'];
+        $name = $row['name'];
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($blessDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        // Determine the source and set the summary accordingly
+        $source = 'Blessing';
+        $summary = ($name) ? "$name - $source ($blessTime)" : "$source ($blessTime)";
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$blessDate $blessTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$blessDate $blessTime +1 hour")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+
+$resultCom = mysqli_query($conn, "SELECT * FROM communion_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultCom) > 0) {
+    while ($row = mysqli_fetch_assoc($resultCom)) {
+        $comDate = $row['comDate'];
+        $comTime = $row['comTime'];
+        $name = $row['name'];
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($comDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        // Determine the source and set the summary accordingly
+        $source = 'Communion';
+        $summary = ($name) ? "$name - $source ($comTime)" : "$source ($comTime)";
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$comDate $comTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$comDate $comTime +1 hour")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+$resultCom = mysqli_query($conn, "SELECT * FROM confirmation_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultCom) > 0) {
+    while ($row = mysqli_fetch_assoc($resultCom)) {
+        $conDate = $row['conDate'];
+        $conTime = $row['conTime'];
+        $name = $row['name'];
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($conDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+        // Determine the source and set the summary accordingly
+        $source = 'Confirmation';
+        $summary = ($name) ? "$name - $source ($conTime)" : "$source ($conTime)";
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$conDate $conTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$conDate $conTime +1 hour")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+$resultFuneral = mysqli_query($conn, "SELECT * FROM funeralmass_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultFuneral) > 0) {
+    while ($row = mysqli_fetch_assoc($resultFuneral)) {
+        $buryDate = $row['buryDate'];
+        $resTime = $row['resTime'];
+        $name = $row['name'];
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        // Check if the event month and year have already passed
+        if (date('Y-m', strtotime($buryDate)) < date('Y-m')) {
+            continue; // Skip this event if the month and year have passed
+        }
+
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($buryDate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        // Determine the source and set the summary accordingly
+        $source = 'Funeral Mass';
+        $summary = ($name) ? "$name - $source ($resTime)" : "$source ($resTime)";
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$buryDate $resTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$buryDate $resTime +1 hour")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+
+$resultWedding = mysqli_query($conn, "SELECT * FROM wedding_tbl WHERE status = 'Reserved';");
+
+if (mysqli_num_rows($resultWedding) > 0) {
+    while ($row = mysqli_fetch_assoc($resultWedding)) {
+        $wdate = $row['wdate'];
+        $resTime = $row['resTime'];
+        $groom = $row['groom']; // Change 'name' to 'groom'
+        $bride = $row['bride']; // Add a new variable for 'bride'
+        $amount = $row['amount'];
+        $refNum = $row['refNum'];
+        $receipt = $row['receipt'];
+
+        // Check if amount, refNum, and receipt are empty
+        if (empty($amount)) {
+            continue; // Skip this event if any of the required fields are empty
+        }
+
+        // Check if the event month and year have already passed
+        $currentDate = date('Y-m-d');
+        $eventDate = date('Y-m-d', strtotime($wdate));
+
+        if ($eventDate < $currentDate) {
+            continue; // Skip this event if the date has passed
+        }
+
+        // Determine the source and set the summary accordingly
+        $source = 'Wedding'; // Change source to 'Wedding'
+        $summary = ($groom && $bride) ? (($groom && $bride) ? "$groom & $bride - $source ($resTime)" : "$source ($resTime)") : $source;
+
+        $events[] = [
+            'startDate' => date('Y-m-d', strtotime("$wdate $resTime")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$wdate $resTime +1 hour")),
+            'summary' => $summary,
+        ];
+    }
+}
+
+if (!empty($events)) {
+    echo "<script>
+        \$(document).ready(function () {
+            let container = \$('#container').simpleCalendar({
+                fixedStartDay: 0,
+                disableEmptyDetails: true,
+                events: " . json_encode($events) . ",
+                displayEventTime: true, // Show event time
+                timeFormat: '12h', // Use 12-hour format with AM/PM
+            });
+            \$calendar = container.data('plugin_simpleCalendar');
+        });
+        </script>";
+} else {
+    echo "No events found";
+}
+
+
+?>
+
+
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
+                <div> 
+            </div>
+        </div>
+    </footer>
 
 </div>
-
+<?php 
+  } else {
+    header("Location: ../login.php");
+    exit();
+  }
+?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

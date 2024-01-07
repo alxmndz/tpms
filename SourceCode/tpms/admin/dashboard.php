@@ -489,8 +489,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 					<div class="card-body">
 							<table class="table">
 							<?php
+                                date_default_timezone_set('Asia/Manila');
+
+                                // Get the current month and year in Manila timezone
+                                $currentMonth = date('m');
+                                $currentYear = date('Y');
+                                
 								include_once '../php/dbconn.php';
-								$result = mysqli_query($conn, "SELECT * FROM eventlist ORDER BY id DESC LIMIT 3;");  
+								$result = mysqli_query($conn, "SELECT * FROM eventlist WHERE MONTH(eventDate) = $currentMonth AND YEAR(eventDate) = $currentYear ORDER BY id DESC LIMIT 3;");  
 								if (mysqli_num_rows($result) > 0) {
 							?>
 									<thead>
@@ -517,7 +523,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 											?>
 											<?php
 											} else {
-												echo "No result found";
+												echo "No events have been identified for this month.";
 											}
 											?>
 									</tbody>
@@ -529,13 +535,13 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </div>
 
 	<footer class="py-4 mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
-                            <div> 
-                        </div>
-                    </div>
-                </footer>
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
+                <div> 
+            </div>
+        </div>
+    </footer>
 
 </div>
 <?php 

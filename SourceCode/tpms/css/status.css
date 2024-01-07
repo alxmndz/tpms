@@ -1,0 +1,39 @@
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center text vertically */
+    padding: 2px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center; /* Center text horizontally */
+}
+
+.status-approved {
+    background-color: #16A085;
+    color: white;
+}
+
+.status-in-process {
+    background-color: #F39C12;
+    color: white;
+}
+
+.status-disapproved {
+    background-color: #CB4335;
+    color: white;
+}
+
+.status-released {
+    background-color: #16A085;
+    color: white;
+}
+
+.status-reserved {
+    background-color: #0E6655;
+    color: white;
+}
+
+.status-pickUp {
+    background-color: #2E86C1;
+    color: white;
+}

@@ -6,12 +6,24 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/team_icon/admin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/status.css">
+    <link rel="stylesheet" href="../css/datatable.css">
+    <link rel="stylesheet" href="../css/datatables.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
+<?php
+include_once '../php/dbconn.php';
+session_start();
 
+if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'])){
+  $id = $_SESSION['id'];
+  $email = $_SESSION['email'];
+  $sql=mysqli_query($conn,"SELECT profile FROM users WHERE id = '$id'");
+  $img = mysqli_fetch_assoc($sql);
+  $userIMG = $img['profile'];
+?>
     <div id="sidebar">
         <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
         <ul class="nav flex-column">
@@ -107,26 +119,44 @@
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
-				<img src="../assets/icons/team_icon/admin.png" class="profile">
+				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
 					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
-					<a href="#">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
+					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome User</h3>
+    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
     <div class="row">
         <div class="col-md-6">
             <p><span class="text-muted">Admin ></span> Request Certificate</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-            <p>December 21, 2023</p>
+            <div class="ms-auto">
+            <button class="btn btn-primary btn-sm" onclick="openCity(event, 'reqcert')"> Request</button>
+            <div class="status-dropdown btn-group">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+                <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+                <li><a class="dropdown-item filter-btn" data-status="Ready to pick up" href="#">Ready to pick up</a></li>
+                <li><a class="dropdown-item filter-btn" data-status="Released" href="#">Released</a></li>
+                <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+                </ul>
+          </div>
+        </div>
         </div>
     </div>
 
     <div class="container-fluid" id="accounts">
         <table id="example" class="display responsive nowrap table" style="width:100%">
+        <?php
+            include_once '../php/dbconn.php';
+            $result = mysqli_query($conn, "SELECT * FROM request ORDER BY id DESC");
+            if (mysqli_num_rows($result) > 0) {
+          ?>
             <thead class="thead-dark">
                 <tr class="align-middle">
                     <th>Name</th>
@@ -139,58 +169,124 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+              $i = 0;
+              while ($row = mysqli_fetch_array($result)) {
+            ?>
                 <tr>
-                    <td class="align-middle">Name 1</td>
-                    <td class="align-middle">Birth Certificate</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">Released</td>
+                    <td class="align-middle"><?php echo $row["name"]; ?></td>
+                    <td class="align-middle"><?php echo $row["event"]; ?></td>
+                    <td class="align-middle"><?php echo date("M d, Y", strtotime($row["transactDate"])); ?></td>
+                    <td class="align-middle <?php echo ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00'); ?>">
+                        <?php
+                            if ($row["whenToPickUp"] === null || $row["whenToPickUp"] === '0000-00-00') {
+                                echo "No Pick Up Date Yet";
+                            } else {
+                                echo date("M d, Y", strtotime($row["whenToPickUp"]));
+                            }
+                        ?>
+                    </td>
+                    <td class="align-middle <?php echo ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00'); ?>">
+                        <?php
+                            if ($row["pickUpDt"] === null || $row["pickUpDt"] === '0000-00-00') {
+                                echo "No Release Date Yet";
+                            } else {
+                                echo date("M d, Y", strtotime($row["pickUpDt"]));
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <span class="text-center status-badge <?php echo getStatusColorClass($row['status']); ?>">
+                        <?php echo $row["status"]; ?>
+                        </span>
+                    </td>
                     <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
                 </tr>
-                <tr>
-                    <td class="align-middle">Name 2</td>
-                    <td class="align-middle">Birth Certificate</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">Released</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 3</td>
-                    <td class="align-middle">Birth Certificate</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">Released</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td class="align-middle">Name 4</td>
-                    <td class="align-middle">Birth Certificate</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">December 23, 2023</td>
-                    <td class="align-middle">Released</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
+                <?php
+                $i++;
+                }
+                ?>
+                <?php
+                } else {
+                    echo "No result found";
+                }
+                ?>
             </tbody>
         </table>
     </div>
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
+                <div> 
+            </div>
+        </div>
+    </footer>
 </div>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<?php 
+  } else {
+    header("Location: ../login.php");
+    exit();
+  }
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/datatables.min.js"></script>
+    <script src="../js/pdfmake.min.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
+<script>
+  $(document).ready(function () {
+    // DataTable initialization
+    var table = $('#example').DataTable({
+    });
+
+    // Move buttons container
+    table.buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+
+    // Status filter button click event
+    $('.filter-btn').on('click', function () {
+      var status = $(this).data('status');
+
+      // Show all rows if 'All' is selected, otherwise filter by status
+      table.column(5).search(status === 'all' ? '' : status).draw();
+
+      // Show/hide columns based on the selected filter
+      if (status === 'Ready to pick up') {
+        table.column(3).visible(true);
+        table.column(4).visible(false);
+      } else if (status === 'Picked Up') {
+        table.column(3).visible(false);
+        table.column(4).visible(true);
+      } else {
+        table.column(3).visible(false);
+        table.column(4).visible(false);
+      }
+    });
+  });
+</script>
+
+<?php
+function getStatusColorClass($status) {
+    switch ($status) {
+        case 'Approved':
+            return 'status-approved';
+        case 'In Process':
+            return 'status-in-process';
+        case 'Disapprove, mismatch files':
+            return 'status-disapproved';
+        case 'Ready to pick up':
+            return 'status-pickUp';
+        case 'Released':
+            return 'status-released';
+        case 'Reserved':
+            return 'status-reserved';
+        default:
+            return ''; // Default style for other statuses
+    }
+}
+?>
 </body>
 </html>

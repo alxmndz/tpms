@@ -11,7 +11,17 @@
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
+<?php
+include_once '../php/dbconn.php';
+session_start();
 
+if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'])){
+  $id = $_SESSION['id'];
+  $email = $_SESSION['email'];
+  $sql=mysqli_query($conn,"SELECT profile FROM users WHERE id = '$id'");
+  $img = mysqli_fetch_assoc($sql);
+  $userIMG = $img['profile'];
+?>
     <div id="sidebar">
         <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
         <ul class="nav flex-column">
@@ -107,21 +117,25 @@
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
-				<img src="../assets/icons/team_icon/admin.png" class="profile">
+				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
 					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
-					<a href="#">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
+					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome User</h3>
+    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
     <div class="row">
         <div class="col-md-6">
             <p><span class="text-muted">Admin ></span> Reservation</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-            <p>December 21, 2023</p>
+        <?php
+		date_default_timezone_set('Asia/Manila');
+		$manilaTime = date('F j, Y ');
+		?>
+            <p><?php echo $manilaTime; ?></p>
         </div>
     </div>
 
@@ -205,7 +219,12 @@
     </div>
 
 </div>
-
+<?php 
+  } else {
+    header("Location: ../login.php");
+    exit();
+  }
+?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

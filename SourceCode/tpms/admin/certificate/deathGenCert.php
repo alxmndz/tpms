@@ -6,12 +6,23 @@
     <link rel="icon" type="image/x-icon" href="../../assets/icons/team_icon/admin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/datatable.css">
+    <link rel="stylesheet" href="../../css/datatables.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
+<?php
+include_once '../../php/dbconn.php';
+session_start();
 
+if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'])){
+  $id = $_SESSION['id'];
+  $email = $_SESSION['email'];
+  $sql=mysqli_query($conn,"SELECT profile FROM users WHERE id = '$id'");
+  $img = mysqli_fetch_assoc($sql);
+  $userIMG = $img['profile'];
+?>
 <div id="sidebar">
     <h5 class="logo"><img src="../../assets/icons/logo.png">Tuy Parish Management</h5>
     <ul class="nav flex-column">
@@ -107,65 +118,61 @@
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
-				<img src="../assets/icons/team_icon/admin.png" class="profile">
+				<img src="../../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
 					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
-					<a href="#">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
+					<a href="../../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome User</h3>
+    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
     <div class="row">
         <div class="col-md-6">
             <p><span class="text-muted">Admin > Generate Certificate ></span> Death Certificate</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-            <p>December 21, 2023</p>
+        <?php
+		date_default_timezone_set('Asia/Manila');
+		$manilaTime = date('F j, Y ');
+		?>
+            <p><?php echo $manilaTime; ?></p>
         </div>
     </div>
 
     <div class="container-fluid" id="accounts">
         <table id="example" class="display responsive nowrap table" style="width:100%">
+            <?php
+            include_once '../../php/dbconn.php';
+            $result = mysqli_query($conn, "SELECT * FROM certfun ORDER BY id DESC");
+            if (mysqli_num_rows($result) > 0) {
+            ?>
             <thead class="thead-dark">
                 <tr class="align-middle">
-                    <th>Name</th>
-                    <th>Contact Number</th>
-                    <th>Transaction Date</th>
-                    <th>Amount</th>
+                    <th>Deceased Name</th>
+                    <th>Generated Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
                 <tr>
-                    <td class="align-middle">Name 1</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                    <td class="align-middle"><?php echo $row["deceasedName"]; ?></td>
+                    <td class="align-middle"><?php echo date("M d, Y", strtotime($row["generatedDate"])); ?></td>
+                    <td class="align-middle"><button class="update-btn"><i class="fas fa-print"></i></button></td>
                 </tr>
-                <tr>
-                    <td class="align-middle">Name 2</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 3</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td class="align-middle">Name 4</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
+                <?php
+                    $i++;
+                  }
+                ?>
+                <?php
+                } else {
+                  echo "No result found";
+                }
+              ?>
             </tbody>
         </table>
     </div>
@@ -173,15 +180,28 @@
 </div>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<?php 
+  } else {
+    header("Location: ../../login.php");
+    exit();
+  }
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script src="../../js/datatables.min.js"></script>
+    <script src="../../js/pdfmake.min.js"></script>
+    <script src="../../js/vfs_fonts.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
+      $(document).ready(function(){
+    
+          var table = $('#example').DataTable({
+          });
+          
+          table.buttons().container()
+          .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+      });
     </script>
 </body>
 </html>

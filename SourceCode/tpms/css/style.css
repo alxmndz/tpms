@@ -94,7 +94,7 @@ html, body {
     object-fit: cover;
 }
 
-header {
+.menu {
     padding: 10px;
     color: #fff;
     display: flex;
