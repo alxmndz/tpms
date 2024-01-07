@@ -6,7 +6,6 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/team_icon/admin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
@@ -173,8 +172,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <div class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["communion"], 2); ?></h2>
-                        <p class="card-text event-type">Communion</p>
+                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["cert"], 2); ?></h2>
+                        <p class="card-text event-type">Certificates</p>
                         <button class="btn btn-primary">Update</button>
                     </div>
                 </div>
@@ -197,8 +196,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <div class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["funeralmass"], 2); ?></h2>
-                        <p class="card-text event-type">Funeral Mass</p>
+                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["confirmation"], 2); ?></h2>
+                        <p class="card-text event-type">Confirmation</p>
                         <button class="btn btn-primary">Update</button>
                     </div>
                 </div>
@@ -208,8 +207,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <div class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["wedding"], 2); ?></h2>
-                        <p class="card-text event-type">Wedding</p>
+                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["funeralmass"], 2); ?></h2>
+                        <p class="card-text event-type">Funeral Mass</p>
                         <button class="btn btn-primary">Update</button>
                     </div>
                 </div>
@@ -221,8 +220,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <div class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["cert"], 2); ?></h2>
-                        <p class="card-text event-type">Certificates</p>
+                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["wedding"], 2); ?></h2>
+                        <p class="card-text event-type">Wedding</p>
                         <button class="btn btn-primary">Update</button>
                     </div>
                 </div>
@@ -238,7 +237,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             echo "No result found";
           }
           ?>       
-
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
+                <div> 
+            </div>
+        </div>
+    </footer>
 </div>
 
 </div>
@@ -248,14 +254,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
 </body>
 </html>

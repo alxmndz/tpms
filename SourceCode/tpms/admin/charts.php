@@ -6,8 +6,12 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/team_icon/admin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -138,62 +142,251 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <p><?php echo $manilaTime; ?></p>
         </div>
     </div>
+    <div>
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
+        <div id="barFilter" class="collapse">
+            <input id="barFilterDate" class="form-control" type="text" placeholder="Select Date">
+        </div>
+    </div>
 
-    <div class="container-fluid" id="chart-reports">
-        <div class="bar-chart" id="chart1"></div>
+    <?php include "../chart-data/walkInReserve.php"; ?>
+    <?php include "../chart-data/onlineReserve.php"; ?>
+    <?php include "../chart-data/donationChart.php"; ?>
+    <?php include "../chart-data/requestCert.php"; ?>
+    <?php include "../chart-data/reservationList.php"; ?>
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="walkInReserveChart" width="300" height="300"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="onlineReserveChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <h2 class="text-center" style="text-transform: uppercase;">Total Reservation per Month</h2>
+                <canvas id="reservedChart" width="300" height="300"></canvas>
+            </div>
+            <div class="col-md-6 mt-3">
+                <h2 class="text-center" style="text-transform: uppercase;">Requests Certificate per Month</h2>
+                <canvas id="barGraphCert" width="300" height="300"></canvas>
+            </div>
+        </div>
 
-    <script>
-        $(document).ready(function () {
-            // Your existing DataTable initialization here
-            $('#example').DataTable();
-            
-            // Your Chart.js code here
-            const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)'
-                    ],
-                    borderWidth: 1
-                }]
-            };
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Initialize Flatpickr for date selection
+    flatpickr("#barFilterDate", {
+        mode: "single",
+        dateFormat: "Y-m-d",
+        onChange: function(selectedDates, dateStr) {
+            // Update the bar graph when a date is selected
+            updateBarGraph(dateStr);
+        }
+    });
 
-            const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                },
-            };
+    flatpickr("#onlineReserveFilterDate", {
+        mode: "single",
+        dateFormat: "Y-m-d",
+        onChange: function(selectedDates, dateStr) {
+            // Update the online reserve graph when a date is selected
+            updateOnlineReserveGraph(dateStr);
+        }
+    });
 
-            // Create the chart
-            var ctx = document.getElementById('chart1').getContext('2d');
-            new Chart(ctx, config);
-        });
-    </script>
-           
+    const labels = ['Baptismal', 'Blessing', 'Communion', 'Confirmation', 'Funeral', 'Wedding'];
+
+    // Walk-In Reservation Chart Configuration
+    const walkInDatasets = [{
+        label: 'Walk-In Reservation',
+        data: <?php echo json_encode($counts); ?>,
+        backgroundColor: ['#30D1A7', '#30D1A7', '#30D1A7', '#30D1A7', '#30D1A7', '#30D1A7'],
+        borderColor: ['#138D75', '#138D75', '#138D75', '#138D75', '#138D75', '#138D75'],
+    }];
+
+    const walkInConfig = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: walkInDatasets
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Walk-In Reservation Data Counts'
+            },
+            legend: {
+                display: false,
+            }
+        }
+    };
+
+    // Online Reservation Chart Configuration
+    const onlineReserveDatasets = [{
+        label: 'Online Reservation',
+        data: <?php echo json_encode($onlineCounts); ?>,
+        backgroundColor: ['#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB'],
+        borderColor: ['#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB', '#36A2EB'],
+    }];
+
+    const onlineReserveConfig = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: onlineReserveDatasets
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Online Reservation Data Counts'
+            },
+            legend: {
+                display: false,
+            }
+        }
+    };
+
+    // Create Walk-In Reservation Chart
+    const walkInChart = new Chart(
+        document.getElementById('walkInReserveChart'),
+        walkInConfig
+    );
+
+    // Create Online Reservation Chart
+    const onlineReserveChart = new Chart(
+        document.getElementById('onlineReserveChart'),
+        onlineReserveConfig
+    );
+
+    // Function to update Walk-In Reservation Graph
+    function updateBarGraph(dateStr) {
+        // Your Walk-In Reservation graph update logic here
+    }
+    $(function () {
+    const data = {
+      labels: <?php echo json_encode(array_values($monthNames)); ?>,
+      datasets: [
+        {
+          label: 'Baptism',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Baptism']); ?>,
+        },
+        {
+          label: 'Blessing',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Blessing']); ?>,
+        },
+        {
+          label: 'Communion',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Communion']); ?>,
+        },
+        {
+          label: 'Confirmation',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Confirmation']); ?>,
+        },
+        {
+          label: 'Funeral Mass',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['FuneralMass']); ?>,
+        },
+        {
+          label: 'Wedding',
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($tableCounts['Wedding']); ?>,
+        },
+      ]
+    };
+
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    const lineChart = new Chart(
+      document.getElementById('reservedChart'),
+      config
+    );
+  });
+</script>
+<script type="text/javascript">
+  $(function () {
+      // Bar Chart Data
+      var barChartData = {
+        datasets: [
+          {
+            label: 'Certificates',
+            data: <?php echo json_encode($requestCounts); ?>,
+            backgroundColor: ['#16A085', '#3498DB', '#8E44AD', '#C0392B', '#DC7633'],
+          },
+        ],
+        labels: ['Baptismal Certificate', 'Communion Certificate', 'Confirmation Certificate', 'Death Certificate', 'Marriage Certificate'],
+      };
+
+      var barChartOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+          }
+        },
+        legend: {
+          display: false,
+        },
+      };
+
+      var ctx_2 = document.getElementById('barGraphCert').getContext('2d');
+      new Chart(ctx_2, {
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions,
+      });
+    });
+</script>
+
+
+
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Tuy Parish 2023</div>
+                <div> 
+            </div>
+        </div>
+    </footer>   
 </div>
 
 </div>
@@ -203,14 +396,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
 </body>
 </html>
