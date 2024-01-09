@@ -1,6 +1,7 @@
 <?php
     include "../php/dbconn.php";
 
+    $defaultYear = date("Y");
     $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear;
 
     // Construct the SQL query with the WHERE clause

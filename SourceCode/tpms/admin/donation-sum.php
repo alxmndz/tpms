@@ -138,47 +138,88 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
     </div>
 
+    <?php include "../chart-data/JanDonationSummary.php"; ?>
+
+    <?php include "../chart-data/FebDonationSummary.php"; ?>
+
+    <?php include "../chart-data/MarDonationSummary.php"; ?>
+
+    <?php include "../chart-data/AprDonationSummary.php"; ?>
+
+    <?php include "../chart-data/MayDonationSummary.php"; ?>
+
+    <?php include "../chart-data/JunDonationSummary.php"; ?>
+
+    <?php include "../chart-data/JulDonationSummary.php"; ?>
+
+    <?php include "../chart-data/AugDonationSummary.php"; ?>
+
+    <?php include "../chart-data/SepDonationSummary.php"; ?>
+
+    <?php include "../chart-data/OctDonationSummary.php"; ?>
+
+    <?php include "../chart-data/NovDonationSummary.php"; ?>
+
+    <?php include "../chart-data/DecDonationSummary.php"; ?>
+
+    <?php include "../chart-data/TotalDonationSummary.php"; ?>
+
+    <?php 
+        $defaultYear = date("Y");
+    ?>
+    <div class="ms-auto mb-2">
+               <form method="get">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input name="selectedYear" id="barFilterDate" class="form-control mt-1 noPrint" type="number" placeholder="Select Year" value="<?php echo $defaultYear; ?>">
+                    </div>
+                    <div class="col-md-6">
+                      <button type="submit" class="btn btn-sm btn-primary mt-2 noPrint">Apply</button>
+                      <button class="btn btn-success btn-sm noPrint mt-2" onclick="printReport()">Print</button>
+                    </div>
+                  </div>
+                </form>
+             </div>
     <div class="container-fluid" id="accounts">
         <table id="example" class="display responsive nowrap table" style="width:100%">
             <thead class="thead-dark">
                 <tr class="align-middle">
-                    <th>Name</th>
-                    <th>Contact Number</th>
-                    <th>Transaction Date</th>
-                    <th>Amount</th>
-                    <th>Action</th>
+                    <th>Months</th>
+                    <th>Donation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="align-middle">Name 1</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 2</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 3</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td class="align-middle">Name 4</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
+                <?php
+                  // Replace the sample data below with your actual data retrieval logic
+                  $sampleData = [
+                      ['January', $formattedSumJan],
+                      ['February', $formattedSumFeb],
+                      ['March', $formattedSumMar],
+                      ['April', $formattedSumApr],
+                      ['May', $formattedSumMay],
+                      ['June', $formattedSumJun],
+                      ['July', $formattedSumJul],
+                      ['August', $formattedSumAug],
+                      ['September', $formattedSumSep],
+                      ['October', $formattedSumOct],
+                      ['November', $formattedSumNov],
+                      ['December', $formattedSumDec],
+                      ['Total Amount', $formattedSumTotal],
+                  ];
+
+                  foreach ($sampleData as $row) {
+                      echo '<tr>';
+                      foreach ($row as $cell) {
+                          // Format numeric values with two decimal points
+                          if (is_numeric($cell)) {
+                              echo '<td>' . number_format($cell, 2) . '</td>';
+                          } else {
+                              echo '<td>' . $cell . '</td>';
+                          }
+                      }
+                      echo '</tr>';
+                  }
+                  ?>
             </tbody>
         </table>
     </div>

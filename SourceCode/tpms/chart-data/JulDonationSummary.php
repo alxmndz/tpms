@@ -1,6 +1,7 @@
 <?php
     include "../php/dbconn.php";
 
+    $defaultYear = date("Y");
     $selectedMonth = 6;
     $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear;
 

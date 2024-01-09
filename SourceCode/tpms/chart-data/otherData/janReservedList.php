@@ -1,8 +1,5 @@
 <?php
-  include "../../dbconn.php";
-
-  $defaultMonth = date("m");
-  $defaultYear = date("Y");
+  include "../php/dbconn.php";
 
   // Assume $selectedYear is the selected year; you should set this value based on user input or any other source
   $selectedYear = isset($_GET['selectedYear']) ? $_GET['selectedYear'] : $defaultYear; // Change this accordingly
@@ -23,14 +20,8 @@
     12 => 'December'
   ];
 
-  // Fetch data for January only
+  // Fetch data for January
   $month = 1; // Assuming you want to fetch data for January
-  $baptismCount = 0;
-  $blessingCount = 0;
-  $communionCount = 0;
-  $confirmationCount = 0;
-  $funeralMassCount = 0;
-  $weddingCount = 0;
 
   $query1 = "SELECT COUNT(*) AS countsReserved1 FROM baptismal_tbl WHERE MONTH(tDate) = $month AND YEAR(tDate) = $selectedYear";
   $query2 = "SELECT COUNT(*) AS countsReserved2 FROM blessing_tbl WHERE MONTH(transactDate) = $month AND YEAR(transactDate) = $selectedYear";
@@ -53,10 +44,10 @@
   $data5 = mysqli_fetch_array($result5);
   $data6 = mysqli_fetch_array($result6);
 
-  $baptismCount = $data1['countsReserved1'];
-  $blessingCount = $data2['countsReserved2'];
-  $communionCount = $data3['countsReserved3'];
-  $confirmationCount = $data4['countsReserved4'];
-  $funeralMassCount = $data5['countsReserved5'];
-  $weddingCount = $data6['countsReserved6'];
+  $baptismCountJanuary = $data1['countsReserved1'];
+  $blessingCountJanuary = $data2['countsReserved2'];
+  $communionCountJanuary = $data3['countsReserved3'];
+  $confirmationCountJanuary = $data4['countsReserved4'];
+  $funeralMassCountJanuary = $data5['countsReserved5'];
+  $weddingCountJanuary = $data6['countsReserved6'];
 ?>

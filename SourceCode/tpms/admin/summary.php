@@ -131,56 +131,87 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
         <?php
-		date_default_timezone_set('Asia/Manila');
-		$manilaTime = date('F j, Y ');
-		?>
+        date_default_timezone_set('Asia/Manila');
+        $manilaTime = date('F j, Y ');
+        ?>
             <p><?php echo $manilaTime; ?></p>
         </div>
+        <?php 
+          $defaultMonth = date("m");
+          $defaultYear = date("Y");
+        ?>
     </div>
-
+    <?php include "../chart-data/otherData/janReservedList.php"; ?>
+    <?php include "../chart-data/otherData/febReservedList.php"; ?>
+    <?php include "../chart-data/otherData/marReservedList.php"; ?>
+    <?php include "../chart-data/otherData/aprReservedList.php"; ?>
+    <?php include "../chart-data/otherData/mayReservedList.php"; ?>
+    <?php include "../chart-data/otherData/junReservedList.php"; ?>
+    <?php include "../chart-data/otherData/julReservedList.php"; ?>
+    <?php include "../chart-data/otherData/augReservedList.php"; ?>
+    <?php include "../chart-data/otherData/sepReservedList.php"; ?>
+    <?php include "../chart-data/otherData/octReservedList.php"; ?>
+    <?php include "../chart-data/otherData/novReservedList.php"; ?>
+    <?php include "../chart-data/otherData/decReservedList.php"; ?>
+    <?php include "../chart-data/otherData/totalReservedList.php"; ?>
+    
     <div class="container-fluid" id="accounts">
-        <table id="example" class="display responsive nowrap table" style="width:100%">
-            <thead class="thead-dark">
-                <tr class="align-middle">
-                    <th>Name</th>
-                    <th>Contact Number</th>
-                    <th>Transaction Date</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="align-middle">Name 1</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 2</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="align-middle">Name 3</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td class="align-middle">Name 4</td>
-                    <td class="align-middle">Number</td>
-                    <td class="align-middle">Date</td>
-                    <td class="align-middle">1000</td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="ms-auto mb-2">
+             <form method="get">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input name="selectedYear" id="barFilterDate" class="form-control mt-1" type="number" placeholder="Select Year" value="<?php echo $defaultYear; ?>">
+                  </div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-sm btn-primary mt-2">Apply</button>
+                    <button class="btn btn-success btn-sm mt-2"><i class="fas fa-eye"></i> Preview</button>
+                  </div>
+                </div>
+              </form>
+           </div>
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Month</th>
+                              <th>Baptismal</th>
+                              <th>Blessing</th>
+                              <th>Communion</th>
+                              <th>Confirmation</th>
+                              <th>Funeral</th>
+                              <th>Wedding</th>
+                              <!-- Add more columns as needed -->
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                              // Replace the sample data below with your actual data retrieval logic
+                              $sampleData = [
+                                  ['January', $baptismCountJanuary, $blessingCountJanuary, $communionCountJanuary, $confirmationCountJanuary, $funeralMassCountJanuary, $weddingCountJanuary],
+                                  ['February', $baptismCountFeb, $blessingCountFeb, $communionCountFeb, $confirmationCountFeb, $funeralMassCountFeb, $weddingCountFeb],
+                                  ['March', $baptismCountMar, $blessingCountMar, $communionCountMar, $confirmationCountMar, $funeralMassCountMar, $weddingCountMar],
+                                  ['April', $baptismCountApr, $blessingCountApr, $communionCountApr, $confirmationCountApr, $funeralMassCountApr, $weddingCountApr],
+                                  ['May', $baptismCountMay, $blessingCountMay, $communionCountMay, $confirmationCountMay, $funeralMassCountMay, $weddingCountMay],
+                                  ['June', $baptismCountJun, $blessingCountJun, $communionCountJun, $confirmationCountJun, $funeralMassCountJun, $weddingCountJun],
+                                  ['July', $baptismCountJul, $blessingCountJul, $communionCountJul, $confirmationCountJul, $funeralMassCountJul, $weddingCountJul],
+                                  ['August', $baptismCountAug, $blessingCountAug, $communionCountAug, $confirmationCountAug, $funeralMassCountAug, $weddingCountAug],
+                                  ['September', $baptismCountSep, $blessingCountSep, $communionCountSep, $confirmationCountSep, $funeralMassCountSep, $weddingCountSep],
+                                  ['October', $baptismCountOct, $blessingCountOct, $communionCountOct, $confirmationCountOct, $funeralMassCountOct, $weddingCountOct],
+                                  ['November', $baptismCountNov, $blessingCountNov, $communionCountNov, $confirmationCountNov, $funeralMassCountNov, $weddingCountNov],
+                                  ['December', $baptismCountDec, $blessingCountDec, $communionCountDec, $confirmationCountDec, $funeralMassCountDec, $weddingCountDec],
+                                  ['Total', $baptismCountSum, $blessingCountSum, $communionCountSum, $confirmationCountSum, $funeralMassCountSum, $weddingCountSum],
+                                  // Add more rows as needed
+                              ];
+
+                              foreach ($sampleData as $row) {
+                                  echo '<tr>';
+                                  foreach ($row as $cell) {
+                                      echo '<td>' . $cell . '</td>';
+                                  }
+                                  echo '</tr>';
+                              }
+                          ?>
+                      </tbody>
+                  </table>
     </div>
            
 </div>

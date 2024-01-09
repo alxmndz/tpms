@@ -143,10 +143,34 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#barFilter">Filter &#9776;</button>
-        <div id="barFilter" class="collapse">
-            <input id="barFilterDate" class="form-control" type="text" placeholder="Select Date">
-        </div>
+    <div id="barFilter">
+        <form method="get" class="row align-items-center">
+            <div class="col-auto">
+                <label for="selectedMonth" class="form-label">Select Month</label>
+                <select name="selectedMonth" id="selectedMonth" class="form-select">
+                    <?php
+                    $currentMonth = date('n');
+                    $currentYear = date('Y');
+
+                    for ($month = 1; $month <= 12; $month++) {
+                        $selected = ($currentMonth == $month) ? 'selected' : '';
+                        echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label for="selectedYear" class="form-label">Select Year</label>
+                <input name="selectedYear" id="selectedYear" class="form-control" type="number" placeholder="Year" value="<?php echo $currentYear; ?>">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-primary mt-3">Apply</button>
+            </div>
+                <div class="col-auto">
+                <button class="btn btn-success btn-block btn-sm mt-3" onclick="printReport()">Print</button>
+            </div>
+        </form>
+    </div>
     </div>
 
     <?php include "../chart-data/walkInReserve.php"; ?>
@@ -162,6 +186,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <canvas id="onlineReserveChart" width="300" height="300"></canvas>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-md-6 mt-3">
                 <h2 class="text-center" style="text-transform: uppercase;">Total Reservation per Month</h2>

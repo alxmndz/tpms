@@ -115,6 +115,100 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 <div id="content">
     <header>
         <img src="../assets/icons/system/menus.png" class="menu-bar">
+        <div class="d-flex justify-content-end">
+                <!-- Notification bell icon -->
+                <div class="notification-icon mt-2">
+                    <div class="dropdown notification-bell">
+                        <a href="#" class="text-black text-decoration-none position-relative" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- Notification Bell Icon from Font Awesome -->
+                            <i class="fas fa-bell"></i>
+                            <!-- Notification Badge -->
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                                <?php
+                                include_once '../php/dbconn.php';
+                                $result = mysqli_query($conn, "SELECT SUM(total_count) AS total FROM (
+                                SELECT COUNT(*) AS total_count FROM baptismal_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM blessing_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM communion_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM confirmation_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM funeralmass_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM wedding_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                UNION ALL
+                                SELECT COUNT(*) AS total_count FROM request WHERE transactType != 'Walk-In' AND status = 'In Process'
+                                ) AS combined_counts");
+                                $row = mysqli_fetch_assoc($result);
+                                echo $row['total'];
+                                ?>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <?php
+                    $combinedResults = array();
+
+                    $query = "SELECT id, name, 'Baptismal' AS type FROM baptismal_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, name, 'Blessing' AS type FROM blessing_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, name, 'Communion' AS type FROM communion_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, name, 'Confirmation' AS type FROM confirmation_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, reqBy AS name, 'Funeral Mass' AS type FROM funeralmass_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, CONCAT(groom, ' and ', bride) AS name, 'Wedding' AS type FROM wedding_tbl WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            UNION
+                            SELECT id, name, 'Certificate' AS type FROM request WHERE transactType != 'Walk-In' AND status = 'In Process'
+                            ORDER BY id DESC LIMIT 6";
+
+                    $result = mysqli_query($conn, $query);
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $combinedResults[] = array(
+                            'id' => $row['id'],
+                            'name' => $row['name'],
+                            'type' => $row['type'],
+                            // Add other relevant fields
+                        );
+                    }
+
+                    // Sort combined results by id in descending order
+                    usort($combinedResults, function ($a, $b) {
+                        return $b['id'] - $a['id'];
+                    });
+
+                    if (!empty($combinedResults)) {
+                        foreach ($combinedResults as $notification) {
+                            ?>
+                            <!-- Add your combined notification items here -->
+                            <a class="dropdown-item" href="#">
+                                <?php
+                                // Display a customized message for certificate requests
+                                if ($notification['type'] === 'Certificate') {
+                                    echo $notification['name'] . ' has requested a ' . $notification['type'];
+                                    // Add more details if needed
+                                } else {
+                                    // Display 'reqBy' instead of 'name' if the type is 'Funeral Mass'
+                                    echo $notification['name'] . ' has requested a reservation (' . $notification['type'] . ')';
+                                }
+                                ?>
+                            </a>
+                            <!-- You can add more items or customize as needed -->
+                            <?php
+                        }
+                    } else {
+                        echo "<p class='dropdown-item'>No notifications found</p>";
+                    }
+                    ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="ms-auto">
 			<div class="dropdown">
 				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">

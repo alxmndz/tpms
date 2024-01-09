@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/styles.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <title>Tuy Parish Website</title>
 </head>
 <body>
@@ -16,19 +17,19 @@
 				<img src="assets/icons/svf.png" alt="Tuy Parish Logo"><span>Tuy</span> Parish Website
 			</a>
 			<ul class="navbar">
-				<li><a href=""><i class="fas fa-house"></i> Home</a></li>
-				<li><a href=""><i class="fas fa-envelope"></i> Offers</a></li>
-				<li><a href=""><i class="fas fa-calendar-day"></i> Events</a></li>
-				<li><a href=""><i class="fas fa-users"></i> Team</a></li>
+				<li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
+				<li><a href="#offers"><i class="fas fa-envelope"></i> Offers</a></li>
+				<li><a href="#events"><i class="fas fa-calendar-day"></i> Events</a></li>
+				<li><a href="#team"><i class="fas fa-users"></i> Team</a></li>
 			</ul>
 			<span style="font-size:30px;cursor:pointer;color: white;" onclick="openNav()" class="fas fa-bars menu"></span>
 		</header>
 
 		<div class="sidebar" id="mySidebar">
-			<a href="#"><i class="fas fa-house"></i> Home</a>
-			<a href="#"><i class="fas fa-envelope"></i> Offers</a>
-			<a href="#"><i class="fas fa-calendar-day"></i> Events</a>
-			<a href="#"><i class="fas fa-users"></i> Team</a>
+			<a href="#home"><i class="fas fa-house"></i> Home</a>
+			<a href="#offers"><i class="fas fa-envelope"></i> Offers</a>
+			<a href="#events"><i class="fas fa-calendar-day"></i> Events</a>
+			<a href="#team"><i class="fas fa-users"></i> Team</a>
 		</div>
 	
 		<section class="home" id="home">
@@ -49,48 +50,42 @@
 					<div class="card-body">
 						<img src="assets/icons/offers/schedule.png">
 						<h5>Reservation</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Church reservation is a way to secure a dedicated space and time within a church for religious, ceremonial, or special events, providing a sacred and appropriate environment for such occasions.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/offers/security.png">
 						<h5>Web Security</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Web security is always changing because new threats come up. Having a good web security plan helps keep data safe, protect user privacy, and build trust with website visitors.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/offers/organize_files.png">
 						<h5>Cerntralized Data Files</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>In a church setting, centralized organized data involves systematically gathering and overseeing crucial information, updates, and announcements for the congregation during worship services.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/offers/credentials.png">
 						<h5>Requirements</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Requirements is one of the important part in services of the church in terms of event reservation because every events needs a specific requirements for admins approval.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/offers/transaction.png">
 						<h5>Online Transaction</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Online transactions within a church management system offer churches a centralized and streamlined approach to managing financial transactions.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/offers/announcement.png">
 						<h5>Announcement</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Announcements in church refer to the communication of important information, updates, events, or announcements of interest to the congregation during a worship service or gathering.</p>
 					</div>
 				</div>
 
@@ -107,48 +102,42 @@
 					<div class="card-body">
 						<img src="assets/icons/events/baptism.png">
 						<h5>Baptismal</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Baptism is a vital spiritual initiation symbolizing forgiveness, cleansing from sin (especially in infant baptism), and a commitment to follow Christ.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/events/blessing.png">
 						<h5>Blessing</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Blessing is a sacred practice of seeking divine favor, protection, and grace for people, objects, places, and events.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/events/communion.png">
 						<h5>Communion</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Communion is a key Christian practice symbolizing faith in Christ's sacrifice, forgiveness, and spiritual connection with God and fellow believers.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/events/confirmation.png">
 						<h5>Confirmation</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Confirmation, after baptism and First Communion, empowers candidates with the Holy Spirit,marking a significant step in their faith journey.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/events/funeral.png">
 						<h5>Funeral Mass</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>A funeral is a gathering to remember and find support in times of loss, where friends and family honor and pay respects to the departed.</p>
 					</div>
 				</div>
 				<div class="card fade-in-out">
 					<div class="card-body">
 						<img src="assets/icons/events/wedding.png">
 						<h5>Wedding</h5>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque possimus nulla vitae officiis, 
-							porro eveniet expedita repellendus fugiat optio sapiente odit dignissimos provident quibusdam reprehenderit assumenda iste facilis nemo illo.</p>
+						<p>Wedding, a universal institution, is a recognized union between two people based on love, commitment, and mutual consent</p>
 					</div>
 				</div>
 
