@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/status.css">
     <link rel="stylesheet" href="../css/datatable.css">
     <link rel="stylesheet" href="../css/datatables.min.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -228,7 +231,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
             <div class="ms-auto">
-            <button class="btn btn-primary btn-sm" onclick="openCity(event, 'reqcert')"> Request</button>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#request"> Request</button>
             <div class="status-dropdown btn-group">
                 <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter by Status
@@ -294,8 +297,155 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                         <?php echo $row["status"]; ?>
                         </span>
                     </td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                    <td class="align-middle"><button class="update-btn" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>"><i class="fas fa-pen"></i></button></td>
                 </tr>
+
+                <div class="modal fade" id="update<?php echo $row['id']; ?>">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      
+                      <div class="modal-header">
+                        <h4 class="modal-title"><i class="fa-solid fa-chart-simple"></i> Update Request</h4>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form class="" action="../php/request/admin-update.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                          <div class="row">
+                            <!-- Left Side (Image) -->
+                            <div class="col-md-6">
+                                <!-- Add your image here -->
+                                <img src="../assets/receipt/<?php echo $row['receipt']; ?>" alt="Your Image" class="img-fluid">
+                            </div>
+                            
+                            <!-- Right Side (Input Fields) -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <input type="date" name="pickUpDt" class="form-control" value="<?php echo date('Y-m-d'); ?>" style="display: none;">
+                              <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                            </div>
+                                  <div class="row my-3">
+                                    <div class="col-md-6">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="typeText">
+                                              <i class="fa-solid fa-user"></i> 
+                                              Name
+                                            </label>
+                                          <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText">
+                                            <i class="fa-solid fa-phone"></i> 
+                                              Contact Number
+                                          </label>
+                              <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required disabled>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row my-3">
+                                <div class="col-md-12">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
+                                          <select class="form-select" id="address" name="address" required disabled>
+                                                <option value="Acle, Tuy, Batangas" <?php echo ($row['address'] === 'Acle, Tuy, Batangas') ? 'selected' : ''; ?>>Acle</option>
+                                                <option value="Bayudbud, Tuy, Batangas" <?php echo ($row['address'] === 'Bayudbud, Tuy, Batangas') ? 'selected' : ''; ?>>Bayudbud</option>
+                                                <option value="Bolboc, Tuy, Batangas" <?php echo ($row['address'] === 'Bolboc, Tuy, Batangas') ? 'selected' : ''; ?>>Bolboc</option>
+                                                <option value="Dalima, Tuy, Batangas" <?php echo ($row['address'] === 'Dalima, Tuy, Batangas') ? 'selected' : ''; ?>>Dalima</option>
+                                                <option value="Dao, Tuy, Batangas" <?php echo ($row['address'] === 'Dao, Tuy, Batangas') ? 'selected' : ''; ?>>Dao</option>
+                                                <option value="Guinhawa, Tuy, Batangas" <?php echo ($row['address'] === 'Guinhawa, Tuy, Batangas') ? 'selected' : ''; ?>>Guinhawa</option>
+                                                <option value="Lumbangan, Tuy, Batangas" <?php echo ($row['address'] === 'Lumbangan, Tuy, Batangas') ? 'selected' : ''; ?>>Lumbangan</option>
+                                                <option value="Luntal, Tuy, Batangas" <?php echo ($row['address'] === 'Luntal, Tuy, Batangas') ? 'selected' : ''; ?>>Luntal</option>
+                                                <option value="Magahis, Tuy, Batangas" <?php echo ($row['address'] === 'Magahis, Tuy, Batangas') ? 'selected' : ''; ?>>Magahis</option>
+                                                <option value="Malibu, Tuy, Batangas" <?php echo ($row['address'] === 'Malibu, Tuy, Batangas') ? 'selected' : ''; ?>>Malibu</option>
+                                                <option value="Mataywanac, Tuy, Batangas" <?php echo ($row['address'] === 'Mataywanac, Tuy, Batangas') ? 'selected' : ''; ?>>Mataywanac</option>
+                                                <option value="Palincaro, Tuy, Batangas" <?php echo ($row['address'] === 'Palincaro, Tuy, Batangas') ? 'selected' : ''; ?>>Palincaro</option>
+                                                <option value="Luna, Tuy, Batangas" <?php echo ($row['address'] === 'Luna, Tuy, Batangas') ? 'selected' : ''; ?>>Luna</option>
+                                                <option value="Burgos, Tuy, Batangas" <?php echo ($row['address'] === 'Burgos, Tuy, Batangas') ? 'selected' : ''; ?>>Burgos</option>
+                                                <option value="Rizal, Tuy, Batangas" <?php echo ($row['address'] === 'Rizal, Tuy, Batangas') ? 'selected' : ''; ?>>Rizal</option>
+                                                <option value="Rillo, Tuy, Batangas" <?php echo ($row['address'] === 'Rillo, Tuy, Batangas') ? 'selected' : ''; ?>>Rillo</option>
+                                                <option value="Putol, Tuy, Batangas" <?php echo ($row['address'] === 'Putol, Tuy, Batangas') ? 'selected' : ''; ?>>Putol</option>
+                                                <option value="Sabang, Tuy, Batangas" <?php echo ($row['address'] === 'Sabang, Tuy, Batangas') ? 'selected' : ''; ?>>Sabang</option>
+                                                <option value="San Jose, Tuy, Batangas" <?php echo ($row['address'] === 'San Jose, Tuy, Batangas') ? 'selected' : ''; ?>>San Jose</option>
+                                                <option value="San Jose (Putic), Tuy, Batangas" <?php echo ($row['address'] === 'San Jose (Putic), Tuy, Batangas') ? 'selected' : ''; ?>>San Jose (Putic)</option>
+                                                <option value="Talon, Tuy, Batangas" <?php echo ($row['address'] === 'Talon, Tuy, Batangas') ? 'selected' : ''; ?>>Talon</option>
+                                                <option value="Toong, Tuy, Batangas" <?php echo ($row['address'] === 'Toong, Tuy, Batangas') ? 'selected' : ''; ?>>Toong</option>
+                                                <option value="Tuyon-tuyon, Tuy, Batangas" <?php echo ($row['address'] === 'Tuyon-tuyon, Tuy, Batangas') ? 'selected' : ''; ?>>Tuyon-tuyon</option>
+                                            </select>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="row my-3">
+                                  <div class="col-md-12">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Event</label>
+                                          <select class="form-select" id="event" name="event" required disabled>
+                                            <option value="Baptismal Certificate" <?php echo ($row['event'] === 'Baptismal Certificate') ? 'selected' : ''; ?>>Baptismal Certificate</option>
+                                            <option value="Communion Certificate" <?php echo ($row['event'] === 'Communion Certificate') ? 'selected' : ''; ?>>Communion Certificate</option>
+                                            <option value="Confirmation Certificate" <?php echo ($row['event'] === 'Confirmation Certificate') ? 'selected' : ''; ?>>Confirmation Certificate</option>
+                                            <option value="Death Certificate" <?php echo ($row['event'] === 'Death Certificate') ? 'selected' : ''; ?>>Death Certificate</option>
+                                            <option value="Marriage Certificate" <?php echo ($row['event'] === 'Marriage Certificate') ? 'selected' : ''; ?>>Marriage Certificate</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row my-3">
+                                  <div class="col-md-6">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
+                                          <input class="form-control" value="<?php echo $row['amount']; ?>" required disabled>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText"><i class="fa-solid fa-barcode"></i> Reference No.</label>
+                                          <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="row my-3">
+                                  <div class="col-md-6">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText">Pick Up Date</label>
+                                          <input class="form-control" type="date" id="whenToPickUp" name="whenToPickUp" value="<?php echo $row['whenToPickUp']; ?>" disabled>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-outline">
+                                          <label class="form-label" for="typeText">Released Date</label>
+                                          <input class="form-control" type="date" id="pickUpDt" name="pickUpDt" value="<?php echo $row['pickUpDt']; ?>" disabled>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+
+                              <div class="row my-3">
+                                <div class="col-md-12">
+                                      <div class="form-outline">
+                                        <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                                          <select class="form-select" id="status" name="status" required>
+                                              <option value="Ready to pick up" <?php echo ($row['status'] === 'Ready to pick up') ? 'selected' : ''; ?>>Ready to pick up</option>
+
+                                              <option value="Released" <?php echo ($row['status'] === 'Released') ? 'selected' : ''; ?>>Released</option>
+
+                                              <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?> disabled>In Process</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            <div class="form-group mb-2">             
+                              <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
+                            </div>                      
+                        </form>
+                      </div>
+                    </div>
+
+                    </div>
+                  </div>
+                </div>
                 <?php
                 $i++;
                 }
@@ -319,6 +469,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 </div>
 
 </div>
+<?php include "modal/req.php"; ?>
 <?php 
   } else {
     header("Location: ../login.php");
@@ -382,5 +533,43 @@ function getStatusColorClass($status) {
     }
 }
 ?>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
+    </script>
 </body>
 </html>

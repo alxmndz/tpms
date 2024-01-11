@@ -175,6 +175,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
     <?php include "../chart-data/walkInReserve.php"; ?>
     <?php include "../chart-data/onlineReserve.php"; ?>
+    <?php include "../chart-data/donationLine.php"; ?>
     <?php include "../chart-data/donationChart.php"; ?>
     <?php include "../chart-data/requestCert.php"; ?>
     <?php include "../chart-data/reservationList.php"; ?>
@@ -189,13 +190,17 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <hr>
         <div class="row">
             <div class="col-md-6 mt-3">
-                <h2 class="text-center" style="text-transform: uppercase;">Total Reservation per Month</h2>
+                <h2 class="text-center fw-bold" style="text-transform: uppercase;">Total Reservation per Month</h2>
                 <canvas id="reservedChart" width="300" height="300"></canvas>
             </div>
             <div class="col-md-6 mt-3">
-                <h2 class="text-center" style="text-transform: uppercase;">Requests Certificate per Month</h2>
+                <h2 class="text-center fw-bold" style="text-transform: uppercase;">Requests Certificate per Month</h2>
                 <canvas id="barGraphCert" width="300" height="300"></canvas>
             </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <h3 class="text-center fw-bold" style="text-transform: uppercase;">Total Donation per Month</h3>
+            <canvas id="lineChart" width="100%"></canvas>
         </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -401,8 +406,43 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
       });
     });
 </script>
+<script>
+    // Chart.js code
+    document.addEventListener('DOMContentLoaded', function () {
+        const labels = <?php echo json_encode(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']); ?>;
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Total Donation Amount',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                data: <?php echo json_encode($totalAmount); ?>,
+            }]
+        };
 
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
 
+        const lineChart = new Chart(
+            document.getElementById('lineChart'),
+            config
+        );
+    });
+</script>
 
     <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">

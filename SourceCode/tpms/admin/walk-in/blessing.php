@@ -269,8 +269,142 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                             <?php echo $row["status"]; ?>
                         </span>
                     </td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                    <td class="align-middle"><button class="update-btn" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>"><i class="fas fa-pen"></i></button></td>
                 </tr>
+
+                <div class="modal modal-lg fade" id="update<?php echo $row['id']; ?>">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Reservation</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <!-- Left Side (Image) -->
+                                        <div class="col-md-6">
+                                            <img src="../../assets/receipt/<?php echo $row['receipt']; ?>" alt="Image" class="img-fluid">
+                                        </div>
+
+                                        <!-- Right Side (Form) -->
+                                        <div class="col-md-6">
+                                            <form action="php/updateBless.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                                    <div class="form-group">
+                                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                                        </div>
+                                            <div class="row my-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="typeText">
+                                                        <i class="fa-solid fa-user"></i> 
+                                                        Name
+                                                        </label>
+                                                    <input class="form-control" type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText">
+                                                        <i class="fa-solid fa-phone"></i> 
+                                                        Contact Number
+                                                    </label>
+                                        <input class="form-control" type="tel" id="contact" name="contact" value="<?php echo $row['contact']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col-md-12">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
+                                                    <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-calendar"></i> Bless Date</label>
+                                                    <input class="form-control" type="date" id="blessDate" name="blessDate" value="<?php echo $row['blessDate']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-clock"></i> Bless Time</label>
+                                                    <select class="form-select" id="blessTime" name="blessTime" required disabled>
+                                                            <option selected disabled>Select a time</option>
+                                                            <option value="08:00 AM" <?php echo ($row['blessTime'] === '08:00 AM') ? 'selected' : ''; ?>>8:00 AM</option>
+                                                            <option value="08:30 AM" <?php echo ($row['blessTime'] === '08:30 AM') ? 'selected' : ''; ?>>8:30 AM</option>
+                                                            <option value="09:00 AM" <?php echo ($row['blessTime'] === '09:00 AM') ? 'selected' : ''; ?>>9:00 AM</option>
+                                                            <option value="09:30 AM" <?php echo ($row['blessTime'] === '09:30 AM') ? 'selected' : ''; ?>>9:30 AM</option>
+                                                            <option value="10:00 AM" <?php echo ($row['blessTime'] === '10:00 AM') ? 'selected' : ''; ?>>10:00 AM</option>
+                                                            <option value="10:30 AM" <?php echo ($row['blessTime'] === '10:30 AM') ? 'selected' : ''; ?>>10:30 AM</option>
+                                                            <option value="11:00 AM" <?php echo ($row['blessTime'] === '11:00 AM') ? 'selected' : ''; ?>>11:00 AM</option>
+                                                            <option value="11:30 AM" <?php echo ($row['blessTime'] === '11:30 AM') ? 'selected' : ''; ?>>11:30 AM</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-money-bill-1-wave"></i> Amount Price</label>
+                                                    <input class="form-control" value="<?php echo $row['amount']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText">Intention</label>
+                                                    <input class="form-control" value="<?php echo $row['intention']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col-md-12">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText">Payment method</label>
+                                                    <input class="form-control" type="text" id="payMethod" name="payMethod" value="<?php echo $row['payMethod']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fas fa-barcode"></i> Reference No.</label>
+                                                    <input class="form-control" type="number" id="refNum" name="refNum" value="<?php echo $row['refNum']; ?>" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="typeText"><i class="fa-solid fa-chart-simple"></i> Status</label>
+                                                    <select class="form-select" id="status" name="status" required>
+                                                        <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+
+                                                        <option value="In Process" <?php echo ($row['status'] === 'In Process') ? 'selected' : ''; ?>>In Process</option>
+                                                        
+                                                        <option value="Reserved" <?php echo ($row['status'] === 'Reserved') ? 'selected' : ''; ?>>Reserved</option>
+
+                                                        <option value="Disapprove, mismatch files" <?php echo ($row['status'] === 'Disapprove, mismatch files') ? 'selected' : ''; ?>>Disapprove, mismatch files</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">             
+                                        <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Update</button>  
+                                        </div>                      
+                                    </form>
+                                </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 <?php
                     $i++;
                 }

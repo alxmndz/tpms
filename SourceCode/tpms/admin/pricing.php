@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -246,7 +249,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["baptismal"], 2); ?></h2>
                         <p class="card-text event-type">Baptismal</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateBap<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -257,7 +260,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["blessing"], 2); ?></h2>
                         <p class="card-text event-type">Blessing</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateBless<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -268,7 +271,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["cert"], 2); ?></h2>
                         <p class="card-text event-type">Certificates</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCert<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -279,9 +282,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <div class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["confirmation"], 2); ?></h2>
-                        <p class="card-text event-type">Confirmation</p>
-                        <button class="btn btn-primary">Update</button>
+                        <h2 class="card-title pricing-text">₱<?php echo number_format($row["communion"], 2); ?></h2>
+                        <p class="card-text event-type">Communion</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCom<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -292,7 +295,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["confirmation"], 2); ?></h2>
                         <p class="card-text event-type">Confirmation</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCon<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -303,7 +306,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["funeralmass"], 2); ?></h2>
                         <p class="card-text event-type">Funeral Mass</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateFun<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
@@ -316,12 +319,210 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="card-body d-flex flex-column align-items-center">
                         <h2 class="card-title pricing-text">₱<?php echo number_format($row["wedding"], 2); ?></h2>
                         <p class="card-text event-type">Wedding</p>
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateWedd<?php echo $row['id']; ?>">Update</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="updateBap<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Baptismal Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/baptismal.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="baptismal" name="baptismal" value="<?php echo $row['baptismal']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateBless<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Blessing Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/blessing.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="blessing" name="blessing" value="<?php echo $row['blessing']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateCert<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Certificate Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/certificate.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="cert" name="cert" value="<?php echo $row['cert']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateCom<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Communion Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/communion.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="communion" name="communion" value="<?php echo $row['communion']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateCon<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Confirmation Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/confirmation.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="confirmation" name="confirmation" value="<?php echo $row['confirmation']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateFun<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Funeral Mass Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/funeralmass.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="funeralmass" name="funeralmass" value="<?php echo $row['funeralmass']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="updateWedd<?php echo $row['id']; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold">Wedding Price</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="updateForm" action="../php/pricing/wedding.php" autocomplete="off" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                        <input type="number" class="form-control" id="wedding" name="wedding" value="<?php echo $row['wedding']; ?>" required>
+                    </div>
+                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+            </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+
     <?php
               $i++;
             }
@@ -349,5 +550,42 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
   }
 ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
+    </script>
 </body>
 </html>

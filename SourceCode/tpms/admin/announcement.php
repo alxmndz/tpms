@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/datatable.css">
     <link rel="stylesheet" href="../css/datatables.min.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -227,7 +230,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
             <div class="ms-auto">
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#announceModal">
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#announcementModal">
                 <i class="fa-solid fa-pen-to-square"></i> Add Announcement
                 </button>
             </div>
@@ -243,11 +246,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     ?>
             <thead class="thead-dark">
                 <tr class="align-middle">
-                    <th>Event Picture</th>
-                    <th>Event Title</th>
+                    <th>Image</th>
+                    <th>Announcement Title</th>
                     <th>Date Posted</th>
-                    <th>Event Date</th>
-                    <th>Event Time</th>
+                    <th>Announcement Date</th>
+                    <th>Announcement Time</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -273,11 +276,58 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <td class="align-middle">
                         <?php
                         $announceTime = $row["announceTime"];
-                        echo !empty($announceTime) ? date("M d, Y h:i:s A", strtotime($announceTime)) : "No time";
+                        echo !empty($announceTime) ? date("h:i A", strtotime($announceTime)) : "No time";
                         ?>
                     </td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-pen"></i></button></td>
+                    <td class="align-middle"><button class="update-btn" data-bs-toggle="modal" data-bs-target="#update<?php echo $row['id']; ?>"><i class="fas fa-pen"></i></button></td>
                 </tr>
+                <div class="modal fade" id="update<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="modal-title"><i class="fa-solid fa-bell"></i> Update Announcement</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="../php/announcement/admin-update.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <label class="form-label fw-bold" style="text-transform:uppercase;"><b>Announcement Image</b></label>
+                                <img id="announcePic" src="../assets/announcement/<?php echo $row['announcePic']; ?>" style="max-width: 100%; height: auto; max-height: 300px;" alt="Event Picture" class="mx-auto mb-3">
+                                </div>
+                                <div class="col-md-6">
+                                <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fa-solid fa-pen-to-square"></i> Announcement Title</label>
+                                    <input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fa-solid fa-pen-nib"></i> Announcement Description</label>
+                                    <textarea name="description" class="form-control" rows="3" required><?php echo $row['description']; ?></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fa-solid fa-calendar-days"></i> Announcement Date</label>
+                                    <input type="date" name="announceDate" class="form-control" value="<?php echo $row['announceDate']; ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fa-solid fa-clock"></i> Announcement Time</label>
+                                    <input type="time" name="announceTime" class="form-control" value="<?php echo $row['announceTime']; ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fa-solid fa-image"></i> Image</label>
+                                    <input type="file" name="announcePic" id="announcePic" class="form-control" value="<?php echo $row['announcePic']; ?>">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Update</button>
+                        </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
                 <?php
                           $i++;
                         }
@@ -307,6 +357,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
+<?php include "modal/announcement.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/datatables.min.js"></script>
@@ -324,6 +375,58 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
       });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var descriptionTextarea = document.querySelector('textarea[name="description"]');
+        var enableTextareaCheckbox = document.getElementById('enableTextarea');
+
+        function toggleDescriptionTextarea() {
+            descriptionTextarea.disabled = !enableTextareaCheckbox.checked;
+        }
+
+        enableTextareaCheckbox.addEventListener('change', toggleDescriptionTextarea);
+
+        // Set the initial state based on the default checkbox value
+        toggleDescriptionTextarea();
+    });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
     </script>
 </body>
 </html>

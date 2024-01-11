@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/datatable.css">
     <link rel="stylesheet" href="../css/datatables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -256,8 +258,36 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <td class="align-middle"><?php echo $row["name"]; ?></td>
                     <td class="align-middle"><?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></td>
                     <td class="align-middle">₱<?php echo number_format($row["amount"]); ?></td>
-                    <td class="align-middle"><button class="view-btn"><i class="fas fa-eye"></i></button></td>
+                    <td class="align-middle"><button class="view-btn" data-bs-toggle="modal" data-bs-target="#view<?php echo $row['id']; ?>"><i class="fas fa-eye"></i></button></td>
                 </tr>
+
+                <div class="modal fade" id="view<?php echo $row['id']; ?>">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewModalLabel">View Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img id="receipt" src="../assets/receipt/<?php echo $row['receipt']; ?>" style="max-width: 100%; height: auto; max-height: 300px;"
+                                            alt="receipt" class="mx-auto mb-3">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Name:</strong> <?php echo $row["name"]; ?></p>
+                                        <p><strong>Contact:</strong> <?php echo $row["contact"]; ?></p>
+                                        <p><strong>Transaction Date:</strong> <?php echo date("M d, Y", strtotime($row["donatedDate"])); ?></p>
+                                        <p><strong>Amount:</strong> ₱<?php echo number_format($row["amount"]); ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <?php
                     $i++;
                   }
@@ -281,6 +311,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 </div>
 
 </div>
+<?php include "modal/donation.php"; ?>
 <?php 
   } else {
     header("Location: ../login.php");
@@ -304,5 +335,37 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
       });
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php
+    if (isset($_SESSION['alert'])) {
+        $value = $_SESSION['alert'];
+
+        if ($value == "success") {
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif ($value == "error") {
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
 </body>
 </html>

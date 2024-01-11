@@ -8,6 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/reserve.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -244,7 +247,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-titlefw-bold fw-bold reserve-title">Baptismal</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#baptismModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#baptismal">Reserve</button>
                 </div>
             </div>
         </div>
@@ -256,7 +259,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Blessing</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#blessModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#blessing">Reserve</button>
                 </div>
             </div>
         </div>
@@ -268,7 +271,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Communion</h3>
                     <p class="card-text">Available Time: 8:30 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#commModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#communion">Reserve</button>
                 </div>
             </div>
         </div>
@@ -280,7 +283,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Confirmation</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#conModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmation">Reserve</button>
                 </div>
             </div>
         </div>
@@ -292,7 +295,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Funeral Mass</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#funeralModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#funeral">Reserve</button>
                 </div>
             </div>
         </div>        
@@ -304,7 +307,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Wedding</h3>
                     <p class="card-text">Available Time: 7:00 am - 12:00 pm</p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#weddModal">Reserve</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#wedding">Reserve</button>
                 </div>
             </div>
         </div>
@@ -321,6 +324,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </footer>
 
 </div>
+<?php include "modal/baptismal.php"; ?>
+<?php include "modal/blessing.php"; ?>
+<?php include "modal/communion.php"; ?>
+<?php include "modal/confirmation.php"; ?>
+<?php include "modal/funeral.php"; ?>
+<?php include "modal/wedding.php"; ?>
 <?php 
   } else {
     header("Location: ../login.php");
@@ -328,5 +337,42 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
   }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
+    </script>
 </body>
 </html>
