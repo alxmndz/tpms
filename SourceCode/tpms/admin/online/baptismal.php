@@ -301,7 +301,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
+                                    <img src="../../assets/receipt/<?php echo $row['receipt']; ?>" alt="Image 1" class="d-block w-100">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="birthCert/<?php echo $row['birthCert']; ?>" alt="Image 2" class="d-block w-100">

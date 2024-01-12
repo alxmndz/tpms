@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/datatable.css">
     <link rel="stylesheet" href="../../css/datatables.min.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -226,11 +229,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <p><span class="text-muted">Admin > Generate Certificate ></span> Confirmation Certificate</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-        <?php
-		date_default_timezone_set('Asia/Manila');
-		$manilaTime = date('F j, Y ');
-		?>
-            <p><?php echo $manilaTime; ?></p>
+            <button class="view-btn" data-bs-toggle="modal" data-bs-target="#confirmation">
+                <i class="fas fa-pen text-primary"></i>
+            </button>
         </div>
     </div>
 
@@ -278,6 +279,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
+<?php 
+include "../modal/certificate.php";
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/jquery-3.6.0.min.js"></script>
     <script src="../../js/datatables.min.js"></script>
@@ -294,6 +298,43 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
       });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
     </script>
 </body>
 </html>

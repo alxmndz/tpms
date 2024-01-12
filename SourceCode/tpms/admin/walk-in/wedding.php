@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../../css/status.css">
     <link rel="stylesheet" href="../../css/datatable.css">
     <link rel="stylesheet" href="../../css/datatables.min.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -227,11 +230,19 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <p><span class="text-muted">Admin > Walk-In ></span> Wedding </p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-        <?php
-		date_default_timezone_set('Asia/Manila');
-		$manilaTime = date('F j, Y ');
-		?>
-            <p><?php echo $manilaTime; ?></p>
+            <div class="ms-auto">
+            <div class="status-dropdown btn-group">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+                  <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Reserved" href="#">Reserved</a></li>
+                </ul>
+          </div>
         </div>
     </div>
 
@@ -289,7 +300,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Update Reservation</h4>
+                <h4 class="modal-title fw-bold text-uppercase">Update Reservation</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -304,7 +315,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                         <!-- Right Side (Form) -->
                         <div class="col-md-6">
-                    <form action="php/updateWedd.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="../../php/reservation/update-wedd.php" method="post" enctype="multipart/form-data" autocomplete="off">
                       <div class="form-group">
                           <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                         </div>
@@ -531,7 +542,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                       </div>
 
                         <div class="form-group mb-2">             
-                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Save Changes</button>  
+                          <button class="btn btn-success" name="btn-save" id="btn-save" style="float: right;">Update</button>  
                         </div>                      
                     </form>
                   </div>
@@ -579,6 +590,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
+          $('.filter-btn').on('click', function () {
+            var status = $(this).data('status');
+
+            // Use a switch statement to handle each status separately
+            switch (status) {
+              case 'all':
+                // Show all rows if 'All' is selected
+                table.column(5).search('').draw();
+                break;
+              default:
+                // Show rows based on the selected status
+                table.column(5).search(status).draw();
+                break;
+            }
+          });
+
       });
     </script>
 <?php
@@ -601,5 +628,42 @@ function getStatusColorClass($status) {
     }
 }
 ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
+    </script>
 </body>
 </html>

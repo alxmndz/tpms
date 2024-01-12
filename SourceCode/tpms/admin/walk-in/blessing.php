@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../../css/status.css">
     <link rel="stylesheet" href="../../css/datatable.css">
     <link rel="stylesheet" href="../../css/datatables.min.css">
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -227,11 +230,19 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <p><span class="text-muted">Admin > Walk-In ></span> Blessing </p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-        <?php
-		date_default_timezone_set('Asia/Manila');
-		$manilaTime = date('F j, Y ');
-		?>
-            <p><?php echo $manilaTime; ?></p>
+            <div class="ms-auto">
+            <div class="status-dropdown btn-group">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+                  <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Reserved" href="#">Reserved</a></li>
+                </ul>
+          </div>
         </div>
     </div>
 
@@ -292,7 +303,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 
                                         <!-- Right Side (Form) -->
                                         <div class="col-md-6">
-                                            <form action="php/updateBless.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                                            <form action="../../php/reservation/update-bless.php" method="post" enctype="multipart/form-data" autocomplete="off">
                                     <div class="form-group">
                                         <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>">
                                         </div>
@@ -320,7 +331,31 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                                             <div class="col-md-12">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="typeText"><i class="fa-solid fa-home"></i> Address</label>
-                                                    <input class="form-control" type="text" id="address" name="address" value="<?php echo $row['address']; ?>" required disabled>
+                                                    <select class="form-select" id="address" name="address" required disabled>
+                                                <option value="Acle, Tuy, Batangas" <?php echo ($row['address'] === 'Acle, Tuy, Batangas') ? 'selected' : ''; ?>>Acle</option>
+                                                <option value="Bayudbud, Tuy, Batangas" <?php echo ($row['address'] === 'Bayudbud, Tuy, Batangas') ? 'selected' : ''; ?>>Bayudbud</option>
+                                                <option value="Bolboc, Tuy, Batangas" <?php echo ($row['address'] === 'Bolboc, Tuy, Batangas') ? 'selected' : ''; ?>>Bolboc</option>
+                                                <option value="Dalima, Tuy, Batangas" <?php echo ($row['address'] === 'Dalima, Tuy, Batangas') ? 'selected' : ''; ?>>Dalima</option>
+                                                <option value="Dao, Tuy, Batangas" <?php echo ($row['address'] === 'Dao, Tuy, Batangas') ? 'selected' : ''; ?>>Dao</option>
+                                                <option value="Guinhawa, Tuy, Batangas" <?php echo ($row['address'] === 'Guinhawa, Tuy, Batangas') ? 'selected' : ''; ?>>Guinhawa</option>
+                                                <option value="Lumbangan, Tuy, Batangas" <?php echo ($row['address'] === 'Lumbangan, Tuy, Batangas') ? 'selected' : ''; ?>>Lumbangan</option>
+                                                <option value="Luntal, Tuy, Batangas" <?php echo ($row['address'] === 'Luntal, Tuy, Batangas') ? 'selected' : ''; ?>>Luntal</option>
+                                                <option value="Magahis, Tuy, Batangas" <?php echo ($row['address'] === 'Magahis, Tuy, Batangas') ? 'selected' : ''; ?>>Magahis</option>
+                                                <option value="Malibu, Tuy, Batangas" <?php echo ($row['address'] === 'Malibu, Tuy, Batangas') ? 'selected' : ''; ?>>Malibu</option>
+                                                <option value="Mataywanac, Tuy, Batangas" <?php echo ($row['address'] === 'Mataywanac, Tuy, Batangas') ? 'selected' : ''; ?>>Mataywanac</option>
+                                                <option value="Palincaro, Tuy, Batangas" <?php echo ($row['address'] === 'Palincaro, Tuy, Batangas') ? 'selected' : ''; ?>>Palincaro</option>
+                                                <option value="Luna, Tuy, Batangas" <?php echo ($row['address'] === 'Luna, Tuy, Batangas') ? 'selected' : ''; ?>>Luna</option>
+                                                <option value="Burgos, Tuy, Batangas" <?php echo ($row['address'] === 'Burgos, Tuy, Batangas') ? 'selected' : ''; ?>>Burgos</option>
+                                                <option value="Rizal, Tuy, Batangas" <?php echo ($row['address'] === 'Rizal, Tuy, Batangas') ? 'selected' : ''; ?>>Rizal</option>
+                                                <option value="Rillo, Tuy, Batangas" <?php echo ($row['address'] === 'Rillo, Tuy, Batangas') ? 'selected' : ''; ?>>Rillo</option>
+                                                <option value="Putol, Tuy, Batangas" <?php echo ($row['address'] === 'Putol, Tuy, Batangas') ? 'selected' : ''; ?>>Putol</option>
+                                                <option value="Sabang, Tuy, Batangas" <?php echo ($row['address'] === 'Sabang, Tuy, Batangas') ? 'selected' : ''; ?>>Sabang</option>
+                                                <option value="San Jose, Tuy, Batangas" <?php echo ($row['address'] === 'San Jose, Tuy, Batangas') ? 'selected' : ''; ?>>San Jose</option>
+                                                <option value="San Jose (Putic), Tuy, Batangas" <?php echo ($row['address'] === 'San Jose (Putic), Tuy, Batangas') ? 'selected' : ''; ?>>San Jose (Putic)</option>
+                                                <option value="Talon, Tuy, Batangas" <?php echo ($row['address'] === 'Talon, Tuy, Batangas') ? 'selected' : ''; ?>>Talon</option>
+                                                <option value="Toong, Tuy, Batangas" <?php echo ($row['address'] === 'Toong, Tuy, Batangas') ? 'selected' : ''; ?>>Toong</option>
+                                                <option value="Tuyon-tuyon, Tuy, Batangas" <?php echo ($row['address'] === 'Tuyon-tuyon, Tuy, Batangas') ? 'selected' : ''; ?>>Tuyon-tuyon</option>
+                                            </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,6 +477,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
 
+          $('.filter-btn').on('click', function () {
+            var status = $(this).data('status');
+
+            // Use a switch statement to handle each status separately
+            switch (status) {
+              case 'all':
+                // Show all rows if 'All' is selected
+                table.column(5).search('').draw();
+                break;
+              default:
+                // Show rows based on the selected status
+                table.column(5).search(status).draw();
+                break;
+            }
+          });
+
       });
     </script>
 <?php
@@ -464,5 +515,42 @@ function getStatusColorClass($status) {
     }
 }
 ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php 
+    if(isset($_SESSION['alert'])){
+        $value = $_SESSION['alert'];
+        if($value == "success"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Success!',
+                    text: '$message',
+                    icon: 'success'
+                });
+            </script>";
+        } elseif($value == "error"){
+            $message = $_SESSION['message'];
+            echo "
+            <script type='text/javascript'>
+                swal({
+                    title: 'Error!',
+                    text: '$message',
+                    icon: 'error'
+                });
+            </script>";
+        }
+        // Clear the session alert and message after displaying
+        unset($_SESSION['alert']);
+        unset($_SESSION['message']);
+    }
+    ?>
+    <script type="text/javascript">
+    function limitDigits(input) {
+    if (input.value.length > 11) {
+        input.value = input.value.substring(0, 11);
+    }
+    }
+    </script>
 </body>
 </html>

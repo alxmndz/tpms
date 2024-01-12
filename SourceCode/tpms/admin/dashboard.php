@@ -285,62 +285,38 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <div class="centered-text">
                         <h5>
 						<?php
-                    include "../php/dbconn.php";
+                                include "../php/dbconn.php";
 
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
 
-                    // Get the current month and year
-                    $currentMonth = date("m");
-                    $currentYear = date("Y");
+                                // Get the current month and year
+                                $currentMonth = date("m");
+                                $currentYear = date("Y");
 
-                    // Define the status condition
-                    $statusCondition = "Approved";
+                                // Define the status condition
+                                $statusCondition = "Released";
 
-                    // Construct the SQL queries with the WHERE clauses including the status condition
-                    $sql = "SELECT COUNT(*) AS total FROM certbap WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear AND status = '$statusCondition'";
-                    $sql1 = "SELECT COUNT(*) AS total FROM certcomm WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear AND status = '$statusCondition'";
-                    $sql2 = "SELECT COUNT(*) AS total FROM certcon WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear AND status = '$statusCondition'";
-                    $sql3 = "SELECT COUNT(*) AS total FROM certfun WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear AND status = '$statusCondition'";
-                    $sql4 = "SELECT COUNT(*) AS total FROM certmarriage WHERE MONTH(generatedDate) = $currentMonth AND YEAR(generatedDate) = $currentYear AND status = '$statusCondition'";
+                                // Construct the SQL query with the WHERE clause including the status condition
+                                $sql = "SELECT COUNT(*) FROM request WHERE MONTH(transactDate) = $currentMonth AND YEAR(transactDate) = $currentYear AND status = '$statusCondition'";
 
-                    // Execute the queries
-                    $result = $conn->query($sql);
-                    $result1 = $conn->query($sql1);
-                    $result2 = $conn->query($sql2);
-                    $result3 = $conn->query($sql3);
-                    $result4 = $conn->query($sql4);
+                                $result = $conn->query($sql);
 
-                    // Check for errors and display the results
-                    if ($result && $result1 && $result2 && $result3 && $result4) {
-                        $row = $result->fetch_assoc();
-                        $sum = $row['total'];
+                                if ($result === false) {
+                                    // Handle the query error
+                                    echo "Error: " . $conn->error;
+                                } else {
+                                    // Fetch the result
+                                    $row = $result->fetch_assoc();
 
-                        $row1 = $result1->fetch_assoc();
-                        $sum1 = $row1['total'];
+                                    // Display the count
+                                    echo $row['COUNT(*)'];
+                                }
 
-                        $row2 = $result2->fetch_assoc();
-                        $sum2 = $row2['total'];
-
-                        $row3 = $result3->fetch_assoc();
-                        $sum3 = $row3['total'];
-
-                        $row4 = $result4->fetch_assoc();
-                        $sum4 = $row4['total'];
-
-                        // Calculate the total sum
-                        $totalSum = $sum + $sum1 + $sum2 + $sum3 + $sum4;
-
-                        // Display the total sum
-                        echo $totalSum;
-                    } else {
-                        echo "Error: " . $conn->error;
-                    }
-
-                    // Close the database connection
-                    $conn->close();
-                    ?>
+                                // Close the database connection
+                                $conn->close();
+                                ?>
 						</h5>
                         <p>Released Certificates</p>
                     </div>
@@ -574,7 +550,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 							<div class="row">
 									<p class="fw-bold col-md-8">Church Events</p>
 									<div class="col-md-4 text-end">
-											<button class="btn btn-sm btn-success">
+											<button class="btn btn-sm btn-success" onclick="viewAll()">
 													View All
 											</button>
 									</div>
@@ -638,6 +614,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </footer>
 
 </div>
+<script>
+    function viewAll() {
+        // Redirect to the desired page
+        window.location.href = 'calendar.php';
+    }
+</script>
 <?php 
   } else {
     header("Location: ../login.php");
