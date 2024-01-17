@@ -96,7 +96,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center">
-                            <span>Already have an account? <a href="login.php">Login</a></span>
+                            <span>Already have an account? <a href="login.php">Sign-in</a></span>
                         </div>
                     </div>
                 </div>

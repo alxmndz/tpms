@@ -1,0 +1,111 @@
+        @import url('https://fonts.cdnfonts.com/css/tr-dauphin');
+        @import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat&family=Poppins&family=Raleway&family=Varela+Round&display=swap');
+
+        h5 {
+            font-family: 'TR Dauphin', sans-serif;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 12px; /* Adjust font size for printing */
+            }
+
+            .container-fluid {
+                width: 50%; /* Set the width to 50% of the paper */
+                margin: 0;
+                padding: 0;
+            }
+
+            .card-body {
+                page-break-before: always;
+                margin: 0;
+                padding: 0;
+            }
+
+            .certificate {
+                border: 2px solid black;
+                padding: 5%; /* Use percentage-based padding for responsiveness */
+                text-align: center;
+                margin-top: 30px;
+                width: 100%;
+            }
+
+            .certificate-title {
+                margin-bottom: 5%; /* Use percentage-based margin for responsiveness */
+            }
+
+            .certificate-content {
+                margin-top: 5%;
+            }
+
+            .baptized-by {
+                margin-top: 5px;
+            }
+
+            .left-side,
+            .right-side {
+                margin: 0;
+                padding: 0;
+            }
+
+            .noPrint {
+                display: none;
+            }
+
+            /* Remove URL and page number */
+            @page {
+                margin: 0;
+            }
+
+            body::after {
+                content: none !important;
+            }
+
+            body::before {
+                content: none !important;
+            }
+
+            /* Additional elements to hide when printing */
+            .btn,
+            .navbar,
+            .footer {
+                display: none;
+            }
+            .certificate-title {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 5%;
+                text-align: center;
+            }
+
+            .certificate-title h2,
+            .certificate-title h5 {
+                margin: 0;
+                white-space: nowrap; /* Prevent text from breaking to the next line */
+            }
+            .certificate-content h5,
+            .certificate-content h4 {
+                margin: 0;
+                font-size: 1em; /* Example: Set font size to the default size */
+            }
+
+            .baptized-by h5 {
+                margin: 0;
+                font-size: 0.8em; /* Example: Set font size to 80% of the default size */
+            }
+
+            @page {
+            margin: 0;
+            }
+
+            body::after {
+                content: none !important;
+            }
+
+            body::before {
+                content: none !important;
+            }
+            
+        }

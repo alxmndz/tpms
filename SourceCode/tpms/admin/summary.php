@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/summary.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -112,20 +113,20 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </div>
 
 <div id="content">
-    <header>
+    <header class="no-print">
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
 				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
-    <div class="row">
+    <h3 class="fw-bold no-print">Welcome <?php echo $_SESSION['uname']; ?></h3>
+    <div class="row no-print">
         <div class="col-md-6">
             <p><span class="text-muted">Admin > Reports ></span> Report Summary</p>
         </div>
@@ -156,7 +157,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     <?php include "../chart-data/otherData/totalReservedList.php"; ?>
     
     <div class="container-fluid" id="accounts">
-            <div class="ms-auto mb-2">
+            <div class="ms-auto mb-2 no-print">
              <form method="get">
                 <div class="row">
                   <div class="col-md-6">
@@ -164,11 +165,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                   </div>
                   <div class="col-md-6">
                     <button type="submit" class="btn btn-sm btn-primary mt-2">Apply</button>
-                    <button class="btn btn-success btn-sm mt-2"><i class="fas fa-eye"></i> Preview</button>
+                    <button class="btn btn-success btn-sm mt-2" onclick="printSummary()">Print</button>
                   </div>
                 </div>
               </form>
            </div>
+           <header class="for-printing">
+                <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
+            </header>
                   <table class="table">
                       <thead>
                           <tr>
@@ -183,34 +187,34 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                           </tr>
                       </thead>
                       <tbody>
-                          <?php
-                              // Replace the sample data below with your actual data retrieval logic
-                              $sampleData = [
-                                  ['January', $baptismCountJanuary, $blessingCountJanuary, $communionCountJanuary, $confirmationCountJanuary, $funeralMassCountJanuary, $weddingCountJanuary],
-                                  ['February', $baptismCountFeb, $blessingCountFeb, $communionCountFeb, $confirmationCountFeb, $funeralMassCountFeb, $weddingCountFeb],
-                                  ['March', $baptismCountMar, $blessingCountMar, $communionCountMar, $confirmationCountMar, $funeralMassCountMar, $weddingCountMar],
-                                  ['April', $baptismCountApr, $blessingCountApr, $communionCountApr, $confirmationCountApr, $funeralMassCountApr, $weddingCountApr],
-                                  ['May', $baptismCountMay, $blessingCountMay, $communionCountMay, $confirmationCountMay, $funeralMassCountMay, $weddingCountMay],
-                                  ['June', $baptismCountJun, $blessingCountJun, $communionCountJun, $confirmationCountJun, $funeralMassCountJun, $weddingCountJun],
-                                  ['July', $baptismCountJul, $blessingCountJul, $communionCountJul, $confirmationCountJul, $funeralMassCountJul, $weddingCountJul],
-                                  ['August', $baptismCountAug, $blessingCountAug, $communionCountAug, $confirmationCountAug, $funeralMassCountAug, $weddingCountAug],
-                                  ['September', $baptismCountSep, $blessingCountSep, $communionCountSep, $confirmationCountSep, $funeralMassCountSep, $weddingCountSep],
-                                  ['October', $baptismCountOct, $blessingCountOct, $communionCountOct, $confirmationCountOct, $funeralMassCountOct, $weddingCountOct],
-                                  ['November', $baptismCountNov, $blessingCountNov, $communionCountNov, $confirmationCountNov, $funeralMassCountNov, $weddingCountNov],
-                                  ['December', $baptismCountDec, $blessingCountDec, $communionCountDec, $confirmationCountDec, $funeralMassCountDec, $weddingCountDec],
-                                  ['Total', $baptismCountSum, $blessingCountSum, $communionCountSum, $confirmationCountSum, $funeralMassCountSum, $weddingCountSum],
-                                  // Add more rows as needed
-                              ];
+                      <?php
+                            // Replace the sample data below with your actual data retrieval logic
+                            $sampleData = [
+                                ['January', $baptismCountJanuary, $blessingCountJanuary, $communionCountJanuary, $confirmationCountJanuary, $funeralMassCountJanuary, $weddingCountJanuary],
+                                ['February', $baptismCountFeb, $blessingCountFeb, $communionCountFeb, $confirmationCountFeb, $funeralMassCountFeb, $weddingCountFeb],
+                                ['March', $baptismCountMar, $blessingCountMar, $communionCountMar, $confirmationCountMar, $funeralMassCountMar, $weddingCountMar],
+                                ['April', $baptismCountApr, $blessingCountApr, $communionCountApr, $confirmationCountApr, $funeralMassCountApr, $weddingCountApr],
+                                ['May', $baptismCountMay, $blessingCountMay, $communionCountMay, $confirmationCountMay, $funeralMassCountMay, $weddingCountMay],
+                                ['June', $baptismCountJun, $blessingCountJun, $communionCountJun, $confirmationCountJun, $funeralMassCountJun, $weddingCountJun],
+                                ['July', $baptismCountJul, $blessingCountJul, $communionCountJul, $confirmationCountJul, $funeralMassCountJul, $weddingCountJul],
+                                ['August', $baptismCountAug, $blessingCountAug, $communionCountAug, $confirmationCountAug, $funeralMassCountAug, $weddingCountAug],
+                                ['September', $baptismCountSep, $blessingCountSep, $communionCountSep, $confirmationCountSep, $funeralMassCountSep, $weddingCountSep],
+                                ['October', $baptismCountOct, $blessingCountOct, $communionCountOct, $confirmationCountOct, $funeralMassCountOct, $weddingCountOct],
+                                ['November', $baptismCountNov, $blessingCountNov, $communionCountNov, $confirmationCountNov, $funeralMassCountNov, $weddingCountNov],
+                                ['December', $baptismCountDec, $blessingCountDec, $communionCountDec, $confirmationCountDec, $funeralMassCountDec, $weddingCountDec],
+                                ['<strong style="font-weight: bold;">Total</strong>', '<strong>' . $baptismCountSum . '</strong>', '<strong>' . $blessingCountSum . '</strong>', '<strong>' . $communionCountSum . '</strong>', '<strong>' . $confirmationCountSum . '</strong>', '<strong>' . $funeralMassCountSum . '</strong>', '<strong>' . $weddingCountSum . '</strong>'],
+                                // Add more rows as needed
+                            ];
 
-                              foreach ($sampleData as $row) {
-                                  echo '<tr>';
-                                  foreach ($row as $cell) {
-                                      echo '<td>' . $cell . '</td>';
-                                  }
-                                  echo '</tr>';
-                              }
-                          ?>
-                      </tbody>
+                            foreach ($sampleData as $row) {
+                                echo '<tr>';
+                                foreach ($row as $cell) {
+                                    echo '<td>' . $cell . '</td>';
+                                }
+                                echo '</tr>';
+                            }
+                        ?>
+                    </tbody>
                   </table>
     </div>
 
@@ -232,6 +236,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
+    <script>
+        function printSummary() {
+            window.print();
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

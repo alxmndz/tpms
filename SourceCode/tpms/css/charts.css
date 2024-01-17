@@ -1,0 +1,86 @@
+.for-printing {
+    display: none; /* Hide the header by default */
+}
+@media print {
+    
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #sidebar {
+        display: none;
+    }
+    hr{
+        display: none;
+    }
+
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+    #content {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    #charts {
+        width: 100%;
+        margin: 0 auto; /* Center the charts horizontally */
+    }
+
+    #charts canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    #charts {
+        margin: 1;
+        padding: 0;
+    }
+
+    #charts .container,
+    #charts .container-fluid {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    .card-text-smaller {
+        font-size: 0.8rem; /* Adjust the font size as needed */
+        margin-top: 10px;
+        margin: 1;
+    }
+
+    @page {
+        size: auto; /* auto is used for default size */
+        margin: 0; /* zero out the margins */
+    }
+
+    body {
+        margin: 1.6cm; /* Set a margin for the content on the page */
+    }
+
+    @media print {
+        .for-printing {
+            display: block; /* Show the header when printing */
+            color: black;
+            text-align: center;
+            margin: auto; /* Center the content */
+        }        
+    }
+    @media print {
+        .no-print, .no-print * {
+            display: none !important;
+        }
+    }
+}

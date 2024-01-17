@@ -1,0 +1,59 @@
+.for-printing {
+    display: none; /* Hide the header by default */
+}
+@media print {
+    
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    hr{
+        display: none;
+    }
+
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+    #content {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    @page {
+        size: auto; /* auto is used for default size */
+        margin: 0; /* zero out the margins */
+    }
+
+    body {
+        margin: 1.6cm; /* Set a margin for the content on the page */
+    }
+
+    @media print {
+        .for-printing {
+            display: block; /* Show the header when printing */
+            color: black;
+            text-align: center;
+            margin: auto; /* Center the content */
+        }        
+    }
+    @media print {
+        .no-print, .no-print * {
+            display: none !important;
+        }
+    }
+}

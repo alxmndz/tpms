@@ -111,12 +111,7 @@ if (isset($_POST['btn-save'])) {
         header('Location: ../../admin/donation.php');
         exit();
     } else {
-        echo "<script type='text/javascript'>
-            alert('Insertion Failed: " . mysqli_error($conn) . "');
-            window.location = '../../admin/donation.php';
-        </script>";
-
-        '<script>
+        echo '<script>
                     swal({
                         title: "Error!",
                         text: "Insertion Failed: "' . mysqli_error($conn) .'",

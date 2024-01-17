@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/reserve.css">
+    <link rel="stylesheet" href="../css/cards.css">
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
@@ -216,7 +217,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 			<div class="dropdown">
 				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
@@ -243,9 +244,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Baptismal Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/baptize.jpg" class="card-img-top" alt="Image 1">
+                <img src="../assets/icons/events/baptism.png" class="card-img-top" alt="Image 1">
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h3 class="card-titlefw-bold fw-bold reserve-title">Baptismal</h3>
+                    <h3 class="card-title fw-bold reserve-title">Baptismal</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#baptismal">Reserve</button>
                 </div>
@@ -255,7 +256,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Blessing Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/bless.jpg" class="card-img-top" alt="Image 2">
+                <img src="../assets/icons/events/blessing.png" class="card-img-top" alt="Image 2">
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Blessing</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
@@ -267,7 +268,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Communion Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/comm.jpg" class="card-img-top" alt="Image 3">
+                <img src="../assets/icons/events/communion.png" class="card-img-top" alt="Image 3">
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Communion</h3>
                     <p class="card-text">Available Time: 8:30 am - 12:00 pm</p>
@@ -279,7 +280,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Confirmation Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/confirmation.jpg" class="card-img-top" alt="Image 4">
+                <img src="../assets/icons/events/confirmation.png" class="card-img-top" alt="Image 4">
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Confirmation</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
@@ -291,7 +292,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Funeral Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/funeral.png" class="card-img-top" alt="Image 5">
+                <img src="../assets/icons/events/funeral.png" class="card-img-top" alt="Image 5">
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Funeral Mass</h3>
                     <p class="card-text">Available Time: 8:00 am - 12:00 pm</p>
@@ -303,7 +304,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         <!-- Wedding Card -->
         <div class="col-md-4 mb-4">
             <div class="card text-center">
-                <img src="../assets/events/wedd.jpg" class="card-img-top" alt="Image 6">
+                <img src="../assets/icons/events/wedding.png" class="card-img-top" alt="Image 6">
                 <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="card-title fw-bold reserve-title">Wedding</h3>
                     <p class="card-text">Available Time: 7:00 am - 12:00 pm</p>

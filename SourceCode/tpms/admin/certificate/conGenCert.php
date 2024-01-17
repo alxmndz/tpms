@@ -217,7 +217,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 			<div class="dropdown">
 				<img src="../../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="../profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
@@ -256,7 +256,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <tr>
                     <td class="align-middle"><?php echo $row["name"]; ?></td>
                     <td class="align-middle"><?php echo date("M d, Y", strtotime($row["generatedDate"])); ?></td>
-                    <td class="align-middle"><button class="update-btn"><i class="fas fa-print"></i></button></td>
+                    <td class="align-middle"><a class="update-btn" href="preview-con.php?id=<?php echo $row["id"]; ?>"><i class="fas fa-print"></i></a></td>
                 </tr>
                 <?php
                 }

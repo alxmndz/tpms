@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/charts.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Admin - Tuy Parish Management System</title>
 </head>
@@ -26,7 +26,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
   $img = mysqli_fetch_assoc($sql);
   $userIMG = $img['profile'];
 ?>
-    <div id="sidebar">
+    <div id="sidebar" class="no-print">
         <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -117,20 +117,20 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </div>
 
 <div id="content">
-    <header>
+    <header class="no-print">
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
 				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
-    <div class="row">
+    <h3 class="fw-bold no-print">Welcome <?php echo $_SESSION['uname']; ?></h3>
+    <div class="row no-print">
         <div class="col-md-6">
             <p><span class="text-muted">Admin > Reports ></span> Chart Reports</p>
         </div>
@@ -143,34 +143,34 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         </div>
     </div>
     <div>
-    <div id="barFilter">
-        <form method="get" class="row align-items-center">
-            <div class="col-auto">
-                <label for="selectedMonth" class="form-label">Select Month</label>
-                <select name="selectedMonth" id="selectedMonth" class="form-select">
-                    <?php
-                    $currentMonth = date('n');
-                    $currentYear = date('Y');
-
-                    for ($month = 1; $month <= 12; $month++) {
-                        $selected = ($currentMonth == $month) ? 'selected' : '';
-                        echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="col-auto">
-                <label for="selectedYear" class="form-label">Select Year</label>
-                <input name="selectedYear" id="selectedYear" class="form-control" type="number" placeholder="Year" value="<?php echo $currentYear; ?>">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-sm btn-primary mt-3">Apply</button>
-            </div>
+        <div id="barFilter" class="no-print">
+            <form method="get" class="align-items-center">
                 <div class="col-auto">
-                <button class="btn btn-success btn-block btn-sm mt-3" onclick="printReport()">Print</button>
-            </div>
-        </form>
-    </div>
+                    <label for="selectedMonth" class="form-label">Select Month</label>
+                    <select name="selectedMonth" id="selectedMonth" class="form-select">
+                        <?php
+                        $currentMonth = date('n');
+                        $currentYear = date('Y');
+
+                        for ($month = 1; $month <= 12; $month++) {
+                            $selected = ($currentMonth == $month) ? 'selected' : '';
+                            echo "<option value=\"$month\" $selected>" . date("F", mktime(0, 0, 0, $month, 1)) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label for="selectedYear" class="form-label">Select Year</label>
+                    <input name="selectedYear" id="selectedYear" class="form-control" type="number" placeholder="Year" value="<?php echo $currentYear; ?>">
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-sm btn-primary mt-3">Apply</button>
+                        <button class="btn btn-success btn-block btn-sm mt-3" onclick="printCharts()">Print</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <?php include "../chart-data/walkInReserve.php"; ?>
@@ -179,28 +179,35 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     <?php include "../chart-data/donationChart.php"; ?>
     <?php include "../chart-data/requestCert.php"; ?>
     <?php include "../chart-data/reservationList.php"; ?>
-        <div class="row">
-            <div class="col-md-6">
-                <canvas id="walkInReserveChart" width="300" height="300"></canvas>
+    <header class="for-printing">
+        <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
+    </header>
+        <div class="container" id="charts">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <canvas id="walkInReserveChart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <canvas id="onlineReserveChart" width="300" height="300"></canvas>
+                    </div>
+                </div>
+                <hr>
+                <div class="row no-page-break">
+                    <div class="col-md-6 mt-3">
+                        <span class="text-center fw-bold text-center card-text-smaller" style="text-transform: uppercase;">Total Reservation per Month</span>
+                        <canvas id="reservedChart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <span class="text-center fw-bold text-center card-text-smaller" style="text-transform: uppercase;">Requests Certificate per Month</span>
+                        <canvas id="barGraphCert" width="300" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-6">
+                    <span class="text-center fw-bold text-center mt-5" style="text-transform: uppercase;">Total Donation per Month</span>
+                    <canvas id="lineChart" width="100%"></canvas>
+                </div>
             </div>
-            <div class="col-md-6">
-                <canvas id="onlineReserveChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 mt-3">
-                <h2 class="text-center fw-bold" style="text-transform: uppercase;">Total Reservation per Month</h2>
-                <canvas id="reservedChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-md-6 mt-3">
-                <h2 class="text-center fw-bold" style="text-transform: uppercase;">Requests Certificate per Month</h2>
-                <canvas id="barGraphCert" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <div class="col-md-12 mt-3">
-            <h3 class="text-center fw-bold" style="text-transform: uppercase;">Total Donation per Month</h3>
-            <canvas id="lineChart" width="100%"></canvas>
         </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -376,7 +383,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           {
             label: 'Certificates',
             data: <?php echo json_encode($requestCounts); ?>,
-            backgroundColor: ['#16A085', '#3498DB', '#8E44AD', '#C0392B', '#DC7633'],
+            backgroundColor: ['#16A085', '#16A085', '#16A085', '#16A085', '#16A085'],
           },
         ],
         labels: ['Baptismal Certificate', 'Communion Certificate', 'Confirmation Certificate', 'Death Certificate', 'Marriage Certificate'],
@@ -443,6 +450,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
         );
     });
 </script>
+<script>
+    function redirect() {
+        // Change the URL to the desired page
+        window.location.href = 'previewCharts.php';
+    }
+</script>
 
     <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
@@ -455,6 +468,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 </div>
 
 </div>
+<script>
+function printCharts() {
+    window.print();
+}
+</script>
+
 <?php 
   } else {
     header("Location: ../login.php");

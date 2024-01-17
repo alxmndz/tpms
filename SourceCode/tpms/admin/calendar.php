@@ -213,7 +213,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 		<div class="dropdown">
 			<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 			<div class="dropdown-content">
-				<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+				<a href="profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 				<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 			</div>
 		</div>
@@ -258,10 +258,12 @@ if (mysqli_num_rows($resultEventList) > 0) {
             continue; // Skip this event if the date has passed
         }
 
+        $summary = ($title) ? "$title - ($eventTime)" : " ($eventTime)";
+
         $events[] = [
             'startDate' => date('Y-m-d', strtotime("$eventDate $eventTime")),
             'endDate' => date('Y-m-d H:i:s', strtotime("$eventDate $eventTime +1 hour")),
-            'summary' => $title,
+            'summary' => $summary,
         ];
     }
 }

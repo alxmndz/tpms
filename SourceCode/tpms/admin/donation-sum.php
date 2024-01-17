@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/summary.css">
     <title>Admin - Tuy Parish Management System</title>
 </head>
 <body>
@@ -112,20 +113,20 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     </div>
 
 <div id="content">
-    <header>
+    <header class="no-print">
         <img src="../assets/icons/system/menus.png" class="menu-bar">
         <div class="ms-auto">
 			<div class="dropdown">
 				<img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
 		</div>
     </header>
-    <h3 class="fw-bold">Welcome <?php echo $_SESSION['uname']; ?></h3>
-    <div class="row">
+    <h3 class="fw-bold no-print">Welcome <?php echo $_SESSION['uname']; ?></h3>
+    <div class="row no-print">
         <div class="col-md-6">
             <p><span class="text-muted">Admin > Reports ></span> Donation Summary</p>
         </div>
@@ -167,7 +168,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     <?php 
         $defaultYear = date("Y");
     ?>
-    <div class="ms-auto mb-2">
+            <div class="ms-auto mb-2 no-print">
                <form method="get">
                   <div class="row">
                     <div class="col-md-6">
@@ -180,48 +181,56 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                   </div>
                 </form>
              </div>
-    <div class="container-fluid" id="accounts">
-        <table id="example" class="display responsive nowrap table" style="width:100%">
-            <thead class="thead-dark">
-                <tr class="align-middle">
-                    <th>Months</th>
-                    <th>Donation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                  // Replace the sample data below with your actual data retrieval logic
-                  $sampleData = [
-                      ['January', $formattedSumJan],
-                      ['February', $formattedSumFeb],
-                      ['March', $formattedSumMar],
-                      ['April', $formattedSumApr],
-                      ['May', $formattedSumMay],
-                      ['June', $formattedSumJun],
-                      ['July', $formattedSumJul],
-                      ['August', $formattedSumAug],
-                      ['September', $formattedSumSep],
-                      ['October', $formattedSumOct],
-                      ['November', $formattedSumNov],
-                      ['December', $formattedSumDec],
-                      ['Total Amount', $formattedSumTotal],
-                  ];
 
-                  foreach ($sampleData as $row) {
-                      echo '<tr>';
-                      foreach ($row as $cell) {
-                          // Format numeric values with two decimal points
-                          if (is_numeric($cell)) {
-                              echo '<td>' . number_format($cell, 2) . '</td>';
-                          } else {
-                              echo '<td>' . $cell . '</td>';
-                          }
-                      }
-                      echo '</tr>';
+    <header class="for-printing">
+        <h5 class="logo"><img src="../assets/icons/logo.png">Tuy Parish Management</h5>
+    </header>
+    <div class="container-fluid" id="accounts">
+    <table id="example" class="display responsive nowrap table" style="width:100%">
+    <thead class="thead-dark">
+        <tr class="align-middle">
+            <th>Months</th>
+            <th>Donation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+          // Replace the sample data below with your actual data retrieval logic
+          $sampleData = [
+              ['January', $formattedSumJan],
+              ['February', $formattedSumFeb],
+              ['March', $formattedSumMar],
+              ['April', $formattedSumApr],
+              ['May', $formattedSumMay],
+              ['June', $formattedSumJun],
+              ['July', $formattedSumJul],
+              ['August', $formattedSumAug],
+              ['September', $formattedSumSep],
+              ['October', $formattedSumOct],
+              ['November', $formattedSumNov],
+              ['December', $formattedSumDec],
+              ['Total Amount', $formattedSumTotal],
+          ];
+
+          foreach ($sampleData as $row) {
+              // Check if the current row is the "Total Amount" row and apply bold style
+              $style = ($row[0] === 'Total Amount') ? 'font-weight: bold;' : '';
+
+              echo '<tr style="' . $style . '">';
+              foreach ($row as $cell) {
+                  // Format numeric values with two decimal points
+                  if (is_numeric($cell)) {
+                      echo '<td>' . number_format($cell, 2) . '</td>';
+                  } else {
+                      echo '<td>' . $cell . '</td>';
                   }
-                  ?>
-            </tbody>
-        </table>
+              }
+              echo '</tr>';
+          }
+          ?>
+    </tbody>
+</table>
+
     </div>
     <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
@@ -240,6 +249,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
     exit();
   }
 ?>
+    <script>
+        function printReport() {
+            window.print();
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

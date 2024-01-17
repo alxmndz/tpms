@@ -215,7 +215,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
 			<div class="dropdown">
 				<img src="../../assets/profile/<?php echo $_SESSION['profile']; ?>" class="profile">
 				<div class="dropdown-content">
-					<a href="#">Profile <i class="fas fa-user" style="float: right;"></i></a>
+					<a href="../profile.php">Profile <i class="fas fa-user" style="float: right;"></i></a>
 					<a href="../../php/logout.php">Logout <i class="fas fa-power-off" style="float: right;"></i></a>
 				</div>
 			</div>
@@ -227,11 +227,16 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
             <p><span class="text-muted">Admin > Online ></span> Baptismal</p>
         </div>
         <div class="col-md-6 text-end"> <!-- Use 'text-end' class to align text to the right -->
-        <?php
-		date_default_timezone_set('Asia/Manila');
-		$manilaTime = date('F j, Y ');
-		?>
-            <p><?php echo $manilaTime; ?></p>
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+                  <li><a class="dropdown-item filter-btn" data-status="all" href="#">All</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Approved" href="#">Approved</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Disapprove, mismatch files" href="#">Disapprove</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="In Process" href="#">In Process</a></li>
+                  <li><a class="dropdown-item filter-btn" data-status="Reserved" href="#">Reserved</a></li>
+                </ul>
         </div>
     </div>
     
@@ -466,6 +471,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
           
           table.buttons().container()
           .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+          $('.filter-btn').on('click', function () {
+            var status = $(this).data('status');
+
+            // Use a switch statement to handle each status separately
+            switch (status) {
+              case 'all':
+                // Show all rows if 'All' is selected
+                table.column(5).search('').draw();
+                break;
+              default:
+                // Show rows based on the selected status
+                table.column(5).search(status).draw();
+                break;
+            }
+          });
 
       });
     </script>
