@@ -42,13 +42,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 $_SESSION['id'] = $row['id'];
 
                 if ($_SESSION['type'] === "patron") {
-                    header("Location: ../admin/dashboard.php");
+                    header("Location: ../patron/home.php");
                     exit();
                 } elseif ($_SESSION['type'] === "admin") {
                     header("Location: ../admin/dashboard.php");
                     exit();
                 } elseif ($_SESSION['type'] === "staff") {
-                    header("Location: ../staff.php");
+                    header("Location: ../staff/dashboard.php");
                     exit();
                 } else {
                     $error = "Incorrect user or password input.";

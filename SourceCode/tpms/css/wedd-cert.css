@@ -1,0 +1,82 @@
+/* Importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat&family=Playfair+Display&family=Poppins&family=Raleway&family=Tangerine&family=Varela+Round&display=swap');
+@import url('https://fonts.cdnfonts.com/css/tr-dauphin');
+
+/* Base styling */
+p {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+.details p u {
+    text-decoration: none;
+}
+
+h5 {
+    font-family: 'TR Dauphin', sans-serif;
+}
+
+/* Media query for print */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .container-fluid {
+        width: 60%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-body {
+        page-break-before: always;
+        margin: 0;
+        padding: 0;
+    }
+
+    .certificate {
+        border: 2px solid black;
+        padding: 2%; /* Adjusted percentage-based padding for responsiveness */
+        text-align: center;
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .certificate-title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2%; /* Adjusted percentage-based margin for responsiveness */
+        text-align: center;
+    }
+
+    .certificate-title h2,
+    .certificate-title h5 {
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .certificate-content h5,
+    .certificate-content h4 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    .baptized-by h5 {
+        margin: 0;
+        font-size: 0.8em;
+    }
+
+    /* Additional elements to hide when printing */
+    .btn,
+    .navbar,
+    .footer {
+        display: none;
+    }
+    
+    /* Remove URL and page number */
+    @page {
+        margin: 0;
+    }
+}

@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../php/reservation/admin-funeral.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../php/reservation/staff-funeral.php" method="POST" enctype="multipart/form-data" autocomplete="off">
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -220,24 +220,6 @@
             </div>
 
               <div class="row my-3">
-                    <div class="col-md-12">
-                      <label class="form-label" for="status">
-                          <i class="fa-solid fa-chart-simple"></i> 
-                          Status
-                        </label>
-                       <div class="form-outline">
-                        <select class="form-select" id="status" name="status">
-                          <option disabled selected>Select a status</option>
-                          <option value="Approved">Approved</option>
-                          <option value="In Process">In Process</option>
-                          <option value="Reserved">Reserved</option>
-                          <option value="Disapprove, mismatch files">Disapprove, mismatch files</option>
-                        </select>
-                      </div>
-                    </div>
-                </div>
-
-              <div class="row my-3">
                   <div class="col-md-12">
                     <div class="form-outline">
                       <input class="form-control" type="hidden" id="transactType" name="transactType" value="Walk-In" required />
@@ -346,6 +328,7 @@
         });
     });
 </script>
+
 
 <script>
   // Add an event listener to the payment method radio buttons

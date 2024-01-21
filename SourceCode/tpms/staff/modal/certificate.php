@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../../php/certificates/admin-baptism.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../../php/certificates/staff-baptism.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -121,7 +121,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../../php/certificates/admin-comm.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../../php/certificates/staff-comm.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -235,7 +235,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../../php/certificates/admin-con.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../../php/certificates/staff-con.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
               <div class="col-md-12">
@@ -349,7 +349,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../../php/certificates/admin-funeral.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../../php/certificates/staff-funeral.php" method="POST" enctype="multipart/form-data" autocomplete="off">
               <div class="row my-3">
                 <div class="col-md-12">
                   <div class="form-outline">
@@ -531,7 +531,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="../../php/certificates/admin-wedd.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="../../php/certificates/staff-wedd.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 
           <div class="row my-3">
             <div class="col-md-6">
