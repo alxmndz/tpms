@@ -488,8 +488,6 @@ if (!empty($events)) {
 } else {
     echo "No events found";
 }
-
-
 ?>
 
 

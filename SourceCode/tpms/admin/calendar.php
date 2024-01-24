@@ -249,6 +249,7 @@ if (mysqli_num_rows($resultEventList) > 0) {
     while ($row = mysqli_fetch_array($resultEventList)) {
         $eventDate = $row['eventDate'];
         $eventTime = $row['eventTime'];
+        $formattedEventTime = date("h:i A", strtotime($eventTime));
         $title = $row['title'];
 
         $currentDate = date('Y-m-d');
@@ -258,11 +259,11 @@ if (mysqli_num_rows($resultEventList) > 0) {
             continue; // Skip this event if the date has passed
         }
 
-        $summary = ($title) ? "$title - ($eventTime)" : " ($eventTime)";
+        $summary = ($title) ? "$title - ($formattedEventTime)" : " ($formattedEventTime)";
 
         $events[] = [
-            'startDate' => date('Y-m-d', strtotime("$eventDate $eventTime")),
-            'endDate' => date('Y-m-d H:i:s', strtotime("$eventDate $eventTime +1 hour")),
+            'startDate' => date('Y-m-d', strtotime("$eventDate")),
+            'endDate' => date('Y-m-d H:i:s', strtotime("$eventDate +1 hour")),
             'summary' => $summary,
         ];
     }
@@ -506,8 +507,6 @@ if (!empty($events)) {
 
 
 ?>
-
-
     <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
