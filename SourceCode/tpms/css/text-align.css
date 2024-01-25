@@ -1,0 +1,30 @@
+.align-middle{
+    justify-content: center;
+    text-align: center;
+ }
+
+#sidebar {
+    z-index: 2;
+}
+.overlay{
+    z-index: 1;
+}
+#content {
+    z-index: 0;
+}
+
+.dropdown-menu:hover{
+    display: block;
+    color: #2E86C1;
+}
+
+.table-responsive{
+    z-index: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    /* Hide elements on smaller screens */
+    .hidden-sm {
+        display: none;
+    }
+}

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/svf.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style-patron.css">
+    <link rel="stylesheet" href="../css/patron.css">
     <link rel="stylesheet" href="../css/dist/calendar.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="../js/dist/jquery.simple-calendar.js"></script>
@@ -80,19 +80,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <button type="button" id="sidebarCollapse" class="btn button-menu">
                     <i class="fas fa-align-left"></i>
                 </button>
-                <button class="d-inline-block d-lg-none ml-auto" type="button">
-                    <ul class="nav navbar-nav" style="padding-right: 20px; margin-left: auto !important;">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-logo" href="index.html">
-                                <img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" alt="Logo">
-                            </a>
-                        </li>
-                    </ul>
-                </button>
+                <span>Calendar</span>
                 <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto" style="padding-right: 20px; margin-left: auto !important;">
                         <li class="nav-item">
-                            <a class="nav-link nav-link-logo" href="index.html">
+                            <a class="nav-link nav-link-logo">
                                 <img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" alt="Logo">
                                 <?php echo $_SESSION['uname']; ?>
                             </a>

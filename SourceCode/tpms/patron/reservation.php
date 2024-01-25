@@ -10,7 +10,7 @@
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/style-patron.css">
+    <link rel="stylesheet" href="../css/patron.css">
     <link rel="stylesheet" href="../css/dist/calendar.css">
     <title>Tuy Parish Management System</title>
 </head>
@@ -47,7 +47,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                     <a href="reservation.php">Reservation</a>
                 </li>
                 <li>
-                    <a href="#">Request Certificate</a>
+                    <a href="request.php">Request Certificate</a>
                 </li>
                 <li class="mb-3 mt-3 side-text" style="margin-left:10px"><span>STATUS</span></li>
                 <li>
@@ -66,10 +66,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 </li>
                 <li class="mb-3 mt-3 side-text" style="margin-left:10px"><span>OTHERS</span></li>
                 <li>
-                    <a href="#">Donation</a>
+                    <a href="donation.php">Donation</a>
                 </li>
                 <li>
-                    <a href="#">Announcement</a>
+                    <a href="announcement.php">Announcement</a>
                 </li>
             </ul>
         </nav>
@@ -82,13 +82,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['uname']) && isset($_SESSION['name'
                 <button type="button" id="sidebarCollapse" class="btn button-menu">
                     <i class="fas fa-align-left"></i>
                 </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
+                <span>Reservation</span>
                 <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto" style="padding-right: 20px; margin-left: auto !important;">
                         <li class="nav-item">
-                            <a class="nav-link nav-link-logo" href="index.html">
+                            <a class="nav-link nav-link-logo">
                                 <img src="../assets/profile/<?php echo $_SESSION['profile']; ?>" alt="Logo">
                                 <?php echo $_SESSION['uname']; ?>
                             </a>
